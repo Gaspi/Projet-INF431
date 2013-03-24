@@ -1,0 +1,14 @@
+what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,org.eclipse.mylyn.ide.ant,3.6.0.v20110608-1400,"org.eclipse.mylyn.ide.ant",1364158061990
+stopped,bundle,org.eclipse.ant.ui,3.5.100.v20110510,"org.eclipse.ant.ui",1364158061990
+stopped,bundle,org.eclipse.ant.launching,1.0.100.v20110506,"org.eclipse.ant.launching",1364158061990
+stopped,bundle,org.eclipse.compare.win32,1.0.200.I20110510-0800,"org.eclipse.compare.win32",1364158061990
+stopped,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.200.v20110502-1955,"org.eclipse.equinox.p2.ui.sdk",1364158061990
+stopped,bundle,org.eclipse.mylyn.java.tasks,3.6.0.v20110608-1400,"org.eclipse.mylyn.java.tasks",1364158062021
+stopped,bundle,org.eclipse.mylyn.java.ui,3.6.0.v20110608-1400,"org.eclipse.mylyn.java.ui",1364158062037
+stopped,bundle,org.eclipse.jdt.junit,3.7.0.v20110505-0800,"org.eclipse.jdt.junit",1364158062037
+stopped,bundle,org.eclipse.jdt.apt.ui,3.3.300.v20110305-1450,"org.eclipse.jdt.apt.ui",1364158062068
+stopped,bundle,org.eclipse.jdt.debug.ui,3.6.0.v20110512,"org.eclipse.jdt.debug.ui",1364158062068
+stopped,bundle,org.eclipse.wb.swing.databinding,1.0.0.r37x201106081552,"org.eclipse.wb.swing.databinding",1364158062099
+stopped,bundle,org.eclipse.wb.core.databinding,1.0.0.r37x201106081531,"org.eclipse.wb.core.databinding",1364158062115
+stopped,bundle,org.eclipse.wb.swing.FormLayout,1.0.0.r37x201106081552,"org.eclipse.wb.swing.FormLayout",1364158062131
