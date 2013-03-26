@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="24" version="2.0">
+<workbench progressCount="18" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="25" y="25">
 <fastViewData fastViewLocation="1024"/>
@@ -8,18 +8,21 @@
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="160" y="22"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="144" y="30"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
-<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="22"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="99" y="22"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="130" y="22"/>
-<coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="group.nav" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
-<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
+<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="40" y="30"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -30,20 +33,37 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunction.java" partName="hashFunction.java" path="C:/Users/Gaspard FEREY/Documents/GitHub/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunction.java" title="hashFunction.java" tooltip="Test Hash/src/drafts/hashFunction.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LookUp3.java" partName="LookUp3.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/LookUp3.java" title="LookUp3.java" tooltip="Test Hash/src/drafts/LookUp3.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/LookUp3.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="17" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunction.java" partName="hashFunction.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunction.java" title="hashFunction.java" tooltip="Test Hash/src/drafts/hashFunction.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/hashFunction.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6050" selectionTopPixel="2936"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="57" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PreprocessingFiles.java" partName="PreprocessingFiles.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/PreprocessingFiles.java" title="PreprocessingFiles.java" tooltip="Test Hash/src/drafts/PreprocessingFiles.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/PreprocessingFiles.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="78" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunctionTests.java" partName="hashFunctionTests.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunctionTests.java" title="hashFunctionTests.java" tooltip="Test Hash/src/drafts/hashFunctionTests.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/hashFunctionTests.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="999" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
+<category IMemento.internal.id="Warnings (4 items)"/>
+<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Errors"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -63,6 +83,7 @@
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
+<child filterId="org.eclipse.pde.ui.ExternalPluginLibrariesFilter1" isEnabled="true"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.ClosedProjectsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonSharedProjectsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaElementFilter" isEnabled="false"/>
@@ -78,42 +99,20 @@
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonPublicFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*" isEnabled="true"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.EmptyLibraryContainerFilter" isEnabled="true"/>
+<child filterId="org.eclipse.pde.ui.BinaryProjectFilter1" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter" isEnabled="true"/>
-<child filterId="org.eclipse.mylyn.java.ui.MembersFilter" isEnabled="false"/>
-<child filterId="org.eclipse.m2e.MavenModuleFilter" isEnabled="false"/>
 </xmlDefinedFilters>
 </customFilters>
 </viewState>
 </view>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks" partName="Task List">
-<viewState linkWithEditor="true" presentation="org.eclipse.mylyn.tasks.ui.categorized">
-<sorter groupBy="CATEGORY_QUERY">
-<sorter>
-<sort0 sortDirection="1" sortKey="PRIORITY"/>
-<sort1 sortDirection="1" sortKey="RANK"/>
-<sort2 sortDirection="1" sortKey="DATE_CREATED"/>
-<sort3 sortDirection="1" sortKey="NONE"/>
-<sort4 sortDirection="1" sortKey="NONE"/>
-<sort5 sortDirection="1" sortKey="NONE"/>
-<sort6 sortDirection="1" sortKey="NONE"/>
-<sort7 sortDirection="1" sortKey="NONE"/>
-</sorter>
-</sorter>
-<filteredTreeFindHistory/>
-</viewState>
-</view>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration">
 <viewState/>
 </view>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
-<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
-<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
-<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
@@ -122,7 +121,6 @@
 <alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
-<alwaysOnActionSet id="org.eclipse.wb.core.ui.actionset"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.ui.JavaElementCreationActionSet"/>
@@ -171,8 +169,6 @@
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -198,8 +194,8 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="250" ratioRight="750" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.7496136" ratioLeft="485" ratioRight="162" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.2626728" ratioLeft="342" ratioRight="960" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.82115084" ratioLeft="528" ratioRight="115" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -218,20 +214,18 @@
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@24a580b3" ratio="0.7493333" ratioLeft="562" ratioRight="188" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.mylyn.tasks.ui.views.tasks" appearance="2" expanded="2">
-<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
+<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 </presentation>
 </folder>
 </info>
 <info folder="true" part="right" ratio="0.49896908" ratioLeft="242" ratioRight="243" relationship="4" relative="org.eclipse.ui.internal.ViewStack@24a580b3">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </mainWindow>
@@ -241,14 +235,161 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/hashFunction.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/hashFunction.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/LookUp3.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/hashFunctionTests.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/PreprocessingFiles.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/Test Hash/UUID_200000"/>
 </editors>
+<item historyLabel="LookUp3.java" index="1">
+<position/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="4301" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="800" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="103" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="4301" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1181" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="4301" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1181" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1225" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="4301" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1615" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="4301" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="756" y="44"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="103" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="756" y="44"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1711" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="992" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="376" y="26"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position/>
+</item>
 <item historyLabel="hashFunction.java" index="0">
+<position info="not_deleted" x="57" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="132" y="0"/>
+</item>
+<item historyLabel="hashFunction.java" index="0">
+<position info="not_deleted" x="57" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1756" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="992" y="0"/>
+</item>
+<item historyLabel="UUID_200000" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="hashFunction.java" index="1">
-<position info="not_deleted" x="520" y="0"/>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="992" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="992" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1757" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="992" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="936" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="1195" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="4643" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="1195" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="1015" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="1756" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="4253" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="999" y="0"/>
+</item>
+<item historyLabel="PreprocessingFiles.java" index="3">
+<position info="not_deleted" x="78" y="0"/>
+</item>
+<item historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="17" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="2">
+<position info="not_deleted" x="999" y="0"/>
+</item>
+<item active="true" historyLabel="LookUp3.java" index="1">
+<position info="not_deleted" x="17" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -258,7 +399,6 @@
 <trimLayout>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
-<trimItem IMemento.internal.id="org.eclipse.mylyn.tasks.ui.trim.container"/>
 </trimArea>
 <trimArea IMemento.internal.id="1024">
 <trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
@@ -268,6 +408,18 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="UUID_200000" tooltip="Test Hash/UUID_200000">
+<persistable path="/Test Hash/UUID_200000"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunctionTests.java" tooltip="Test Hash/src/drafts/hashFunctionTests.java">
+<persistable path="/Test Hash/src/drafts/hashFunctionTests.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PreprocessingFiles.java" tooltip="Test Hash/src/drafts/PreprocessingFiles.java">
+<persistable path="/Test Hash/src/drafts/PreprocessingFiles.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunction.java" tooltip="Test Hash/src/drafts/hashFunction.java">
+<persistable path="/Test Hash/src/drafts/hashFunction.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunction.java" tooltip="Test Hash/src/hashFunction.java">
 <persistable path="/Test Hash/src/hashFunction.java"/>
 </file>
