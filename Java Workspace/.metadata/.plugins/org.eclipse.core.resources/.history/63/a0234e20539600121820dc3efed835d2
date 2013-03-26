@@ -1,0 +1,6 @@
+package drafts;
+
+public interface hashFunction {
+	public static int hashString(String s);
+
+}

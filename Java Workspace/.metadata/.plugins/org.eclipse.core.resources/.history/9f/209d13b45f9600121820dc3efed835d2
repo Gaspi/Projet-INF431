@@ -1,0 +1,21 @@
+package drafts;
+
+public class hashFunctionTests {
+
+	public static void speedTest(hashFunction func){
+		
+	}
+	
+	public static void collisionTest(hashFunction func){
+		
+	}
+	
+	public static void uniformDistribTest(hashFunction func){
+		
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+}
