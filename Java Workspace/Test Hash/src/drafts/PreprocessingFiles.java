@@ -59,8 +59,26 @@ public class PreprocessingFiles {
 		} catch (IOException e1) {e1.printStackTrace();}
 	}
 	
+	public static void writeNumbers(String directory, int number){
+		String s = String.valueOf(number);
+		Path writeFile = Paths.get(directory + "/Numbers_"+s);
+		
+		Charset charset = Charset.forName("US-ASCII");	
+		try {
+			writeFile = Files.createFile(writeFile);
+			BufferedWriter writer = Files.newBufferedWriter(writeFile, charset);
+			
+			try{
+			    for(int i = 0 ; i<= number ; i++)
+			    	writer.write(Integer.toString(i)); 
+			} 
+			finally{writer.close();}    
+		} catch (IOException e1) {e1.printStackTrace();}
+	}
+	
 	
 	public static void main(String[] args) {	
+		writeNumbers("/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash", 1000000);
 	}
 
 }

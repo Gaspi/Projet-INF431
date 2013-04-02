@@ -7,7 +7,6 @@ INDEX VERSION 1.126+/home/jonathan/Documents/Projet-INF431/Java Workspace/.metad
 1453598739.index
 2913048097.index
 1961235293.index
-911554161.index
 1609788100.index
 2031085872.index
 207581026.index

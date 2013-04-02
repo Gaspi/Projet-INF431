@@ -8,4 +8,5 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="drafts.LookUp3"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Test Hash"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx2G"/>
 </launchConfiguration>

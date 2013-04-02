@@ -4,19 +4,19 @@ package drafts;
 
 public class LookUp3 implements hashFunction{
 
-	static int rot(int x, int k){ return ((x)<<(k)) | ((x)>>(32-(k))); }
+	static int rot(int x, int k){ return ((x)<<(k)) | ((x)>>>(32-(k))); }
 	
 	static void mix(int[] tab){
 		int a = tab[0];
 		int b = tab[1];
 		int c = tab[2];
 		
-		a -= c;  a ^= rot(c, 4);  c += b; 
-		b -= a;  b ^= rot(a, 6);  a += c; 
-		c -= b;  c ^= rot(b, 8);  b += a; 
-		a -= c;  a ^= rot(c,16);  c += b; 
-		b -= a;  b ^= rot(a,19);  a += c; 
-		c -= b;  c ^= rot(b, 4);  b += a; 
+		a = UnsignedArithmetic.unsignedMin(a, c);  a ^= rot(c, 4);  c = UnsignedArithmetic.unsignedAdd(c, b); 
+		b = UnsignedArithmetic.unsignedMin(b, a);  b ^= rot(a, 6);  a = UnsignedArithmetic.unsignedAdd(a, c); 
+		c = UnsignedArithmetic.unsignedMin(c, b);  c ^= rot(b, 8);  b = UnsignedArithmetic.unsignedAdd(b, a); 
+		a = UnsignedArithmetic.unsignedMin(a, c);  a ^= rot(c,16);  c = UnsignedArithmetic.unsignedAdd(c, b); 
+		b = UnsignedArithmetic.unsignedMin(b, a);  b ^= rot(a,19);  a = UnsignedArithmetic.unsignedAdd(a, c); 
+		c = UnsignedArithmetic.unsignedMin(c, b);  c ^= rot(b, 4);  b = UnsignedArithmetic.unsignedAdd(b, a); 
 		
 		tab[0] = a;
 		tab[1] = b;
@@ -28,13 +28,13 @@ public class LookUp3 implements hashFunction{
 		int b = tab[1];
 		int c = tab[2];
 		
-		c ^= b; c -= rot(b,14); 
-		a ^= c; a -= rot(c,11); 
-		b ^= a; b -= rot(a,25); 
-		c ^= b; c -= rot(b,16); 
-		a ^= c; a -= rot(c,4);  
-		b ^= a; b -= rot(a,14); 
-		c ^= b; c -= rot(b,24); 
+		c ^= b; c = UnsignedArithmetic.unsignedMin(c, rot(b,14)); 
+		a ^= c; a = UnsignedArithmetic.unsignedMin(a, rot(c,11)); 
+		b ^= a; b = UnsignedArithmetic.unsignedMin(b, rot(a,25)); 
+		c ^= b; c = UnsignedArithmetic.unsignedMin(c, rot(b,16)); 
+		a ^= c; a = UnsignedArithmetic.unsignedMin(a, rot(c,4));  
+		b ^= a; b = UnsignedArithmetic.unsignedMin(b, rot(a,14)); 
+		c ^= b; c = UnsignedArithmetic.unsignedMin(c,  rot(b,24)); 
 		
 		tab[0] = a;
 		tab[1] = b;
@@ -65,6 +65,7 @@ public class LookUp3 implements hashFunction{
 			mix(tab);	
 		}
 		
+		// To-do: shortening the switch-case assertion by removing the break statements and redundant instructions
 		switch(length){
 		case 12:
 			tab[0] = (int) (array[pt]<<24) + (array[pt+1]<<16) + (array[pt+2]<<8) + array[pt+3];
@@ -135,7 +136,6 @@ public class LookUp3 implements hashFunction{
 		return tab[2];		
 	}
 
-	@Override
 	public int hashIntArray(int[] array) {
 		int a = 0xdeadbeef + ((array.length)<<2);
 		int[] tab = new int[3];
@@ -168,11 +168,12 @@ public class LookUp3 implements hashFunction{
 	}
 	
 	
-	
-	
-	
-	
 	public static void main(String[] args) {
-
+		int i = 1;
+		int i2 = -1;
+		long l = (long) 1<<31;
+		long l2 = (long) i2<<31;
+		System.out.println(0xffffffffL);
+		System.out.println(0xFFFFFFFFL);
 	}
 }
