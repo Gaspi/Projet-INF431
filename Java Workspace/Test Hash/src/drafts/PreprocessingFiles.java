@@ -53,7 +53,7 @@ public class PreprocessingFiles {
 			
 			try{
 			    for(int i = 0 ; i<= number ; i++)
-			    	writer.write(UUID.randomUUID().toString()); 
+			    	writer.write(UUID.randomUUID().toString() + System.lineSeparator()); 
 			} 
 			finally{writer.close();}    
 		} catch (IOException e1) {e1.printStackTrace();}
@@ -78,7 +78,7 @@ public class PreprocessingFiles {
 	
 	
 	public static void main(String[] args) {	
-		writeNumbers("/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash", 1000000);
+		writeUUIDs("/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash", 200000);
 	}
 
 }
