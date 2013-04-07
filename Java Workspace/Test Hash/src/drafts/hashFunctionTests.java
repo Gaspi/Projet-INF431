@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 
@@ -70,6 +71,43 @@ public class hashFunctionTests {
 
 	}
 	
+	private static void distributionTestOnFile(Path path, hashFunction func){
+		Vector<Double> values = new Vector<Double>();
+		Charset charset = Charset.forName("US-ASCII");
+		try {
+			BufferedReader reader = Files.newBufferedReader(path, charset);	 
+			String line = null;
+			String[] strings = null;
+	
+			try{
+				while ((line = reader.readLine()) != null ){
+				    strings = line.split("[\\s]+");
+				    
+				    for(String g: strings){
+				    	int hash = func.hashString(g);
+				    	values.add((double) hash);
+				    }
+				}		
+			}finally {reader.close();}	
+		} catch (IOException e1) {e1.printStackTrace();}
+		
+		//addHistogramPlot function uses arrays of doubles. We need to convert from Vector to array
+		int i = 0;
+		double[] tab = new double[values.size()];
+		for(Double d: values){
+			tab[i] = d.doubleValue();
+			i++;
+		}
+		
+		//Make the plotting
+		Plot2DPanel plot = new Plot2DPanel();
+		plot.addHistogramPlot("test", tab, 100);	
+		JFrame frame = new JFrame("Histogram of frequencies");
+		frame.setSize(600, 600);
+		frame.setContentPane(plot);
+		frame.setVisible(true);
+	}
+	
 	public static void speedTests(hashFunction func){
 		System.out.println("---Speed test---");
 		System.out.println("Using " + func.getClass().getSimpleName() + " hash function");
@@ -118,8 +156,7 @@ public class hashFunctionTests {
 	
 	
 	public static void main(String[] args) {
-		//collisionTests(new DJB2());
-		testGraphicalTools();
+		distributionTestOnFile(englishWords, new LoseLose());
 	}
 
 }
