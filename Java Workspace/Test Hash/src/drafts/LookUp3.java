@@ -60,7 +60,7 @@ public class LookUp3 implements hashFunction{
 			tab[1] = (int) (array[pt]<<24) + (array[pt+1]<<16) + (array[pt+2]<<8) + array[pt+3];
 			pt += 4;
 			tab[2] = (int) (array[pt]<<24) + (array[pt+1]<<16) + (array[pt+2]<<8) + array[pt+3];
-			pt += 4;		
+			pt += 4;
 			length -= 12;
 			mix(tab);	
 		}
