@@ -169,11 +169,6 @@ public class LookUp3 implements hashFunction{
 	
 	
 	public static void main(String[] args) {
-		int i = 1;
-		int i2 = -1;
-		long l = (long) 1<<31;
-		long l2 = (long) i2<<31;
-		System.out.println(0xffffffffL);
-		System.out.println(0xFFFFFFFFL);
+
 	}
 }
