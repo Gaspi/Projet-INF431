@@ -2,7 +2,9 @@ package hash.hashFunctions;
 
 import hash.hashFunction;
 
-
+/**
+ * Instantiation of the Java default hash function.
+ */
 public class JavaHash implements hashFunction{
 
 	@Override

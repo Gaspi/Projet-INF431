@@ -1,8 +1,8 @@
 package filter;
 
-
-public class EnglishWordsFilter extends Filter{
-
+// Filter used to process English written texts suppressing any pathological case.
+public class EnglishWordsFilter extends Filter {
+	
 	public String filter(String line) {
 		line = line.toLowerCase();
 		line = line.replaceAll("'st|'[sd]|[^a-z -]|(?<=^)[ ]+", "");

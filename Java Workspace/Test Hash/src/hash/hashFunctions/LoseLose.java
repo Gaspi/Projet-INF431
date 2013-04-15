@@ -3,7 +3,9 @@ package hash.hashFunctions;
 import hash.hashFunction;
 import drafts.UnsignedArithmetic;
 
-
+/**
+ * A trivial and uneffective hash function
+ */
 public class LoseLose implements hashFunction{
 
 

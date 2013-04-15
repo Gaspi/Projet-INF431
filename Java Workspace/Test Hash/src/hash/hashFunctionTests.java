@@ -16,7 +16,7 @@ import static org.math.array.StatisticSample.*;
 
 import org.apache.commons.math3.stat.inference.ChiSquareTest;
 
-import hash.hashFunctions.JavaHash;
+import hash.hashFunctions.*;
 
 public class hashFunctionTests{
 	static final Path	shakespeare		= Paths.get("Shakespeare_complete_processed.txt");
@@ -53,7 +53,7 @@ public class hashFunctionTests{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		
 		return ((float) (System.nanoTime() - start)) / 1000000000. + " s";
 	}
 
@@ -78,9 +78,9 @@ public class hashFunctionTests{
 
 			try {
 				while ((line = reader.readLine()) != null) {
-
+					
 					strings = line.split("[\\s]+");
-
+					
 					for (String g : strings) {
 						int hash = func.hashString(g);
 
@@ -96,7 +96,7 @@ public class hashFunctionTests{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		
 		return Integer.toString(comp);
 
 	}
@@ -144,6 +144,7 @@ public class hashFunctionTests{
 		frame.setSize(600, 600);
 		frame.setContentPane(plot);
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE );
 	}
 
 	private static String chiSquareTestOnFile(Path path, hashFunction func){
@@ -259,8 +260,8 @@ public class hashFunctionTests{
 		// distributionTestOnFile(uuids, new LoseLose());
 		uniformDistribTest(new JavaHash(), true);
 		collisionTests(new JavaHash());
+		collisionTests(new LoseLose());
 		// System.out.println(chiSquareTestOnFile(uuids, new LookUp3()));
-		//gyfdutdud
 	}
 
 }

@@ -3,6 +3,10 @@ package hash.hashFunctions;
 import hash.hashFunction;
 import drafts.UnsignedArithmetic;
 
+/**
+ * A simple homemade hash function
+ * @author Jonathan VISBECQ
+ */
 public class HomemadeHash implements hashFunction{
 
 	@Override

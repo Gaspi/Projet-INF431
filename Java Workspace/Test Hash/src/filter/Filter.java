@@ -62,7 +62,7 @@ public abstract class Filter{
 	public static void main(String[] args){
 		
 		Filter f = new EnglishWordsFilter();
-		System.out.println(f.filter("test 154sd zfzefdf12 3s2d3fe6 'eszmlr ùerr$^trù"));
+		System.out.println(f.filter("test 154sd zfzefdf12 3s2d3fe6 'eszmlr ùerr$^trù'st rtef's erty't defg'd"));
 		f.filterFile(
 				"C:/Users/Gaspard FEREY/Documents/GitHub/Projet-INF431/Ressources/Raw files/Shakespeare_complete.txt",
 				"C:/Users/Gaspard FEREY/Desktop/INF 431/Shakespeare_complete_processed.txt");
