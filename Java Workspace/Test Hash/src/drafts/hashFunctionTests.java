@@ -258,6 +258,7 @@ public class hashFunctionTests{
 		uniformDistribTest(new JavaHash(), true);
 		collisionTests(new JavaHash());
 		// System.out.println(chiSquareTestOnFile(uuids, new LookUp3()));
+		//gyfdutdud
 	}
 
 }
