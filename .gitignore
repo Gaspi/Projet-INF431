@@ -4,7 +4,7 @@
 
 *.pydevproject
 .project
-.metadata
+\Java Workspace\.metadata\*
 bin/
 tmp/
 *.tmp
