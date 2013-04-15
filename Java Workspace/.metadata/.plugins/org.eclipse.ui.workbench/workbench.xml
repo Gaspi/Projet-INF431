@@ -46,13 +46,14 @@
 <part id="10"/>
 <part id="11"/>
 <part id="12"/>
+<part id="13"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunctionTests.java" partName="hashFunctionTests.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunctionTests.java" title="hashFunctionTests.java" tooltip="Test Hash/src/drafts/hashFunctionTests.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunctionTests.java" partName="hashFunctionTests.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunctionTests.java" title="hashFunctionTests.java" tooltip="Test Hash/src/drafts/hashFunctionTests.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/hashFunctionTests.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7624" selectionTopPixel="338"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7624" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoseLose.java" partName="LoseLose.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/LoseLose.java" title="LoseLose.java" tooltip="Test Hash/src/drafts/LoseLose.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/LoseLose.java"/>
@@ -90,9 +91,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/JavaHash.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="320" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Filter.java" partName="Filter.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/Filter.java" title="Filter.java" tooltip="Test Hash/src/drafts/Filter.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Filter.java" partName="Filter.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/Filter.java" title="Filter.java" tooltip="Test Hash/src/drafts/Filter.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/Filter.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="320" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="683" selectionTopPixel="150"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LineFilter.java" partName="LineFilter.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/LineFilter.java" title="LineFilter.java" tooltip="Test Hash/src/drafts/LineFilter.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/LineFilter.java"/>
@@ -100,7 +101,11 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnglishWordsFilter.java" partName="EnglishWordsFilter.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/EnglishWordsFilter.java" title="EnglishWordsFilter.java" tooltip="Test Hash/src/drafts/EnglishWordsFilter.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/EnglishWordsFilter.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="262" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="72" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UnsignedArithmetic.java" partName="UnsignedArithmetic.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/UnsignedArithmetic.java" title="UnsignedArithmetic.java" tooltip="Test Hash/src/drafts/UnsignedArithmetic.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/UnsignedArithmetic.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -444,165 +449,167 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/LookUp3.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/PreprocessingFiles.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/CreatingFiles.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/Filters.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/LineFilter.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/EnglishWordsFilter.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/hashFunctionTests.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/hashFunction.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/Filter.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/EnglishWordsFilter.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/hashFunctionTests.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/UnsignedArithmetic.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/LoseLose.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/HomemadeHash.java"/>
 </editors>
-<item historyLabel="LookUp3.java" index="0">
-<position info="not_deleted" x="5037" y="0"/>
-</item>
-<item historyLabel="PreprocessingFiles.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="CreatingFiles.java" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Filters.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="CreatingFiles.java" index="2">
-<position info="not_deleted" x="276" y="0"/>
-</item>
-<item historyLabel="Filters.java" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Filters.java" index="3">
-<position info="not_deleted" x="1312" y="0"/>
-</item>
-<item historyLabel="Filters.java" index="3">
-<position/>
-</item>
-<item historyLabel="Filters.java" index="3">
-<position info="not_deleted" x="1147" y="0"/>
-</item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="590" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="1147" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="358" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="355" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position/>
 </item>
-<item historyLabel="LineFilter.java" index="4">
+<item historyLabel="LineFilter.java" index="1">
 <position info="not_deleted" x="81" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position/>
 </item>
-<item historyLabel="LineFilter.java" index="4">
+<item historyLabel="LineFilter.java" index="1">
 <position info="not_deleted" x="81" y="0"/>
 </item>
-<item historyLabel="LineFilter.java" index="4">
+<item historyLabel="LineFilter.java" index="1">
 <position info="not_deleted" x="53" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="256" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="302" y="0"/>
 </item>
-<item historyLabel="LineFilter.java" index="4">
+<item historyLabel="LineFilter.java" index="1">
 <position info="not_deleted" x="53" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="256" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position/>
 </item>
-<item historyLabel="LineFilter.java" index="4">
+<item historyLabel="LineFilter.java" index="1">
 <position info="not_deleted" x="53" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="256" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="245" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="88" y="19"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="73" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="163" y="31"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="163" y="31"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="259" y="0"/>
 </item>
-<item historyLabel="hashFunctionTests.java" index="6">
+<item historyLabel="hashFunctionTests.java" index="3">
 <position info="not_deleted" x="7624" y="0"/>
 </item>
-<item historyLabel="hashFunction.java" index="7">
+<item historyLabel="hashFunction.java" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="LineFilter.java" index="4">
+<item historyLabel="LineFilter.java" index="1">
 <position info="not_deleted" x="53" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="72" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="239" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="234" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="239" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="260" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="1338" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="109" y="132"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="1338" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="256" y="0"/>
 </item>
-<item historyLabel="LineFilter.java" index="4">
+<item historyLabel="LineFilter.java" index="1">
 <position info="not_deleted" x="53" y="0"/>
 </item>
-<item historyLabel="EnglishWordsFilter.java" index="5">
+<item historyLabel="EnglishWordsFilter.java" index="2">
 <position info="not_deleted" x="262" y="0"/>
 </item>
-<item historyLabel="Filters.java" index="3">
+<item historyLabel="Filters.java" index="0">
 <position/>
 </item>
-<item historyLabel="Filter.java" index="8">
+<item historyLabel="Filter.java" index="5">
 <position info="not_deleted" x="321" y="0"/>
 </item>
-<item active="true" historyLabel="Filter.java" index="8">
+<item historyLabel="Filter.java" index="5">
 <position info="not_deleted" x="320" y="0"/>
+</item>
+<item historyLabel="EnglishWordsFilter.java" index="6">
+<position info="not_deleted" x="262" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="7">
+<position info="not_deleted" x="7624" y="0"/>
+</item>
+<item historyLabel="Filter.java" index="5">
+<position info="not_deleted" x="763" y="0"/>
+</item>
+<item historyLabel="Filter.java" index="5">
+<position info="not_deleted" x="683" y="0"/>
+</item>
+<item historyLabel="hashFunctionTests.java" index="7">
+<position info="not_deleted" x="7624" y="0"/>
+</item>
+<item historyLabel="UnsignedArithmetic.java" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="LoseLose.java" index="9">
+<position info="not_deleted" x="17" y="0"/>
+</item>
+<item historyLabel="HomemadeHash.java" index="10">
+<position info="not_deleted" x="419" y="0"/>
+</item>
+<item active="true" historyLabel="hashFunctionTests.java" index="7">
+<position info="not_deleted" x="7624" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -621,6 +628,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UnsignedArithmetic.java" tooltip="Test Hash/src/drafts/UnsignedArithmetic.java">
+<persistable path="/Test Hash/src/drafts/UnsignedArithmetic.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnglishWordsFilter.java" tooltip="Test Hash/src/drafts/EnglishWordsFilter.java">
 <persistable path="/Test Hash/src/drafts/EnglishWordsFilter.java"/>
 </file>
@@ -629,9 +639,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Filters.java" tooltip="Test Hash/src/drafts/Filters.java">
 <persistable path="/Test Hash/src/drafts/Filters.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UnsignedArithmetic.java" tooltip="Test Hash/src/drafts/UnsignedArithmetic.java">
-<persistable path="/Test Hash/src/drafts/UnsignedArithmetic.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="JavaHash.java" tooltip="Test Hash/src/drafts/JavaHash.java">
 <persistable path="/Test Hash/src/drafts/JavaHash.java"/>
