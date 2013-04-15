@@ -2,7 +2,10 @@ package hash.hashFunctions;
 
 import hash.hashFunction;
 
-
+/**
+ * Found here :
+ * http://en.wikipedia.org/wiki/MurmurHash
+ */
 public class MurmurHash3 implements hashFunction {
 	
 	@Override

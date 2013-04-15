@@ -4,7 +4,9 @@ import hash.hashFunction;
 import drafts.UnsignedArithmetic;
 
 /**
- * A trivial and uneffective hash function
+ * A trivial and uneffective hash function.
+ * Found here :
+ * http://www.cse.yorku.ca/~oz/hash.html
  */
 public class LoseLose implements hashFunction{
 

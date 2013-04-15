@@ -17,15 +17,18 @@ import static org.math.array.StatisticSample.*;
 import org.apache.commons.math3.stat.inference.ChiSquareTest;
 
 import hash.hashFunctions.*;
+import drafts.Draft;
 
 public class hashFunctionTests{
 	static final Path	shakespeare		= Paths.get("Shakespeare_complete_processed.txt");
 	static final Path	numbers			= Paths.get("Numbers_1000000");
 	static final Path	uuids			= Paths.get("UUID_200000");
 	static final Path	englishWords	= Paths.get("English_words.txt");
-
+	static final Path[] paths = { shakespeare, englishWords, uuids, numbers };
+	static final String[] descriptions =
+		{"Shakespeare", "English words", "UUIDs", "Numbers from 1 to 1,000,000"};
+	
 	/**
-	 * 
 	 * @param path
 	 *            The path for the file used for computing speed. The file is read one line at a
 	 *            time and the line is then split to give a collection of String objects.
@@ -34,7 +37,7 @@ public class hashFunctionTests{
 	 * @return A String object representing the duration of the hashing of all Strings in the file,
 	 *         in seconds.
 	 */
-	private static String speedTestOnFile(Path path, hashFunction func){
+	private static float speedTestOnFile(Path path, hashFunction func){
 		Charset charset = Charset.forName("US-ASCII");
 		long start = System.nanoTime();
 		try {
@@ -54,7 +57,7 @@ public class hashFunctionTests{
 			e1.printStackTrace();
 		}
 		
-		return ((float) (System.nanoTime() - start)) / 1000000000. + " s";
+		return (float) ( (System.nanoTime() - start) / 1000000000.);
 	}
 
 	/**
@@ -67,15 +70,16 @@ public class hashFunctionTests{
 	 * @return A String object representing the number of collisions between the Strings in the
 	 *         file.
 	 */
-	private static String collisionTestOnFile(Path path, hashFunction func){
+	private static int collisionTestOnFile(Path path, hashFunction func){
 		Hashtable<Integer, String> tab = new Hashtable<Integer, String>();
 		Charset charset = Charset.forName("US-ASCII");
+
+		String line = null;
+		String[] strings = null;
 		int comp = 0;
+		
 		try {
 			BufferedReader reader = Files.newBufferedReader(path, charset);
-			String line = null;
-			String[] strings = null;
-
 			try {
 				while ((line = reader.readLine()) != null) {
 					
@@ -83,7 +87,7 @@ public class hashFunctionTests{
 					
 					for (String g : strings) {
 						int hash = func.hashString(g);
-
+						
 						if (tab.containsKey(hash))
 							comp++;
 						else
@@ -97,20 +101,25 @@ public class hashFunctionTests{
 			e1.printStackTrace();
 		}
 		
-		return Integer.toString(comp);
-
+		return comp;
 	}
-
+	
+	
+	/**
+	 * Plot the histogram of the distribution of the hash function on the keys in the file given in parameter
+	 * @param path Path to the file on which the function is tested
+	 * @param func The function to be tested
+	 */
 	private static void distributionTestOnFile(Path path, hashFunction func){
 		Vector<Double> values = new Vector<Double>();
 		Charset charset = Charset.forName("US-ASCII");
+		String line = null;
+		String[] strings = null;
 		try {
 			BufferedReader reader = Files.newBufferedReader(path, charset);
-			String line = null;
-			String[] strings = null;
-
 			try {
 				while ((line = reader.readLine()) != null) {
+					
 					strings = line.split("[\\s]+");
 
 					for (String g : strings) {
@@ -121,11 +130,10 @@ public class hashFunctionTests{
 			} finally {
 				reader.close();
 			}
-
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		
 		// addHistogramPlot function uses arrays of doubles. We need to convert
 		// from Vector to array
 		int i = 0;
@@ -146,7 +154,8 @@ public class hashFunctionTests{
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE );
 	}
-
+	
+	
 	private static String chiSquareTestOnFile(Path path, hashFunction func){
 		Vector<Double> values = new Vector<Double>();
 		Charset charset = Charset.forName("US-ASCII");
@@ -207,41 +216,65 @@ public class hashFunctionTests{
 				+ chi.chiSquareTest(expected, frequencies));
 
 	}
-
+	
+	/**
+	 * Display the results of a speed test on the files given in paths
+	 * @param func The hash function to be tested
+	 */
 	public static void speedTests(hashFunction func){
-		System.out.println("---Speed test---");
-		System.out.println("Using " + func.getClass().getSimpleName()
-				+ " hash function");
-
-		// Shakespeare
-		System.out.println("Shakespeare: " + System.lineSeparator()
-				+ speedTestOnFile(shakespeare, func));
-		// Numbers
-		System.out.println("Numbers from 0 to 1,000,000: "
-				+ System.lineSeparator() + speedTestOnFile(numbers, func));
-		// UUIDs
-		System.out.println("200,000 random UUIDS: " + System.lineSeparator()
-				+ speedTestOnFile(uuids, func));
+		System.out.println("\n----Speed test----");
+		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
+		for (int i = 0; i < paths.length; i++)
+			System.out.println(descriptions[i] + ":\n" + speedTestOnFile(paths[i], func) + " s");
 	}
-
+	
+	/**
+	 * Display the results of a collision test on the files given in paths
+	 * @param func The hash function to be tested
+	 */
 	public static void collisionTests(hashFunction func){
-		System.out.println("---Collision test---");
-		System.out.println("Using " + func.getClass().getSimpleName()
-				+ " hash function" + System.lineSeparator());
-
-		// English words
-		System.out.println("All english words: " + System.lineSeparator()
-				+ collisionTestOnFile(englishWords, func) + " collisions");
-		// Numbers
-		System.out.println("Numbers from 0 to 1,000,000: "
-				+ System.lineSeparator() + collisionTestOnFile(numbers, func)
-				+ " collisions");
-		// UUIDS
-		System.out.println("200,000 random UUIDS: " + System.lineSeparator()
-				+ collisionTestOnFile(uuids, func) + " collisions");
-
+		System.out.println("\n----Collision test----");
+		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
+		for (int i = 0; i < paths.length; i++)
+			System.out.println(descriptions[i] + ":\n" + collisionTestOnFile(paths[i], func) + " collisions");
 	}
-
+	
+	/**
+	 * Print a matrix of the results of the two tests (speed and collision)
+	 * on several hash functions.
+	 * @param funcs The functions to be tested
+	 */
+	public static void speedCollisionTests(hashFunction[] funcs) {
+		System.out.println("\n---------   Speed - Collision tests   ---------");
+		
+		String[][] mat = new String[2*funcs.length + 2][paths.length + 1];
+		mat[0][0] = "  Hash";
+		mat[1][0] = "--------";
+		
+		//Legends
+		for (int i = 0; i < paths.length; i++) {
+			mat[0][i+1] = descriptions[i];
+			mat[1][i+1] = "---------";
+		}
+		for (int i = 0; i < funcs.length; i++) {
+			mat[2*i+2][0] = funcs[i].getClass().getSimpleName();
+			mat[2*i+3][0] = "";
+		}
+		
+		for (int i = 0; i < funcs.length; i++)
+			for (int j = 0; j < paths.length; j++) {
+				mat[2*i+2][j+1] = collisionTestOnFile(paths[j], funcs[i]) + " collisions";
+				mat[2*i+3][j+1] = "  " + speedTestOnFile(paths[j], funcs[i]) + " s";
+			}
+		
+		Draft.printMatrix(mat);
+		
+	}
+	
+	
+	
+	
+	
 	public static void uniformDistribTest(hashFunction func, boolean histogram){
 		System.out.println("---Test of uniform distribution---");
 		System.out.println("Using " + func.getClass().getSimpleName()
@@ -258,10 +291,17 @@ public class hashFunctionTests{
 
 	public static void main(String[] args){
 		// distributionTestOnFile(uuids, new LoseLose());
-		uniformDistribTest(new JavaHash(), true);
-		collisionTests(new JavaHash());
-		collisionTests(new LoseLose());
+		//uniformDistribTest(new JavaHash(), true);
+		//speedTests(new JavaHash());
+		//collisionTests(new LoseLose());
 		// System.out.println(chiSquareTestOnFile(uuids, new LookUp3()));
+		
+		hashFunction[] tab = new hashFunction[4];
+		tab[0] = new LoseLose();
+		tab[1] = new DJB2();
+		tab[2] = new HomemadeHash();
+		tab[3] = new LookUp3();
+		speedCollisionTests(tab);
 	}
 
 }

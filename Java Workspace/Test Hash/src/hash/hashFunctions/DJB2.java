@@ -2,7 +2,10 @@ package hash.hashFunctions;
 
 import hash.hashFunction;
 
-
+/**
+ * Found here :
+ * http://www.cse.yorku.ca/~oz/hash.html
+ */
 public class DJB2 implements hashFunction {
 
 	@Override
