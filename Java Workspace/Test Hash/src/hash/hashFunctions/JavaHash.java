@@ -1,4 +1,7 @@
-package drafts;
+package hash.hashFunctions;
+
+import hash.hashFunction;
+
 
 public class JavaHash implements hashFunction{
 

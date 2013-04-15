@@ -1,4 +1,4 @@
-package drafts;
+package filter;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,19 +8,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Filter{
 
+public abstract class Filter{
+	
 	/**
-	 * 
+	 * Filter an unique string
+	 * @param line
+	 * @return The line filtered
+	 */
+	public abstract String filter(String line);
+	
+	
+	/**
+	 * Read the file line by line. Each line is filtered and written in the target file.
 	 * @param fileForReading A String representing the path to the file we want to process.
 	 * @param fileForWritting A String representing the path to the location where the processed 
 	 * file should be written.
-	 * @param f A linefilter instance to filter each line in the file
-	 * 
-	 * The function read the file one line at a time. Then filter the text with the Linefilter
-	 * and write the processed line in the taget file.
 	 */
-	public static void filter(String fileForReading, String fileForWritting, LineFilter f){
+	public void filterFile(String fileForReading, String fileForWritting){
 		Path readFile = Paths.get(fileForReading);
 		Path writeFile = Paths.get(fileForWritting);
 
@@ -39,7 +44,7 @@ public class Filter{
 
 			try {
 				while ((line = reader.readLine()) != null) {
-					line = f.filter(line);
+					line = filter(line);
 					line = line += "\n";
 					writer.write(line);
 				}
@@ -51,13 +56,16 @@ public class Filter{
 			e1.printStackTrace();
 		}
 	}
-
+	
+	
+	
 	public static void main(String[] args){
-
-		Filter.filter(
-				"/home/jonathan/Documents/Projet-INF431/Ressources/Raw files/Shakespeare_complete.txt",
-				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Shakespeare_complete_processed.txt",
-				new EnglishWordsFilter());
+		
+		Filter f = new EnglishWordsFilter();
+		System.out.println(f.filter("test 154sd zfzefdf12 3s2d3fe6 'eszmlr ùerr$^trù"));
+		f.filterFile(
+				"C:/Users/Gaspard FEREY/Documents/GitHub/Projet-INF431/Ressources/Raw files/Shakespeare_complete.txt",
+				"C:/Users/Gaspard FEREY/Desktop/INF 431/Shakespeare_complete_processed.txt");
 	}
 
 }

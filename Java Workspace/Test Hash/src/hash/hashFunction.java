@@ -1,4 +1,4 @@
-package drafts;
+package hash;
 
 public interface hashFunction {
 	public int hashString(String s);

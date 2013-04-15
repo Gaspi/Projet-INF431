@@ -1,4 +1,4 @@
-package drafts;
+package hash;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +15,8 @@ import org.math.plot.Plot2DPanel;
 import static org.math.array.StatisticSample.*;
 
 import org.apache.commons.math3.stat.inference.ChiSquareTest;
+
+import hash.hashFunctions.JavaHash;
 
 public class hashFunctionTests{
 	static final Path	shakespeare		= Paths.get("Shakespeare_complete_processed.txt");
@@ -195,7 +197,7 @@ public class hashFunctionTests{
 		// Chi2 test from the Apache commons math package.
 		ChiSquareTest chi = new ChiSquareTest();
 		return new String("Result: "
-		// Returns true iff the null hypothesis (that the observed counts conform to the frequency
+		// Returns true if the null hypothesis (that the observed counts conform to the frequency
 		// distribution described by the expected counts) can be rejected with 100 * (1 - alpha)
 		// percent confidence. We choose alpha = 0.05.
 				+ Boolean.toString(!chi.chiSquareTest(expected, frequencies,

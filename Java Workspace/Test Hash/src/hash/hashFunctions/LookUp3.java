@@ -1,4 +1,7 @@
-package drafts;
+package hash.hashFunctions;
+
+import hash.hashFunction;
+import drafts.UnsignedArithmetic;
 
 
 

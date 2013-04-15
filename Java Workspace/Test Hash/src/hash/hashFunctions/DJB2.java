@@ -1,4 +1,7 @@
-package drafts;
+package hash.hashFunctions;
+
+import hash.hashFunction;
+
 
 public class DJB2 implements hashFunction {
 
