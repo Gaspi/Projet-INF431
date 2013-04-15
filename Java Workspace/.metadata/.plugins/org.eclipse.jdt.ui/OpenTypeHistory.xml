@@ -1,7 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-<typeInfo handle="=Test Hash/\/usr\/lib\/jvm\/java-7-openjdk-i386\/jre\/lib\/rt.jar&lt;javax.xml.ws.handler(HandlerResolver.class[HandlerResolver" modifiers="1537" timestamp="1362602440000"/>
-<typeInfo handle="=Test Hash/\/usr\/lib\/jvm\/java-7-openjdk-i386\/jre\/lib\/rt.jar&lt;javax.xml.ws.handler(Handler.class[Handler" modifiers="1537" timestamp="1362602440000"/>
-<typeInfo handle="=Test Hash/src&lt;drafts{hashFunction.java[hashFunction" modifiers="513" timestamp="1364897165000"/>
-<typeInfo handle="=Test Hash/src&lt;drafts{LineFilter.java[LineFilter" modifiers="513" timestamp="1365948915000"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

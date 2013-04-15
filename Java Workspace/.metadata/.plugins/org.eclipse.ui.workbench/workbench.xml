@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="20" version="2.0">
+<workbench progressCount="25" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="25" y="25">
 <fastViewData fastViewLocation="1024"/>
@@ -8,19 +8,20 @@
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="144" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="160" y="22"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
 <coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="316" y="30"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="319" y="30"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="22"/>
+<coolItem id="org.eclipse.mylyn.java.actionSet.browsing" itemType="typeToolBarContribution" x="38" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="99" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="130" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -34,77 +35,12 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
-<part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
-<part id="11"/>
-<part id="12"/>
-<part id="13"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunctionTests.java" partName="hashFunctionTests.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunctionTests.java" title="hashFunctionTests.java" tooltip="Test Hash/src/drafts/hashFunctionTests.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunctionTests.java" partName="hashFunctionTests.java" path="C:/Users/Gaspard FEREY/Documents/GitHub/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunctionTests.java" title="hashFunctionTests.java" tooltip="Test Hash/src/drafts/hashFunctionTests.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/hashFunctionTests.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7624" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoseLose.java" partName="LoseLose.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/LoseLose.java" title="LoseLose.java" tooltip="Test Hash/src/drafts/LoseLose.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/LoseLose.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="17" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunction.java" partName="hashFunction.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/hashFunction.java" title="hashFunction.java" tooltip="Test Hash/src/drafts/hashFunction.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/hashFunction.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DJB2.java" partName="DJB2.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/DJB2.java" title="DJB2.java" tooltip="Test Hash/src/drafts/DJB2.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/DJB2.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MurmurHash3.java" partName="MurmurHash3.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/MurmurHash3.java" title="MurmurHash3.java" tooltip="Test Hash/src/drafts/MurmurHash3.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/MurmurHash3.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="580"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CreatingFiles.java" partName="CreatingFiles.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/CreatingFiles.java" title="CreatingFiles.java" tooltip="Test Hash/src/drafts/CreatingFiles.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/CreatingFiles.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="276" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LookUp3.java" partName="LookUp3.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/LookUp3.java" title="LookUp3.java" tooltip="Test Hash/src/drafts/LookUp3.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/LookUp3.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5037" selectionTopPixel="2412"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="HomemadeHash.java" partName="HomemadeHash.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/HomemadeHash.java" title="HomemadeHash.java" tooltip="Test Hash/src/drafts/HomemadeHash.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/HomemadeHash.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="419" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.ClassFileEditor" name="Plot2DPanel.class" partName="Plot2DPanel.class" path="/tmp/Plot2DPanel.class8401759893265132575.class" title="Plot2DPanel.class" tooltip="org.math.plot.Plot2DPanel" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" org.eclipse.jdt.ui.ClassFileIdentifier="=Test Hash/\/home\/jonathan\/Documents\/Projet-INF431\/Java Workspace\/Test Hash\/jmathplot.jar&lt;org.math.plot(Plot2DPanel.class"/>
-<editorState selectionHorizontalPixel="0" selectionLength="59" selectionOffset="13808" selectionTopPixel="5610"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="JavaHash.java" partName="JavaHash.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/JavaHash.java" title="JavaHash.java" tooltip="Test Hash/src/drafts/JavaHash.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/JavaHash.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="320" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Filter.java" partName="Filter.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/Filter.java" title="Filter.java" tooltip="Test Hash/src/drafts/Filter.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/Filter.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="683" selectionTopPixel="150"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LineFilter.java" partName="LineFilter.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/LineFilter.java" title="LineFilter.java" tooltip="Test Hash/src/drafts/LineFilter.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/LineFilter.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="53" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EnglishWordsFilter.java" partName="EnglishWordsFilter.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/EnglishWordsFilter.java" title="EnglishWordsFilter.java" tooltip="Test Hash/src/drafts/EnglishWordsFilter.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/EnglishWordsFilter.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="72" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UnsignedArithmetic.java" partName="UnsignedArithmetic.java" path="/home/jonathan/Documents/Projet-INF431/Java Workspace/Test Hash/src/drafts/UnsignedArithmetic.java" title="UnsignedArithmetic.java" tooltip="Test Hash/src/drafts/UnsignedArithmetic.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Test Hash/src/drafts/UnsignedArithmetic.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
@@ -119,7 +55,6 @@
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
-<child filterId="org.eclipse.pde.ui.ExternalPluginLibrariesFilter1" isEnabled="true"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.ClosedProjectsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonSharedProjectsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonJavaElementFilter" isEnabled="false"/>
@@ -135,8 +70,9 @@
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.NonPublicFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer_patternFilterId_.*" isEnabled="true"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.EmptyLibraryContainerFilter" isEnabled="true"/>
-<child filterId="org.eclipse.pde.ui.BinaryProjectFilter1" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter" isEnabled="true"/>
+<child filterId="org.eclipse.mylyn.java.ui.MembersFilter" isEnabled="false"/>
+<child filterId="org.eclipse.m2e.MavenModuleFilter" isEnabled="false"/>
 </xmlDefinedFilters>
 </customFilters>
 </viewState>
@@ -330,6 +266,11 @@
 <alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.junit.JUnitActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.java.actionSet.browsing"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.wb.core.ui.actionset"/>
 <show_view_action id="org.eclipse.jdt.ui.TypeHierarchy"/>
 <show_view_action id="org.eclipse.jdt.ui.PackageExplorer"/>
 <show_view_action id="org.eclipse.jdt.ui.ProjectsView"/>
@@ -461,9 +402,6 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/LoseLose.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Test Hash/src/drafts/HomemadeHash.java"/>
 </editors>
-<item historyLabel="Filters.java" index="0">
-<position info="not_deleted" x="590" y="0"/>
-</item>
 <item historyLabel="Filters.java" index="0">
 <position info="not_deleted" x="1147" y="0"/>
 </item>
@@ -608,8 +546,11 @@
 <item historyLabel="HomemadeHash.java" index="10">
 <position info="not_deleted" x="419" y="0"/>
 </item>
-<item active="true" historyLabel="hashFunctionTests.java" index="7">
+<item historyLabel="hashFunctionTests.java" index="7">
 <position info="not_deleted" x="7624" y="0"/>
+</item>
+<item active="true" historyLabel="hashFunctionTests.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -618,6 +559,7 @@
 <actionBarAdvisor/>
 <trimLayout>
 <trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.mylyn.tasks.ui.trim.container"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
 <trimArea IMemento.internal.id="1024">
@@ -628,6 +570,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunctionTests.java" tooltip="Test Hash/src/drafts/hashFunctionTests.java">
+<persistable path="/Test Hash/src/drafts/hashFunctionTests.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UnsignedArithmetic.java" tooltip="Test Hash/src/drafts/UnsignedArithmetic.java">
 <persistable path="/Test Hash/src/drafts/UnsignedArithmetic.java"/>
 </file>
@@ -669,9 +614,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="hashFunction.java" tooltip="Test Hash/src/drafts/hashFunction.java">
 <persistable path="/Test Hash/src/drafts/hashFunction.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LoseLose.java" tooltip="Test Hash/src/drafts/LoseLose.java">
-<persistable path="/Test Hash/src/drafts/LoseLose.java"/>
 </file>
 </mruList>
 </workbench>
