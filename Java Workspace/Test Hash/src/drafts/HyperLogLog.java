@@ -39,15 +39,16 @@ public class HyperLogLog {
 	 */
 	public static double hyperLogLog(Path path, hashFunction func, int b) {
 		
-		if (b < 0 || b > 16)
-			throw new AssertionError("b < 0 or b > 16");
+		if (b <= 0 || b > 16)
+			throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
 		
 		int m = 1 << b; // m = 2^b
 		int[] M = new int[m];
 		
 		for (int i = 0; i < m; i++)
 			M[i] = -1;
-		
+		// Rq : -1 = -\infty
+		// We consider anyway that this value is erased during the main loop, otherwise the result is 0.
 		
 		Charset charset = Charset.forName("US-ASCII");
 		try {
@@ -60,8 +61,9 @@ public class HyperLogLog {
 					
 					while (st.hasMoreTokens()) {
 						long x = func.hashString(st.nextToken());
-						// End of the algorithm to write here
-						
+						int j = (int) ( x & (m-1) );
+						long w = x >>> b;
+						M[j] = Math.max( M[j], rho(w) );
 					}
 					
 				}
@@ -84,7 +86,7 @@ public class HyperLogLog {
 	/**
 	 * @return La position du premier 1 dans le codage en base 2 de x positif.
 	 */
-	private static int firstOne(long x) {
+	private static int rho(long x) {
 		int res = 1;
 		// Tant que le bit de poids faible est un 0 et qu'on est non nul
 		while ( (x & 1) == 0 && x != 0) { 
