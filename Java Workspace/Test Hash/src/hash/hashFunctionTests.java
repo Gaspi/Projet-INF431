@@ -298,8 +298,7 @@ public class hashFunctionTests {
 		// English words are used for testing the distribution. That is because
 		// we want the hash to work on text. Moreover, if the distribution of
 		// the String used for testing is uniform (as the uuids are), even a
-		// poor
-		// hash function performs well.
+		// poor hash function performs well.
 		System.out.println("EnglishWords : " + System.lineSeparator()
 				+ chiSquareTestOnFile(englishWords, func));
 
