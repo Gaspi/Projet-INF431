@@ -34,15 +34,16 @@ public class HyperLogLog {
 	 * Calcule le nombre de mots distinct dans un fichier en utilisant l'algorithme HyperLogLog
 	 * @param path Adresse du fichier à utiliser
 	 * @param func Fonction de hachage à tester
-	 * @param b Paramètre de l'algorithme (4 <= b <= 16)
+	 * @param b Paramètre de l'algorithme (4 <= b <= 16 expected)
 	 * @return Nombre approximatif de mots différents
 	 */
 	public static double hyperLogLog(Path path, hashFunction func, int b) {
 		
+		if (b < 0 || b > 16)
+			throw new AssertionError("b < 0 or b > 16");
+		
 		int m = 1 << b; // m = 2^b
 		int[] M = new int[m];
-		// Remarque, ces lignes posent problème pour b = 16
-		// On a alors m = <1000...0> en base 2 (ce qui code... quoi?)
 		
 		for (int i = 0; i < m; i++)
 			M[i] = -1;
