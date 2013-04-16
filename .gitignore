@@ -2,9 +2,11 @@
 ## Eclipse
 #################
 
+# ignore les metadatas générés par Eclipse (spécifiques à la machine)
 **/.metadata
-**/.metadata/*
 
+# ignore les .class généré par Eclipse
+**/bin
 
 
 
