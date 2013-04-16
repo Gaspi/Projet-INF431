@@ -8,24 +8,27 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+public abstract class Filter {
 
-public abstract class Filter{
-	
 	/**
 	 * Filter an unique string
+	 * 
 	 * @param line
 	 * @return The line filtered
 	 */
 	public abstract String filter(String line);
-	
-	
+
 	/**
-	 * Read the file line by line. Each line is filtered and written in the target file.
-	 * @param fileForReading A String representing the path to the file we want to process.
-	 * @param fileForWritting A String representing the path to the location where the processed 
-	 * file should be written.
+	 * Read the file line by line. Each line is filtered with the filter method
+	 * and written in the target file.
+	 * 
+	 * @param fileForReading
+	 *            A String representing the path to the file we want to process.
+	 * @param fileForWritting
+	 *            A String representing the path to the location where the
+	 *            processed file should be written.
 	 */
-	public void filterFile(String fileForReading, String fileForWritting){
+	public void filterFile(String fileForReading, String fileForWritting) {
 		Path readFile = Paths.get(fileForReading);
 		Path writeFile = Paths.get(fileForWritting);
 
@@ -41,31 +44,28 @@ public abstract class Filter{
 			BufferedReader reader = Files.newBufferedReader(readFile, charset);
 			BufferedWriter writer = Files.newBufferedWriter(writeFile, charset);
 			String line = null;
-
 			try {
 				while ((line = reader.readLine()) != null) {
 					line = filter(line);
-					line = line += "\n";
+					line += "\n";
 					writer.write(line);
 				}
 			} finally {
 				writer.close();
+				reader.close();
 			}
 
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 	}
-	
-	
-	
-	public static void main(String[] args){
-		
+
+	public static void main(String[] args) {
+
 		Filter f = new EnglishWordsFilter();
-		System.out.println(f.filter("test 154sd zfzefdf12 3s2d3fe6 'eszmlr ùerr$^trù'st rtef's erty't defg'd"));
 		f.filterFile(
-				"C:/Users/Gaspard FEREY/Documents/GitHub/Projet-INF431/Ressources/Raw files/Shakespeare_complete.txt",
-				"C:/Users/Gaspard FEREY/Desktop/INF 431/Shakespeare_complete_processed.txt");
+				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Shakespeare_complete_processed.txt",
+				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Shakespeare_complete_processed2.txt");
 	}
 
 }

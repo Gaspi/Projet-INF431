@@ -47,9 +47,14 @@ public class LookUp3 implements hashFunction{
 		tab[2] = c;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public int hashString(String s) {
-		return hashByteArray(s.getBytes());
+		byte[] b = new byte[s.length()];
+		// Increase speed.
+		// Safe if char is less than 8 bits long, for exemple for ASCII caracters.
+		s.getBytes(0, s.length(), b, 0);
+		return hashByteArray(b);
 	}
 
 	@Override
