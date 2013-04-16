@@ -28,7 +28,7 @@ public abstract class Filter {
 	 *            A String representing the path to the location where the
 	 *            processed file should be written.
 	 */
-	public void filterFile(String fileForReading, String fileForWritting) {
+	public final void filterFile(String fileForReading, String fileForWritting) {
 		Path readFile = Paths.get(fileForReading);
 		Path writeFile = Paths.get(fileForWritting);
 

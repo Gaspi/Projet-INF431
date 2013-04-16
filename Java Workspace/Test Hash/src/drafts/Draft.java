@@ -35,5 +35,4 @@ public class Draft {
 			System.out.println(line);
 		}
 	}
-
 }

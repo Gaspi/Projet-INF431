@@ -59,7 +59,7 @@ public class hashFunctionTests {
 			e1.printStackTrace();
 		}
 
-		float end = System.nanoTime();
+		long end = System.nanoTime();
 		return (float) ((end - start) / 1000000000.);
 	}
 
@@ -305,16 +305,18 @@ public class hashFunctionTests {
 
 	public static void main(String[] args) {
 		// distributionTestOnFile(uuids, new LoseLose());
-		uniformDistribTest(new LoseLose(), true);
-		speedTests(new HomemadeHash());
-		collisionTests(new HomemadeHash());
+		// uniformDistribTest(new LoseLose(), true);
+		speedTests(new LookUp3());
+		// collisionTests(new HomemadeHash());
 		// System.out.println(chiSquareTestOnFile(uuids, new LookUp3()));
 
-		/*
-		 * hashFunction[] tab = new hashFunction[4]; tab[0] = new LoseLose();
-		 * tab[1] = new DJB2(); tab[2] = new MurmurHash3(); tab[3] = new
-		 * LookUp3(); speedCollisionTests(tab);
-		 */
+		hashFunction[] tab = new hashFunction[4];
+		tab[0] = new LoseLose();
+		tab[1] = new DJB2();
+		tab[2] = new MurmurHash3();
+		tab[3] = new LookUp3();
+		speedCollisionTests(tab);
+
 		// Il y a quelque chose d'étrange: lance speedTests sur LookUp3 puis
 		// speedCollisionTests.
 		// LookUp3 ne donne pas du tout le même temps sur shakespeare... Et cela
