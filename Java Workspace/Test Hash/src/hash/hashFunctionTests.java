@@ -1,5 +1,13 @@
 package hash;
 
+import static org.math.array.DoubleArray.max;
+import static org.math.array.DoubleArray.min;
+import static org.math.array.StatisticSample.histogram;
+import hash.hashFunctions.DJB2;
+import hash.hashFunctions.LookUp3;
+import hash.hashFunctions.LoseLose;
+import hash.hashFunctions.MurmurHash3;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -12,12 +20,9 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 
-import org.math.plot.Plot2DPanel;
-import static org.math.array.StatisticSample.*;
-
 import org.apache.commons.math3.stat.inference.ChiSquareTest;
+import org.math.plot.Plot2DPanel;
 
-import hash.hashFunctions.*;
 import drafts.Draft;
 
 public class hashFunctionTests {
@@ -316,13 +321,6 @@ public class hashFunctionTests {
 		tab[2] = new MurmurHash3();
 		tab[3] = new LookUp3();
 		speedCollisionTests(tab);
-
-		// Il y a quelque chose d'étrange: lance speedTests sur LookUp3 puis
-		// speedCollisionTests.
-		// LookUp3 ne donne pas du tout le même temps sur shakespeare... Et cela
-		// même avant que je ne change
-		// la manière de lire dans le fichier. Ca le fait avec toute les
-		// fonctions en fait.
 	}
 
 }
