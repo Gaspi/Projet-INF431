@@ -49,13 +49,15 @@ public class HashTester {
 		try {
 			while ( !st.hasMoreTokens() && line != null ) {
 				line = reader.readLine();
-				st = new StringTokenizer(line);
+				if (line == null) {
+					close();
+					return;
+				} else
+					st = new StringTokenizer(line);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (line == null)
-			close();
 	}
 	
 	public String nextWord() {
