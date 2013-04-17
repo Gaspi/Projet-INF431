@@ -31,11 +31,11 @@ public class HyperLogLog {
 	
 	
 	/**
-	 * Calcule le nombre de mots distinct dans un fichier en utilisant l'algorithme HyperLogLog
-	 * @param path Adresse du fichier à utiliser
-	 * @param func Fonction de hachage à tester
-	 * @param b Paramètre de l'algorithme (4 <= b <= 16 expected)
-	 * @return Nombre approximatif de mots différents
+	 * Asses the number of different words in a text file using the hyperloglog algorithm.
+	 * @param path Path of the file to read.
+	 * @param func Hash function used.
+	 * @param b Parameter of the algorithm. (4 <= b <= 16 expected)
+	 * @return The approximative number of different words in the file
 	 */
 	public static double hyperLogLog(Path path, hashFunction func, int b) {
 		
@@ -91,7 +91,7 @@ public class HyperLogLog {
 		// Tant que le bit de poids faible est un 0 et qu'on est non nul
 		while ( (x & 1) == 0 && x != 0) { 
 			res++;
-			x >>>= 1; // Décalage d'un bit à gauche.
+			x >>>= 1; // DÃ©calage d'un bit Ã  gauche.
 		}
 		return res;
 	}
