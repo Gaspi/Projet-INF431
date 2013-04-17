@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 
@@ -135,6 +136,7 @@ public class HyperLogLog {
 		Path path = hashFunctionTests.englishWords;
 		
 		System.out.println(benchmark(path));
+		System.out.println(benchmark(Paths.get("Shakespeare_complete_processed2.txt")));
 		for(int i=1; i<16; i++)
 			System.out.println("b = " + i + " : " + hyperLogLog(path, new LookUp3(), i));
 		
