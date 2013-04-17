@@ -21,6 +21,7 @@ public class HashTester {
 	
 	private hashFunction func;
 	
+	
 	public HashTester(hashFunction func) {
 		this.func = func;
 	}
@@ -42,7 +43,7 @@ public class HashTester {
 	}
 	
 	/**
-	 * Make sure the object is either able to read an other word ( st.hasMoreTokens() ) or closed.
+	 * Make sure the object is closed as soon as there is no more word to read ( st.hasMoreTokens() is false ).
 	 */
 	private void update() {
 		try {
@@ -82,6 +83,10 @@ public class HashTester {
 		}
 	}
 	
+	
+	/**
+	 * Function called before the destruction of the object (to make sure the file is closed in the end).
+	 */
 	public void finalize() {
 		if (isReading())
 			close();
