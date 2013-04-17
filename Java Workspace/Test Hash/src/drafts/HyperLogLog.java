@@ -132,12 +132,14 @@ public class HyperLogLog {
 		// tr ' ' '     > ' < Shakespeare_complete_processed.txt | sort | uniq -c | wc -l 
 		//  --> give 27910 so the benchmark is pretty correct
 		
-		System.out.println(benchmark(hashFunctionTests.shakespeare));
+		Path path = hashFunctionTests.englishWords;
+		
+		System.out.println(benchmark(path));
 		for(int i=1; i<16; i++)
-			System.out.println("b = " + i + " : " + hyperLogLog(hashFunctionTests.shakespeare, new LookUp3(), i));
+			System.out.println("b = " + i + " : " + hyperLogLog(path, new LookUp3(), i));
 		
 		for(int i=1; i<16; i++)
-			System.out.println("b = " + i + " : " + hyperLogLog(hashFunctionTests.shakespeare, new JavaHash(), i));
+			System.out.println("b = " + i + " : " + hyperLogLog(path, new JavaHash(), i));
 		
 		// There a peak in performance around b = 10 - 11 - 12. Maybe we could try with greater values of b.
 	}

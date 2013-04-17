@@ -3,10 +3,7 @@ package hash;
 import static org.math.array.DoubleArray.max;
 import static org.math.array.DoubleArray.min;
 import static org.math.array.StatisticSample.histogram;
-import hash.hashFunctions.DJB2;
-import hash.hashFunctions.LookUp3;
-import hash.hashFunctions.LoseLose;
-import hash.hashFunctions.MurmurHash3;
+import hash.hashFunctions.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
