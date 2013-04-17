@@ -8,6 +8,7 @@ import hash.hashFunctions.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -43,8 +44,9 @@ public class hashFunctionTests2 {
 		FileReader ht = new FileReader(path);
 		
 		start = System.nanoTime();
-		for (String word : ht)
-			func.hashString(word);
+		Iterator<String> it = ht.iterator();
+		while (it.hasNext())
+			func.hashString(it.next());
 		end = System.nanoTime();
 		
 		return (float) ((end - start) / 1000000000.);
