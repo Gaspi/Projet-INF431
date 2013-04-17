@@ -2,7 +2,7 @@ package drafts;
 
 import hash.hashFunction;
 import hash.hashFunctionTests;
-import hash.hashFunctions.LookUp3;
+import hash.hashFunctions.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -86,14 +86,15 @@ public class HyperLogLog {
 	
 	
 	/**
-	 * @return La position du premier 1 dans le codage en base 2 de x positif.
+	 * @return The position of the first 1 encountered when reading
+	 * the 2-base decomposition of the positive integer x.
 	 */
 	private static int rho(long x) {
 		int res = 1;
-		// Tant que le bit de poids faible est un 0 et qu'on est non nul
+		// While the Least Significant Bit is 0 but x is not zero
 		while ( (x & 1) == 0 && x != 0) { 
 			res++;
-			x >>>= 1; // Décalage d'un bit à gauche.
+			x >>>= 1; // Offset one bit to the left
 		}
 		return res;
 	}
@@ -104,6 +105,9 @@ public class HyperLogLog {
 	public static void main(String[] args) {
 		
 		System.out.println(hyperLogLog(hashFunctionTests.shakespeare, new LookUp3(), 4) );
+		System.out.println(hyperLogLog(hashFunctionTests.shakespeare, new JavaHash(), 4) );
+		System.out.println(hyperLogLog(hashFunctionTests.shakespeare, new DJB2(), 4) );
+		System.out.println(hyperLogLog(hashFunctionTests.shakespeare, new LoseLose(), 4) );
 	}
 
 }
