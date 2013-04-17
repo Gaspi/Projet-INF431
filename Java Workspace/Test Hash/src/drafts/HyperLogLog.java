@@ -130,7 +130,7 @@ public class HyperLogLog {
 	public static void main(String[] args) {
 		// Linux command to count the number of different words in the file
 		// tr ' ' '     > ' < Shakespeare_complete_processed.txt | sort | uniq -c | wc -l 
-		//  --> give 27010 so the benchmark is pretty correct
+		//  --> give 27910 so the benchmark is pretty correct
 		
 		System.out.println(benchmark(hashFunctionTests.shakespeare));
 		for(int i=1; i<16; i++)
