@@ -46,17 +46,23 @@ public class hashFunctionTests {
 	 */
 	private static float speedTestOnFile(Path path, hashFunction func) {
 		Charset charset = Charset.forName("US-ASCII");
-		long start = System.nanoTime();
+		long start = 0;
+		long end = 0;
+
 		try {
 			BufferedReader reader = Files.newBufferedReader(path, charset);
 			String line = null;
 			StringTokenizer st = new StringTokenizer("");
 			try {
+				start = System.nanoTime();
+				
 				while ((line = reader.readLine()) != null) {
 					st = new StringTokenizer(line);
 					while (st.hasMoreTokens())
 						func.hashString(st.nextToken());
 				}
+				
+				end = System.nanoTime();
 			} finally {
 				reader.close();
 			}
@@ -64,7 +70,6 @@ public class hashFunctionTests {
 			e1.printStackTrace();
 		}
 
-		long end = System.nanoTime();
 		return (float) ((end - start) / 1000000000.);
 	}
 
@@ -314,12 +319,12 @@ public class hashFunctionTests {
 		// collisionTests(new HomemadeHash());
 		// System.out.println(chiSquareTestOnFile(uuids, new LookUp3()));
 
-		hashFunction[] tab = new hashFunction[4];
+/*		hashFunction[] tab = new hashFunction[4];
 		tab[0] = new LoseLose();
 		tab[1] = new DJB2();
 		tab[2] = new MurmurHash3();
 		tab[3] = new LookUp3();
-		speedCollisionTests(tab);
+		speedCollisionTests(tab);*/
 	}
 
 }
