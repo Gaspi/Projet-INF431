@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import org.apache.commons.math3.stat.inference.ChiSquareTest;
 import org.math.plot.Plot2DPanel;
 
-import FileManager.HashTester;
+import FileManager.FileReader;
 
 import drafts.Draft;
 
@@ -40,11 +40,11 @@ public class hashFunctionTests2 {
 	 */
 	private static float speedTestOnFile(Path path, hashFunction func) {
 		long start = 0, end = 0;
-		HashTester ht = new HashTester(func, path);
+		FileReader ht = new FileReader(path);
 		
 		start = System.nanoTime();
-		while (ht.isReading())
-			ht.nextHash();
+		for (String word : ht)
+			func.hashString(word);
 		end = System.nanoTime();
 		
 		return (float) ((end - start) / 1000000000.);
@@ -64,15 +64,14 @@ public class hashFunctionTests2 {
 	private static int collisionTestOnFile(Path path, hashFunction func) {
 		int comp = 0;
 		Hashtable<Integer, String> tab = new Hashtable<Integer, String>();
-		HashTester ht = new HashTester(func, path);
 		
-		while (ht.isReading()) {
-			String g = ht.nextWord();
+		for (String g : new FileReader(path) ) {
 			int hash = func.hashString(g);
 			if (tab.containsKey(hash))
 				comp++;
 			else
 				tab.put(hash, g);
+			
 		}
 		
 		return comp;
@@ -88,12 +87,11 @@ public class hashFunctionTests2 {
 	 *            The function to be tested
 	 */
 	private static void distributionTestOnFile(Path path, hashFunction func) {
-		HashTester ht = new HashTester(func, path);
 		Vector<Double> values = new Vector<Double>();
-		while (ht.isReading())
-			values.add((double) ht.nextHash());
+		for (String w : new FileReader(path))
+			values.add((double) func.hashString(w) );
 		
-
+		
 		// addHistogramPlot function uses arrays of doubles. We need to convert
 		// from Vector to array
 		int i = 0;
@@ -116,10 +114,9 @@ public class hashFunctionTests2 {
 	
 	
 	private static String chiSquareTestOnFile(Path path, hashFunction func) {
-		HashTester ht = new HashTester(func, path);
 		Vector<Double> values = new Vector<Double>();
-		while (ht.isReading())
-			values.add((double) ht.nextHash());
+		for (String w : new FileReader(path))
+			values.add((double) func.hashString(w) );
 
 		// Convert the Vector<Double> into an array of doubles
 		int i = 0;
