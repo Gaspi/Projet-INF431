@@ -1,6 +1,8 @@
 package drafts;
 
 import hash.hashFunction;
+import hash.hashFunctionTests;
+import hash.hashFunctions.LookUp3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +15,7 @@ public class HyperLogLog {
 	
 	/**
 	 * alpha[b] is meant to be equal to \alpha_{2^b}
-	 * Values processed by Wolfram Mathematica
+	 * Values computed by Wolfram Mathematica
 	 */
 	private static double[] alpha = {0,
 			0.351194, 0.532435, 0.625609, 0.673102,
@@ -101,6 +103,7 @@ public class HyperLogLog {
 	
 	public static void main(String[] args) {
 		
+		System.out.println(hyperLogLog(hashFunctionTests.shakespeare, new LookUp3(), 4) );
 	}
 
 }

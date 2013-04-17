@@ -26,12 +26,12 @@ import org.math.plot.Plot2DPanel;
 import drafts.Draft;
 
 public class hashFunctionTests {
-	static final Path shakespeare = Paths.get("Shakespeare_complete_processed.txt");
-	static final Path numbers = Paths.get("Numbers_1000000");
-	static final Path uuids = Paths.get("UUID_200000");
-	static final Path englishWords = Paths.get("English_words.txt");
-	static final Path[] paths = { shakespeare, englishWords, uuids, numbers };
-	static final String[] descriptions = { "Shakespeare", "English words", "UUIDs",
+	public static final Path shakespeare = Paths.get("Shakespeare_complete_processed.txt");
+	public static final Path numbers = Paths.get("Numbers_1000000");
+	public static final Path uuids = Paths.get("UUID_200000");
+	public static final Path englishWords = Paths.get("English_words.txt");
+	public static final Path[] paths = { shakespeare, englishWords, uuids, numbers };
+	public static final String[] descriptions = { "Shakespeare", "English words", "UUIDs",
 			"Numbers from 1 to 1,000,000" };
 
 	/**
