@@ -8,6 +8,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import FileManager.FileReader;
+import FileManager.FileWriter;
+
 public abstract class Filter {
 
 	/**
@@ -29,6 +32,7 @@ public abstract class Filter {
 	 *            processed file should be written.
 	 */
 	public final void filterFile(String fileForReading, String fileForWritting) {
+		
 		Path readFile = Paths.get(fileForReading);
 		Path writeFile = Paths.get(fileForWritting);
 
@@ -59,13 +63,25 @@ public abstract class Filter {
 			e1.printStackTrace();
 		}
 	}
+	
+	
+	public final void filterFile2(String fileForReading, String fileForWritting) {
+		
+		FileWriter fw = new FileWriter(fileForWritting);
+		FileReader fr = new FileReader(fileForReading);
+		
+		String line;
+		while ( (line = fr.readLine()) != null)
+			fw.write( filter(line) + "\n" );
+	}
+	
 
 	public static void main(String[] args) {
 
 		Filter f = new EnglishWordsFilter();
-		f.filterFile(
-				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Shakespeare_complete_processed.txt",
-				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Shakespeare_complete_processed2.txt");
+		f.filterFile2(
+				"Shakespeare_complete_processed.txt",
+				"Shakespeare_complete_processed2.txt");
 	}
 
 }
