@@ -79,9 +79,28 @@ public abstract class Filter {
 	public static void main(String[] args) {
 
 		Filter f = new EnglishWordsFilter();
+		
+		long start,end;
+		
+		// Le premier appel est toujours plus long...
 		f.filterFile2(
 				"Shakespeare_complete_processed.txt",
 				"Shakespeare_complete_processed2.txt");
+		
+		start = System.nanoTime();
+		f.filterFile(
+				"Shakespeare_complete_processed.txt",
+				"Shakespeare_complete_processed2.txt");
+		end = System.nanoTime();
+		System.out.println("filterFile -> " +   ((end - start) / 1000000000.) + " s");
+		
+		start = System.nanoTime();
+		f.filterFile2(
+				"Shakespeare_complete_processed.txt",
+				"Shakespeare_complete_processed2.txt");
+		end = System.nanoTime();
+		System.out.println("filterFile2 -> " +   ((end - start) / 1000000000.) + " s");
+		
 	}
 
 }
