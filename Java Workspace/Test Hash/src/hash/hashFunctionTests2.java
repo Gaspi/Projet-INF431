@@ -244,12 +244,14 @@ public class hashFunctionTests2 {
 		//collisionTests(new HomemadeHash());
 		//System.out.println(shakespeare.toString());
 
-/*		hashFunction[] tab = new hashFunction[4];
+		/*
+		hashFunction[] tab = new hashFunction[4];
 		tab[0] = new LoseLose();
 		tab[1] = new DJB2();
 		tab[2] = new MurmurHash3();
 		tab[3] = new LookUp3();
-		speedCollisionTests(tab);*/
+		speedCollisionTests(tab);
+		//*/
 	}
 
 }

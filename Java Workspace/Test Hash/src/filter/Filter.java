@@ -32,40 +32,6 @@ public abstract class Filter {
 	 *            A String representing the path to the location where the
 	 *            processed file should be written.
 	 */
-	public final void filterFile(String fileForReading, String fileForWritting) {
-		
-		Path readFile = Paths.get(fileForReading);
-		Path writeFile = Paths.get(fileForWritting);
-
-		if (!Files.exists(writeFile))
-			try {
-				writeFile = Files.createFile(writeFile);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		Charset charset = Charset.forName("US-ASCII");
-		try {
-			BufferedReader reader = Files.newBufferedReader(readFile, charset);
-			BufferedWriter writer = Files.newBufferedWriter(writeFile, charset);
-			String line = null;
-			try {
-				while ((line = reader.readLine()) != null) {
-					line = filter(line);
-					line += "\n";
-					writer.write(line);
-				}
-			} finally {
-				writer.close();
-				reader.close();
-			}
-
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}
-	
-	
 	public final void filterFile2(String fileForReading, String fileForWritting) {
 		
 		FileWriter fw = new FileWriter(fileForWritting);
@@ -86,13 +52,6 @@ public abstract class Filter {
 		f.filterFile2(
 				"Shakespeare_complete_processed.txt",
 				"Shakespeare_complete_processed2.txt");
-		
-		start = System.nanoTime();
-		f.filterFile(
-				"Shakespeare_complete_processed.txt",
-				"Shakespeare_complete_processed2.txt");
-		end = System.nanoTime();
-		System.out.println("filterFile -> " +   ((end - start) / 1000000000.) + " s");
 		
 		start = System.nanoTime();
 		f.filterFile2(

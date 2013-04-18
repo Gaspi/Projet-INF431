@@ -1,7 +1,7 @@
 package drafts;
 
 import hash.hashFunction;
-import hash.hashFunctionTests;
+import hash.hashFunctionTests2;
 import hash.hashFunctions.*;
 
 import java.io.BufferedReader;
@@ -12,6 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
+
+import FileManager.WordReader;
 
 public class HyperLogLog {
 
@@ -52,29 +54,12 @@ public class HyperLogLog {
 		// Rq : -1 = -\infty
 		// We consider anyway that this value is erased during the main loop,
 		// otherwise the result is 0.
-
-		Charset charset = Charset.forName("US-ASCII");
-		try {
-			BufferedReader reader = Files.newBufferedReader(path, charset);
-			String line = null;
-			StringTokenizer st = new StringTokenizer("");
-			try {
-				while ((line = reader.readLine()) != null) {
-					st = new StringTokenizer(line);
-
-					while (st.hasMoreTokens()) {
-						long x = func.hashString(st.nextToken());
-						int j = (int) (x & (m - 1));
-						long w = x >>> b;
-						M[j] = Math.max(M[j], rho(w));
-					}
-
-				}
-			} finally {
-				reader.close();
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		
+		for(String s: new WordReader(path)){
+			long x = func.hashString(s);
+			int j = (int) (x & (m - 1));
+			long w = x >>> b;
+			M[j] = Math.max(M[j], rho(w));
 		}
 
 		// Calculation of the result
@@ -100,48 +85,22 @@ public class HyperLogLog {
 
 	public static double benchmark(Path path) {
 		Hashtable<String, String> tab = new Hashtable<String, String>();
-		Charset charset = Charset.forName("US-ASCII");
-		try {
-			BufferedReader reader = Files.newBufferedReader(path, charset);
-			String line = null;
-			StringTokenizer st = new StringTokenizer("");
-			String token = "";
-			try {
-
-				while ((line = reader.readLine()) != null) {
-					st = new StringTokenizer(line);
-
-					while (st.hasMoreTokens()) {
-						token = st.nextToken();
-						if (!tab.containsKey(token))
-							tab.put(token, token);
-					}
-				}
-
-			} finally {
-				reader.close();
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		
+		for(String s: new WordReader(path))
+			if (!tab.containsKey(s))
+				tab.put(s, s);
 
 		return (double) tab.size();
 	}
 
 	public static void main(String[] args) {
-		// Linux command to count the number of different words in the file
-		// tr ' ' '     > ' < Shakespeare_complete_processed.txt | sort | uniq -c | wc -l 
-		//  --> give 27910 so the benchmark is pretty correct
 		
-		Path path = hashFunctionTests.englishWords;
+		Path path = hashFunctionTests2.shakespeare;
 		
 		System.out.println(benchmark(path));
-		System.out.println(benchmark(Paths.get("Shakespeare_complete_processed2.txt")));
 		for(int i=1; i<16; i++)
 			System.out.println("b = " + i + " : " + hyperLogLog(path, new LookUp3(), i));
-		
-		for(int i=1; i<16; i++)
-			System.out.println("b = " + i + " : " + hyperLogLog(path, new JavaHash(), i));
+
 		
 		// There a peak in performance around b = 10 - 11 - 12. Maybe we could try with greater values of b.
 	}
