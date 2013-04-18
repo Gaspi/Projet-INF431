@@ -5,10 +5,6 @@ import static org.math.array.DoubleArray.min;
 import static org.math.array.StatisticSample.histogram;
 import hash.hashFunctions.*;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
@@ -45,10 +41,9 @@ public class hashFunctionTests2 {
 	 */
 	private static float speedTestOnFile(Path path, hashFunction func) {
 		long start = 0, end = 0;
-		FileReader ht = new FileReader(path);
-	
+		Iterator<String> it = new FileReader(path).iterator();
+		
 		start = System.nanoTime();
-		Iterator<String> it = ht.iterator();
 		while (it.hasNext())
 			func.hashString(it.next());
 		end = System.nanoTime();
