@@ -6,19 +6,17 @@ import java.util.Iterator;
 import java.util.StringTokenizer;
 
 
+/**
+ * Iterable<String> to read a file word by word.
+ */
 public class WordReader extends FileReader {
 	
 	public WordReader(Path path) { super(path); }
 	public WordReader(String path) { super(path); }
 	
-	/**
-	 * Return a Iterator<String> starting at the next line of the file.
-	 * The first if the file was just created.
-	 */
+	
 	@Override
-	public Iterator<String> iterator() {
-		return new MyIter();
-	}
+	public Iterator<String> iterator() { return new MyIter(); }
 	
 	private class MyIter implements Iterator<String> {
 		
@@ -50,13 +48,7 @@ public class WordReader extends FileReader {
 		}
 		
 		
-		/**
-		 * Function called before the destruction of the object (to make sure the file is closed in the end).
-		 */
-		@Override
-		public void finalize() {
-			close();
-		}
+
 		
 		
 		@Override
@@ -68,9 +60,10 @@ public class WordReader extends FileReader {
 			update();
 			return result;
 		}
-	
-		@Override
-		public void remove() { }
+		
+		
+		@Override public void remove() { }
+		@Override public void finalize() { close(); }
 		
 	}
 	

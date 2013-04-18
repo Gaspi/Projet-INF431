@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Iterator;
 
+/**
+ * Iterable<String> to read a file line by line.
+ */
 public class LineReader extends FileReader {
 	
 	public LineReader(Path path) { super(path); }
