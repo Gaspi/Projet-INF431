@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import org.apache.commons.math3.stat.inference.ChiSquareTest;
 import org.math.plot.Plot2DPanel;
 
-import FileManager.FileReader;
+import FileManager.WordReader;
 
 import drafts.Draft;
 
@@ -41,7 +41,7 @@ public class hashFunctionTests2 {
 	 */
 	private static float speedTestOnFile(Path path, hashFunction func) {
 		long start = 0, end = 0;
-		Iterator<String> it = new FileReader(path).iterator();
+		Iterator<String> it = new WordReader(path).iterator();
 		
 		start = System.nanoTime();
 		while (it.hasNext())
@@ -66,7 +66,7 @@ public class hashFunctionTests2 {
 		int comp = 0;
 		Hashtable<Integer, String> tab = new Hashtable<Integer, String>();
 		
-		for (String g : new FileReader(path) ) {
+		for (String g : new WordReader(path) ) {
 			int hash = func.hashString(g);
 			if (tab.containsKey(hash))
 				comp++;
@@ -89,7 +89,7 @@ public class hashFunctionTests2 {
 	 */
 	private static void distributionTestOnFile(Path path, hashFunction func) {
 		Vector<Double> values = new Vector<Double>();
-		for (String w : new FileReader(path))
+		for (String w : new WordReader(path))
 			values.add((double) func.hashString(w) );
 		
 		
@@ -116,7 +116,7 @@ public class hashFunctionTests2 {
 	
 	private static String chiSquareTestOnFile(Path path, hashFunction func) {
 		Vector<Double> values = new Vector<Double>();
-		for (String w : new FileReader(path))
+		for (String w : new WordReader(path))
 			values.add((double) func.hashString(w) );
 
 		// Convert the Vector<Double> into an array of doubles

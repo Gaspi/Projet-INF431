@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 
 import FileManager.FileReader;
 import FileManager.FileWriter;
+import FileManager.LineReader;
 
 public abstract class Filter {
 
@@ -68,10 +69,9 @@ public abstract class Filter {
 	public final void filterFile2(String fileForReading, String fileForWritting) {
 		
 		FileWriter fw = new FileWriter(fileForWritting);
-		FileReader fr = new FileReader(fileForReading);
+		FileReader lr = new LineReader(fileForReading);
 		
-		String line;
-		while ( (line = fr.readLine()) != null)
+		for (String line : lr)
 			fw.write( filter(line) + "\n" );
 	}
 	
