@@ -4,16 +4,11 @@ import hash.hashFunction;
 import hash.hashFunctionTests2;
 import hash.hashFunctions.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Hashtable;
-import java.util.StringTokenizer;
 
 import FileManager.WordReader;
+
 
 public class HyperLogLog {
 
