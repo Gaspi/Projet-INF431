@@ -29,7 +29,16 @@ public class CreatingFiles {
 			e1.printStackTrace();
 		}
 	}
-
+	
+	
+	public static void writeUUIDs2(String directory, int number) {
+		FileWriter fw = new FileWriter(directory);
+		for (int i = 0; i <= number; i++)
+			fw.write(UUID.randomUUID() + "\n");
+	}
+	
+	
+	// Note : Are all the numbers on the same line ?
 	public static void writeNumbers(String directory, int number) {
 		String s = String.valueOf(number);
 		Path writeFile = Paths.get(directory + "/Numbers_" + s);
