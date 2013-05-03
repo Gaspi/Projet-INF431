@@ -27,18 +27,20 @@ public class HyperLogLog {
 	// 0.721205, 0.721253, 0.721276, 0.721288
 
 	/**
-	 * Asses the number of different words in a text file using the hyperloglog
-	 * algorithm.
+	 * Build the fingerPrint of k-shingles in a file.
 	 * 
 	 * @param path
-	 *            Path of the file to read.
+	 *            The path to the file.
 	 * @param func
-	 *            Hash function used.
+	 *            The hash function to use.
 	 * @param b
-	 *            Parameter of the algorithm. (4 <= b <= 16 expected)
-	 * @return The approximative number of different words in the file
+	 *            Parameter of the HyperLogLog algorithm.
+	 * @param k
+	 *            Length of the shingles.
+	 * @return The fingerPrint as an array of integers.
 	 */
-	public static double hyperLogLog(Path path, hashFunction func, int b) {
+	public static int[] buildFingerPrint(Path path, hashFunction func, int b,
+			int k) {
 
 		if (b <= 0 || b > 16)
 			throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
@@ -52,12 +54,62 @@ public class HyperLogLog {
 		for (int i = 0; i < m; i++)
 			M[i] = 0;
 
+		int comp = 0;
+		StringBuilder strBuilder = new StringBuilder();
 		for (String s : new WordReader(path)) {
-			long x = func.hashString(s);
-			int j = (int) (x & (m - 1));
-			long w = x >>> b;
-			M[j] = Math.max(M[j], rho(w));
+			if (comp < k) {
+				strBuilder.append(s);
+				comp++;
+			}
+
+			if (comp == k) {
+				long x = func.hashString(strBuilder.substring(0));
+				strBuilder = new StringBuilder();
+
+				int j = (int) (x & (m - 1));
+				long w = x >>> b;
+				M[j] = Math.max(M[j], rho(w));
+
+				comp = 0;
+			}
 		}
+
+		return M;
+	}
+
+	/**
+	 * Asses the number of different k-shingles in a text file using the
+	 * HyperLogLog algorithm (for k = 1, the returned value is an estimation of
+	 * the number of distinct words in the file).
+	 * 
+	 * @param path
+	 *            Path to the file to read.
+	 * @param func
+	 *            Hash function used.
+	 * @param b
+	 *            Parameter of the algorithm. (4 <= b <= 16 expected)
+	 * @param k
+	 *            Length of the shingles
+	 * @return The approximative number of different words in the file
+	 */
+	public static double hyperLogLog(Path path, hashFunction func, int b, int k) {
+
+		return hyperLogLog(buildFingerPrint(path, func, b, k));
+	}
+
+	/**
+	 * Asses the number of different patterns in a text file whose fingerPrint
+	 * array is given as an argument. Used in the Similarities class.
+	 * 
+	 * @param M
+	 *            The fingerPrint array
+	 *            
+	 * @return The approximative number of different patterns. 
+	 */
+	public static double hyperLogLog(int[] M) {
+
+		int m = M.length;
+		int b = (int) (Math.log(m) / Math.log(2)); // m = 2^b
 
 		// Calculation of the result
 		double sum = 0;
@@ -68,9 +120,11 @@ public class HyperLogLog {
 
 		double n = Math.pow(2., 32.);
 
-		// Second modification (first if statement): corrections when e is comparatively small with
-		// respect to m 
-		// Third modification (second if statement): corrections to account for collision effects due
+		// Second modification (first if statement): corrections when e is
+		// comparatively small with
+		// respect to m
+		// Third modification (second if statement): corrections to account for
+		// collision effects due
 		// to the hash function
 		if (e < (5. / 2.) * m) {
 			double v = 0;
@@ -80,15 +134,14 @@ public class HyperLogLog {
 
 			if (v != 0)
 				e = m * Math.log(m / v);
-		}
-		else if (e > n / 30)
+		} else if (e > n / 30)
 			e = -n * Math.log(1 - e / n);
-		
+
 		return e;
 	}
 
 	/**
-	 * @return The position of the first 1 encountered when reading the 2-base
+	 * @return The position to the first 1 encountered when reading the 2-base
 	 *         decomposition of the positive integer x.
 	 */
 	private static int rho(long x) {
@@ -101,6 +154,13 @@ public class HyperLogLog {
 		return res;
 	}
 
+	/**
+	 * 
+	 * @param path
+	 *            The path to the file we want to perform the HyperLogLog
+	 *            algorithm on.
+	 * @return A good estimation of the number of distinct words in the file.
+	 */
 	public static double benchmark(Path path) {
 		Hashtable<String, String> tab = new Hashtable<String, String>();
 
@@ -111,20 +171,25 @@ public class HyperLogLog {
 		return (double) tab.size();
 	}
 
-	public static void main(String[] args) {
-
-		Path path = hashFunctionTests2.shakespeare;
-		//Path path = hashFunctionTests2.englishWords;
-		//Path path = hashFunctionTests2.bible;
-
+	/**
+	 * 
+	 * @param path
+	 *            The path to the file we want to estimate the performance of
+	 *            HyperLogLog on.
+	 * 
+	 * @return Display the percentage error for increasing value of m.
+	 */
+	public static void performanceEstimator(Path path) {
 		double bench = benchmark(path);
-		System.out.println(bench);
+		System.out.println("Number of distinct words: " + bench);
 		for (int i = 1; i < 16; i++) {
-			double h = hyperLogLog(path, new LookUp3(), i);
+			double h = hyperLogLog(path, new LookUp3(), i, 1);
 			System.out.println("b = " + i + " : " + h + " ; error : "
 					+ (Math.abs(h - bench) / bench) * 100 + "%");
 		}
+	}
 
-
+	public static void main(String[] args) {
+		HyperLogLog.performanceEstimator(hashFunctionTests2.bible);
 	}
 }
