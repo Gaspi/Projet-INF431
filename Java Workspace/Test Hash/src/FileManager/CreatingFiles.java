@@ -40,8 +40,9 @@ public class CreatingFiles {
 	
 	// Note : Are all the numbers on the same line ?
 	public static void writeNumbers(String directory, int number) {
+		
 		String s = String.valueOf(number);
-		Path writeFile = Paths.get(directory + "/Numbers_" + s);
+		Path writeFile = Paths.get(directory + "/Numbers_" + s + ".txt");
 
 		Charset charset = Charset.forName("US-ASCII");
 		try {
@@ -50,7 +51,7 @@ public class CreatingFiles {
 
 			try {
 				for (int i = 0; i <= number; i++)
-					writer.write(Integer.toString(i));
+					writer.write(Integer.toString(i) + "\n");
 			} finally {
 				writer.close();
 			}
@@ -60,7 +61,7 @@ public class CreatingFiles {
 	}
 
 	public static void main(String[] args) {
-		writeUUIDs("C:\\Users\\Gaspard FEREY\\Documents\\GitHub", 200);
+		writeNumbers("/home/jonathan/Documents/Projet-INF431/Ressources/Raw files", 1000000);
 	}
 
 }

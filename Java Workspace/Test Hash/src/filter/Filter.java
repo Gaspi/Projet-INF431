@@ -23,33 +23,21 @@ public abstract class Filter {
 	 *            processed file should be written.
 	 */
 	public final void filterFile2(String fileForReading, String fileForWritting) {
-		
+
 		FileWriter fw = new FileWriter(fileForWritting);
 		FileReader lr = new LineReader(fileForReading);
-		
+
 		for (String line : lr)
-			fw.write( filter(line) + "\n" );
+			fw.write(filter(line) + "\n");
 	}
-	
 
 	public static void main(String[] args) {
 
 		Filter f = new EnglishWordsFilter();
-		
-		long start,end;
-		
-		// Le premier appel est toujours plus long...
-		f.filterFile2(
-				"Shakespeare_complete_processed.txt",
-				"Shakespeare_complete_processed2.txt");
-		
-		start = System.nanoTime();
-		f.filterFile2(
-				"Shakespeare_complete_processed.txt",
-				"Shakespeare_complete_processed2.txt");
-		end = System.nanoTime();
-		System.out.println("filterFile2 -> " +   ((end - start) / 1000000000.) + " s");
-		
+
+		f.filterFile2("/home/jonathan/Documents/Projet-INF431/Ressources/Raw files/Bible_english.txt",
+				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Bible_english_processed.txt");
+
 	}
 
 }

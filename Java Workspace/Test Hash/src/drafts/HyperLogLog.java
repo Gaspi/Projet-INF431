@@ -9,14 +9,16 @@ import java.util.Hashtable;
 
 import FileManager.WordReader;
 
-
 public class HyperLogLog {
 
 	/**
 	 * alpha[b] is meant to be equal to \alpha_{2^b} Values computed by Wolfram
 	 * Mathematica
 	 */
-	private static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, 0.673102, 0.697123, 0.709208, 0.715271, 0.718308, 0.719827, 0.720587, 0.720967, 0.721157, 0.721252, 0.721300, 0.721324, 0.721336 };
+	private static double[] alpha = { 0, 0.351194, 0.532435, 0.625609,
+			0.673102, 0.697123, 0.709208, 0.715271, 0.718308, 0.719827,
+			0.720587, 0.720967, 0.721157, 0.721252, 0.721300, 0.721324,
+			0.721336};
 
 	// Just for the record, the suggested values are : 0,
 	// 0 , 0 , 0 , 0.673000,
@@ -49,8 +51,8 @@ public class HyperLogLog {
 		// Rq : -1 = -\infty
 		// We consider anyway that this value is erased during the main loop,
 		// otherwise the result is 0.
-		
-		for(String s: new WordReader(path)){
+
+		for (String s : new WordReader(path)) {
 			long x = func.hashString(s);
 			int j = (int) (x & (m - 1));
 			long w = x >>> b;
@@ -80,8 +82,8 @@ public class HyperLogLog {
 
 	public static double benchmark(Path path) {
 		Hashtable<String, String> tab = new Hashtable<String, String>();
-		
-		for(String s: new WordReader(path))
+
+		for (String s : new WordReader(path))
 			if (!tab.containsKey(s))
 				tab.put(s, s);
 
@@ -89,14 +91,17 @@ public class HyperLogLog {
 	}
 
 	public static void main(String[] args) {
-		
-		Path path = hashFunctionTests2.shakespeare;
-		
-		System.out.println(benchmark(path));
-		for(int i=1; i<16; i++)
-			System.out.println("b = " + i + " : " + hyperLogLog(path, new LookUp3(), i));
 
-		
-		// There a peak in performance around b = 10 - 11 - 12. Maybe we could try with greater values of b.
+		Path path = hashFunctionTests2.shakespeare;
+
+		double bench = benchmark(path);
+		System.out.println(bench);
+		for (int i = 1; i < 16; i++){
+			double h = hyperLogLog(path, new LookUp3(), i); 
+			System.out.println("b = " + i + " : "
+					+  h + " ; error : " + (Math.abs(h-bench)/bench)*100 + "%");
+		}
+		// There a peak in performance around b = 10 - 11 - 12. Maybe we could
+		// try with greater values of b.
 	}
 }
