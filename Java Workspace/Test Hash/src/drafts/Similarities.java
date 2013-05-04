@@ -150,12 +150,12 @@ public class Similarities {
 	/**
 	 * To test the resemblance function behavior.
 	 */
-	public static void testResemblance() {
+	public static void testResemblance(int k) {
 
 		// For the same file, resemblance should be 1
 		System.out.println("Same files :");
 		System.out.println(Similarities.resemblance(hashFunctionTests2.bible,
-				hashFunctionTests2.bible, new LookUp3(), 15, 1));
+				hashFunctionTests2.bible, new LookUp3(), 15, k));
 
 		// For files with high similarities, resemblance should be approximately
 		// 1. Here I have deleted some
@@ -166,24 +166,26 @@ public class Similarities {
 						.resemblance(
 								"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Bible_english_processed.txt",
 								"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Bible_english_processed (copie).txt",
-								new LookUp3(), 15, 1));
+								new LookUp3(), 15, k));
 
 		// For distinct files, resemblance should be around 0.
 		System.out.println("Completely different files (but same langage):");
 		System.out.println(Similarities.resemblance(
 				hashFunctionTests2.shakespeare, hashFunctionTests2.bible,
-				new LookUp3(), 15, 1));
+				new LookUp3(), 15, k));
 	}
 
 	public static void main(String[] args) {
 
-		// Similarities.testResemblance();
+		//Similarities.testResemblance(1);
 
-		String[] strs = { "Shakespeare_complete_processed.txt",
-				"Bible_english_processed.txt", "Bible_english_processed.txt" };
-
-		Similarities sim = new Similarities(strs, 1);
-		sim.similarFiles(0.2);
+		// String[] strs = { "Shakespeare_complete_processed.txt",
+		// "Bible_english_processed.txt", "Bible_english_processed.txt" };
+		//
+		// Similarities sim = new Similarities(strs, 1);
+		// sim.similarFiles(0.2);
+	    
+	    	System.out.println(4 % 3);
 	}
 
 }
