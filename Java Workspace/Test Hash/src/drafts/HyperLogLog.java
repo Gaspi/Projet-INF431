@@ -6,6 +6,7 @@ import hash.hashFunctions.*;
 
 import java.nio.file.Path;
 import java.util.Hashtable;
+import java.util.LinkedList;
 
 import FileManager.WordReader;
 
@@ -27,7 +28,7 @@ public class HyperLogLog {
 	// 0.721205, 0.721253, 0.721276, 0.721288
 
 	/**
-	 * Build the fingerPrint of k-shingles in a file.
+	 * Build the fingerPrint of k-shingles in a file. Used in class Similarities.
 	 * 
 	 * @param path
 	 *            The path to the file.
@@ -54,23 +55,29 @@ public class HyperLogLog {
 		for (int i = 0; i < m; i++)
 			M[i] = 0;
 
+		// A little more complicated than the first version because we want to
+		// be able to count the number of k-shingles.
 		int comp = 0;
 		StringBuilder strBuilder = new StringBuilder();
+		LinkedList<Integer> indexes = new LinkedList<Integer>();
+
 		for (String s : new WordReader(path)) {
-			if (comp < k) {
+			if (comp == k) {
+				strBuilder.replace(0, indexes.poll(), "");
 				strBuilder.append(s);
+				indexes.add(strBuilder.length());
+			} else {
+				strBuilder.append(s);
+				indexes.add(strBuilder.length());
 				comp++;
 			}
 
 			if (comp == k) {
 				long x = func.hashString(strBuilder.substring(0));
-				strBuilder = new StringBuilder();
-
 				int j = (int) (x & (m - 1));
 				long w = x >>> b;
 				M[j] = Math.max(M[j], rho(w));
 
-				comp = 0;
 			}
 		}
 
@@ -103,8 +110,8 @@ public class HyperLogLog {
 	 * 
 	 * @param M
 	 *            The fingerPrint array
-	 *            
-	 * @return The approximative number of different patterns. 
+	 * 
+	 * @return The approximative number of different patterns.
 	 */
 	public static double hyperLogLog(int[] M) {
 
