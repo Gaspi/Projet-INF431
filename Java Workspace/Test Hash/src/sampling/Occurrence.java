@@ -2,7 +2,9 @@ package sampling;
 
 public class Occurrence {
 
+    // The word
     String word;
+    // Its number of occurrences
     int nbOcc;
 
     public Occurrence(String word, int nbOcc) {
@@ -10,6 +12,10 @@ public class Occurrence {
 	this.nbOcc = nbOcc;
     }
 
+    /**
+     * Override the equals method so that occurrences are equals if they share the same word
+     * (sharing the same number of occurrences is unnecessary)
+     */
     @Override
     public boolean equals(Object obj) {
 	if (this == obj)
@@ -26,7 +32,5 @@ public class Occurrence {
 	    return false;
 	return true;
     }
-    
-    
 
 }

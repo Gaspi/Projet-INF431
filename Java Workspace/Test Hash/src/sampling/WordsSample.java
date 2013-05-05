@@ -5,7 +5,7 @@ import hash.hashFunction;
 import java.util.LinkedList;
 
 /**
- * Template class for the implementation required for question 5.
+ * Template class for the implementation required for question 5. This way we can try several different ways.
  */
 public abstract class WordsSample {
     int k;
@@ -20,7 +20,7 @@ public abstract class WordsSample {
 	this.b = 0;
     }
     
-    public abstract boolean addWord(String string);
+    public abstract void addWord(String string);
     
     public abstract LinkedList<String> words();
 }

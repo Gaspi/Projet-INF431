@@ -13,13 +13,11 @@ import FileManager.WordReader;
 public class HyperLogLog {
 
     /**
-     * alpha[b] is meant to be equal to \alpha_{2^b} Values computed by Wolfram
-     * Mathematica
+     * alpha[b] is meant to be equal to \alpha_{2^b} Values computed by Wolfram Mathematica
      */
-    private static double[] alpha = { 0, 0.351194, 0.532435, 0.625609,
-	    0.673102, 0.697123, 0.709208, 0.715271, 0.718308, 0.719827,
-	    0.720587, 0.720967, 0.721157, 0.721252, 0.721300, 0.721324,
-	    0.721336 };
+    private static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, 0.673102, 0.697123,
+	    0.709208, 0.715271, 0.718308, 0.719827, 0.720587, 0.720967, 0.721157, 0.721252,
+	    0.721300, 0.721324, 0.721336 };
 
     // Just for the record, the suggested values are : 0,
     // 0 , 0 , 0 , 0.673000,
@@ -28,8 +26,7 @@ public class HyperLogLog {
     // 0.721205, 0.721253, 0.721276, 0.721288
 
     /**
-     * Build the fingerPrint of k-shingles in a file. Used in class
-     * Similarities.
+     * Build the fingerPrint of k-shingles in a file. Used in class Similarities.
      * 
      * @param path
      *            The path to the file.
@@ -39,10 +36,10 @@ public class HyperLogLog {
      *            Parameter of the HyperLogLog algorithm.
      * @param k
      *            Length of the shingles.
+     *            
      * @return The fingerPrint as an array of integers.
      */
-    public static int[] buildFingerPrint(Path path, hashFunction func, int b,
-	    int k) {
+    public static int[] buildFingerPrint(Path path, hashFunction func, int b, int k) {
 
 	if (b <= 0 || b > 16)
 	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
@@ -86,28 +83,8 @@ public class HyperLogLog {
     }
 
     /**
-     * Asses the number of different k-shingles in a text file using the
-     * HyperLogLog algorithm (for k = 1, the returned value is an estimation of
-     * the number of distinct words in the file).
-     * 
-     * @param path
-     *            Path to the file to read.
-     * @param func
-     *            Hash function used.
-     * @param b
-     *            Parameter of the algorithm. (4 <= b <= 16 expected)
-     * @param k
-     *            Length of the shingles
-     * @return The approximative number of different words in the file
-     */
-    public static double hyperLogLog(Path path, hashFunction func, int b, int k) {
-
-	return hyperLogLog(buildFingerPrint(path, func, b, k));
-    }
-
-    /**
-     * Asses the number of different patterns in a text file whose fingerPrint
-     * array is given as an argument. Used in the Similarities class.
+     * Asses the number of different patterns in a text file whose fingerPrint array is given as an
+     * argument using the HyperLogLog algorithm. Used in the Similarities class.
      * 
      * @param M
      *            The fingerPrint array
@@ -147,11 +124,30 @@ public class HyperLogLog {
 
 	return e;
     }
+    
+    /**
+     * Asses the number of different k-shingles in a text file using the HyperLogLog algorithm (for
+     * k = 1, the returned value is an estimation of the number of distinct words in the file).
+     * 
+     * @param path
+     *            Path to the file to read.
+     * @param func
+     *            Hash function used.
+     * @param b
+     *            Parameter of the algorithm. (4 <= b <= 16 expected)
+     * @param k
+     *            Length of the shingles
+     * @return The approximative number of different words in the file
+     */
+    public static double hyperLogLog(Path path, hashFunction func, int b, int k) {
+
+	return hyperLogLog(buildFingerPrint(path, func, b, k));
+    }
 
     /**
-     * @return The position to the first 1 encountered when reading the 2-base
-     *         decomposition of the positive integer x (it equals the number of
-     *         trailing 0).
+     * @return The position to the first 1 encountered when reading the 2-base decomposition of the
+     *         positive integer x (it equals the number of trailing 0, and therefore this method is
+     *         equivalent to Integer.numberOfTrailingZeros).
      */
     public static int rho(long x) {
 	int res = 1;
@@ -166,8 +162,8 @@ public class HyperLogLog {
     /**
      * 
      * @param path
-     *            The path to the file we want to perform the HyperLogLog
-     *            algorithm on.
+     *            The path to the file we want to perform the HyperLogLog algorithm on.
+     * 
      * @return A good estimation of the number of distinct words in the file.
      */
     public static double benchmark(Path path) {
@@ -183,8 +179,7 @@ public class HyperLogLog {
     /**
      * 
      * @param path
-     *            The path to the file we want to estimate the performance of
-     *            HyperLogLog on.
+     *            The path to the file we want to estimate the performance of HyperLogLog on.
      * 
      * @return Display the percentage error for increasing value of m.
      */
@@ -199,6 +194,6 @@ public class HyperLogLog {
     }
 
     public static void main(String[] args) {
-	// HyperLogLog.performanceEstimator(hashFunctionTests2.bible);
+	HyperLogLog.performanceEstimator(hashFunctionTests2.shakespeare);
     }
 }
