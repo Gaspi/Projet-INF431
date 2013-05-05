@@ -6,57 +6,61 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- * First implementation: array of LinkedList. Easier but I think a tree would be better.
+ * First implementation: array of LinkedList. Easier but I think a tree-based
+ * class would be better.
  */
 public class WordsSampleOne extends WordsSample {
 
-    ArrayList<LinkedList<String>> strTab;
+    ArrayList<LinkedList<Occurrence>> strTab;
 
-    public WordsSampleOne(int k, int bMax, hashFunction func) {
-	super(k, bMax, func);
+    public WordsSampleOne(int k, hashFunction func) {
+	super(k, func);
 
-	this.strTab = new ArrayList<LinkedList<String>>(this.bMax+1);
-	for (int i = 0; i <= this.bMax; i++)
-	    strTab.add(new LinkedList<String>());
+	this.strTab = new ArrayList<LinkedList<Occurrence>>(33);
+	for (int i = 0; i <= 32; i++)
+	    strTab.add(new LinkedList<Occurrence>());
     }
 
     @Override
     public boolean addWord(String s) {
-	if(this.b <= this.bMax){
-	    int nbTrailingZeros = Integer.numberOfTrailingZeros(func.hashString(s));
-	    if(nbTrailingZeros > this.bMax)
-		nbTrailingZeros = this.bMax;
-		
-	    if(nbTrailingZeros >= this.b){
-		LinkedList<String> l = this.strTab.get(nbTrailingZeros);
-		if(!l.contains(s)){
-		    this.strTab.get(nbTrailingZeros).add(s);
-		    this.nbElements++;
-		}
-	    }
-	    
-	    if(this.nbElements == 2*this.k){
-		this.nbElements -= this.strTab.get(this.b).size();
-		this.strTab.set(this.b, new LinkedList<String>());
-		this.b++;
-	    }
+	int nbTrailingZeros = Integer.numberOfTrailingZeros(func.hashString(s));
+
+	if (nbTrailingZeros >= this.b) {
+	    LinkedList<Occurrence> l = this.strTab.get(nbTrailingZeros);
+//	    if(!l.contains(s)){
+//		l.add(s);
+//		this.nbElements++;
+//	    }
+	    Occurrence sOcc = new Occurrence(s, 1);
+	    int i = l.indexOf(sOcc);
+	    if (i == -1) {
+		l.add(sOcc);
+		this.nbElements++;
+	    } else
+		l.get(i).nbOcc++;
 	}
-	
-	return (this.b > this.bMax);
+
+	if (this.nbElements == 2 * this.k) {
+	    this.nbElements -= this.strTab.get(this.b).size();
+	    this.strTab.set(this.b, new LinkedList<Occurrence>());
+	    this.b++;
+	}
+
+	return (this.b >= 32);
     }
 
     @Override
     public LinkedList<String> words() {
-	if(this.b >= this.bMax){
-	    System.out.println("eeee");    	    
-	    return this.strTab.get(this.bMax);
+	LinkedList<String> l = new LinkedList<String>();
+	
+	for (int i = this.b; i <= 32; i++){
+//	    l.addAll(this.strTab.get(i));
+	    for (Occurrence occ : this.strTab.get(i)) 
+		if(occ.nbOcc <= 1)
+		    l.add(occ.word);
 	}
-	else{
-	    LinkedList<String> l = new LinkedList<String>();
-	    for(int i=this.b; i<this.bMax; i++)
-		l.addAll(this.strTab.get(i));
-	    
-	    return l;
-	}
+
+	return l;
+
     }
 }

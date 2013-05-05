@@ -26,9 +26,10 @@ public class hashFunctionTests2 {
 	public static final Path uuids = Paths.get("UUID_200000");
 	public static final Path englishWords = Paths.get("English_words.txt");
 	public static final Path bible = Paths.get("Bible_english_processed.txt");
+	public static final Path hamlet = Paths.get("Hamlet.txt");
 	public static final Path[] paths = { shakespeare, englishWords, uuids, numbers, bible};
 	public static final String[] descriptions = { "Shakespeare", "English words", "UUIDs",
-			"Numbers from 1 to 1,000,000", "Old and new testaments"};
+			"Numbers from 1 to 1,000,000", "Old and new testaments", "Hamlet"};
 
 	/**
 	 * @param path
@@ -240,8 +241,8 @@ public class hashFunctionTests2 {
 	}
 
 	public static void main(String[] args) {
-		//uniformDistribTest(new HomemadeHash(), true);
-		speedTests(new LookUp3());
+		uniformDistribTest(new LookUp3(), true);
+		//speedTests(new LookUp3());
 		//collisionTests(new HomemadeHash());
 		//System.out.println(shakespeare.toString());
 

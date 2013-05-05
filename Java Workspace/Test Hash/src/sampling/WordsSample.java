@@ -12,11 +12,9 @@ public abstract class WordsSample {
     int nbElements;
     hashFunction func;
     int b;
-    int bMax;
     
-    public WordsSample(int k, int bMax, hashFunction func){
+    public WordsSample(int k, hashFunction func){
 	this.k = k;
-	this.bMax = bMax;
 	this.func = func;
 	this.nbElements = 0;
 	this.b = 0;
