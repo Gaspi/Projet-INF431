@@ -33,36 +33,35 @@ public class SignificantWords {
      */
     public static LinkedList<String> getSignificantWords(Path path, int nbWords, hashFunction func,
 	    int k) {
-
-	if (2 * k < nbWords)
-	    throw new AssertionError("Too much significant words asked for the given sample size.");
-
-	WordsSample ws = new WordsSampleOne(k, func);
-
-	for(String str: new WordReader(path)) {
-	    ws.addWord(str);
-	}
-
-	// Extract only nbWords
-	LinkedList<String> wordsList = ws.words();
-	LinkedList<String> l = new LinkedList<String>();
-	for (int i = 0; i < nbWords; i++)
-	    l.add(wordsList.removeFirst());
-
-	return l;
+    	
+    	if (2 * k < nbWords)
+    		throw new AssertionError("Too much significant words asked for the given sample size.");
+    	
+    	WordsSample ws = new WordsSampleOne(k, func);
+    	
+    	for(String str: new WordReader(path)) {
+    		ws.addWord(str);
+    	}
+    	
+    	// Extract only nbWords
+    	LinkedList<String> wordsList = ws.words();
+    	LinkedList<String> l = new LinkedList<String>();
+    	for (int i = 0; i < nbWords; i++)
+    		l.add(wordsList.removeFirst());
+    	
+    	return l;
     }
-
-    
     
     
     
     
     public static void main(String[] args) {
-
-	LookUp3 f = new LookUp3();
-	for (String s : SignificantWords.getSignificantWords(hashFunctionTests2.hamlet, 5, f, 200)) {
-	    System.out.println(s);
-	    System.out.println(Integer.toBinaryString(f.hashString(s)));
-	}
+    	
+    	LookUp3 f = new LookUp3();
+    	for (String s : SignificantWords.getSignificantWords(hashFunctionTests2.hamlet, 5, f, 200)) {
+    		System.out.println(s);
+    		System.out.println(Integer.toBinaryString(f.hashString(s)));
+    	}
     }
+    
 }

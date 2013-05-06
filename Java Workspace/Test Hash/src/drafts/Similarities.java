@@ -6,7 +6,8 @@ import hash.hashFunctions.*;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+
+
 
 /**
  * 
@@ -27,39 +28,42 @@ public class Similarities {
     private int[][] resemblances;
 
     public Similarities(String[] urls, int k) {
-	this.urls = urls;
-	this.hashFunc = new LookUp3();
-	this.k = k;
-	this.b = 15;
-
-	initialize();
+    	this.urls = urls;
+    	this.k = k;
+    	hashFunc = new LookUp3();
+    	b = 15;
+    	
+    	initialize();
     }
-
+    
+    
     public Similarities(String[] urls, int k, int b, hashFunction func) {
-	this.urls = urls;
-	this.hashFunc = func;
-	this.k = k;
-
-	if (b <= 0 || b > 16)
-	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
-
-	this.b = b;
-
-	initialize();
+    	this.urls = urls;
+    	this.hashFunc = func;
+    	this.k = k;
+    	
+    	if (b <= 0 || b > 16)
+    		throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
+    	
+    	this.b = b;
+    	
+    	initialize();
     }
-
+    
+    
     /**
      * Initialize the resemblance array with fingerPrint arrays of the files whose paths are stored
      * in 'urls'.
      */
     private void initialize() {
-	this.resemblances = new int[this.urls.length][];
-
-	for (int i = 0; i < urls.length; i++)
-	    this.resemblances[i] = HyperLogLog.buildFingerPrint(Paths.get(urls[i]), this.hashFunc,
-		    this.b, k);
+    	resemblances = new int[this.urls.length][];
+    	
+    	for (int i = 0; i < urls.length; i++)
+    		this.resemblances[i] = HyperLogLog.buildFingerPrint(Paths.get(urls[i]), this.hashFunc,
+    				this.b, k);
     }
-
+    
+    
     /**
      * Display the names of the files which share resemblance beyond a given threshold.
      * 

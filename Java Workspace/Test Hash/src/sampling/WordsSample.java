@@ -14,10 +14,10 @@ public abstract class WordsSample {
     int b;
     
     public WordsSample(int k, hashFunction func){
-	this.k = k;
-	this.func = func;
-	this.nbElements = 0;
-	this.b = 0;
+    	this.k = k;
+    	this.func = func;
+    	nbElements = 0;
+    	b = 0;
     }
     
     public abstract void addWord(String string);
