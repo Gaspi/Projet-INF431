@@ -40,7 +40,7 @@ public class HyperLogLog {
      * @return The fingerPrint as an array of integers.
      */
     public static int[] buildFingerPrint(Path path, hashFunction func, int b, int k) {
-
+    
 	if (b <= 0 || b > 16)
 	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
 
@@ -61,27 +61,27 @@ public class HyperLogLog {
 
 	for (String s : new WordReader(path)) {
 	    if (comp == k) {
-		strBuilder.replace(0, indexes.poll(), "");
-		strBuilder.append(s);
-		indexes.add(s.length());
+	    	strBuilder.replace(0, indexes.poll(), "");
+	    	strBuilder.append(s);
+	    	indexes.add(s.length());
 	    } else {
-		strBuilder.append(s);
-		indexes.add(s.length());
-		comp++;
+	    	strBuilder.append(s);
+	    	indexes.add(s.length());
+	    	comp++;
 	    }
 
 	    if (comp == k) {
-		long x = func.hashString(strBuilder.substring(0));
-		int j = (int) (x & (m - 1));
-		long w = x >>> b;
-		M[j] = Math.max(M[j], rho(w));
-
+	    	long x = func.hashString(strBuilder.substring(0));
+	    	int j = (int) (x & (m - 1));
+	    	long w = x >>> b;
+			M[j] = Math.max(M[j], rho(w));
 	    }
 	}
 
 	return M;
     }
-
+    
+    
     /**
      * Asses the number of different patterns in a text file whose fingerPrint array is given as an
      * argument using the HyperLogLog algorithm. Used in the Similarities class.
@@ -141,9 +141,10 @@ public class HyperLogLog {
      */
     public static double hyperLogLog(Path path, hashFunction func, int b, int k) {
 
-	return hyperLogLog(buildFingerPrint(path, func, b, k));
+    	return hyperLogLog(buildFingerPrint(path, func, b, k));
     }
-
+    
+    
     /**
      * @return The position to the first 1 encountered when reading the 2-base decomposition of the
      *         positive integer x (it equals the number of trailing 0, and therefore this method is
