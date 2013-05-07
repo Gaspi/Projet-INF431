@@ -34,14 +34,8 @@ public class WordsSampleOne extends WordsSample {
     	if (nbTrailingZeros >= this.b) {
     		LinkedList<Occurrence> l = this.strTab.get(nbTrailingZeros);
     		
-    		// if(!l.contains(s)){
-    		// l.add(s);
-    		// this.nbElements++;
-    		// }
-    		
     		Occurrence sOcc = new Occurrence(s, 1);
-    		int i = l.indexOf(sOcc);
-    		
+    		int i = l.indexOf(sOcc);   		
     		// If we have already seen the word, increase its number of occurrences. Else add the
     		// word to the array at the proper position.
     		if (i == -1) {
@@ -52,8 +46,8 @@ public class WordsSampleOne extends WordsSample {
     	}
     	
     	// If the array has more than 2*k elements stored, remove the elements with less than b
-    	// trailing zeros then increase b.
-    	if (this.nbElements == 2 * this.k) {
+    	// trailing zeros then increase b, until the array has less than 2*k elements.
+    	while (this.nbElements >= 2 * this.k) {
     		this.nbElements -= this.strTab.get(this.b).size();
     		this.strTab.set(this.b, new LinkedList<Occurrence>());
     		this.b++;
@@ -67,14 +61,55 @@ public class WordsSampleOne extends WordsSample {
     	
     	// Return only the words appearing with low frequencies. Here with less than 5 occurencies
     	// in the text.
-    	for (int i = this.b; i <= 32; i++) {
-    		// l.addAll(this.strTab.get(i));
+    	for (int i = this.b; i <= 32; i++) 
     		for (Occurrence occ : this.strTab.get(i))
     			if (occ.nbOcc <= 5)
     				l.add(occ.word);
-    	}
+    	
     	
     	return l;
     }
+    
+    /**
+     * Estimate the number of mice.
+     * 
+     * @param k number of occurrences
+     * 
+     * @return Estimation of the number of words appearing k times in the file (mice).
+     */
+    public double estimateMiceNumber(int k){
+    	double comp = 0;
+    	for(int i=this.b; i<=32 ; i++)
+    		for(Occurrence occ: strTab.get(i))
+    			if(occ.nbOcc == k)
+    				comp++;
+    	
+    	return comp * Math.pow(2, b);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

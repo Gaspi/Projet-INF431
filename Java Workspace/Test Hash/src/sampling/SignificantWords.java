@@ -7,7 +7,10 @@ import hash.hashFunctions.MurmurHash3;
 import FileManager.WordReader;
 
 import java.nio.file.Path;
+import java.util.Hashtable;
 import java.util.LinkedList;
+
+import drafts.HyperLogLog;
 
 /**
  * 
@@ -54,14 +57,59 @@ public class SignificantWords {
     
     
     
+    /**
+     * Calculate the number of mice.
+     * 
+     * @param path Path to the file to use.
+     * 
+     * @param k Number of occurrences.
+     * 
+     * @return Number of words which appear k times in the file.
+     */
+    public static double benchmarkMiceNumber(Path path, int k){
+    	Hashtable<String, Double> tab = new Hashtable<String, Double>();
+
+    	for (String s : new WordReader(path))
+    	    if (!tab.containsKey(s))
+    	    	tab.put(s, 1.);
+    	    else{
+    	    	double d = tab.remove(s);
+    	    	tab.put(s, d+1.);
+    	    }
+    	
+    	double comp = 0;
+    	for(String s: tab.keySet())
+    		if(tab.get(s)==k)
+    			comp++;
+    	
+    	return comp;
+    }
+    
+    
+    
     
     public static void main(String[] args) {
     	
-    	LookUp3 f = new LookUp3();
-    	for (String s : SignificantWords.getSignificantWords(hashFunctionTests2.hamlet, 5, f, 200)) {
-    		System.out.println(s);
-    		System.out.println(Integer.toBinaryString(f.hashString(s)));
+    	MurmurHash3 f = new MurmurHash3();
+//    	for (String s : SignificantWords.getSignificantWords(hashFunctionTests2.hamlet, 5, f, 200)) {
+//    		System.out.println(s);
+//    		//System.out.println(Integer.toBinaryString(f.hashString(s)));
+//    	}
+    	
+    	Path path = hashFunctionTests2.shakespeare;
+    	int k = 2;
+    	
+    	WordsSampleOne ws = new WordsSampleOne(100, f);	
+    	for(String str: new WordReader(path)) {
+    		ws.addWord(str);
     	}
+    	
+    	double a = benchmarkMiceNumber(path, k);
+    	double b = ws.estimateMiceNumber(k);
+    	    	
+    	
+    	System.out.println(Math.abs(a-b)/a*100.);
+    	
     }
     
 }
