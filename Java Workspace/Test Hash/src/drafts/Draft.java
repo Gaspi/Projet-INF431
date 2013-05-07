@@ -1,7 +1,7 @@
 package drafts;
 
 /**
- * Random functions that may be useful...
+ * Random functions that may be useful
  */
 public class Draft {
 
