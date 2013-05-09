@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * The use of the class Occurrence is to track for each word the frequency at which it appears in
  * the text.
  */
-public class WordsSampleOne extends WordsSample {
+public class SignificantWordsArraySample extends SignificantWordsSample {
 
     // Array of list of Occurrence objects of length 32. The list at index i will contain words
     // whose hash value has exactly i trailing zeros (number of 0 before the first 1 encountered
@@ -18,7 +18,7 @@ public class WordsSampleOne extends WordsSample {
     ArrayList<LinkedList<Occurrence>> strTab = new ArrayList<LinkedList<Occurrence>>(33);
     
     
-    public WordsSampleOne(int k, hashFunction func) {
+    public SignificantWordsArraySample(int k, hashFunction func) {
     	super(k, func);
     	
     	for (int i = 0; i <= 32; i++)
@@ -59,7 +59,7 @@ public class WordsSampleOne extends WordsSample {
     public LinkedList<String> words() {
     	LinkedList<String> l = new LinkedList<String>();
     	
-    	// Return only the words appearing with low frequencies. Here with less than 5 occurencies
+    	// Return only the words appearing with low frequencies. Here words with less than 5 occurrences
     	// in the text.
     	for (int i = this.b; i <= 32; i++) 
     		for (Occurrence occ : this.strTab.get(i))
@@ -70,18 +70,13 @@ public class WordsSampleOne extends WordsSample {
     	return l;
     }
     
-    /**
-     * Estimate the number of mice.
-     * 
-     * @param k number of occurrences
-     * 
-     * @return Estimation of the number of words appearing k times in the file (mice).
-     */
-    public double estimateMiceNumber(int k){
+
+    @Override
+    public double estimateMiceNumber(int nbOcc){
     	double comp = 0;
     	for(int i=this.b; i<=32 ; i++)
     		for(Occurrence occ: strTab.get(i))
-    			if(occ.nbOcc == k)
+    			if(occ.nbOcc == nbOcc)
     				comp++;
     	
     	return comp * Math.pow(2, b);

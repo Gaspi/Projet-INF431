@@ -1,5 +1,10 @@
 package sampling;
 
+/**
+ * 
+ * Store a word and the number of times it appears in the text.
+ *
+ */
 public class Occurrence {
 
     // The word
