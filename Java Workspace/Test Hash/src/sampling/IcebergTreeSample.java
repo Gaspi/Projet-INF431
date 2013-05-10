@@ -13,12 +13,10 @@ import java.util.TreeMap;
  */
 public class IcebergTreeSample extends IcebergSample {
 
-	private final TreeMap<String, Integer> sample;
+	private final TreeMap<String, Integer> sample = new TreeMap<String, Integer>();
 
 	public IcebergTreeSample(double frequency) {
 		super(frequency);
-
-		sample = new TreeMap<String, Integer>();
 	}
 
 	@Override
