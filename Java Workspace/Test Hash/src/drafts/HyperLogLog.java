@@ -118,7 +118,7 @@ public class HyperLogLog {
 		    v++;
 
 	    if (v != 0)
-		e = m * Math.log(m / v);
+	    	e = m * Math.log(m / v);
 	} else if (e > n / 30)
 	    e = -n * Math.log(1 - e / n);
 
@@ -195,6 +195,6 @@ public class HyperLogLog {
     }
 
     public static void main(String[] args) {
-	HyperLogLog.performanceEstimator(hashFunctionTests2.shakespeare);
+    	HyperLogLog.performanceEstimator(hashFunctionTests2.bible);
     }
 }

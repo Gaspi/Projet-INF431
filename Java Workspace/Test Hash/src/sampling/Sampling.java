@@ -19,7 +19,7 @@ public class Sampling {
      * @param nbWords Number of desired characteristic words.
      * @param func The hash function used on words.
      * @param k Parameter from the subject (half the size of the bag used for sampling)
-     *            
+     * 
      * @return A list of 'nbWords' characteristic words.
      */
     public static LinkedList<String> findSignificantWords(Path path, int nbWords, hashFunction func, int k) {
@@ -29,9 +29,8 @@ public class Sampling {
     	
     	SignificantWordsSample ws = new SignificantWordsArraySample(k, func);
     	
-    	for(String str: new WordReader(path)){
+    	for(String str: new WordReader(path))
     		ws.addWord(str);
-    	}
     	
     	// Extract only nbWords
     	LinkedList<String> wordsList = ws.words();
@@ -56,9 +55,8 @@ public class Sampling {
 	public static double findMiceNumber(Path path, int nbOcc, hashFunction func, int k){
 		SignificantWordsArraySample ws = new SignificantWordsArraySample(k, func);
     	
-    	for(String str: new WordReader(path)){
+    	for(String str: new WordReader(path))
     		ws.addWord(str);
-    	}
     	
     	return ws.estimateMiceNumber(nbOcc);
 	}
@@ -68,7 +66,6 @@ public class Sampling {
      * Calculate the number of mice.
      * 
      * @param path Path to the file to use.
-     * 
      * @param k Number of occurrences.
      * 
      * @return Number of words which appear k times in the file.
@@ -79,14 +76,14 @@ public class Sampling {
     	for (String s : new WordReader(path))
     	    if (!tab.containsKey(s))
     	    	tab.put(s, 1.);
-    	    else{
+    	    else {
     	    	double d = tab.remove(s);
     	    	tab.put(s, d+1.);
     	    }
     	
     	double comp = 0;
     	for(String s: tab.keySet())
-    		if(tab.get(s)==k)
+    		if(tab.get(s) == k)
     			comp++;
     	
     	return comp;
@@ -100,7 +97,7 @@ public class Sampling {
 	 * @return Approximately all icebergs whose frequency is over 'frequency'
 	 */
 	public static LinkedList<String> findIcebergs(Path path, double frequency){
-		IcebergSample sample = new IcebergTreeSample(frequency);
+		IcebergSample sample = new IcebergTreeSampleImproved(frequency, 0.9);
 		
 		for(String str: new WordReader(path))
 			sample.addWord(str);
@@ -110,9 +107,9 @@ public class Sampling {
 	
 	
 	/**
-	 * 
 	 * @param path Path to the file to read for icebergs.
 	 * @param frequency The lower bound of the iceberg's frequencies that the function returns
+	 * 
 	 * @return All icebergs whose frequency is over 'frequency' (no approximation)
 	 */
 	public static LinkedList<String> benchmarkIcebergs(Path path, double frequency){
@@ -144,11 +141,10 @@ public class Sampling {
     	MurmurHash3 f = new MurmurHash3();
     	
     	// Testing significant words
-    	for (String s : Sampling.findSignificantWords(hashFunctionTests2.hamlet, 5, f, 100)) {
+    	for (String s : Sampling.findSignificantWords(hashFunctionTests2.bible, 5, f, 100)) {
     		System.out.println(s);
     		//System.out.println(Integer.toBinaryString(f.hashString(s)));
     	}
-    	
     	
     	
     	
@@ -159,7 +155,7 @@ public class Sampling {
 //    	Path path = hashFunctionTests2.shakespeare;
 //    	int k = 2;
 //    	
-//    	WordsSampleOne ws = new WordsSampleOne(100, f);	
+//    	SignificantWordsArraySample ws = new SignificantWordsArraySample(1000, f);	
 //    	for(String str: new WordReader(path)) {
 //    		ws.addWord(str);
 //    	}
@@ -168,22 +164,23 @@ public class Sampling {
 //    	double b = ws.estimateMiceNumber(k);
 //    	    	
 //    	
-//    	System.out.println(Math.abs(a-b)/a*100.);
+//    	System.out.println(a + " - " + b + " diff = " + Math.abs(a-b)/a*100.);
     	
     	
     	
     	
     	
     	// Testing icebergs
-    	   	
-//		System.out.println("Estimation");
-//		for(String str: Sampling.findIcebergs(hashFunctionTests2.bible, 0.05))
-//			System.out.println(str);
-//		System.out.println("-----------------------------------");
-//		System.out.println("Real");
-//		for(String str: Sampling.benchmarkIcebergs(hashFunctionTests2.bible, 0.05))
-//			System.out.println(str);
-//		System.out.println("-----------------------------------");
+    	
+    	double threshold = 0.05;
+		System.out.println("Estimation");
+		for(String str: Sampling.findIcebergs(hashFunctionTests2.bible, threshold))
+			System.out.println(str);
+		System.out.println("-----------------------------------");
+		System.out.println("Real");
+		for(String str: Sampling.benchmarkIcebergs(hashFunctionTests2.bible, threshold))
+			System.out.println(str);
+		System.out.println("-----------------------------------");
 		
 		
 		// --> The algorithm from the subject gives many false positive

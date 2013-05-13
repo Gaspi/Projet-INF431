@@ -155,7 +155,8 @@ public class Similarities {
     public static double resemblance(String pathA, String pathB, hashFunction func, int b, int k) {
 	return resemblance(Paths.get(pathA), Paths.get(pathB), func, b, k);
     }
-
+    
+    
     /**
      * To test the resemblance function behavior.
      */
@@ -173,8 +174,8 @@ public class Similarities {
 	System.out
 		.println(Similarities
 			.resemblance(
-				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Bible_english_processed.txt",
-				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Bible_english_processed (copie).txt",
+				"Bible_english_processed.txt",
+				"Bible_english_processed_minus_a_few_words.txt",
 				new LookUp3(), 15, k));
 
 	// For distinct files, resemblance should be around 0.
@@ -185,13 +186,13 @@ public class Similarities {
 
     public static void main(String[] args) {
 
-	// Similarities.testResemblance(1);
+//	Similarities.testResemblance(4);
 
 	String[] strs = { "Shakespeare_complete_processed.txt", "Bible_english_processed.txt",
-		"Bible_english_processed.txt" };
+		"Bible_english_processed_minus_a_few_words.txt" };
 
 	Similarities sim = new Similarities(strs, 1);
-	sim.similarFiles(0.3);
+	sim.similarFiles(0.1);
 
     }
 

@@ -5,11 +5,9 @@ import java.util.LinkedList;
 import java.util.TreeMap;
 
 /**
- * 
  * Sample using the algorithm from the subject and a tree-based structure,
- * providing access and removal in O(log(n)). It results in many false positives
- * (see the Iceberg class)
- * 
+ * providing access and removal in O(log(n)).
+ * It results in many false positives (see the Iceberg class)
  */
 public class IcebergTreeSample extends IcebergSample {
 
@@ -22,13 +20,11 @@ public class IcebergTreeSample extends IcebergSample {
 	@Override
 	public void addWord(String word) {
 		Integer i = sample.get(word);
-
-		if (i == null)
-			sample.put(word, 1);
-		else
-			sample.put(word, i.intValue() + 1);
-
-		if (sample.size() == Math.ceil(2. / frequency)) {
+		
+		if (i == null) sample.put(word, 1);
+		else 		   sample.put(word, 1 + i.intValue() );
+		
+		if (sample.size() >= Math.ceil(2. / frequency)) {
 			Iterator<String> it = sample.keySet().iterator();
 			while (it.hasNext()) {
 				String str = it.next();
@@ -41,7 +37,8 @@ public class IcebergTreeSample extends IcebergSample {
 			}
 		}
 	}
-
+	
+	
 	@Override
 	public LinkedList<String> getIcebergs() {
 
@@ -53,7 +50,7 @@ public class IcebergTreeSample extends IcebergSample {
 		for (String s : sample.keySet())
 			if (sample.get(s) > 1)
 				l.add(s);
-
+		
 		return l;
 	}
 

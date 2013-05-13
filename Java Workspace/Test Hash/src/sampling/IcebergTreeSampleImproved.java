@@ -20,11 +20,10 @@ public class IcebergTreeSampleImproved extends IcebergSample {
 
 		this.lowerBoundFrequency = lowerBoundFrequency;
 		this.b = (int) Math.ceil(
-								Math.log(
-										Math.pow((frequency * lowerBoundFrequency / 2), -2.)
-										* Math.log(3 / ((1 - lowerBoundFrequency / 2.)*frequency*delta))
-										)
-						        / Math.log(2)
+					Math.log(
+							Math.pow((frequency * lowerBoundFrequency / 2), -2.)
+							* Math.log(3 / ((1 - lowerBoundFrequency / 2.)*frequency*delta))
+					)  / Math.log(2)
 						        ) + 3;
 	}
 

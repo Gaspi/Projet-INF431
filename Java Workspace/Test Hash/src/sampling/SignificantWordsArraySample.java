@@ -28,16 +28,17 @@ public class SignificantWordsArraySample extends SignificantWordsSample {
 
     @Override
     public void addWord(String s) {
+    	// Equivalent of rho function
     	int nbTrailingZeros = Integer.numberOfTrailingZeros(func.hashString(s));
     	
     	// Consider only words whose hash value begins with more than b zeros.
-    	if (nbTrailingZeros >= this.b) {
-    		LinkedList<Occurrence> l = this.strTab.get(nbTrailingZeros);
+    	if (nbTrailingZeros >= b) {
+    		LinkedList<Occurrence> l = strTab.get(nbTrailingZeros);
     		
     		Occurrence sOcc = new Occurrence(s, 1);
-    		int i = l.indexOf(sOcc);   		
-    		// If we have already seen the word, increase its number of occurrences. Else add the
-    		// word to the array at the proper position.
+    		int i = l.indexOf(sOcc);
+    		// If we have already seen the word, increase its number of occurrences.
+    		// Else add the word to the array at the proper position.
     		if (i == -1) {
     				l.add(sOcc);
     				this.nbElements++;
@@ -47,10 +48,10 @@ public class SignificantWordsArraySample extends SignificantWordsSample {
     	
     	// If the array has more than 2*k elements stored, remove the elements with less than b
     	// trailing zeros then increase b, until the array has less than 2*k elements.
-    	while (this.nbElements >= 2 * this.k) {
-    		this.nbElements -= this.strTab.get(this.b).size();
-    		this.strTab.set(this.b, new LinkedList<Occurrence>());
-    		this.b++;
+    	while (nbElements >= 2 * k) {
+    		nbElements -= strTab.get(b).size();
+    		strTab.set(b, null);
+    		b++;
     	}
     }
     
@@ -61,11 +62,10 @@ public class SignificantWordsArraySample extends SignificantWordsSample {
     	
     	// Return only the words appearing with low frequencies. Here words with less than 5 occurrences
     	// in the text.
-    	for (int i = this.b; i <= 32; i++) 
-    		for (Occurrence occ : this.strTab.get(i))
+    	for (int i = b; i <= 32; i++) 
+    		for (Occurrence occ : strTab.get(i))
     			if (occ.nbOcc <= 5)
     				l.add(occ.word);
-    	
     	
     	return l;
     }
@@ -74,8 +74,8 @@ public class SignificantWordsArraySample extends SignificantWordsSample {
     @Override
     public double estimateMiceNumber(int nbOcc){
     	double comp = 0;
-    	for(int i=this.b; i<=32 ; i++)
-    		for(Occurrence occ: strTab.get(i))
+    	for(int i = b; i <= 32 ; i++)
+    		for(Occurrence occ : strTab.get(i))
     			if(occ.nbOcc == nbOcc)
     				comp++;
     	
