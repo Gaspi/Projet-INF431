@@ -4,7 +4,7 @@ import hash.hashFunction;
 import drafts.UnsignedArithmetic;
 
 /**
- * A trivial and ineffective hash function.
+ * A trivial and inefficient hash function.
  * Found here :
  * http://www.cse.yorku.ca/~oz/hash.html
  */

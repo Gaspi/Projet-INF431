@@ -13,7 +13,7 @@ import FileManager.WordReader;
 public class HyperLogLog {
 
     /**
-     * alpha[b] is meant to be equal to \alpha_{2^b} Values computed by Wolfram Mathematica
+     * alpha[b] is meant to be equal to \alpha_{2^b}. Values computed by Wolfram Mathematica
      */
     private static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, 0.673102, 0.697123,
 	    0.709208, 0.715271, 0.718308, 0.719827, 0.720587, 0.720967, 0.721157, 0.721252,
@@ -59,24 +59,20 @@ public class HyperLogLog {
 	StringBuilder strBuilder = new StringBuilder();
 	LinkedList<Integer> indexes = new LinkedList<Integer>();
 
-	for (String s : new WordReader(path)) {
-	    if (comp == k) {
-	    	strBuilder.replace(0, indexes.poll(), "");
-	    	strBuilder.append(s);
-	    	indexes.add(s.length());
-	    } else {
+	for (String s : new WordReader(path))
+		if (comp < k) {
 	    	strBuilder.append(s);
 	    	indexes.add(s.length());
 	    	comp++;
-	    }
-
-	    if (comp == k) {
+		} else {
+	    	strBuilder.replace(0, indexes.poll(), "");
+	    	strBuilder.append(s);
+	    	indexes.add(s.length());
 	    	long x = func.hashString(strBuilder.substring(0));
 	    	int j = (int) (x & (m - 1));
 	    	long w = x >>> b;
 			M[j] = Math.max(M[j], rho(w));
 	    }
-	}
 
 	return M;
     }
@@ -161,11 +157,10 @@ public class HyperLogLog {
     }
 
     /**
-     * 
      * @param path
      *            The path to the file we want to perform the HyperLogLog algorithm on.
      * 
-     * @return A good estimation of the number of distinct words in the file.
+     * @return The exact number of distinct words in the file.
      */
     public static double benchmark(Path path) {
 	Hashtable<String, String> tab = new Hashtable<String, String>();
@@ -173,7 +168,6 @@ public class HyperLogLog {
 	for (String s : new WordReader(path))
 	    if (!tab.containsKey(s))
 		tab.put(s, s);
-
 	return (double) tab.size();
     }
 
@@ -197,4 +191,18 @@ public class HyperLogLog {
     public static void main(String[] args) {
     	HyperLogLog.performanceEstimator(hashFunctionTests2.bible);
     }
+    
+    
+    /**
+     * Function meant to be called in main in order for this file to have 
+     * the behaviour expected in the subject
+     */
+    private static void exec() {
+    	System.out.print("      2 - Comptage Approché\n" +
+    			"Select a processed file to process :\n" +
+    			"-> " );
+    	// Wait here for a file or directory adress.
+    	
+    }
+    
 }

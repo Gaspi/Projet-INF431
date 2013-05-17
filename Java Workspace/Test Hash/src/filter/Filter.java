@@ -35,8 +35,8 @@ public abstract class Filter {
 
 		Filter f = new EnglishWordsFilter();
 
-		f.filterFile2("/home/jonathan/Documents/Projet-INF431/Ressources/Raw files/Bible_english.txt",
-				"/home/jonathan/Documents/Projet-INF431/Ressources/Preprocessed files/Bible_english_processed.txt");
+		f.filterFile2("files/raw/Shakespeare_complete.txt",
+				"files/processed/Shakespeare_complete_processed.txt");
 
 	}
 

@@ -9,5 +9,5 @@ public class EnglishWordsFilter extends Filter {
 		line = line.replaceAll("--", " ");
 		return line;
 	}
-
+	
 }
