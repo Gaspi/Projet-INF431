@@ -4,9 +4,12 @@ import hash.hashFunction;
 import hash.hashFunctionTests2;
 import hash.hashFunctions.*;
 
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 import FileManager.WordReader;
 
@@ -180,7 +183,7 @@ public class HyperLogLog {
      */
     public static void performanceEstimator(Path path) {
 	double bench = benchmark(path);
-	System.out.println("Number of distinct words: " + bench);
+	System.out.println("Number of distinct words: " + (int) bench);
 	for (int i = 1; i < 16; i++) {
 	    double h = hyperLogLog(path, new LookUp3(), i, 1);
 	    System.out.println("b = " + i + " : " + h + " ; error : "
@@ -193,16 +196,15 @@ public class HyperLogLog {
     }
     
     
+    
     /**
      * Function meant to be called in main in order for this file to have 
-     * the behaviour expected in the subject
+     * the behaviour expected in the subject.
      */
-    private static void exec() {
-    	System.out.print("      2 - Comptage Approché\n" +
-    			"Select a processed file to process :\n" +
-    			"-> " );
-    	// Wait here for a file or directory adress.
-    	
+    public static void exec() {
+    	// With a path == null, the stdin stream is used by default.
+    	performanceEstimator(null);
     }
+    
     
 }

@@ -3,6 +3,7 @@ package FileManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,16 +20,33 @@ public abstract class FileReader implements Iterable<String>  {
 	
 	protected BufferedReader reader = null;
 	
-	public FileReader(Path path)   {  open(path);  }
-	public FileReader(String path) {  open( Paths.get(path) ); }
+	public FileReader() {  openStdin();  }
 	
-	public void open(Path path) {
+	public FileReader(Path path)   { 
+		if (path == null) openStdin();
+		else              openFile(path);
+	}
+	
+	public FileReader(String path) {
+		if (path == null || path.length() == 0)
+			openStdin();
+		else
+			openFile( Paths.get(path) );
+	}
+	
+	
+	public void openStdin() {
+		reader = new BufferedReader(new InputStreamReader(System.in, charset));
+	}
+	
+	public void openFile(Path path) {
 		try {
 			reader = Files.newBufferedReader(path, charset);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public void close() {
 		try {

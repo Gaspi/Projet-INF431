@@ -1,5 +1,7 @@
 package filter;
 
+import java.util.Scanner;
+
 import FileManager.*;
 
 public abstract class Filter {
@@ -30,7 +32,9 @@ public abstract class Filter {
 		for (String line : lr)
 			fw.write(filter(line) + "\n");
 	}
-
+	
+	
+	
 	public static void main(String[] args) {
 
 		Filter f = new EnglishWordsFilter();
@@ -39,5 +43,18 @@ public abstract class Filter {
 				"files/processed/Shakespeare_complete_processed.txt");
 
 	}
-
+	
+	
+    /**
+     * Function meant to be called in main in order for this file to have 
+     * the behaviour expected in the subject.
+     */
+    public static void exec() {
+    	System.out.println("--- English words filter ---");
+    	System.out.println("Please indicate where to save the processed file.\n-> ");
+    	Scanner sc = new Scanner(System.in);
+    	String adresse = sc.nextLine();
+    	 new EnglishWordsFilter().filterFile2( null, adresse );
+    }
+	
 }
