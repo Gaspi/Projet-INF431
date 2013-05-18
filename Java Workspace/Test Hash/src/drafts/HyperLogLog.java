@@ -192,7 +192,8 @@ public class HyperLogLog {
     }
 
     public static void main(String[] args) {
-    	HyperLogLog.performanceEstimator(hashFunctionTests2.bible);
+    	//HyperLogLog.performanceEstimator(hashFunctionTests2.bible);
+    	HyperLogLog.exec();
     }
     
     
@@ -203,7 +204,11 @@ public class HyperLogLog {
      */
     public static void exec() {
     	// With a path == null, the stdin stream is used by default.
+    	
+    	// /!\ Do not work because the path has to be set two times in benchmark + hyperloglog
+    	//     and there is a bug --> need fix /!\
     	performanceEstimator(null);
+    	
     }
     
     

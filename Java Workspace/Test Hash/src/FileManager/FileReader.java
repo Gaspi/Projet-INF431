@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.Scanner;
 
 
 /**
@@ -16,28 +17,40 @@ import java.util.Iterator;
  */
 public abstract class FileReader implements Iterable<String>  {
 	
-	public static final Charset charset = Charset.forName("US-ASCII");
+	private static final Charset charset = Charset.forName("US-ASCII");
+	
 	
 	protected BufferedReader reader = null;
 	
-	public FileReader() {  openStdin();  }
-	
+	public FileReader() { 
+		this("");  //To call a constructor from another constructor --> use this
+		// Pass "" cause null is ambiguous
+	}
+
 	public FileReader(Path path)   { 
-		if (path == null) openStdin();
-		else              openFile(path);
+		if (path == null){
+	    	Scanner sc = new Scanner(System.in);
+	    	System.out.println("Please enter the file's path : ");
+	    	path = Paths.get(sc.nextLine());
+	    	sc.close();
+		}
+		
+		openFile(path);
 	}
 	
 	public FileReader(String path) {
-		if (path == null || path.length() == 0)
-			openStdin();
-		else
-			openFile( Paths.get(path) );
+		if (path == null || path.length() == 0){
+	    	Scanner sc = new Scanner(System.in);
+	    	System.out.println("Please enter the file's path : ");
+	    	path = sc.nextLine();
+	    	sc.close();
+		}
+		
+		openFile( Paths.get(path) );
 	}
 	
+
 	
-	public void openStdin() {
-		reader = new BufferedReader(new InputStreamReader(System.in, charset));
-	}
 	
 	public void openFile(Path path) {
 		try {
