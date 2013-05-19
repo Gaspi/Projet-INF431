@@ -116,9 +116,8 @@ public class HyperLogLog {
 	if (e < (5. / 2.) * m) {
 	    double v = 0;
 	    for (int i = 0; i < m; i++)
-		if (M[i] == 0)
-		    v++;
-
+	    	if (M[i] == 0) v++;
+	    
 	    if (v != 0)
 	    	e = m * Math.log(m / v);
 	} else if (e > n / 30)
@@ -156,7 +155,7 @@ public class HyperLogLog {
     	for (String s : new WordReader(path)) {
     	    long x = func.hashString(s);
     	    int j = (int) (x & (m - 1));
-    	    int r = rho( x >>> b ); // rho(x)
+    	    int r = rho( x >>> b ); // rho(w)
     	    
     		if (currentNum  - num[j] > windowSize || r > M[j]) {
     			sum += Math.pow(2, -r) - Math.pow(2, -M[j]);
@@ -164,8 +163,11 @@ public class HyperLogLog {
     			num[j] = currentNum;
     		}
     		
-    		if (currentNum > windowSize && currentNum % precision == 0) {
+    		if (currentNum % precision == 0 && currentNum > windowSize) {
     			
+    			sum = 0;
+    			for (int k = 0; k < m; k++)
+    			    sum += Math.pow(2, -M[k]);
     			// We evaluate the current estimation
     	    	double e = eTimesSum / sum;
     	    	if (e < 2.5 * m) {
@@ -175,6 +177,7 @@ public class HyperLogLog {
     	    	    
     	    	    if (v != 0)
     	    	    	e = m * Math.log(m / v);
+    	    	    
     	    	} else if (e > n / 30)
     	    	    e = -n * Math.log(1 - e / n);
     	    	
@@ -189,6 +192,7 @@ public class HyperLogLog {
     }
     
     
+    
     public static void displaySlidingWindows(Path path, HashFunction func, int b, int windowSize, int precision) {
     	Double[] tab = slidingWindow(path, func, b, windowSize, precision);
     	double[] doubleTab = new double[tab.length];
@@ -198,7 +202,7 @@ public class HyperLogLog {
     	// Do the plotting
     	Plot2DPanel plot = new Plot2DPanel();
     	plot.addLinePlot("test", doubleTab);
-    	JFrame frame = new JFrame("Evolution of the estimate number of different word among the "
+    	JFrame frame = new JFrame("Evolution of the estimate number of different words among the "
     			+ windowSize +" last words.");
     	frame.setSize(600, 600);
     	frame.setContentPane(plot);
@@ -290,7 +294,7 @@ public class HyperLogLog {
     
     public static void main(String[] args) {
     	
-    	displaySlidingWindows( FileManager.Files.shakespeare, new LookUp3() , 11, 100, 100);
+    	displaySlidingWindows( FileManager.Files.shakespeare, new LookUp3() , 8, 1000, 1500);
     	
     	// performanceEstimator( Paths.get(args[0]) );
     }
