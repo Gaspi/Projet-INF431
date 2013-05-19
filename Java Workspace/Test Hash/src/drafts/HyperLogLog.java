@@ -1,5 +1,6 @@
 package drafts;
 
+import hash.ProvidingHashFunction;
 import hash.HashFunction;
 import hash.HashFunctionTests;
 import hash.hashFunctions.*;
@@ -196,13 +197,19 @@ public class HyperLogLog {
      * @return Display the percentage error for increasing value of m.
      */
     public static void performanceEstimator(Path path) {
-	double bench = benchmark(path);
-	System.out.println("Number of distinct words: " + (int) bench);
-	for (int i = 1; i < 16; i++) {
-	    double h = hyperLogLog(path, new LookUp3(), i, 1);
-	    System.out.println("b = " + i + " : " + h + " ; error : "
-		    + (Math.abs(h - bench) / bench) * 100 + "%");
-	}
+		double bench = benchmark(path);
+		System.out.println("Number of distinct words: " + (int) bench);
+		for (int i = 1; i < 16; i++) {
+		    double h = hyperLogLog(path, new LookUp3(), i, 1);
+		    System.out.println("b = " + i + " : " + h + " ; error : "
+			    + (Math.abs(h - bench) / bench) * 100 + "%");
+		}
+    }
+    
+    public static void hyperLogLogOnFile(Path path, HashFunction func, int b){
+    	System.out.println("Using parameters b = " + b + " and hash function = " + func.getClass().getSimpleName());
+    	System.out.println("Approximate number of distinct words in file" + path + " : ");
+    	System.out.println(hyperLogLog(path, func, b, 1));
     }
 
     public static void main(String[] args) {
@@ -224,10 +231,8 @@ public class HyperLogLog {
     	performanceEstimator(null);	
     }
     
-    public static String exec(String path, int b) {
-    	String result = "Le fichier " + path + " contient approximativement" + System.lineSeparator();
-    	result += Math.round(hyperLogLog(path, new LookUp3(), b, 1)) + " mots distincts" + System.lineSeparator() + System.lineSeparator();	
-    	return result;
+    public static void exec(String path, String hashFunc, int b) {
+    	hyperLogLogOnFile(Paths.get(path), ProvidingHashFunction.newHashFunction(hashFunc), b);
     }
     
     

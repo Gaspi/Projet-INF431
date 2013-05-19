@@ -234,7 +234,7 @@ public class HashFunctionTests {
 
 	public static void main(String[] args) {
 		//uniformDistribTest(new LookUp3(), true);
-		speedTests(new LookUp3());
+		speedTests(ProvidingHashFunction.newHashFunction("hash.hashFunctions.LookUp3"));
 		//collisionTests(new HomemadeHash());
 		//System.out.println(FileManager.Files.shakespeare.toString());
 
