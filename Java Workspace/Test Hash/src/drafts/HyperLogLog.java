@@ -8,6 +8,7 @@ import hash.hashFunctions.*;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -51,11 +52,13 @@ public class HyperLogLog {
 	int m = 1 << b; // m = 2^b
 	int[] M = new int[m];
 
-	// First modification: initialize the registers with 0 (not -\infty) to
-	// get correct estimate
-	// for small cardinalities.
+	// First modification: initialize the registers with 0 (instead of -infinity)
+	// in order to get correct estimate for small cardinalities.
 	for (int i = 0; i < m; i++)
 	    M[i] = 0;
+	// Useles ? An array is filled with 0 when created anyway...
+	// other syntax : Arrays.fill(M, 0);
+	
 
 	// A little more complicated than the first version because we want to
 	// be able to count the number of k-shingles.
@@ -105,12 +108,12 @@ public class HyperLogLog {
 
 	double n = Math.pow(2., 32.);
 
-	// Second modification (first if statement): corrections when e is
-	// comparatively small with
-	// respect to m
-	// Third modification (second if statement): corrections to account for
-	// collision effects due
-	// to the hash function
+	// Second modification (first if statement):
+	// corrections when e is comparatively small
+	// with respect to m
+	// Third modification (second if statement):
+	// corrections to account for collision effects
+	// due to the hash function
 	if (e < (5. / 2.) * m) {
 	    double v = 0;
 	    for (int i = 0; i < m; i++)
@@ -124,6 +127,45 @@ public class HyperLogLog {
 
 	return e;
     }
+    
+    
+    /**
+     * Question 4
+     * @param path
+     * @param func
+     * @param b
+     * @param windowSize Positive width of the window
+     * @return The array of the approximate number of different words seen among the last "windowSize".
+     * The length of this array is 1 + the size of the sample - windowSize.
+     */
+    public static double[] slidingWindow(Path path, HashFunction func, int b, int windowSize) {
+    	
+    	if (b <= 0 || b > 16)
+    	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
+
+    	int m = 1 << b; // m = 2^b
+    	int[] M = new int[m], num = new int[m];
+    	double[] result = null;
+    	
+    	int currentNum = 0;
+    	
+    	for (String s : new WordReader(path)) {
+    	    long x = func.hashString(s);
+    	    int j = (int) (x & (m - 1));
+    	    long w = x >>> b;
+    		if (currentNum  - num[j] > windowSize || rho(w) > M[j])
+    			M[j] = rho(w);
+    		if (currentNum > windowSize)
+    			// Update result
+    		
+    		currentNum++;    		
+    	}
+    	
+    	return result;
+    }
+    
+    
+    
     
     /**
      * Asses the number of different k-shingles in a text file using the HyperLogLog algorithm (for
@@ -140,22 +182,14 @@ public class HyperLogLog {
      * @return The approximative number of different words in the file
      */
     public static double hyperLogLog(Path path, HashFunction func, int b, int k) {
-
     	return hyperLogLog(buildFingerPrint(path, func, b, k));
     }
     
     /**
-     * Provided for convenience.
-     * 
-     * @param path
-     * @param func
-     * @param b
-     * @param k
-     * @return
+     * Alias of the previous hyperLogLog
      */
     public static double hyperLogLog(String path, HashFunction func, int b, int k) {
-
-    	return hyperLogLog(buildFingerPrint(Paths.get(path), func, b, k));
+    	return hyperLogLog(Paths.get(path), func, b, k);
     }
     
     
@@ -221,7 +255,7 @@ public class HyperLogLog {
     
     /**
      * Function meant to be called in main in order for this file to have 
-     * the behaviour expected in the subject.
+     * the behavior expected in the subject.
      */
     public static void exec() {
     	// With a path == null, the stdin stream is used by default.
@@ -231,8 +265,10 @@ public class HyperLogLog {
     	performanceEstimator(null);	
     }
     
-    public static void exec(String path, String hashFunc, int b) {
-    	hyperLogLogOnFile(Paths.get(path), ProvidingHashFunction.newHashFunction(hashFunc), b);
+    
+    public static String exec(String path, int b) {
+    	return "Le fichier " + path + " contient approximativement\n" +
+    			Math.round(hyperLogLog(path, new LookUp3(), b, 1)) + " mots distincts\n\n";	
     }
     
     
