@@ -1,12 +1,15 @@
 package results;
 import hash.HashFunction;
-import hash.hashFunctions.LookUp3;
+import hash.ProvidingHashFunction;
+import hash.hashFunctions.*;
+import hash.HashFunctionTests;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -20,6 +23,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -52,6 +57,12 @@ public class NewJFrame extends javax.swing.JFrame {
 	private JPanel jPanel1;
 	private JButton jButton1;
 	private JCheckBox jCheckBox2;
+	private JTextArea jTextArea1;
+	private JScrollPane jScrollPane1;
+	private JRadioButton jRadioButtonCollisions;
+	private JRadioButton jRadioButtonLoiUniforme;
+	private JRadioButton jRadioButtonVitesse;
+	private JLabel jLabel4;
 	private JLabel jLabel3;
 	private JSpinner hashFunction;
 	private JTextField jTextField1;
@@ -62,8 +73,8 @@ public class NewJFrame extends javax.swing.JFrame {
 	private JLabel jLabel1;
 	private JFileChooser jFileChooser1;
 	private JTextField pathToFile;
-	private JTextArea jTextArea1;
 	private newl.Actions action;
+	private File[] selectedFiles;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -88,6 +99,7 @@ public class NewJFrame extends javax.swing.JFrame {
 		initGUI();
 	
 		this.action = action;
+		setUpForAction();
 		redirectSystemStreams();
 	}
 	
@@ -99,11 +111,7 @@ public class NewJFrame extends javax.swing.JFrame {
 				getContentPane().add(jPanel1, BorderLayout.CENTER);
 				GroupLayout jPanel1Layout = new GroupLayout((JComponent)jPanel1);
 				jPanel1.setLayout(jPanel1Layout);
-				jPanel1.setPreferredSize(new java.awt.Dimension(575, 368));
-				{
-					jTextArea1 = new JTextArea();
-					jTextArea1.setName("jTextArea1");
-				}
+				jPanel1.setPreferredSize(new java.awt.Dimension(723, 417));
 				{
 					jTextField1 = new JTextField();
 					jTextField1.setEditable(false);
@@ -124,6 +132,10 @@ public class NewJFrame extends javax.swing.JFrame {
 						b.setName("b");
 					}
 					{
+						jRadioButtonCollisions = new JRadioButton();
+						jRadioButtonCollisions.setName("jRadioButtonCollisions");
+					}
+					{
 						jLabel2 = new JLabel();
 						jLabel2.setName("jLabel2");
 					}
@@ -138,29 +150,71 @@ public class NewJFrame extends javax.swing.JFrame {
 						hashFunction = new JSpinner();
 						hashFunction.setModel(hashFunctionModel);
 					}
+					{
+						jLabel4 = new JLabel();
+						jLabel4.setName("jLabel4");
+					}
+					{
+						jRadioButtonVitesse = new JRadioButton();
+						jRadioButtonVitesse.setName("jRadioButtonVitesse");
+					}
+					{
+						jRadioButtonLoiUniforme = new JRadioButton();
+						jRadioButtonLoiUniforme.setName("jRadioButtonLoiUniforme");
+					}
 					jPanel2Layout.setHorizontalGroup(jPanel2Layout.createSequentialGroup()
 						.addContainerGap()
 						.addGroup(jPanel2Layout.createParallelGroup()
 						    .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-						        .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						        .addGroup(jPanel2Layout.createParallelGroup()
+						            .addComponent(jLabel2, GroupLayout.Alignment.LEADING, 0, 311, Short.MAX_VALUE)
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jRadioButtonLoiUniforme, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
+						                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)))
 						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						        .addComponent(hashFunction, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 0, Short.MAX_VALUE))
+						        .addComponent(b, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 						    .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-						        .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 90, Short.MAX_VALUE)
-						        .addComponent(b, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)))
+						        .addGroup(jPanel2Layout.createParallelGroup()
+						            .addComponent(jRadioButtonVitesse, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jRadioButtonCollisions, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+						                .addGap(100))
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						                .addGap(57))
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						                .addGap(57)))
+						        .addGap(0, 28, Short.MAX_VALUE)
+						        .addComponent(hashFunction, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap());
 					jPanel2Layout.setVerticalGroup(jPanel2Layout.createSequentialGroup()
 						.addContainerGap()
 						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						    .addComponent(b, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jLabel2, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+						    .addComponent(jLabel2, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
 						.addGap(17)
 						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						    .addComponent(hashFunction, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jLabel3, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(136, 136));
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jRadioButtonVitesse, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jRadioButtonCollisions, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jRadioButtonLoiUniforme, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(95, Short.MAX_VALUE));
+				}
+				{
+					jScrollPane1 = new JScrollPane();
+					jScrollPane1.setName("jScrollPane1");
+					{
+						jTextArea1 = new JTextArea();
+						jScrollPane1.setViewportView(jTextArea1);
+						jTextArea1.setName("jTextArea1");
+					}
 				}
 				{
 					jCheckBox1 = new JCheckBox();
@@ -189,32 +243,32 @@ public class NewJFrame extends javax.swing.JFrame {
 			            	jButton1MouseClicked(e);
 			            }
 			        }); 
-			        jButton1.setEnabled(false);
+			        
 				}
 				jPanel1Layout.setHorizontalGroup(jPanel1Layout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(jPanel1Layout.createParallelGroup()
 					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-					        .addGap(173))
-					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					        .addGap(258))
-					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(jCheckBox1, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
-					        .addGap(119))
-					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(pathToFile, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
-					        .addGap(119))
+					        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 186, Short.MAX_VALUE))
 					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
 					        .addComponent(jCheckBox2, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
-					        .addGap(119))
+					        .addGap(0, 186, Short.MAX_VALUE))
 					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
-					        .addGap(119))
-					    .addComponent(jPanel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-					.addComponent(jTextArea1, 0, 279, Short.MAX_VALUE)
+					        .addComponent(pathToFile, 0, 392, Short.MAX_VALUE)
+					        .addGap(0, 6, GroupLayout.PREFERRED_SIZE))
+					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					        .addComponent(jCheckBox1, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 186, Short.MAX_VALUE))
+					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 325, Short.MAX_VALUE))
+					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 240, Short.MAX_VALUE))
+					    .addComponent(jPanel2, GroupLayout.Alignment.LEADING, 0, 398, Short.MAX_VALUE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 365, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap());
 				jPanel1Layout.setVerticalGroup(jPanel1Layout.createSequentialGroup()
 					.addGap(8)
@@ -222,27 +276,66 @@ public class NewJFrame extends javax.swing.JFrame {
 					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
 					        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					        .addComponent(pathToFile, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					        .addGap(18)
-					        .addComponent(jCheckBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					        .addComponent(pathToFile, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					        .addComponent(jCheckBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					        .addGap(19)
 					        .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 					        .addComponent(jCheckBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-					        .addComponent(jPanel2, 0, 209, Short.MAX_VALUE)
+					        .addComponent(jPanel2, 0, 258, Short.MAX_VALUE)
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 					        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					        .addGap(11))
-					    .addComponent(jTextArea1, GroupLayout.Alignment.LEADING, 0, 397, Short.MAX_VALUE))
+					        .addGap(10))
+					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					        .addGap(11)
+					        .addComponent(jScrollPane1, 0, 436, Short.MAX_VALUE)))
 					.addContainerGap());
 			}
 			pack();
-			this.setSize(664, 447);
+			this.setSize(803, 497);
 			Application.getInstance().getContext().getResourceMap(getClass()).injectComponents(getContentPane());
 		} catch (Exception e) {
 		    //add your error handling code here
 			e.printStackTrace();
+		}
+	}
+	
+	private void setUpForAction(){
+		switch(action){
+		case HASHFUNCTIONS:
+			b.setEnabled(false);
+			jLabel2.setEnabled(false);
+			jLabel1.setEnabled(false);
+			pathToFile.setEnabled(false);
+			jCheckBox2.setEnabled(false);
+			break;
+		case HYPERLOGLOG:
+			jButton1.setEnabled(false);
+			jLabel4.setEnabled(false);
+			this.jRadioButtonCollisions.setEnabled(false);
+			this.jRadioButtonLoiUniforme.setEnabled(false);
+			this.jRadioButtonVitesse.setEnabled(false);
+			break;
+		case ICEBERGS:
+			jLabel4.setEnabled(false);
+			this.jRadioButtonCollisions.setEnabled(false);
+			this.jRadioButtonLoiUniforme.setEnabled(false);
+			this.jRadioButtonVitesse.setEnabled(false);
+			break;
+		case MICE:
+			jLabel4.setEnabled(false);
+			this.jRadioButtonCollisions.setEnabled(false);
+			this.jRadioButtonLoiUniforme.setEnabled(false);
+			this.jRadioButtonVitesse.setEnabled(false);
+			break;
+		case SIMILARITIES:
+			jLabel4.setEnabled(false);
+			this.jRadioButtonCollisions.setEnabled(false);
+			this.jRadioButtonLoiUniforme.setEnabled(false);
+			this.jRadioButtonVitesse.setEnabled(false);
+			break;
 		}
 	}
 	
@@ -251,9 +344,11 @@ public class NewJFrame extends javax.swing.JFrame {
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
 	    chooser.addChoosableFileFilter(filter);
+	    chooser.setMultiSelectionEnabled(true);
 	    int returnVal = chooser.showOpenDialog(this);
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	            pathToFile.setText(chooser.getSelectedFile().getName());
+	    		selectedFiles = chooser.getSelectedFiles();
+	            pathToFile.setText(selectedFiles[1].getName());
 	    }
 	    jButton1.setEnabled(true);
 	}
@@ -275,7 +370,6 @@ public class NewJFrame extends javax.swing.JFrame {
 			break;
 		case SIMILARITIES:
 			performSimilarities();
-			jTextArea1.setText("Similarities");
 			break;
 		case ICEBERGS:
 			performIcebergs();
@@ -286,7 +380,7 @@ public class NewJFrame extends javax.swing.JFrame {
 			jTextArea1.setText("Mice");
 			break;
 		case HASHFUNCTIONS:
-			jTextArea1.setText("HashFunctions");
+			performHashFunctionTests();
 			break;
 		default:
 			break;
@@ -304,7 +398,7 @@ public class NewJFrame extends javax.swing.JFrame {
 	}
 
 	private void performSimilarities() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -314,6 +408,17 @@ public class NewJFrame extends javax.swing.JFrame {
 		String hashFunc = "hash.hashFunctions." + (String) this.hashFunction.getValue();
 		
 		HyperLogLog.exec(path, hashFunc, b);
+	}
+	
+	private void performHashFunctionTests(){
+		String hashFunc = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		
+		if(this.jRadioButtonVitesse.isSelected())
+			hash.HashFunctionTests.speedTests(ProvidingHashFunction.newHashFunction(hashFunc));
+		if(this.jRadioButtonCollisions.isSelected())
+			hash.HashFunctionTests.collisionTests(ProvidingHashFunction.newHashFunction(hashFunc));
+		if(this.jRadioButtonLoiUniforme.isSelected())
+			hash.HashFunctionTests.uniformDistribTest(ProvidingHashFunction.newHashFunction(hashFunc), true);
 	}
 	
 	private void updateTextArea(final String text) {

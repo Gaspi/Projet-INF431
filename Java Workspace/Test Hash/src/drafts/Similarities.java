@@ -2,6 +2,7 @@ package drafts;
 
 import hash.HashFunction;
 import hash.HashFunctionTests;
+import hash.ProvidingHashFunction;
 import hash.hashFunctions.*;
 
 import java.nio.file.Path;
@@ -194,6 +195,11 @@ public class Similarities {
 	Similarities sim = new Similarities(strs, 1);
 	sim.similarFiles(0.1);
 
+    }
+    
+    public static void exec(String[] urls, int k, int b, String func, double threshold){
+    	Similarities sim = new Similarities(urls, k, b, ProvidingHashFunction.newHashFunction(func));
+    	sim.similarFiles(threshold);
     }
 
 }
