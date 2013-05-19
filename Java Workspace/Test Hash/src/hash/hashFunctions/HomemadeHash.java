@@ -1,13 +1,13 @@
 package hash.hashFunctions;
 
-import hash.hashFunction;
+import hash.HashFunction;
 import drafts.UnsignedArithmetic;
 
 /**
  * A simple homemade hash function
  * @author Jonathan VISBECQ
  */
-public class HomemadeHash implements hashFunction{
+public class HomemadeHash implements HashFunction{
 
 	@SuppressWarnings("deprecation")
 	@Override

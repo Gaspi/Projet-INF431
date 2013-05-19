@@ -1,6 +1,6 @@
 package hash.hashFunctions;
 
-import hash.hashFunction;
+import hash.HashFunction;
 import drafts.UnsignedArithmetic;
 
 /**
@@ -8,7 +8,7 @@ import drafts.UnsignedArithmetic;
  * Found here :
  * http://www.cse.yorku.ca/~oz/hash.html
  */
-public class LoseLose implements hashFunction{
+public class LoseLose implements HashFunction{
 
 
 	@SuppressWarnings("deprecation")

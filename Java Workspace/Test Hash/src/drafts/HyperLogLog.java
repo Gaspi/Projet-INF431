@@ -1,7 +1,7 @@
 package drafts;
 
-import hash.hashFunction;
-import hash.hashFunctionTests2;
+import hash.HashFunction;
+import hash.HashFunctionTests;
 import hash.hashFunctions.*;
 
 import java.nio.file.InvalidPathException;
@@ -42,7 +42,7 @@ public class HyperLogLog {
      *            
      * @return The fingerPrint as an array of integers.
      */
-    public static int[] buildFingerPrint(Path path, hashFunction func, int b, int k) {
+    public static int[] buildFingerPrint(Path path, HashFunction func, int b, int k) {
     
 	if (b <= 0 || b > 16)
 	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
@@ -138,9 +138,23 @@ public class HyperLogLog {
      *            Length of the shingles
      * @return The approximative number of different words in the file
      */
-    public static double hyperLogLog(Path path, hashFunction func, int b, int k) {
+    public static double hyperLogLog(Path path, HashFunction func, int b, int k) {
 
     	return hyperLogLog(buildFingerPrint(path, func, b, k));
+    }
+    
+    /**
+     * Provided for convenience.
+     * 
+     * @param path
+     * @param func
+     * @param b
+     * @param k
+     * @return
+     */
+    public static double hyperLogLog(String path, HashFunction func, int b, int k) {
+
+    	return hyperLogLog(buildFingerPrint(Paths.get(path), func, b, k));
     }
     
     
@@ -207,8 +221,13 @@ public class HyperLogLog {
     	
     	// /!\ Do not work because the path has to be set two times in benchmark + hyperloglog
     	//     and there is a bug --> need fix /!\
-    	performanceEstimator(null);
-    	
+    	performanceEstimator(null);	
+    }
+    
+    public static String exec(String path, int b) {
+    	String result = "Le fichier " + path + " contient approximativement" + System.lineSeparator();
+    	result += Math.round(hyperLogLog(path, new LookUp3(), b, 1)) + " mots distincts" + System.lineSeparator() + System.lineSeparator();	
+    	return result;
     }
     
     

@@ -1,6 +1,6 @@
 package sampling;
 
-import hash.hashFunction;
+import hash.HashFunction;
 
 import java.util.LinkedList;
 
@@ -13,11 +13,11 @@ public abstract class SignificantWordsSample {
     // Current number of elements in the sample
     int nbElements;
     // Hash function used
-    hashFunction func;
+    HashFunction func;
     // Current depth of the algorithm
     int b;
     
-    public SignificantWordsSample(int k, hashFunction func){
+    public SignificantWordsSample(int k, HashFunction func){
     	this.k = k;
     	this.func = func;
     	nbElements = 0;

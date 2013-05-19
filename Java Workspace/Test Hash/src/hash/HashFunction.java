@@ -1,6 +1,6 @@
 package hash;
 
-public interface hashFunction {
+public interface HashFunction {
 	
 	/**
 	 * @return The hash code corresponding to the string parameter.

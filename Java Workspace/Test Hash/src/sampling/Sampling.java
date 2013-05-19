@@ -1,7 +1,7 @@
 package sampling;
 
-import hash.hashFunction;
-import hash.hashFunctionTests2;
+import hash.HashFunction;
+import hash.HashFunctionTests;
 import hash.hashFunctions.MurmurHash3;
 
 import java.nio.file.Path;
@@ -22,7 +22,7 @@ public class Sampling {
      * 
      * @return A list of 'nbWords' characteristic words.
      */
-    public static LinkedList<String> findSignificantWords(Path path, int nbWords, hashFunction func, int k) {
+    public static LinkedList<String> findSignificantWords(Path path, int nbWords, HashFunction func, int k) {
     	
     	if (2 * k < nbWords)
     		throw new AssertionError("Too much significant words asked for the given sample size.");
@@ -52,7 +52,7 @@ public class Sampling {
      *            
      * @return Estimation of the number of k-mice.
      */
-	public static double findMiceNumber(Path path, int nbOcc, hashFunction func, int k){
+	public static double findMiceNumber(Path path, int nbOcc, HashFunction func, int k){
 		SignificantWordsArraySample ws = new SignificantWordsArraySample(k, func);
     	
     	for(String str: new WordReader(path))
@@ -141,7 +141,7 @@ public class Sampling {
     	MurmurHash3 f = new MurmurHash3();
     	
     	// Testing significant words
-    	for (String s : Sampling.findSignificantWords(hashFunctionTests2.bible, 5, f, 100)) {
+    	for (String s : Sampling.findSignificantWords(FileManager.Files.bible, 5, f, 100)) {
     		System.out.println(s);
     		//System.out.println(Integer.toBinaryString(f.hashString(s)));
     	}
@@ -174,11 +174,11 @@ public class Sampling {
     	
     	double threshold = 0.05;
 		System.out.println("Estimation");
-		for(String str: Sampling.findIcebergs(hashFunctionTests2.bible, threshold))
+		for(String str: Sampling.findIcebergs(FileManager.Files.bible, threshold))
 			System.out.println(str);
 		System.out.println("-----------------------------------");
 		System.out.println("Real");
-		for(String str: Sampling.benchmarkIcebergs(hashFunctionTests2.bible, threshold))
+		for(String str: Sampling.benchmarkIcebergs(FileManager.Files.bible, threshold))
 			System.out.println(str);
 		System.out.println("-----------------------------------");
 		

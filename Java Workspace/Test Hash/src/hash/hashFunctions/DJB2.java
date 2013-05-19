@@ -1,12 +1,12 @@
 package hash.hashFunctions;
 
-import hash.hashFunction;
+import hash.HashFunction;
 
 /**
  * Found here :
  * http://www.cse.yorku.ca/~oz/hash.html
  */
-public class DJB2 implements hashFunction {
+public class DJB2 implements HashFunction {
 
 	@SuppressWarnings("deprecation")
 	@Override

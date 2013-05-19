@@ -23,8 +23,8 @@ public abstract class FileReader implements Iterable<String>  {
 	protected BufferedReader reader = null;
 	
 	public FileReader() { 
-		this("");  //To call a constructor from another constructor --> use this
-		// Pass "" cause null is ambiguous
+		this("");  //To call a constructor from another constructor --> use the 'this' keyword
+		// Use "" as argument because null is ambiguous (either Path or String)
 	}
 
 	public FileReader(Path path)   { 

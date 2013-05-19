@@ -1,12 +1,12 @@
 package hash.hashFunctions;
 
-import hash.hashFunction;
+import hash.HashFunction;
 
 /**
  * Found here :
  * http://en.wikipedia.org/wiki/MurmurHash
  */
-public class MurmurHash3 implements hashFunction {
+public class MurmurHash3 implements HashFunction {
 	
 	@SuppressWarnings("deprecation")
 	@Override

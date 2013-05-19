@@ -20,16 +20,8 @@ import FileManager.WordReader;
 
 import drafts.Draft;
 
-public class hashFunctionTests2 {
-	public static final Path shakespeare = Paths.get("Shakespeare_complete_processed.txt");
-	public static final Path numbers = Paths.get("Numbers_1000000.txt");
-	public static final Path uuids = Paths.get("UUID_200000");
-	public static final Path englishWords = Paths.get("English_words.txt");
-	public static final Path bible = Paths.get("Bible_english_processed.txt");
-	public static final Path hamlet = Paths.get("Hamlet.txt");
-	public static final Path[] paths = { shakespeare, englishWords, uuids, numbers, bible};
-	public static final String[] descriptions = { "Shakespeare", "English words", "UUIDs",
-			"Numbers from 1 to 1,000,000", "Old and new testaments", "Hamlet"};
+public class HashFunctionTests {
+
 
 	/**
 	 * @param path
@@ -41,7 +33,7 @@ public class hashFunctionTests2 {
 	 * @return A String object representing the duration of the hashing of all
 	 *         Strings in the file, in seconds.
 	 */
-	private static float speedTestOnFile(Path path, hashFunction func) {
+	private static float speedTestOnFile(Path path, HashFunction func) {
 		long start = 0, end = 0;
 		Iterator<String> it = new WordReader(path).iterator();
 		
@@ -64,7 +56,7 @@ public class hashFunctionTests2 {
 	 * @return A String object representing the number of collisions between the
 	 *         Strings in the file.
 	 */
-	private static int collisionTestOnFile(Path path, hashFunction func) {
+	private static int collisionTestOnFile(Path path, HashFunction func) {
 		int comp = 0;
 		Hashtable<Integer, String> tab = new Hashtable<Integer, String>();
 		
@@ -89,7 +81,7 @@ public class hashFunctionTests2 {
 	 * @param func
 	 *            The function to be tested
 	 */
-	private static void distributionTestOnFile(Path path, hashFunction func) {
+	private static void distributionTestOnFile(Path path, HashFunction func) {
 		Vector<Double> values = new Vector<Double>();
 		for (String w : new WordReader(path))
 			values.add((double) func.hashString(w) );
@@ -116,7 +108,7 @@ public class hashFunctionTests2 {
 	}
 	
 	
-	private static String chiSquareTestOnFile(Path path, hashFunction func) {
+	private static String chiSquareTestOnFile(Path path, HashFunction func) {
 		Vector<Double> values = new Vector<Double>();
 		for (String w : new WordReader(path))
 			values.add((double) func.hashString(w) );
@@ -168,11 +160,11 @@ public class hashFunctionTests2 {
 	 * @param func
 	 *            The hash function to be tested
 	 */
-	public static void speedTests(hashFunction func) {
+	public static void speedTests(HashFunction func) {
 		System.out.println("\n----Speed test----");
 		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
-		for (int i = 0; i < paths.length; i++)
-			System.out.println(descriptions[i] + ":\n" + speedTestOnFile(paths[i], func) + " s");
+		for (int i = 0; i < FileManager.Files.paths.length; i++)
+			System.out.println(FileManager.Files.descriptions[i] + ":\n" + speedTestOnFile(FileManager.Files.paths[i], func) + " s");
 	}
 
 	/**
@@ -181,11 +173,11 @@ public class hashFunctionTests2 {
 	 * @param func
 	 *            The hash function to be tested
 	 */
-	public static void collisionTests(hashFunction func) {
+	public static void collisionTests(HashFunction func) {
 		System.out.println("\n----Collision test----");
 		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
-		for (int i = 0; i < paths.length; i++)
-			System.out.println(descriptions[i] + ":\n" + collisionTestOnFile(paths[i], func)
+		for (int i = 0; i < FileManager.Files.paths.length; i++)
+			System.out.println(FileManager.Files.descriptions[i] + ":\n" + collisionTestOnFile(FileManager.Files.paths[i], func)
 					+ " collisions");
 	}
 
@@ -196,16 +188,16 @@ public class hashFunctionTests2 {
 	 * @param funcs
 	 *            The functions to be tested
 	 */
-	public static void speedCollisionTests(hashFunction[] funcs) {
+	public static void speedCollisionTests(HashFunction[] funcs) {
 		System.out.println("\n---------   Speed - Collision tests   ---------");
 
-		String[][] mat = new String[2 * funcs.length + 2][paths.length + 1];
+		String[][] mat = new String[2 * funcs.length + 2][FileManager.Files.paths.length + 1];
 		mat[0][0] = "  Hash";
 		mat[1][0] = "--------";
 
 		// Legends
-		for (int i = 0; i < paths.length; i++) {
-			mat[0][i + 1] = descriptions[i];
+		for (int i = 0; i < FileManager.Files.paths.length; i++) {
+			mat[0][i + 1] = FileManager.Files.descriptions[i];
 			mat[1][i + 1] = "---------";
 		}
 		for (int i = 0; i < funcs.length; i++) {
@@ -214,16 +206,16 @@ public class hashFunctionTests2 {
 		}
 
 		for (int i = 0; i < funcs.length; i++)
-			for (int j = 0; j < paths.length; j++) {
-				mat[2 * i + 2][j + 1] = collisionTestOnFile(paths[j], funcs[i]) + " collisions";
-				mat[2 * i + 3][j + 1] = "  " + speedTestOnFile(paths[j], funcs[i]) + " s";
+			for (int j = 0; j < FileManager.Files.paths.length; j++) {
+				mat[2 * i + 2][j + 1] = collisionTestOnFile(FileManager.Files.paths[j], funcs[i]) + " collisions";
+				mat[2 * i + 3][j + 1] = "  " + speedTestOnFile(FileManager.Files.paths[j], funcs[i]) + " s";
 			}
 
 		Draft.printMatrix(mat);
 
 	}
 
-	public static void uniformDistribTest(hashFunction func, boolean histogram) {
+	public static void uniformDistribTest(HashFunction func, boolean histogram) {
 		System.out.println("---Test of uniform distribution---");
 		System.out.println("Using " + func.getClass().getSimpleName() + " hash function"
 				+ System.lineSeparator());
@@ -233,18 +225,18 @@ public class hashFunctionTests2 {
 		// the String used for testing is uniform (as the uuids are), even a
 		// poor hash function performs well.
 		System.out.println("EnglishWords : " + System.lineSeparator()
-				+ chiSquareTestOnFile(englishWords, func));
+				+ chiSquareTestOnFile(FileManager.Files.englishWords, func));
 
 		if (histogram)
-			distributionTestOnFile(englishWords, func);
+			distributionTestOnFile(FileManager.Files.englishWords, func);
 
 	}
 
 	public static void main(String[] args) {
-		uniformDistribTest(new LookUp3(), true);
-		//speedTests(new LookUp3());
+		//uniformDistribTest(new LookUp3(), true);
+		speedTests(new LookUp3());
 		//collisionTests(new HomemadeHash());
-		//System.out.println(shakespeare.toString());
+		//System.out.println(FileManager.Files.shakespeare.toString());
 
 		/*
 		hashFunction[] tab = new hashFunction[4];

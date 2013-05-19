@@ -1,11 +1,11 @@
 package hash.hashFunctions;
 
-import hash.hashFunction;
+import hash.HashFunction;
 
 /**
  * Using of the Java default hash function.
  */
-public class JavaHash implements hashFunction{
+public class JavaHash implements HashFunction{
 
 	@Override
 	public int hashString(String s){

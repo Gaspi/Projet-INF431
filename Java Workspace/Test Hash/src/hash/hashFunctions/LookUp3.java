@@ -1,6 +1,6 @@
 package hash.hashFunctions;
 
-import hash.hashFunction;
+import hash.HashFunction;
 import drafts.UnsignedArithmetic;
 
 
@@ -8,7 +8,7 @@ import drafts.UnsignedArithmetic;
  * Effective hash function suggested at the following link.
  * http://www.burtleburtle.net/bob/c/lookup3.c
  */
-public class LookUp3 implements hashFunction{
+public class LookUp3 implements HashFunction{
 
 	static int rot(int x, int k){ return ((x)<<(k)) | ((x)>>>(32-(k))); }
 	

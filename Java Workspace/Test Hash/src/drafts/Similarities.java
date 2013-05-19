@@ -1,7 +1,7 @@
 package drafts;
 
-import hash.hashFunction;
-import hash.hashFunctionTests2;
+import hash.HashFunction;
+import hash.HashFunctionTests;
 import hash.hashFunctions.*;
 
 import java.nio.file.Path;
@@ -19,7 +19,7 @@ public class Similarities {
     // Urls of the files whose levels of similarity are to be assessed.
     private String[] urls;
     // Hash function used in the algorithm.
-    private hashFunction hashFunc;
+    private HashFunction hashFunc;
     // Parameter k from the subject (length of the shingles used)
     private int k;
     // Parameter b from the subject (accuracy of the HyperLogLog algorithm)
@@ -37,7 +37,7 @@ public class Similarities {
     }
     
     
-    public Similarities(String[] urls, int k, int b, hashFunction func) {
+    public Similarities(String[] urls, int k, int b, HashFunction func) {
     	this.urls = urls;
     	this.hashFunc = func;
     	this.k = k;
@@ -137,7 +137,7 @@ public class Similarities {
      * @return The resemblance between the two files, as described in Broder & all, Syntactic
      *         clustering of the web. In 6th International World Wide Web Conference (1997).
      */
-    public static double resemblance(Path pathA, Path pathB, hashFunction func, int b, int k) {
+    public static double resemblance(Path pathA, Path pathB, HashFunction func, int b, int k) {
 
 	if (b <= 0 || b > 16)
 	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
@@ -152,7 +152,7 @@ public class Similarities {
     /**
      * Provided for convenience.
      */
-    public static double resemblance(String pathA, String pathB, hashFunction func, int b, int k) {
+    public static double resemblance(String pathA, String pathB, HashFunction func, int b, int k) {
 	return resemblance(Paths.get(pathA), Paths.get(pathB), func, b, k);
     }
     
@@ -164,8 +164,8 @@ public class Similarities {
 
 	// For the same file, resemblance should be 1
 	System.out.println("Same files :");
-	System.out.println(Similarities.resemblance(hashFunctionTests2.bible,
-		hashFunctionTests2.bible, new LookUp3(), 15, k));
+	System.out.println(Similarities.resemblance(FileManager.Files.bible,
+			FileManager.Files.bible, new LookUp3(), 15, k));
 
 	// For files with high similarities, resemblance should be approximately
 	// 1. Here I have deleted some
@@ -180,8 +180,8 @@ public class Similarities {
 
 	// For distinct files, resemblance should be around 0.
 	System.out.println("Completely different files (but same langage):");
-	System.out.println(Similarities.resemblance(hashFunctionTests2.shakespeare,
-		hashFunctionTests2.bible, new LookUp3(), 15, k));
+	System.out.println(Similarities.resemblance(FileManager.Files.shakespeare,
+			FileManager.Files.bible, new LookUp3(), 15, k));
     }
 
     public static void main(String[] args) {

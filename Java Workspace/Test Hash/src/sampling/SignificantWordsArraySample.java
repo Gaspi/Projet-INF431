@@ -1,6 +1,6 @@
 package sampling;
 
-import hash.hashFunction;
+import hash.HashFunction;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,7 +18,7 @@ public class SignificantWordsArraySample extends SignificantWordsSample {
     ArrayList<LinkedList<Occurrence>> strTab = new ArrayList<LinkedList<Occurrence>>(33);
     
     
-    public SignificantWordsArraySample(int k, hashFunction func) {
+    public SignificantWordsArraySample(int k, HashFunction func) {
     	super(k, func);
     	
     	for (int i = 0; i <= 32; i++)
