@@ -266,9 +266,8 @@ public class HyperLogLog {
     }
     
     
-    public static String exec(String path, int b) {
-    	return "Le fichier " + path + " contient approximativement\n" +
-    			Math.round(hyperLogLog(path, new LookUp3(), b, 1)) + " mots distincts\n\n";	
+    public static void exec(String path, String hashFunc, int b) {
+    	hyperLogLogOnFile(Paths.get(path), ProvidingHashFunction.newHashFunction(hashFunc), b);
     }
     
     
