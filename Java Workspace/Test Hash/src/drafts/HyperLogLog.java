@@ -1,17 +1,16 @@
 package drafts;
 
-import hash.ProvidingHashFunction;
 import hash.HashFunction;
-import hash.HashFunctionTests;
 import hash.hashFunctions.*;
 
-import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.LinkedList;
-import java.util.Scanner;
+
+import javax.swing.JFrame;
+
+import org.math.plot.Plot2DPanel;
 
 import FileManager.WordReader;
 
@@ -138,32 +137,74 @@ public class HyperLogLog {
      * @return The array of the approximate number of different words seen among the last "windowSize".
      * The length of this array is 1 + the size of the sample - windowSize.
      */
-    public static double[] slidingWindow(Path path, HashFunction func, int b, int windowSize) {
+    public static Double[] slidingWindow(Path path, HashFunction func, int b, int windowSize, int precision) {
     	
     	if (b <= 0 || b > 16)
     	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
-
+    	
     	int m = 1 << b; // m = 2^b
     	int[] M = new int[m], num = new int[m];
-    	double[] result = null;
+    	LinkedList<Double> result = new LinkedList<Double>();
+
+    	// Calculation of the result
+    	double sum = m, eTimesSum = alpha[b] * ((double) m) * ((double) m),
+    			n = Math.pow(2, 32);
     	
+
     	int currentNum = 0;
     	
     	for (String s : new WordReader(path)) {
     	    long x = func.hashString(s);
     	    int j = (int) (x & (m - 1));
-    	    long w = x >>> b;
-    		if (currentNum  - num[j] > windowSize || rho(w) > M[j])
-    			M[j] = rho(w);
-    		if (currentNum > windowSize)
-    			// Update result
+    	    int r = rho( x >>> b ); // rho(x)
+    	    
+    		if (currentNum  - num[j] > windowSize || r > M[j]) {
+    			sum += Math.pow(2, -r) - Math.pow(2, -M[j]);
+    			M[j] = r;
+    			num[j] = currentNum;
+    		}
     		
-    		currentNum++;    		
+    		if (currentNum > windowSize && currentNum % precision == 0) {
+    			
+    			// We evaluate the current estimation
+    	    	double e = eTimesSum / sum;
+    	    	if (e < 2.5 * m) {
+    	    	    double v = 0;
+    	    	    for (int i = 0; i < m; i++)
+    	    	    	if (M[i] == 0) v++;
+    	    	    
+    	    	    if (v != 0)
+    	    	    	e = m * Math.log(m / v);
+    	    	} else if (e > n / 30)
+    	    	    e = -n * Math.log(1 - e / n);
+    	    	
+    			// We save the current estimation
+    			result.add( e );
+    		}
+    		
+    		currentNum++;
     	}
     	
-    	return result;
+    	return result.toArray(new Double[0]);
     }
     
+    
+    public static void displaySlidingWindows(Path path, HashFunction func, int b, int windowSize, int precision) {
+    	Double[] tab = slidingWindow(path, func, b, windowSize, precision);
+    	double[] doubleTab = new double[tab.length];
+    	for (int i = 0; i < tab.length; i++)
+    		doubleTab[i] = tab[i];
+    	
+    	// Do the plotting
+    	Plot2DPanel plot = new Plot2DPanel();
+    	plot.addLinePlot("test", doubleTab);
+    	JFrame frame = new JFrame("Evolution of the estimate number of different word among the "
+    			+ windowSize +" last words.");
+    	frame.setSize(600, 600);
+    	frame.setContentPane(plot);
+    	frame.setVisible(true);
+    	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
     
     
     
@@ -199,13 +240,13 @@ public class HyperLogLog {
      *         equivalent to Integer.numberOfTrailingZeros).
      */
     public static int rho(long x) {
-	int res = 1;
-	// While the Least Significant Bit is 0 but x is not zero
-	while ((x & 1) == 0 && x != 0) {
-	    res++;
-	    x >>>= 1; // Offset one bit to the left
-	}
-	return res;
+    	int res = 1;
+    	// While the Least Significant Bit is 0 but x is not zero
+    	while ((x & 1) == 0 && x != 0) {
+    		res++;
+    		x >>>= 1; // Offset one bit to the left
+    	}
+    	return res;
     }
 
     /**
@@ -245,29 +286,19 @@ public class HyperLogLog {
     	System.out.println("Approximate number of distinct words in file" + path + " : ");
     	System.out.println(hyperLogLog(path, func, b, 1));
     }
-
+    
+    
     public static void main(String[] args) {
-    	//HyperLogLog.performanceEstimator(hashFunctionTests2.bible);
-    	HyperLogLog.exec();
-    }
-    
-    
-    
-    /**
-     * Function meant to be called in main in order for this file to have 
-     * the behavior expected in the subject.
-     */
-    public static void exec() {
-    	// With a path == null, the stdin stream is used by default.
     	
-    	// /!\ Do not work because the path has to be set two times in benchmark + hyperloglog
-    	//     and there is a bug --> need fix /!\
-    	performanceEstimator(null);	
+    	displaySlidingWindows( FileManager.Files.shakespeare, new LookUp3() , 11, 100, 100);
+    	
+    	// performanceEstimator( Paths.get(args[0]) );
     }
+    
     
     
     public static void exec(String path, String hashFunc, int b) {
-    	hyperLogLogOnFile(Paths.get(path), ProvidingHashFunction.newHashFunction(hashFunc), b);
+    	hyperLogLogOnFile(Paths.get(path), HashFunction.getHashFunction(hashFunc), b);
     }
     
     

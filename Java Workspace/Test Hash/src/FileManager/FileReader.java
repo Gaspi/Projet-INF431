@@ -3,13 +3,13 @@ package FileManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
-import java.util.Scanner;
+
+import drafts.Draft;
 
 
 /**
@@ -28,28 +28,16 @@ public abstract class FileReader implements Iterable<String>  {
 	}
 
 	public FileReader(Path path)   { 
-		if (path == null){
-	    	Scanner sc = new Scanner(System.in);
-	    	System.out.println("Please enter the file's path : ");
-	    	path = Paths.get(sc.nextLine());
-	    	sc.close();
-		}
-		
+		if (path == null)
+			path = Paths.get( Draft.ask("the file's path") );
 		openFile(path);
 	}
 	
 	public FileReader(String path) {
-		if (path == null || path.length() == 0){
-	    	Scanner sc = new Scanner(System.in);
-	    	System.out.println("Please enter the file's path : ");
-	    	path = sc.nextLine();
-	    	sc.close();
-		}
-		
+		if (path == null || path.length() == 0)
+			path = Draft.ask("the file's path");
 		openFile( Paths.get(path) );
 	}
-	
-
 	
 	
 	public void openFile(Path path) {

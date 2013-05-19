@@ -3,10 +3,8 @@ package hash;
 import static org.math.array.DoubleArray.max;
 import static org.math.array.DoubleArray.min;
 import static org.math.array.StatisticSample.histogram;
-import hash.hashFunctions.*;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
@@ -19,6 +17,7 @@ import org.math.plot.Plot2DPanel;
 import FileManager.WordReader;
 
 import drafts.Draft;
+
 
 public class HashFunctionTests {
 
@@ -234,7 +233,7 @@ public class HashFunctionTests {
 
 	public static void main(String[] args) {
 		//uniformDistribTest(new LookUp3(), true);
-		speedTests(ProvidingHashFunction.newHashFunction("hash.hashFunctions.LookUp3"));
+		speedTests(HashFunction.getHashFunction("hash.hashFunctions.LookUp3"));
 		//collisionTests(new HomemadeHash());
 		//System.out.println(FileManager.Files.shakespeare.toString());
 

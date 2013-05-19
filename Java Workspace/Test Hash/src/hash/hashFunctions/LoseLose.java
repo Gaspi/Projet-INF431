@@ -8,7 +8,7 @@ import drafts.UnsignedArithmetic;
  * Found here :
  * http://www.cse.yorku.ca/~oz/hash.html
  */
-public class LoseLose implements HashFunction{
+public class LoseLose extends HashFunction{
 
 
 	@SuppressWarnings("deprecation")

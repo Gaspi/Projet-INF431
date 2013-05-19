@@ -6,7 +6,7 @@ import hash.HashFunction;
  * Found here :
  * http://www.cse.yorku.ca/~oz/hash.html
  */
-public class DJB2 implements HashFunction {
+public class DJB2 extends HashFunction {
 
 	@SuppressWarnings("deprecation")
 	@Override
