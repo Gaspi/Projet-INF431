@@ -195,7 +195,7 @@ public class Similarities {
     }
     
     public static void exec(String[] urls, int k, int b, String func, double threshold){
-    	Similarities sim = new Similarities(urls, k, b, ProvidingHashFunction.newHashFunction(func));
+    	Similarities sim = new Similarities(urls, k, b, HashFunction.getHashFunction(func));
     	sim.similarFiles(threshold);
     }
 
