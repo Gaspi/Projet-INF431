@@ -5,7 +5,7 @@ import hash.HashFunction;
 /**
  * Using of the Java default hash function.
  */
-public class JavaHash implements HashFunction{
+public class JavaHash extends HashFunction{
 
 	@Override
 	public int hashString(String s){

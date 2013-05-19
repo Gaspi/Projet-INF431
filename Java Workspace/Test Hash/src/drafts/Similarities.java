@@ -1,12 +1,10 @@
 package drafts;
 
 import hash.HashFunction;
-import hash.HashFunctionTests;
 import hash.hashFunctions.*;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 
 
 /**

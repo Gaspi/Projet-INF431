@@ -7,7 +7,7 @@ import drafts.UnsignedArithmetic;
  * A simple homemade hash function
  * @author Jonathan VISBECQ
  */
-public class HomemadeHash implements HashFunction{
+public class HomemadeHash extends HashFunction{
 
 	@SuppressWarnings("deprecation")
 	@Override

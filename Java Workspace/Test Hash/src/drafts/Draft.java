@@ -1,5 +1,7 @@
 package drafts;
 
+import java.util.Scanner;
+
 /**
  * Random functions that may be useful
  */
@@ -35,4 +37,13 @@ public class Draft {
 			System.out.println(line);
 		}
 	}
+	
+	public static String ask(String msg) {
+    	Scanner sc = new Scanner(System.in);
+    	System.out.print("Please enter " + msg + " :\n-> ");
+    	String res = sc.nextLine();
+    	sc.close();
+    	return res;
+	}
+	
 }

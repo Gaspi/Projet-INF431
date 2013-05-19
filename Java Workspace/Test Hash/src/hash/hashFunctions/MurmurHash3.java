@@ -6,7 +6,7 @@ import hash.HashFunction;
  * Found here :
  * http://en.wikipedia.org/wiki/MurmurHash
  */
-public class MurmurHash3 implements HashFunction {
+public class MurmurHash3 extends HashFunction {
 	
 	@SuppressWarnings("deprecation")
 	@Override
