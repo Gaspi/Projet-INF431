@@ -54,7 +54,7 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
         topPanel = new JPanel();
         GroupLayout topPanelLayout = new GroupLayout((JComponent)topPanel);
         topPanel.setLayout(topPanelLayout);
-        topPanel.setPreferredSize(new java.awt.Dimension(589, 329));
+        topPanel.setPreferredSize(new java.awt.Dimension(555, 367));
         {
         	jLabel1 = new JLabel();
         	jLabel1.setName("jLabel1");
@@ -99,48 +99,45 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
         	.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
         	.addGap(25)
         	.addComponent(jRadioButton5, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(21)
-        	.addComponent(jRadioButton1, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-        	.addGap(20)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+        	.addComponent(jRadioButton1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(jRadioButton3, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(16)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(getJRadioButton6(), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(0, 14, Short.MAX_VALUE)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(jRadioButton4, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(16)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(jRadioButton2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(16)
+        	.addGap(0, 56, Short.MAX_VALUE)
         	.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addContainerGap(84, 84));
+        	.addContainerGap());
         topPanelLayout.setHorizontalGroup(topPanelLayout.createSequentialGroup()
         	.addContainerGap()
         	.addGroup(topPanelLayout.createParallelGroup()
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jRadioButton5, GroupLayout.PREFERRED_SIZE, 505, GroupLayout.PREFERRED_SIZE)
         	        .addGap(0, 49, Short.MAX_VALUE))
-        	    .addGroup(topPanelLayout.createSequentialGroup()
-        	        .addComponent(jRadioButton1, GroupLayout.PREFERRED_SIZE, 554, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 0, Short.MAX_VALUE))
+        	    .addComponent(jRadioButton1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 554, GroupLayout.PREFERRED_SIZE)
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jRadioButton3, GroupLayout.PREFERRED_SIZE, 505, GroupLayout.PREFERRED_SIZE)
         	        .addGap(0, 49, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(getJRadioButton6(), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 175, Short.MAX_VALUE))
+        	        .addGap(0, 159, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jRadioButton4, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
         	        .addGap(0, 26, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jRadioButton2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 286, Short.MAX_VALUE))
+        	        .addGap(0, 273, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
         	        .addGap(0, 482, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addGap(16)
         	        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 414, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 124, Short.MAX_VALUE)))
-        	.addContainerGap(23, 23));
+        	        .addGap(0, 124, Short.MAX_VALUE))));
         show(topPanel);
     }
 
@@ -161,22 +158,22 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
     	
     	Actions action = null;
     	switch(getSelectedButtonText(this.buttonGroup1)){
-    	case "Comparaison des fonctions de hachage (question 1)":
+    	case "Question 1:    Comparaison des fonctions de hachage ":
     		action = Actions.HASHFUNCTIONS;
     		break;
-    	case "Estimation de la taille du fichier par l'algorithme HyperLogLog (question 2)":
+    	case "Question 2:    Estimation de la taille du fichier par l'algorithme HyperLogLog ":
     		action = Actions.HYPERLOGLOG;
     		break;
-    	case "Détermination de fichiers semblables (question 3)":
+    	case "Question 3:    Détermination de fichiers semblables ":
     		action = Actions.SIMILARITIES;
     		break;
-    	case "Détermination de mots caractéristiques (question 5)":
+    	case "Question 5:    Détermination de mots caractéristiques ":
     		action = Actions.FREQUENTWORDS;
     		break;
-    	case "Estimation du nombre de souris (question 6)":
+    	case "Question 6:    Estimation du nombre de souris ":
     		action = Actions.MICE;
     		break;	
-    	case "Estimation des icebergs (question 7)":
+    	case "Question 7:    Estimation des icebergs":
     		action = Actions.ICEBERGS;
     		break;
     	}
@@ -190,7 +187,8 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
 		});
 		inst.setLocationRelativeTo(null);
 		this.getMainFrame().setEnabled(false);
-		getMainFrame().setSize(599, 436);
+		getMainFrame().setPreferredSize(new java.awt.Dimension(565, 387));
+		getMainFrame().setSize(565, 387);
 		inst.setVisible(true);
     }
     

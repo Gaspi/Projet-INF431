@@ -126,10 +126,12 @@ public class NewJFrame extends javax.swing.JFrame {
 		try {
 			
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+			//GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+			BorderLayout thisLayout = new BorderLayout();
 			getContentPane().setLayout(thisLayout);
 			{
 				jPanel1 = new JPanel();
+				getContentPane().add(jPanel1, BorderLayout.CENTER);
 				GroupLayout jPanel1Layout = new GroupLayout((JComponent)jPanel1);
 				jPanel1.setLayout(jPanel1Layout);
 				{
@@ -155,10 +157,12 @@ public class NewJFrame extends javax.swing.JFrame {
 						b = new JSpinner();
 						b.setModel(bModel);
 						b.setName("b");
+						b.setEnabled(false);
 					}
 					{
 						jRadioButtonCollisions = new JRadioButton();
 						jRadioButtonCollisions.setName("jRadioButtonCollisions");
+						jRadioButtonCollisions.setEnabled(false);
 					}
 					{
 						jLabel2 = new JLabel();
@@ -168,6 +172,7 @@ public class NewJFrame extends javax.swing.JFrame {
 						SpinnerNumberModel nbOccModel = new SpinnerNumberModel(1, 1, 10, 1);
 						nbOcc = new JSpinner();
 						nbOcc.setModel(nbOccModel);
+						nbOcc.setEnabled(false);
 					}
 					{
 						jLabel3 = new JLabel();
@@ -183,58 +188,71 @@ public class NewJFrame extends javax.swing.JFrame {
 					{
 						jLabel10 = new JLabel();
 						jLabel10.setName("jLabel10");
+						jLabel10.setEnabled(false);
 					}
 					{
 						SpinnerNumberModel frequencyModel = new SpinnerNumberModel(0.01, 0, 0.1, 0.001);								
 						frequency = new JSpinner();
 						frequency.setModel(frequencyModel);
+						frequency.setEnabled(false);
 					}
 					{
 						jLabel7 = new JLabel();
 						jLabel7.setName("jLabel7");
+						jLabel7.setEnabled(false);
 					}
 					{
 						SpinnerNumberModel thresholdModel = new SpinnerNumberModel(0.5, 0, 1, 0.02); 
 						threshold = new JSpinner();
 						threshold.setModel(thresholdModel);
+						threshold.setEnabled(false);
 					}
 					{
 						jLabel5 = new JLabel();
 						jLabel5.setName("jLabel5");
+						jLabel5.setEnabled(false);
 					}
 					{
 						jLabel9 = new JLabel();
 						jLabel9.setName("jLabel9");
+						jLabel9.setEnabled(false);
 					}
 					{
 						jLabel8 = new JLabel();
 						jLabel8.setName("jLabel8");
+						jLabel8.setEnabled(false);
 					}
 					{
 						SpinnerNumberModel nbWordsModel = new SpinnerNumberModel(5,5,20,1);
 						nbWords = new JSpinner();
 						nbWords.setModel(nbWordsModel);
+						nbWords.setEnabled(false);
 					}
 					{
 						jLabel6 = new JLabel();
 						jLabel6.setName("jLabel6");
+						jLabel6.setEnabled(false);
 					}
 					{
 						SpinnerNumberModel kModel = new SpinnerNumberModel(1,1,10,1);
 						k = new JSpinner();
 						k.setModel(kModel);
+						k.setEnabled(false);
 					}
 					{
 						jLabel4 = new JLabel();
 						jLabel4.setName("jLabel4");
+						jLabel4.setEnabled(false);
 					}
 					{
 						jRadioButtonVitesse = new JRadioButton();
 						jRadioButtonVitesse.setName("jRadioButtonVitesse");
+						jRadioButtonVitesse.setEnabled(false);
 					}
 					{
 						jRadioButtonLoiUniforme = new JRadioButton();
 						jRadioButtonLoiUniforme.setName("jRadioButtonLoiUniforme");
+						jRadioButtonLoiUniforme.setEnabled(false);
 					}
 					jPanel2Layout.setHorizontalGroup(jPanel2Layout.createSequentialGroup()
 						.addContainerGap()
@@ -353,7 +371,7 @@ public class NewJFrame extends javax.swing.JFrame {
 							jButton1MouseClicked(e);
 						}
 					}); 
-					
+					jButton1.setEnabled(false);		
 				}
 				{
 					jScrollPane2 = new JScrollPane();
@@ -371,23 +389,23 @@ public class NewJFrame extends javax.swing.JFrame {
 				jPanel1Layout.setHorizontalGroup(jPanel1Layout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(jPanel1Layout.createParallelGroup()
+					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
+					        .addGap(8))
 					    .addGroup(jPanel1Layout.createSequentialGroup()
 					        .addGroup(jPanel1Layout.createParallelGroup()
 					            .addComponent(jCheckBox1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					                .addGap(72))
-					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
 					                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
 					                .addGap(23))
+					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					                .addGap(72))
 					            .addComponent(jTextField1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
-					        .addGap(43)
+					        .addGap(21)
 					        .addGroup(jPanel1Layout.createParallelGroup()
-					            .addComponent(jCheckBox2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jCheckBox3, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE))
-					        .addGap(26))
-					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jCheckBox2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jCheckBox3, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE))
 					        .addGap(8))
 					    .addComponent(jPanel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 429, GroupLayout.PREFERRED_SIZE))
 					.addGap(20)
@@ -406,8 +424,8 @@ public class NewJFrame extends javax.swing.JFrame {
 					            .addComponent(jCheckBox1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 					        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-					            .addComponent(jTextField1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jCheckBox3, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					            .addComponent(jTextField1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jCheckBox3, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
 					        .addGap(25)
 					        .addComponent(jPanel2, 0, 325, Short.MAX_VALUE)
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -415,10 +433,6 @@ public class NewJFrame extends javax.swing.JFrame {
 					    .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, 0, 541, Short.MAX_VALUE))
 					.addContainerGap());
 			}
-						thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, 983, GroupLayout.PREFERRED_SIZE));
-						thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-				.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, 586, GroupLayout.PREFERRED_SIZE));
 			pack();
 			this.setSize(993, 616);
 			Application.getInstance().getContext().getResourceMap(getClass()).injectComponents(getContentPane());
@@ -431,75 +445,57 @@ public class NewJFrame extends javax.swing.JFrame {
 	private void setUpForAction(){
 		switch(action){
 		case HASHFUNCTIONS:
-			b.setEnabled(false);
-			nbWords.setEnabled(false);
-			jLabel2.setEnabled(false);
-			jLabel1.setEnabled(false);
-			jLabel8.setEnabled(false);
-			pathToFile.setEnabled(false);
-			jCheckBox2.setEnabled(false);
+			jLabel4.setEnabled(true);
+			jRadioButtonVitesse.setEnabled(true);
+			jRadioButtonCollisions.setEnabled(true);
+			jRadioButtonLoiUniforme.setEnabled(true);
+			jButton1.setEnabled(true);
+			jCheckBox3.setEnabled(false);
 			break;
 		case HYPERLOGLOG:
-			jButton1.setEnabled(false);
-			jLabel4.setEnabled(false);
-			jLabel8.setEnabled(false);
-			nbWords.setEnabled(false);
-			this.jRadioButtonCollisions.setEnabled(false);
-			this.jRadioButtonLoiUniforme.setEnabled(false);
-			this.jRadioButtonVitesse.setEnabled(false);
+			b.setEnabled(true);
+			jLabel5.setEnabled(true);
 			break;
 		case SIMILARITIES:
-			jButton1.setEnabled(false);
-			jLabel4.setEnabled(false);
-			nbWords.setEnabled(false);
-			jLabel8.setEnabled(false);
-			this.jRadioButtonCollisions.setEnabled(false);
-			this.jRadioButtonLoiUniforme.setEnabled(false);
-			this.jRadioButtonVitesse.setEnabled(false);
+			b.setEnabled(true);
+			jLabel5.setEnabled(true);
+			k.setEnabled(true);
+			jLabel6.setEnabled(true);
+			jLabel7.setEnabled(true);
+			threshold.setEnabled(true);
 			break;
 		case FREQUENTWORDS:
 			k.setModel(new SpinnerNumberModel(50, 20, 1000, 10));
-			jButton1.setEnabled(false);
-			jLabel5.setEnabled(false);
-			jLabel7.setEnabled(false);
-			jLabel4.setEnabled(false);
-			b.setEnabled(false);
-			threshold.setEnabled(false);
-			this.jRadioButtonCollisions.setEnabled(false);
-			this.jRadioButtonLoiUniforme.setEnabled(false);
-			this.jRadioButtonVitesse.setEnabled(false);
+			k.setEnabled(true);
+			jLabel6.setEnabled(true);
+			nbWords.setEnabled(true);
+			jLabel8.setEnabled(true);
 			break;
 		case MICE:
-			k.setModel(new SpinnerNumberModel(50, 20, 1000, 10));
-			jButton1.setEnabled(false);
-			jLabel5.setEnabled(false);
-			jLabel7.setEnabled(false);
-			jLabel4.setEnabled(false);
-			b.setEnabled(false);
-			threshold.setEnabled(false);
-			this.jRadioButtonCollisions.setEnabled(false);
-			this.jRadioButtonLoiUniforme.setEnabled(false);
-			this.jRadioButtonVitesse.setEnabled(false);
+			k.setModel(new SpinnerNumberModel(50, 20, 2000, 10));
+			k.setEnabled(true);
+			jLabel6.setEnabled(true);
+			nbOcc.setEnabled(true);
+			jLabel9.setEnabled(true);
 			break;
 		case ICEBERGS:
-			jButton1.setEnabled(false);
-			jLabel4.setEnabled(false);
-			nbWords.setEnabled(false);
-			jLabel8.setEnabled(false);
-			this.jRadioButtonCollisions.setEnabled(false);
-			this.jRadioButtonLoiUniforme.setEnabled(false);
-			this.jRadioButtonVitesse.setEnabled(false);
+			k.setModel(new SpinnerNumberModel(50, 20, 2000, 10));
+			k.setEnabled(true);
+			jLabel6.setEnabled(true);
+			frequency.setEnabled(true);
+			jLabel10.setEnabled(true);
+			hashFunction.setEnabled(false);
+			jLabel3.setEnabled(false);
 			break;
-
 		}
 	}
 	
 	private void pathToFileMouseClicked(MouseEvent evt) {
-		
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
 	    chooser.addChoosableFileFilter(filter);
-	    chooser.setMultiSelectionEnabled(true);
+	    chooser.setMultiSelectionEnabled(true);	    
+	    pathToFile.setText("");   	    
 	    int returnVal = chooser.showOpenDialog(this);
 	    if(returnVal == JFileChooser.APPROVE_OPTION) {
 	    		selectedFiles = chooser.getSelectedFiles();
