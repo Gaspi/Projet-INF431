@@ -5,6 +5,7 @@ import hash.HashFunctionTests;
 import hash.hashFunctions.MurmurHash3;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
@@ -40,6 +41,16 @@ public class Sampling {
     	
     	return l;
     }
+    
+    public static void significantWordsForFile(String path, int nbWords, HashFunction func, int k){
+    	LinkedList<String> l = findSignificantWords(Paths.get(path), nbWords, func, k);
+    	
+    	System.out.println("Frequent words for file:");
+    	System.out.println(path);
+    	System.out.println("with sampling bag of size " + 2*k + " words is");
+    	for(String s: l)
+    		System.out.println(s);
+    }
 	
  
 	/**
@@ -60,6 +71,15 @@ public class Sampling {
     	
     	return ws.estimateMiceNumber(nbOcc);
 	}
+	
+    public static void numberOfMiceForFile(String path, int nbOcc, HashFunction func, int k){
+    	double d = findMiceNumber(Paths.get(path), nbOcc, func, k);
+    	
+    	System.out.println("Approximate number of " + nbOcc + "-mice for file:");
+    	System.out.println(path);
+    	System.out.println("with sampling bag of size " + 2*k + " words is");
+    	System.out.println(Math.round(d));
+    }
 	
 	
 	 /**
@@ -104,6 +124,15 @@ public class Sampling {
 		
 		return sample.getIcebergs();
 	}
+	
+    public static void icebergsForFile(String path, double frequency){
+    	LinkedList<String> l = findIcebergs(Paths.get(path), frequency);
+    	
+    	System.out.println("Approximate number of " + frequency + "-icebergs for file:");
+    	System.out.println(path);
+    	for(String s: l)
+    		System.out.println(s);
+    }
 	
 	
 	/**

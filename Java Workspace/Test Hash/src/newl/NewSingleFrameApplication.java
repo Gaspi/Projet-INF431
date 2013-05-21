@@ -43,6 +43,7 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
     private JRadioButton jRadioButton3;
     private JRadioButton jRadioButton4;
     private JButton jButton1;
+    private JRadioButton jRadioButton6;
     private JRadioButton jRadioButton5;
     private JRadioButton jRadioButton2;
     private ButtonGroup buttonGroup1;
@@ -53,7 +54,7 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
         topPanel = new JPanel();
         GroupLayout topPanelLayout = new GroupLayout((JComponent)topPanel);
         topPanel.setLayout(topPanelLayout);
-        topPanel.setPreferredSize(new java.awt.Dimension(579, 408));
+        topPanel.setPreferredSize(new java.awt.Dimension(555, 367));
         {
         	jLabel1 = new JLabel();
         	jLabel1.setName("jLabel1");
@@ -71,6 +72,7 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
         {
         	jRadioButton3 = new JRadioButton();
         	jRadioButton3.setName("jRadioButton3");
+        	getButtonGroup1().add(jRadioButton3);
         	getButtonGroup1().add(jRadioButton3);
         }
         {
@@ -97,43 +99,45 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
         	.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
         	.addGap(25)
         	.addComponent(jRadioButton5, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(21)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(jRadioButton1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(34)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(jRadioButton3, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(32)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+        	.addComponent(getJRadioButton6(), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(jRadioButton4, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(25)
+        	.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
         	.addComponent(jRadioButton2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addGap(0, 62, Short.MAX_VALUE)
+        	.addGap(0, 56, Short.MAX_VALUE)
         	.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	.addContainerGap(28, 28));
+        	.addContainerGap());
         topPanelLayout.setHorizontalGroup(topPanelLayout.createSequentialGroup()
         	.addContainerGap()
         	.addGroup(topPanelLayout.createParallelGroup()
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jRadioButton5, GroupLayout.PREFERRED_SIZE, 505, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 23, Short.MAX_VALUE))
-        	    .addGroup(topPanelLayout.createSequentialGroup()
-        	        .addComponent(jRadioButton1, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 0, Short.MAX_VALUE))
+        	        .addGap(0, 49, Short.MAX_VALUE))
+        	    .addComponent(jRadioButton1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 554, GroupLayout.PREFERRED_SIZE)
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
-        	        .addComponent(jRadioButton3, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 364, Short.MAX_VALUE))
+        	        .addComponent(jRadioButton3, GroupLayout.PREFERRED_SIZE, 505, GroupLayout.PREFERRED_SIZE)
+        	        .addGap(0, 49, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
-        	        .addComponent(jRadioButton4, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 364, Short.MAX_VALUE))
+        	        .addComponent(getJRadioButton6(), GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+        	        .addGap(0, 159, Short.MAX_VALUE))
+        	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
+        	        .addComponent(jRadioButton4, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE)
+        	        .addGap(0, 26, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jRadioButton2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 442, Short.MAX_VALUE))
+        	        .addGap(0, 273, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
         	        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 456, Short.MAX_VALUE))
+        	        .addGap(0, 482, Short.MAX_VALUE))
         	    .addGroup(GroupLayout.Alignment.LEADING, topPanelLayout.createSequentialGroup()
-        	        .addGap(22)
+        	        .addGap(16)
         	        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 414, GroupLayout.PREFERRED_SIZE)
-        	        .addGap(0, 92, Short.MAX_VALUE)))
-        	.addContainerGap(31, 31));
+        	        .addGap(0, 124, Short.MAX_VALUE))));
         show(topPanel);
     }
 
@@ -148,28 +152,34 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
     	return buttonGroup1;
     }
     
+    private NewJFrame inst;
+    
     private void jButton1MouseClicked(MouseEvent evt) {
     	
     	Actions action = null;
-    	switch( getSelectedButtonText(this.buttonGroup1) ){
-    	case "Comparaison des fonctions de hachage (question 1)":
+    	switch(getSelectedButtonText(this.buttonGroup1)){
+    	case "Question 1:    Comparaison des fonctions de hachage ":
     		action = Actions.HASHFUNCTIONS;
     		break;
-    	case "Calcul de la taille du fichier par l'algorithme HyperLogLog (question 2)":
+    	case "Question 2:    Estimation de la taille du fichier par l'algorithme HyperLogLog ":
     		action = Actions.HYPERLOGLOG;
     		break;
-    	case "Similarities":
+    	case "Question 3:    Détermination de fichiers semblables ":
     		action = Actions.SIMILARITIES;
     		break;
-    	case "Icebergs":
-    		action = Actions.ICEBERGS;
+    	case "Question 5:    Détermination de mots caractéristiques ":
+    		action = Actions.FREQUENTWORDS;
     		break;
-    	case "Mice":
+    	case "Question 6:    Estimation du nombre de souris ":
     		action = Actions.MICE;
     		break;	
+    	case "Question 7:    Estimation des icebergs":
+    		action = Actions.ICEBERGS;
+    		break;
     	}
 
-		NewJFrame inst = new NewJFrame(action);
+
+		inst = new NewJFrame(action);
 		inst.addWindowListener(new WindowAdapter() {
     		public void windowClosed(WindowEvent evt)  {
     			taskclosed(evt);
@@ -177,6 +187,8 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
 		});
 		inst.setLocationRelativeTo(null);
 		this.getMainFrame().setEnabled(false);
+		getMainFrame().setPreferredSize(new java.awt.Dimension(565, 387));
+		getMainFrame().setSize(565, 387);
 		inst.setVisible(true);
     }
     
@@ -196,5 +208,14 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
 
         return null;
     }
+   
+   private JRadioButton getJRadioButton6() {
+	   if(jRadioButton6 == null) {
+		   jRadioButton6 = new JRadioButton();
+		   jRadioButton6.setName("jRadioButton6");
+		   getButtonGroup1().add(jRadioButton6);
+	   }
+	   return jRadioButton6;
+   }
 
 }
