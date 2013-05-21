@@ -151,7 +151,7 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
     private void jButton1MouseClicked(MouseEvent evt) {
     	
     	Actions action = null;
-    	switch(getSelectedButtonText(this.buttonGroup1)){
+    	switch( getSelectedButtonText(this.buttonGroup1) ){
     	case "Comparaison des fonctions de hachage (question 1)":
     		action = Actions.HASHFUNCTIONS;
     		break;
