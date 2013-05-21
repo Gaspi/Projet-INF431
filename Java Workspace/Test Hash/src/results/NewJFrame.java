@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.swing.BorderFactory;
 
 import javax.swing.GroupLayout;
@@ -63,6 +65,7 @@ public class NewJFrame extends javax.swing.JFrame {
 	private JPanel jPanel1;
 	private JButton jButton1;
 	private JCheckBox jCheckBox2;
+	private JButton jButton2;
 	private JTextField jTextField1;
 	private JTextArea jTextArea1;
 	private JScrollPane jScrollPane1;
@@ -140,6 +143,17 @@ public class NewJFrame extends javax.swing.JFrame {
 						jTextArea1 = new JTextArea();
 						jScrollPane1.setViewportView(jTextArea1);
 					}
+				}
+				{
+					jButton2 = new JButton();
+					jButton2.setName("jButton2");
+					jButton2.addActionListener(new ActionListener() {
+						
+						public void actionPerformed(ActionEvent e)
+						{
+							jButton2MouseClicked(e);
+						}
+					}); 
 				}
 				{
 					jCheckBox2 = new JCheckBox();
@@ -389,27 +403,35 @@ public class NewJFrame extends javax.swing.JFrame {
 				jPanel1Layout.setHorizontalGroup(jPanel1Layout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(jPanel1Layout.createParallelGroup()
-					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
-					        .addGap(8))
 					    .addGroup(jPanel1Layout.createSequentialGroup()
 					        .addGroup(jPanel1Layout.createParallelGroup()
 					            .addComponent(jCheckBox1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-					                .addGap(23))
-					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
 					                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					                .addGap(72))
-					            .addComponent(jTextField1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
+					                .addGap(76))
+					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+					                .addGap(27))
+					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+					                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
 					        .addGap(21)
 					        .addGroup(jPanel1Layout.createParallelGroup()
-					            .addComponent(jCheckBox2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jCheckBox3, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE))
+					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					                .addComponent(jCheckBox2, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+					                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					                .addComponent(jCheckBox3, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+					                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					                .addGap(93)
+					                .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))))
+					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
 					        .addGap(8))
 					    .addComponent(jPanel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 429, GroupLayout.PREFERRED_SIZE))
-					.addGap(20)
-					.addComponent(jScrollPane1, 0, 510, Short.MAX_VALUE)
+					.addGap(24)
+					.addComponent(jScrollPane1, 0, 506, Short.MAX_VALUE)
 					.addContainerGap());
 				jPanel1Layout.setVerticalGroup(jPanel1Layout.createSequentialGroup()
 					.addContainerGap()
@@ -425,11 +447,13 @@ public class NewJFrame extends javax.swing.JFrame {
 					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 					        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					            .addComponent(jTextField1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jCheckBox3, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE))
+					            .addComponent(jCheckBox3, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 					        .addGap(25)
-					        .addComponent(jPanel2, 0, 325, Short.MAX_VALUE)
-					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+					        .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
+					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
+					        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+					            .addComponent(jButton1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jButton2, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
 					    .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, 0, 541, Short.MAX_VALUE))
 					.addContainerGap());
 			}
@@ -449,7 +473,6 @@ public class NewJFrame extends javax.swing.JFrame {
 			jRadioButtonVitesse.setEnabled(true);
 			jRadioButtonCollisions.setEnabled(true);
 			jRadioButtonLoiUniforme.setEnabled(true);
-			jButton1.setEnabled(true);
 			jCheckBox3.setEnabled(false);
 			break;
 		case HYPERLOGLOG:
@@ -507,15 +530,26 @@ public class NewJFrame extends javax.swing.JFrame {
 	
 	private void jButton1MouseClicked(ActionEvent evt) {
 		
-		long start = System.nanoTime();
-		performTask();
-		long end = System.nanoTime();
+
+		  SwingUtilities.invokeLater(new Runnable() {
+			    public void run() {
+					performTask();
+			    }
+			  });
+
+
 		
-		if(this.jCheckBox1.isSelected())
-			this.jTextField1.setText(Double.toString((end-start)/1000000000.) + " s");
+
+	}
+	
+
+	private void jButton2MouseClicked(ActionEvent evt) {
+		jTextArea1.setText("");
 	}
 	
 	private void performTask(){
+		long start = System.nanoTime();
+		
 		switch(this.action){
 		case HASHFUNCTIONS:
 			performHashFunctionTests();
@@ -538,6 +572,10 @@ public class NewJFrame extends javax.swing.JFrame {
 		default:
 			break;
 		}
+		
+		long end = System.nanoTime();
+		if(this.jCheckBox1.isSelected())
+			this.jTextField1.setText(Double.toString((end-start)/1000000000.) + " s");
 	}
 
 	private void performMice() {
@@ -589,11 +627,14 @@ public class NewJFrame extends javax.swing.JFrame {
 	
 	private void performHashFunctionTests(){
 		String hashFunc = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		Path[] paths = new Path[selectedFiles.length];
+		for(int i=0; i<selectedFiles.length; i++)
+			paths[i] = Paths.get(selectedFiles[i].getAbsolutePath());
 		
 		if(this.jRadioButtonVitesse.isSelected())
-			hash.HashFunctionTests.speedTests(HashFunction.getHashFunction(hashFunc));
+			hash.HashFunctionTests.speedTests(paths, HashFunction.getHashFunction(hashFunc));
 		if(this.jRadioButtonCollisions.isSelected())
-			hash.HashFunctionTests.collisionTests(HashFunction.getHashFunction(hashFunc));
+			hash.HashFunctionTests.collisionTests(paths, HashFunction.getHashFunction(hashFunc));
 		if(this.jRadioButtonLoiUniforme.isSelected())
 			hash.HashFunctionTests.uniformDistribTest(HashFunction.getHashFunction(hashFunc), true);
 	}

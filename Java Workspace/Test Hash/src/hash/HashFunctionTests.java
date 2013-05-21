@@ -159,11 +159,11 @@ public class HashFunctionTests {
 	 * @param func
 	 *            The hash function to be tested
 	 */
-	public static void speedTests(HashFunction func) {
+	public static void speedTests(Path[] paths, HashFunction func) {
 		System.out.println("\n----Speed test----");
 		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
-		for (int i = 0; i < FileManager.Files.paths.length; i++)
-			System.out.println(FileManager.Files.descriptions[i] + ":\n" + speedTestOnFile(FileManager.Files.paths[i], func) + " s");
+		for (int i = 0; i < paths.length; i++)
+			System.out.println(paths[i].getFileName() + ":\n" + speedTestOnFile(paths[i], func) + " s\n");
 	}
 
 	/**
@@ -172,12 +172,12 @@ public class HashFunctionTests {
 	 * @param func
 	 *            The hash function to be tested
 	 */
-	public static void collisionTests(HashFunction func) {
+	public static void collisionTests(Path[] paths, HashFunction func) {
 		System.out.println("\n----Collision test----");
 		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
-		for (int i = 0; i < FileManager.Files.paths.length; i++)
-			System.out.println(FileManager.Files.descriptions[i] + ":\n" + collisionTestOnFile(FileManager.Files.paths[i], func)
-					+ " collisions");
+		for (int i = 0; i < paths.length; i++)
+			System.out.println(paths[i].getFileName() + ":\n" + collisionTestOnFile(paths[i], func)
+					+ " collisions\n");
 	}
 
 	/**
@@ -224,16 +224,17 @@ public class HashFunctionTests {
 		// the String used for testing is uniform (as the uuids are), even a
 		// poor hash function performs well.
 		System.out.println("EnglishWords : " + System.lineSeparator()
-				+ chiSquareTestOnFile(FileManager.Files.englishWords, func));
-
+												 + chiSquareTestOnFile(FileManager.Files.englishWords, func));
+		
 		if (histogram)
 			distributionTestOnFile(FileManager.Files.englishWords, func);
+		
 
 	}
 
 	public static void main(String[] args) {
 		//uniformDistribTest(new LookUp3(), true);
-		speedTests(HashFunction.getHashFunction("hash.hashFunctions.LookUp3"));
+		//speedTests(HashFunction.getHashFunction("hash.hashFunctions.LookUp3"));
 		//collisionTests(new HomemadeHash());
 		//System.out.println(FileManager.Files.shakespeare.toString());
 

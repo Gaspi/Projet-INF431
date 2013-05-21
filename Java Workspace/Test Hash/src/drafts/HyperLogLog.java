@@ -294,7 +294,7 @@ public class HyperLogLog {
     
     public static void main(String[] args) {
     	
-    	displaySlidingWindows( FileManager.Files.shakespeare, new LookUp3() , 8, 1000, 1500);
+    	displaySlidingWindows( FileManager.Files.englishWords, new LookUp3() , 8, 1000, 1500);
     	
     	// performanceEstimator( Paths.get(args[0]) );
     }
