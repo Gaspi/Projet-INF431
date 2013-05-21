@@ -152,16 +152,35 @@ public class HyperLogLog {
 
     	int currentNum = 0;
     	
+    	LinkedList<Integer> indexExpires = new LinkedList<Integer>();
+    	for (int i = 0; i < m; i++)
+    		indexExpires.add(-1);
+    	
     	for (String s : new WordReader(path)) {
     	    long x = func.hashString(s);
     	    int j = (int) (x & (m - 1));
     	    int r = rho( x >>> b ); // rho(w)
     	    
-    		if (currentNum  - num[j] > windowSize || r > M[j]) {
+    	    
+    		if (currentNum > num[j] + windowSize || r > M[j]) {
     			sum += Math.pow(2, -r) - Math.pow(2, -M[j]);
     			M[j] = r;
     			num[j] = currentNum;
     		}
+    		
+    		// The algorithm given in the subject is not enough
+    		// We also need to put to 0 the case when the corresponding hashcode
+    		// has not been met in a while (windowSize).
+//    		Idées en vrac :
+//    			On stocke dans une pile les expirations de valeurs pour M
+//    			Quand on atteind une expirations, on cherche la prochaine valeur prise par M[i]
+    			
+//			indexExpires.add(j);
+//    		int ind = indexExpires.poll();
+//    		if (ind > -1 && currentNum > num[ind] + windowSize) M[ind] = 0;
+    		
+    		for (int i = 0; i < m; i++)
+    			if (currentNum > num[i] + windowSize) M[i] = 0;
     		
     		if (currentNum % precision == 0 && currentNum > windowSize) {
     			
@@ -175,11 +194,18 @@ public class HyperLogLog {
     	    	    for (int i = 0; i < m; i++)
     	    	    	if (M[i] == 0) v++;
     	    	    
-    	    	    if (v != 0)
+    	    	    if (v != 0) {
     	    	    	e = m * Math.log(m / v);
-    	    	    
-    	    	} else if (e > n / 30)
+    	    	    	//System.out.println("ap");
+    	    	    } else {
+    	    	    	//System.out.println("a");
+    	    	    }
+    	    	} else if (e > n / 30) {
     	    	    e = -n * Math.log(1 - e / n);
+    	    	   // System.out.println("b");
+    	    	} else {
+    	    	    //System.out.println("c");
+    	    	}
     	    	
     			// We save the current estimation
     			result.add( e );
@@ -294,7 +320,7 @@ public class HyperLogLog {
     
     public static void main(String[] args) {
     	
-    	displaySlidingWindows( FileManager.Files.shakespeare, new LookUp3() , 8, 1000, 1500);
+    	displaySlidingWindows( FileManager.Files.shakespeare, new LookUp3() , 12, 2000, 1000);
     	
     	// performanceEstimator( Paths.get(args[0]) );
     }
