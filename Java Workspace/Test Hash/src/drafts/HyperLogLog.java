@@ -8,18 +8,16 @@ import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
-import javax.swing.JFrame;
-
-import org.math.plot.Plot2DPanel;
-
 import FileManager.WordReader;
+
+
 
 public class HyperLogLog {
 
     /**
      * alpha[b] is meant to be equal to \alpha_{2^b}. Values computed by Wolfram Mathematica
      */
-    private static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, 0.673102, 0.697123,
+    static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, 0.673102, 0.697123,
 	    0.709208, 0.715271, 0.718308, 0.719827, 0.720587, 0.720967, 0.721157, 0.721252,
 	    0.721300, 0.721324, 0.721336 };
 
@@ -128,91 +126,6 @@ public class HyperLogLog {
     
     
     /**
-     * Question 4
-     * @param path
-     * @param func
-     * @param b
-     * @param windowSize Positive width of the window
-     * @return The array of the approximate number of different words seen among the last "windowSize".
-     * The length of this array is 1 + the size of the sample - windowSize.
-     */
-    public static Double[] slidingWindow(Path path, HashFunction func, int b, int windowSize, int precision) {
-    	
-    	if (b <= 0 || b > 16)
-    	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
-    	
-    	int m = 1 << b; // m = 2^b
-    	int[] M = new int[m], num = new int[m];
-    	LinkedList<Double> result = new LinkedList<Double>();
-
-    	// Calculation of the result
-    	double sum = m, eTimesSum = alpha[b] * ((double) m) * ((double) m),
-    			n = Math.pow(2, 32);
-    	
-
-    	int currentNum = 0;
-    	
-    	for (String s : new WordReader(path)) {
-    	    long x = func.hashString(s);
-    	    int j = (int) (x & (m - 1));
-    	    int r = rho( x >>> b ); // rho(w)
-    	    
-    		if (currentNum  - num[j] > windowSize || r > M[j]) {
-    			sum += Math.pow(2, -r) - Math.pow(2, -M[j]);
-    			M[j] = r;
-    			num[j] = currentNum;
-    		}
-    		
-    		if (currentNum % precision == 0 && currentNum > windowSize) {
-    			
-    			sum = 0;
-    			for (int k = 0; k < m; k++)
-    			    sum += Math.pow(2, -M[k]);
-    			// We evaluate the current estimation
-    	    	double e = eTimesSum / sum;
-    	    	if (e < 2.5 * m) {
-    	    	    double v = 0;
-    	    	    for (int i = 0; i < m; i++)
-    	    	    	if (M[i] == 0) v++;
-    	    	    
-    	    	    if (v != 0)
-    	    	    	e = m * Math.log(m / v);
-    	    	    
-    	    	} else if (e > n / 30)
-    	    	    e = -n * Math.log(1 - e / n);
-    	    	
-    			// We save the current estimation
-    			result.add( e );
-    		}
-    		
-    		currentNum++;
-    	}
-    	
-    	return result.toArray(new Double[0]);
-    }
-    
-    
-    
-    public static void displaySlidingWindows(Path path, HashFunction func, int b, int windowSize, int precision) {
-    	Double[] tab = slidingWindow(path, func, b, windowSize, precision);
-    	double[] doubleTab = new double[tab.length];
-    	for (int i = 0; i < tab.length; i++)
-    		doubleTab[i] = tab[i];
-    	
-    	// Do the plotting
-    	Plot2DPanel plot = new Plot2DPanel();
-    	plot.addLinePlot("test", doubleTab);
-    	JFrame frame = new JFrame("Evolution of the estimate number of different words among the "
-    			+ windowSize +" last words.");
-    	frame.setSize(600, 600);
-    	frame.setContentPane(plot);
-    	frame.setVisible(true);
-    	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
-    
-    
-    
-    /**
      * Asses the number of different k-shingles in a text file using the HyperLogLog algorithm (for
      * k = 1, the returned value is an estimation of the number of distinct words in the file).
      * 
@@ -293,8 +206,6 @@ public class HyperLogLog {
     
     
     public static void main(String[] args) {
-    	
-    	displaySlidingWindows( FileManager.Files.englishWords, new LookUp3() , 8, 1000, 1500);
     	
     	// performanceEstimator( Paths.get(args[0]) );
     }
