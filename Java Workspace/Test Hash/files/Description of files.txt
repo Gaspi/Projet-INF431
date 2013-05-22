@@ -1,1 +1,33 @@
-Bible_english
+---------- Raw files ----------
+
+Bible : 
+
+English_words : 
+
+Shakespeare : Dowloaded from http://perso.ens-lyon.fr/bruno.salvy/INF431/Projet/INF431_-_Projet_Informatique.html
+
+Whole_Mahabharata : Dowloaded from http://www.sacred-texts.com/hin/maha/  + concatenated
+
+
+
+
+
+---------- Processed ----------
+
+Bible : Processed from raw file using "EnglishWordsFilter"
+
+English_Words : Processed from raw file using "EnglishWordsFilter"
+
+Shakespeare : Processed from raw file using "EnglishWordsFilter"
+
+Hamlet : ???
+
+Numbers_1000000 : Generated using  "CreatingFiles.writeNumbers"
+
+Shakespeare_Bible_concat : Concatenation of "Bible" and "Shakespeare"
+
+UUID_200000 : Generated using  "CreatingFiles.writeUUIDs2"
+
+
+
+
