@@ -168,9 +168,10 @@ public class Sampling {
     public static void main(String[] args) {
     	
     	MurmurHash3 f = new MurmurHash3();
+    	Path path = Paths.get( "files/processed/Whole_Mahabharata.txt" );
     	
     	// Testing significant words
-    	for (String s : Sampling.findSignificantWords(FileManager.Files.bible, 5, f, 100)) {
+    	for (String s : Sampling.findSignificantWords(path, 5, f, 100)) {
     		System.out.println(s);
     		//System.out.println(Integer.toBinaryString(f.hashString(s)));
     	}
@@ -201,13 +202,13 @@ public class Sampling {
     	
     	// Testing icebergs
     	
-    	double threshold = 0.05;
+    	double threshold = 0.02;
 		System.out.println("Estimation");
-		for(String str: Sampling.findIcebergs(FileManager.Files.bible, threshold))
+		for(String str: Sampling.findIcebergs(path, threshold))
 			System.out.println(str);
 		System.out.println("-----------------------------------");
 		System.out.println("Real");
-		for(String str: Sampling.benchmarkIcebergs(FileManager.Files.bible, threshold))
+		for(String str: Sampling.benchmarkIcebergs(path, threshold))
 			System.out.println(str);
 		System.out.println("-----------------------------------");
 		

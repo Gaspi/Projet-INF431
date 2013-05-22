@@ -4,12 +4,14 @@ import hash.HashFunction;
 import hash.hashFunctions.LookUp3;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 
 import javax.swing.JFrame;
 
 import org.math.plot.Plot2DPanel;
 
+import FileManager.Files;
 import FileManager.WordReader;
 
 
@@ -155,6 +157,15 @@ public class SlidingWindow {
     	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
-
+	public static void main(String[] args) {
+		int windowSize = 4000, precision = 8000;
+		Path file = Paths.get( "files/processed/Shakespeare_Bible_concat.txt" );
+		displaySlidingWindows( file, new LookUp3() , 7, windowSize, precision);
+		displaySlidingWindows( file, new LookUp3() , 9, windowSize, precision);
+		displaySlidingWindows( file, new LookUp3() , 11, windowSize, precision);
+    	displaySlidingWindows( file, new LookUp3() , 13, windowSize, precision);
+		// A noticeable variation between the bible and shakespeare...
+		
+	}
 
 }
