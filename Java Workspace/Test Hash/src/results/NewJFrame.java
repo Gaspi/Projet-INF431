@@ -497,11 +497,9 @@ public class NewJFrame extends javax.swing.JFrame {
 	    chooser.setMultiSelectionEnabled(true);	    
 	    pathToFile.setText("");   	    
 	    int returnVal = chooser.showOpenDialog(this);
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-	    		selectedFiles = chooser.getSelectedFiles();
-	    		for(File f: selectedFiles)
-	    			pathToFile.append(f.getName() + System.lineSeparator());
-	    }
+	    if(returnVal == JFileChooser.APPROVE_OPTION)
+	    	for( File f: chooser.getSelectedFiles() )
+	    		pathToFile.append(f.getName() + System.lineSeparator());
 	    jButton1.setEnabled(true);
 	}
 	

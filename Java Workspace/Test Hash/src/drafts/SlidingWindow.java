@@ -158,12 +158,12 @@ public class SlidingWindow {
     
 	
 	public static void main(String[] args) {
-		int windowSize = 2000, precision = 2000; 
-		Path file = FileManager.Files.shakespeare;
-		displaySlidingWindows( file, new LookUp3() , 6, windowSize, precision);
-		displaySlidingWindows( file, new LookUp3() , 8, windowSize, precision);
-		displaySlidingWindows( file, new LookUp3() , 10, windowSize, precision);
-    	displaySlidingWindows( file, new LookUp3() , 12, windowSize, precision);
+		int windowSize = 2000, precision = 2000;
+		Path file = FileManager.Files.bible;
+		displaySlidingWindows( file, new LookUp3() , 7, windowSize, precision);
+		displaySlidingWindows( file, new LookUp3() , 9, windowSize, precision);
+		displaySlidingWindows( file, new LookUp3() , 11, windowSize, precision);
+    	displaySlidingWindows( file, new LookUp3() , 13, windowSize, precision);
 		
 		
 	}
