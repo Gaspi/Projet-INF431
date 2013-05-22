@@ -39,8 +39,8 @@ public abstract class Filter {
 
 		Filter f = new EnglishWordsFilter();
 
-		f.filterFile2("files/raw/Shakespeare_complete.txt",
-				"files/processed/Shakespeare_complete_processed.txt");
+		f.filterFile2("files/raw/Whole_Mahabharata.txt",
+				"files/processed/Whole_Mahabharata.txt");
 
 	}
 	
