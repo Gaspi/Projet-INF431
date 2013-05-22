@@ -578,15 +578,7 @@ public class NewJFrame extends javax.swing.JFrame {
 			this.jTextField1.setText(Double.toString((end-start)/1000000000.) + " s");
 	}
 
-	private void performMice() {
-		int k = (int) this.k.getValue();
-		String func = "hash.hashFunctions." + (String) this.hashFunction.getValue();
-		int nbOcc = (int) this.nbOcc.getValue();
-		
-		for(File f: selectedFiles)
-			Sampling.numberOfMiceForFile(f.getAbsolutePath(), nbOcc, HashFunction.getHashFunction(func), k);
-		
-	}
+
 
 	private void performIcebergs() {
 		double frequency = (double) this.frequency.getValue();
