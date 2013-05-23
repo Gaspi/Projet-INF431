@@ -166,6 +166,7 @@ public class Sampling {
 	
 	
     public static void main(String[] args) {
+		// Implement here the command line interface for question 5
     	
     	MurmurHash3 f = new MurmurHash3();
     	Path path = Paths.get( "files/processed/Whole_Mahabharata.txt" );

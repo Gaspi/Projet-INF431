@@ -206,6 +206,7 @@ public class HyperLogLog {
     
     
     public static void main(String[] args) {
+		// Implement here the command line interface for question 2
     	
     	// performanceEstimator( Paths.get(args[0]) );
     }

@@ -36,7 +36,8 @@ public abstract class Filter {
 	
 	
 	public static void main(String[] args) {
-
+		// Implement here the command line interface for filtering files
+		
 		Filter f = new EnglishWordsFilter();
 
 		f.filterFile2("files/raw/Shakespeare.txt",

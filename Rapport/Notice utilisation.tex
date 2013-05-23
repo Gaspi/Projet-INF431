@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{hyperref}
 
 \author{Jonathan Visbecq, Gaspard Férey}
 \title{Projet d'INF 431 \\ - \\ Notice d'utilisation}
@@ -14,6 +15,46 @@
 \begin{document}
 \maketitle
 
+\section{Introduction}
+Vous venez de télécharger notre solution au projet du cours d'INF 431 de seconde année à l'école Polytechnique de Paris. Ce projet est proposé par monsieur Bruno Salvy et disponible à \href{http://perso.ens-lyon.fr/bruno.salvy/INF431/Projet/INF431_-_Projet_Informatique.html}{cette adresse}.
+Notre groupe est composé de Gaspard Férey et Jonathan Visbecq.\\
+L'intégralité de la solution que nous proposons est constitué de
+\begin{itemize}
+\item "Notice d'utilisation.pdf" : La présente notice
+\item "Rapport.pdf" : Le rapport du projet. Vous pourrez y trouver une description plus détaillée des algorithmes employés. 
+\item "executable.jar" : La version exécutable aboutie du projet, utilisable immédiatement.
+\item "code source" : Le dossier dans lequel sont situé les fichier ".java" des classes utilisées.
+\item "workspace" : Le dossier à utiliser comme "workspace" pour ouvrir le projet à l'aide d'Eclipse.
+\item "files.rar" : Un dossier compressé dans lequel sont situés des fichiers volumineux pouvant être utilisés pour tester les programmes.
+\end{itemize}
+
+
+\section{Pour une utilisation rapide}
+- Placez dans un même dossier l'exécutable "executable.jar" et un dossier intitulé "files".\\
+- Placez dans ce sous-dossier "files" les fichiers que vous souhaitez traiter. \\
+- Lancez "executable.jar" et suivez les instructions à l'écran.
+
+
+\section{Utiliser le code source}
+Nos programmes peuvent également être compilés et utilisés directement à l'aide du code source.
+- Compilez l'ensemble des fichiers du projet.\\
+- Exécutez les fichiers correspondants à la question qui vous intéresse.
+\begin{center} \begin{tabular}{ll}
+0. Filtrage 		 & filter/Filter \\
+1. Hachage 			 & hash/HashFunctionTests \\
+2. Comptage approché & drafts/HyperLogLog \\
+3. Similarités entre ensembles de données & drafts/Similarities \\
+4. Fenêtre glissante & drafts/SlidingWindow \\
+5. Échantillonnage 	 & sampling/Sampling \\
+6. Souris 			 & sampling/Mice \\
+7. Icerbergs 		 & sampling/Icebergs
+\end{tabular} \end{center}
+
+\section{Utiliser Eclipse}
+- Ouvrez Eclipse\\
+- Sélectionnez : File -$>$ Switch Worspace -$>$ Other...\\
+- Sélectionnez l'emplacement du dossier "workspace"\\
+- Parcourez l'intégralité du code source et appelez les différentes fonctions à partir de la classe "Main.java"
 
 
 

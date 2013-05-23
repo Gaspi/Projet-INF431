@@ -158,6 +158,8 @@ public class SlidingWindow {
     }
     
 	public static void main(String[] args) {
+		// Implement here the command line interface for question 4
+		
 		int windowSize = 4000, precision = 8000;
 		Path file = Paths.get( "files/processed/Shakespeare_Bible_concat.txt" );
 		displaySlidingWindows( file, new LookUp3() , 7, windowSize, precision);

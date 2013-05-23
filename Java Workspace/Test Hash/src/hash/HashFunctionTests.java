@@ -233,6 +233,8 @@ public class HashFunctionTests {
 	}
 
 	public static void main(String[] args) {
+		// Implement here the command line interface for question 1
+		
 		//uniformDistribTest(new LookUp3(), true);
 		//speedTests(HashFunction.getHashFunction("hash.hashFunctions.LookUp3"));
 		//collisionTests(new HomemadeHash());
