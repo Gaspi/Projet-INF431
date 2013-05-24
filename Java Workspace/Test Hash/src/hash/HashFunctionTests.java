@@ -5,6 +5,7 @@ import static org.math.array.DoubleArray.min;
 import static org.math.array.StatisticSample.histogram;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
@@ -14,6 +15,7 @@ import javax.swing.JFrame;
 import org.apache.commons.math3.stat.inference.ChiSquareTest;
 import org.math.plot.Plot2DPanel;
 
+import FileManager.Files;
 import FileManager.WordReader;
 
 import drafts.Draft;
