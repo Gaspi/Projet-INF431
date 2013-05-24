@@ -163,8 +163,8 @@ public class SlidingWindow {
     }
     
 	public static void main(String[] args) {
-		int windowSize = 4000, precision = 1000;
-		String file = "files/processed/Shakespeare_Bible_concat.txt" ;
+		int windowSize = 4000, precision = 8000;
+		String file = "files/processed/Shakespeare_Bible_concat.txt";
 		displaySlidingWindows( file, new LookUp3() , 7, windowSize, precision);
 		displaySlidingWindows( file, new LookUp3() , 9, windowSize, precision);
 		displaySlidingWindows( file, new LookUp3() , 11, windowSize, precision);

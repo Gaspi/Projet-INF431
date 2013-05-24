@@ -183,6 +183,7 @@ public class Similarities {
     }
 
     public static void main(String[] args) {
+		// Implement here the command line interface for question 3
 
 //	Similarities.testResemblance(4);
 
