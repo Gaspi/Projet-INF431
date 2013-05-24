@@ -44,6 +44,7 @@ import sampling.Sampling;
 
 import drafts.HyperLogLog;
 import drafts.Similarities;
+import drafts.SlidingWindow;
 
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -65,6 +66,10 @@ public class NewJFrame extends javax.swing.JFrame {
 	private JPanel jPanel1;
 	private JButton jButton1;
 	private JCheckBox jCheckBox2;
+	private JSpinner precision;
+	private JLabel jLabelPrecision;
+	private JSpinner windowSize;
+	private JLabel jLabel11;
 	private JButton jButton2;
 	private JTextField jTextField1;
 	private JTextArea jTextArea1;
@@ -193,6 +198,17 @@ public class NewJFrame extends javax.swing.JFrame {
 						jLabel3.setName("jLabel3");
 					}
 					{
+						SpinnerNumberModel precisionModel = new SpinnerNumberModel(1000, 100, 10000, 100);
+						precision = new JSpinner();
+						precision.setModel(precisionModel);
+						precision.setEnabled(false);
+					}
+					{
+						jLabelPrecision = new JLabel();
+						jLabelPrecision.setName("jLabelPrecision");
+						jLabelPrecision.setEnabled(false);
+					}
+					{
 						SpinnerListModel hashFunctionModel = 
 								new SpinnerListModel(
 										new String[] { "LookUp3", "MurmurHash3" , "DJB2" , "LoseLose" , "JavaHash" , "HomemadeHash"});
@@ -237,6 +253,17 @@ public class NewJFrame extends javax.swing.JFrame {
 						jLabel8.setEnabled(false);
 					}
 					{
+						jLabel11 = new JLabel();
+						jLabel11.setName("jLabel11");
+						jLabel11.setEnabled(false);
+					}
+					{
+						SpinnerNumberModel windowSizeModel = new SpinnerNumberModel(1000, 100, 10000, 100);
+						windowSize = new JSpinner();
+						windowSize.setModel(windowSizeModel);
+						windowSize.setEnabled(false);
+					}
+					{
 						SpinnerNumberModel nbWordsModel = new SpinnerNumberModel(5,5,20,1);
 						nbWords = new JSpinner();
 						nbWords.setModel(nbWordsModel);
@@ -273,54 +300,67 @@ public class NewJFrame extends javax.swing.JFrame {
 						.addGroup(jPanel2Layout.createParallelGroup()
 						    .addGroup(jPanel2Layout.createSequentialGroup()
 						        .addGroup(jPanel2Layout.createParallelGroup()
-						            .addComponent(jLabel8, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-						                .addComponent(jRadioButtonVitesse, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
-						                .addGap(13))
-						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-						                .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-						                .addGap(70))
-						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-						                .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
-						                .addGap(70)))
-						        .addGap(44)
-						        .addGroup(jPanel2Layout.createParallelGroup()
-						            .addGroup(jPanel2Layout.createSequentialGroup()
-						                .addGap(0, 0, Short.MAX_VALUE)
-						                .addComponent(hashFunction, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
-						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-						                .addComponent(jRadioButtonCollisions, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-						                .addGap(0, 34, Short.MAX_VALUE))))
-						    .addGroup(jPanel2Layout.createSequentialGroup()
-						        .addGroup(jPanel2Layout.createParallelGroup()
 						            .addGroup(jPanel2Layout.createSequentialGroup()
 						                .addGroup(jPanel2Layout.createParallelGroup()
-						                    .addComponent(jLabel5, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-						                    .addComponent(jLabel6, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-						                .addGap(8)
-						                .addGroup(jPanel2Layout.createParallelGroup()
-						                    .addComponent(b, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-						                    .addComponent(k, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE))
-						                .addGap(42)
+						                    .addGroup(jPanel2Layout.createSequentialGroup()
+						                        .addGroup(jPanel2Layout.createParallelGroup()
+						                            .addComponent(jLabelPrecision, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+						                            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                                .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+						                                .addGap(40))
+						                            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                                .addComponent(jLabel6, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+						                                .addGap(40)))
+						                        .addGroup(jPanel2Layout.createParallelGroup()
+						                            .addComponent(b, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+						                            .addComponent(k, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+						                            .addComponent(precision, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)))
+						                    .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                        .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						                        .addGap(16))
+						                    .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                        .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						                        .addGap(16)))
+						                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
 						                .addGroup(jPanel2Layout.createParallelGroup()
 						                    .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
 						                        .addComponent(jLabel7, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
 						                        .addGap(21))
+						                    .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                        .addComponent(jLabel11, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+						                        .addGap(21))
 						                    .addComponent(jLabel10, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
 						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-						                .addComponent(jRadioButtonLoiUniforme, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
-						                .addGap(7))
-						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
 						                .addComponent(jLabel9, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-						                .addGap(21))
-						            .addComponent(jLabel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE))
-						        .addGap(27)
+						                .addGap(55))
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jRadioButtonLoiUniforme, GroupLayout.PREFERRED_SIZE, 307, GroupLayout.PREFERRED_SIZE)
+						                .addGap(41))
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 314, GroupLayout.PREFERRED_SIZE)
+						                .addGap(34)))
 						        .addGroup(jPanel2Layout.createParallelGroup()
-						            .addComponent(threshold, GroupLayout.Alignment.LEADING, 0, 62, Short.MAX_VALUE)
-						            .addComponent(nbWords, GroupLayout.Alignment.LEADING, 0, 62, Short.MAX_VALUE)
-						            .addComponent(nbOcc, GroupLayout.Alignment.LEADING, 0, 62, Short.MAX_VALUE)
-						            .addComponent(frequency, GroupLayout.Alignment.LEADING, 0, 62, Short.MAX_VALUE))))
-						.addContainerGap());
+						            .addComponent(threshold, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+						            .addComponent(frequency, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+						            .addComponent(windowSize, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)))
+						    .addGroup(jPanel2Layout.createSequentialGroup()
+						        .addGroup(jPanel2Layout.createParallelGroup()
+						            .addComponent(jLabel8, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jRadioButtonVitesse, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+						                .addGap(37)))
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						        .addGroup(jPanel2Layout.createParallelGroup()
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addComponent(jRadioButtonCollisions, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+						                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
+						                .addGroup(jPanel2Layout.createParallelGroup()
+						                    .addComponent(nbWords, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+						                    .addComponent(nbOcc, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)))
+						            .addGroup(GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+						                .addPreferredGap(jRadioButtonCollisions, hashFunction, LayoutStyle.ComponentPlacement.INDENT)
+						                .addComponent(hashFunction, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+						                .addGap(0, 24, Short.MAX_VALUE))))));
 					jPanel2Layout.setVerticalGroup(jPanel2Layout.createSequentialGroup()
 						.addContainerGap()
 						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -337,26 +377,32 @@ public class NewJFrame extends javax.swing.JFrame {
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						    .addComponent(frequency, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jLabel10, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jLabel10, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(k, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jLabel6, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-						.addGap(21)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						    .addComponent(windowSize, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jLabel11, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(precision, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jLabelPrecision, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(0, 46, Short.MAX_VALUE)
 						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						    .addComponent(nbWords, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jLabel8, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						    .addComponent(jLabel8, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
 						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						    .addComponent(nbOcc, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jLabel9, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(0, 57, Short.MAX_VALUE)
+						.addGap(37)
 						.addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 1, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						    .addComponent(jRadioButtonCollisions, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jRadioButtonVitesse, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addComponent(jRadioButtonLoiUniforme, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGap(8));
+						.addContainerGap());
 				}
 				{
 					jCheckBox1 = new JCheckBox();
@@ -403,35 +449,35 @@ public class NewJFrame extends javax.swing.JFrame {
 				jPanel1Layout.setHorizontalGroup(jPanel1Layout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(jPanel1Layout.createParallelGroup()
+					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
+					        .addGap(20))
 					    .addGroup(jPanel1Layout.createSequentialGroup()
 					        .addGroup(jPanel1Layout.createParallelGroup()
 					            .addComponent(jCheckBox1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					                .addGap(76))
+					                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+					                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
 					                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
 					                .addGap(27))
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-					                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
+					                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+					                .addGap(76)))
 					        .addGap(21)
 					        .addGroup(jPanel1Layout.createParallelGroup()
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					                .addComponent(jCheckBox2, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-					                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
-					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
 					                .addComponent(jCheckBox3, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-					                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+					                .addGap(16))
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					                .addGap(93)
+					                .addComponent(jCheckBox2, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+					                .addGap(16))
+					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+					                .addGap(0, 105, Short.MAX_VALUE)
 					                .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))))
-					    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
-					        .addGap(8))
-					    .addComponent(jPanel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 429, GroupLayout.PREFERRED_SIZE))
-					.addGap(24)
-					.addComponent(jScrollPane1, 0, 506, Short.MAX_VALUE)
+					    .addComponent(jPanel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 441, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 502, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap());
 				jPanel1Layout.setVerticalGroup(jPanel1Layout.createSequentialGroup()
 					.addContainerGap()
@@ -449,16 +495,16 @@ public class NewJFrame extends javax.swing.JFrame {
 					            .addComponent(jTextField1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					            .addComponent(jCheckBox3, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 					        .addGap(25)
-					        .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE)
-					        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
+					        .addComponent(jPanel2, 0, 344, Short.MAX_VALUE)
+					        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 					        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-					            .addComponent(jButton1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jButton2, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
-					    .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, 0, 541, Short.MAX_VALUE))
+					            .addComponent(jButton2, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jButton1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)))
+					    .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, 0, 569, Short.MAX_VALUE))
 					.addContainerGap());
 			}
 			pack();
-			this.setSize(993, 616);
+			this.setSize(989, 644);
 			Application.getInstance().getContext().getResourceMap(getClass()).injectComponents(getContentPane());
 		} catch (Exception e) {
 		    //add your error handling code here
@@ -486,6 +532,14 @@ public class NewJFrame extends javax.swing.JFrame {
 			jLabel6.setEnabled(true);
 			jLabel7.setEnabled(true);
 			threshold.setEnabled(true);
+			break;
+		case SLIDINGWINDOW:
+			b.setEnabled(true);
+			jLabel5.setEnabled(true);
+			precision.setEnabled(true);
+			jLabelPrecision.setEnabled(true);
+			windowSize.setEnabled(true);
+			jLabel11.setEnabled(true);
 			break;
 		case FREQUENTWORDS:
 			k.setModel(new SpinnerNumberModel(50, 20, 1000, 10));
@@ -529,17 +583,12 @@ public class NewJFrame extends javax.swing.JFrame {
 	}
 	
 	private void jButton1MouseClicked(ActionEvent evt) {
-		
-
+	
 		  SwingUtilities.invokeLater(new Runnable() {
 			    public void run() {
 					performTask();
 			    }
 			  });
-
-
-		
-
 	}
 	
 
@@ -560,6 +609,9 @@ public class NewJFrame extends javax.swing.JFrame {
 		case SIMILARITIES:
 			performSimilarities();
 			break;
+		case SLIDINGWINDOW:
+			performSlidingWindow();
+			break;
 		case FREQUENTWORDS:
 			performFrequentWords();
 			break;
@@ -578,6 +630,20 @@ public class NewJFrame extends javax.swing.JFrame {
 			this.jTextField1.setText(Double.toString((end-start)/1000000000.) + " s");
 	}
 
+	
+	
+	
+	
+	private void performSlidingWindow(){
+		int b = (int) this.b.getValue();
+		String func = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		int precision = (int) this.precision.getValue();
+		int windowSize = (int) this.windowSize.getValue();
+		
+		for(File f: selectedFiles)
+			SlidingWindow.displaySlidingWindows(f.getAbsolutePath(), HashFunction.getHashFunction(func), b, windowSize, precision);
+	}
+	
 	private void performMice() {
 		int k = ((Integer) this.k.getValue()).intValue();
 		String func = "hash.hashFunctions." + (String) this.hashFunction.getValue();
