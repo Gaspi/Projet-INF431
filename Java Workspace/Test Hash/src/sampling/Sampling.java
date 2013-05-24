@@ -45,11 +45,16 @@ public class Sampling {
     public static void significantWordsForFile(String path, int nbWords, HashFunction func, int k){
     	LinkedList<String> l = findSignificantWords(Paths.get(path), nbWords, func, k);
     	
-    	System.out.println("Frequent words for file:");
-    	System.out.println(path);
-    	System.out.println("with sampling bag of size " + 2*k + " words is");
+    	System.out.println("Finding frequent words for file:");
+    	System.out.println("	" + path + System.lineSeparator());
+    	System.out.println("With parameters :");
+    	System.out.println("	Sampling bag of size = " + 2*k + " words" + System.lineSeparator());
+    	System.out.println("Results :");
     	for(String s: l)
-    		System.out.println(s);
+    		System.out.println("	" + s);
+    	
+    	System.out.println("----------------------------------------------------------------");
+
     }
 	
  
@@ -75,10 +80,13 @@ public class Sampling {
     public static void numberOfMiceForFile(String path, int nbOcc, HashFunction func, int k){
     	double d = findMiceNumber(Paths.get(path), nbOcc, func, k);
     	
-    	System.out.println("Approximate number of " + nbOcc + "-mice for file:");
-    	System.out.println(path);
-    	System.out.println("with sampling bag of size " + 2*k + " words is");
-    	System.out.println(Math.round(d));
+    	System.out.println("Approximating the number of " + nbOcc + "-mice for file:");
+    	System.out.println("	" + path + System.lineSeparator());
+    	System.out.println("With parameters :");
+    	System.out.println("	Sampling bag of size " + 2*k + " wordss");
+    	System.out.println("Result :");
+    	System.out.println("	" + Math.round(d));
+    	System.out.println("----------------------------------------------------------------");
     }
 	
 	
@@ -128,10 +136,12 @@ public class Sampling {
     public static void icebergsForFile(String path, double frequency){
     	LinkedList<String> l = findIcebergs(Paths.get(path), frequency);
     	
-    	System.out.println("Approximate number of " + frequency + "-icebergs for file:");
-    	System.out.println(path);
+    	System.out.println("Approximating the number of " + frequency + "-icebergs for file:");
+    	System.out.println("	" + path);
+    	System.out.println("Results :");
     	for(String s: l)
-    		System.out.println(s);
+    		System.out.println("	" + s);
+    	System.out.println("----------------------------------------------------------------");
     }
 	
 	

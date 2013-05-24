@@ -149,7 +149,12 @@ public class SlidingWindow {
     	
     	// Displaying info
     	System.out.println("Evolution of the estimate number of different words in the file");
-    	System.out.println(path + System.lineSeparator());
+    	System.out.println("	" + path + System.lineSeparator());
+    	System.out.println("With parameters");
+    	System.out.println("	b = " + b);
+    	System.out.println("	Window's size = " + windowSize);
+    	System.out.println("	Precision = " + precision);
+    	System.out.println("----------------------------------------------------------------");
     	
     	// Do the plotting
     	Plot2DPanel plot = new Plot2DPanel();

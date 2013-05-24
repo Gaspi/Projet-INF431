@@ -109,7 +109,7 @@ public class HashFunctionTests {
 	}
 	
 	
-	private static String chiSquareTestOnFile(Path path, HashFunction func) {
+	private static void chiSquareTestOnFile(Path path, HashFunction func) {
 		Vector<Double> values = new Vector<Double>();
 		for (String w : new WordReader(path))
 			values.add((double) func.hashString(w) );
@@ -140,19 +140,18 @@ public class HashFunctionTests {
 
 		// Chi2 test from the Apache commons math package.
 		ChiSquareTest chi = new ChiSquareTest();
-		return new String("Result: "
-				// Returns true if the null hypothesis (that the observed counts
-				// conform
-				// to the frequency
-				// distribution described by the expected counts) can be
-				// rejected with
-				// 100 * (1 - alpha)
-				// percent confidence. We choose alpha = 0.05.
-				+ Boolean.toString(!chi.chiSquareTest(expected, frequencies, 0.05))
-				+ System.lineSeparator() + "p-value is: "
-				// Return the p-value for the test
-				+ chi.chiSquareTest(expected, frequencies));
-
+		
+		System.out.println("Result of a chi-square test with confidence level of 95% :");
+		// Returns true if the null hypothesis (that the observed counts
+		// conform
+		// to the frequency
+		// distribution described by the expected counts) can be
+		// rejected with
+		// 100 * (1 - alpha)
+		// percent confidence. We choose alpha = 0.05.
+		System.out.println("	" + Boolean.toString(!chi.chiSquareTest(expected, frequencies, 0.05)));
+		System.out.println("The p-value is");
+		System.out.println("	"  + chi.chiSquareTest(expected, frequencies));
 	}
 
 	/**
@@ -162,10 +161,15 @@ public class HashFunctionTests {
 	 *            The hash function to be tested
 	 */
 	public static void speedTests(Path[] paths, HashFunction func) {
-		System.out.println("\n----Speed test----");
-		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
-		for (int i = 0; i < paths.length; i++)
-			System.out.println(paths[i].getFileName() + ":\n" + speedTestOnFile(paths[i], func) + " s\n");
+		System.out.println("Speed test for hash function");
+		System.out.println("	" + func.getClass().getSimpleName() + System.lineSeparator());
+		
+		for (int i = 0; i < paths.length; i++){
+			System.out.println("On " + paths[i].getFileName());
+			System.out.println("	" + speedTestOnFile(paths[i], func) + " s");
+		}
+		
+		System.out.println("----------------------------------------------------------------");
 	}
 
 	/**
@@ -175,11 +179,15 @@ public class HashFunctionTests {
 	 *            The hash function to be tested
 	 */
 	public static void collisionTests(Path[] paths, HashFunction func) {
-		System.out.println("\n----Collision test----");
-		System.out.println("Using " + func.getClass().getSimpleName() + " hash function\n");
-		for (int i = 0; i < paths.length; i++)
-			System.out.println(paths[i].getFileName() + ":\n" + collisionTestOnFile(paths[i], func)
-					+ " collisions\n");
+		System.out.println("Collision test for hash function");
+		System.out.println("	" + func.getClass().getSimpleName() + System.lineSeparator());
+
+		for (int i = 0; i < paths.length; i++){
+			System.out.println("On " + paths[i].getFileName());
+			System.out.println("	" + collisionTestOnFile(paths[i], func) + " collisions");
+		}
+		
+		System.out.println("----------------------------------------------------------------");
 	}
 
 	/**
@@ -217,21 +225,21 @@ public class HashFunctionTests {
 	}
 
 	public static void uniformDistribTest(HashFunction func, boolean histogram) {
-		System.out.println("---Test of uniform distribution---");
-		System.out.println("Using " + func.getClass().getSimpleName() + " hash function"
-				+ System.lineSeparator());
+		System.out.println("Test of uniform distribution for hash function");
+		System.out.println("	" + func.getClass().getSimpleName());
+		System.out.println("Only for file");
+		System.out.println("	" + FileManager.Files.englishWords);
 
 		// English words are used for testing the distribution. That is because
 		// we want the hash to work on text. Moreover, if the distribution of
 		// the String used for testing is uniform (as the uuids are), even a
-		// poor hash function performs well.
-		System.out.println("EnglishWords : " + System.lineSeparator()
-												 + chiSquareTestOnFile(FileManager.Files.englishWords, func));
+		// poor hash function performs well.		
+		chiSquareTestOnFile(FileManager.Files.englishWords, func);
 		
 		if (histogram)
 			distributionTestOnFile(FileManager.Files.englishWords, func);
 		
-
+    	System.out.println("----------------------------------------------------------------");
 	}
 
 	public static void main(String[] args) {

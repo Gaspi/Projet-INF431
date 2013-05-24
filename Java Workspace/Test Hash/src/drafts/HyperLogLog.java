@@ -199,9 +199,13 @@ public class HyperLogLog {
     }
     
     public static void hyperLogLogOnFile(Path path, HashFunction func, int b){
-    	System.out.println("Using parameters b = " + b + " and hash function = " + func.getClass().getSimpleName());
-    	System.out.println("Approximate number of distinct words in file" + path + " : ");
-    	System.out.println(Math.round(hyperLogLog(path, func, b, 1)));
+    	System.out.println("Estimating the number of distincts words in file");
+    	System.out.println("	" + path);
+    	System.out.println("With parameters :");
+    	System.out.println("	b = " + b);
+    	System.out.println("Result is :");
+    	System.out.println("	 " + Math.round(hyperLogLog(path, func, b, 1)));
+    	System.out.println("----------------------------------------------------------------");
     }
     
     

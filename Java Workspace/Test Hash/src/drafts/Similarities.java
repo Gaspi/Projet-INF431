@@ -69,21 +69,31 @@ public class Similarities {
      *            The threshold to use.
      */
     public void similarFiles(double threshold) {
+    
+    // Display info
+    System.out.println("Looking for similar files between");
+    for(String s: this.urls)
+    	System.out.println("	" + s);
+	System.out.println("With parameters");
+	System.out.println("	b = " + b);
+	System.out.println("	k = " + k);
+	System.out.println("	threshold = " + threshold + System.lineSeparator());
+
 
 	int n = this.resemblances.length;
 
 	for (int i = 0; i < n; i++)
 	    for (int j = i + 1; j < n; j++) {
-		double d = calculateResemblance(this.resemblances[i], this.resemblances[j], this.b);
-		if (d > threshold) {
-		    System.out.println("Resemblance between file" + System.lineSeparator() + "    "
-			    + this.urls[i]);
-		    System.out.println("and file" + System.lineSeparator() + "    " + this.urls[j]);
-		    System.out.println("is beyond threshold " + threshold + ".");
-		    System.out
-			    .println("-----------------------------------------------------------------");
+			double d = calculateResemblance(this.resemblances[i], this.resemblances[j], this.b);
+			if (d > threshold) {
+			    System.out.println("Resemblance between file" + System.lineSeparator() + "    "
+				    + this.urls[i]);
+			    System.out.println("and file" + System.lineSeparator() + "    " + this.urls[j]);
+			    System.out.println("is beyond threshold " + threshold + "." + System.lineSeparator());
+			}
 		}
-	    }
+	
+	System.out.println("----------------------------------------------------------------");
 
     }
 
@@ -187,8 +197,8 @@ public class Similarities {
 
 //	Similarities.testResemblance(4);
 
-	String[] strs = { "Shakespeare_complete_processed.txt", "Bible_english_processed.txt",
-		"Bible_english_processed_minus_a_few_words.txt" };
+	String[] strs = { "files/processed/Shakespeare.txt", "files/processed/Bible.txt",
+		"files/processed/Bible_minus_a_few_words.txt" };
 
 	Similarities sim = new Similarities(strs, 1);
 	sim.similarFiles(0.1);
