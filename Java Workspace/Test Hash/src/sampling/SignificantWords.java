@@ -67,14 +67,14 @@ public class SignificantWords {
     public static void exec(String path, int nbWords, String func, int k){
     	LinkedList<String> l = findSignificantWords(Paths.get(path), nbWords, HashFunction.getHashFunction(func), k);
     	
+    	System.out.println("----------------------------------------------------------------");
     	System.out.println("Finding frequent words for file:");
     	System.out.println("	" + path + System.lineSeparator());
     	System.out.println("With parameters :");
     	System.out.println("	Sampling bag of size = " + 2*k + " words" + System.lineSeparator());
     	System.out.println("Results :");
     	for(String s: l)
-    		System.out.println("	" + s);
-    	
+    		System.out.println("	" + s);	
     	System.out.println("----------------------------------------------------------------");
 
     }

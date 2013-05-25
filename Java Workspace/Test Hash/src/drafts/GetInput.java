@@ -35,6 +35,11 @@ public final class GetInput {
 	}
 	
 	
+	
+	
+	
+	
+	
 	public void finalize(){
 		sc.close();
 	}
