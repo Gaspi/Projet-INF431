@@ -8,6 +8,9 @@ import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
+import drafts.Draft;
+import drafts.GetInput;
+
 import FileManager.WordReader;
 
 
@@ -198,27 +201,32 @@ public class HyperLogLog {
 		}
     }
     
-    public static void hyperLogLogOnFile(Path path, HashFunction func, int b){
-    	System.out.println("Estimating the number of distincts words in file");
-    	System.out.println("	" + path);
-    	System.out.println("With parameters :");
-    	System.out.println("	b = " + b);
-    	System.out.println("Result is :");
-    	System.out.println("	 " + Math.round(hyperLogLog(path, func, b, 1)));
-    	System.out.println("----------------------------------------------------------------");
-    }
-    
     
     public static void main(String[] args) {
 		// Implement here the command line interface for question 2
     	
-    	// performanceEstimator( Paths.get(args[0]) );
+    	GetInput gi = new GetInput();
+    	
+    	String path = gi.ask("Path to the file");
+    	String hashFunc = "hash." + gi.ask("Hash function");
+    	int b = Integer.parseInt(gi.ask("Parameter b"));
+    	
+    	System.out.println();
+    	
+    	exec(path, hashFunc, b);
     }
     
     
     
     public static void exec(String path, String hashFunc, int b) {
-    	hyperLogLogOnFile(Paths.get(path), HashFunction.getHashFunction(hashFunc), b);
+    	System.out.println("Estimating the number of distincts words in file");
+    	System.out.println("	" + path);
+    	System.out.println("With parameters :");
+    	System.out.println("	b = " + b);
+    	System.out.println("Result is :");
+    	System.out.println("	 " + Math.round(hyperLogLog(path, HashFunction.getHashFunction(hashFunc), b, 1)));
+    	System.out.println("----------------------------------------------------------------");
+    	
     }
     
     

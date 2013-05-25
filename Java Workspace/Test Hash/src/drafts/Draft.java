@@ -38,10 +38,13 @@ public class Draft {
 		}
 	}
 	
+	
 	public static String ask(String msg) {
     	Scanner sc = new Scanner(System.in);
-    	System.out.print("Please enter " + msg + " :\n-> ");
+    	System.out.print(msg + " :\n-> ");
+    	//while(!sc.hasNextLine());
     	String res = sc.nextLine();
+    	System.out.println(res);
     	sc.close();
     	return res;
 	}

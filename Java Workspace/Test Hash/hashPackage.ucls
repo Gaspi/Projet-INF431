@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="hash.MurmurHash3" project="Test Hash" file="/Test Hash/src/hash/MurmurHash3.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="903" y="417"/>    
+    <position height="-1" width="-1" x="924" y="418"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -83,11 +83,11 @@
     </display>  
   </class>  
   <generalization id="10">    
-    <end type="SOURCE" refId="5"/>    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="11">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="12">    
@@ -95,17 +95,17 @@
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="13">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="14">    
-    <bendpoint x="776" y="553"/>    
-    <bendpoint x="784" y="367"/>    
-    <end type="SOURCE" refId="8"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="15">    
-    <end type="SOURCE" refId="4"/>    
+    <bendpoint x="776" y="553"/>    
+    <bendpoint x="784" y="367"/>    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

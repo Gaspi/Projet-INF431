@@ -140,21 +140,11 @@ public class SlidingWindow {
     }
     
     
-    public static void displaySlidingWindows(String pathToFile, HashFunction func, int b, int windowSize, int precision) {
-    	Path path = Paths.get(pathToFile);
+    public static void displaySlidingWindows(Path path, HashFunction func, int b, int windowSize, int precision) {
     	Double[] tab = slidingWindow(path, func, b, windowSize, precision);
     	double[] doubleTab = new double[tab.length];
     	for (int i = 0; i < tab.length; i++)
     		doubleTab[i] = tab[i];
-    	
-    	// Displaying info
-    	System.out.println("Evolution of the estimate number of different words in the file");
-    	System.out.println("	" + path + System.lineSeparator());
-    	System.out.println("With parameters");
-    	System.out.println("	b = " + b);
-    	System.out.println("	Window's size = " + windowSize);
-    	System.out.println("	Precision = " + precision);
-    	System.out.println("----------------------------------------------------------------");
     	
     	// Do the plotting
     	Plot2DPanel plot = new Plot2DPanel();
@@ -169,13 +159,24 @@ public class SlidingWindow {
     
 	public static void main(String[] args) {
 		int windowSize = 4000, precision = 8000;
-		String file = "files/processed/Shakespeare_Bible_concat.txt";
+		Path file = Paths.get("files/processed/Shakespeare_Bible_concat.txt");
 		displaySlidingWindows( file, new LookUp3() , 7, windowSize, precision);
 		displaySlidingWindows( file, new LookUp3() , 9, windowSize, precision);
 		displaySlidingWindows( file, new LookUp3() , 11, windowSize, precision);
     	displaySlidingWindows( file, new LookUp3() , 13, windowSize, precision);
 		// A noticeable variation between the bible and shakespeare...
 		
+	}
+	
+	public static void exec(String path, String func, int b, int windowSize, int precision){
+    	System.out.println("Evolution of the estimate number of different words in the file");
+    	System.out.println("	" + path + System.lineSeparator());
+    	System.out.println("With parameters");
+    	System.out.println("	b = " + b);
+    	System.out.println("	Window's size = " + windowSize);
+    	System.out.println("	Precision = " + precision);
+    	displaySlidingWindows(Paths.get(path), HashFunction.getHashFunction(func), b, windowSize, precision);
+    	System.out.println("----------------------------------------------------------------");
 	}
 
 }

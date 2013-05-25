@@ -58,7 +58,7 @@ public class IcebergTreeSampleImproved extends IcebergSample {
 					it.remove();
 			}
 		}
-
+		
 	}
 
 	@Override

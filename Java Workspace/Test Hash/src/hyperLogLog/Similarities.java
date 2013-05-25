@@ -68,18 +68,7 @@ public class Similarities {
      * @param threshold
      *            The threshold to use.
      */
-    public void similarFiles(double threshold) {
-    
-    // Display info
-    System.out.println("Looking for similar files between");
-    for(String s: this.urls)
-    	System.out.println("	" + s);
-	System.out.println("With parameters");
-	System.out.println("	b = " + b);
-	System.out.println("	k = " + k);
-	System.out.println("	threshold = " + threshold + System.lineSeparator());
-
-
+    public void similarFiles(double threshold) {   
 	int n = this.resemblances.length;
 
 	for (int i = 0; i < n; i++)
@@ -206,6 +195,14 @@ public class Similarities {
     }
     
     public static void exec(String[] urls, int k, int b, String func, double threshold){
+        System.out.println("Looking for similar files between");
+        for(String s: urls)
+        	System.out.println("	" + s);
+    	System.out.println("With parameters");
+    	System.out.println("	b = " + b);
+    	System.out.println("	k = " + k);
+    	System.out.println("	threshold = " + threshold + System.lineSeparator());
+    	
     	Similarities sim = new Similarities(urls, k, b, HashFunction.getHashFunction(func));
     	sim.similarFiles(threshold);
     }

@@ -41,7 +41,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import org.jdesktop.application.Application;
 
-import sampling.Sampling;
+import sampling.Icebergs;
+import sampling.Mice;
+import sampling.SignificantWords;
 
 
 import javax.swing.SwingUtilities;
@@ -471,11 +473,11 @@ public class NewJFrame extends javax.swing.JFrame {
 					                .addComponent(jCheckBox3, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
 					                .addGap(16))
 					            .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-					                .addGap(0, 105, Short.MAX_VALUE)
+					                .addGap(105)
 					                .addComponent(jButton2, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)))))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 508, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap());
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 495, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(25, 25));
 				jPanel1Layout.setVerticalGroup(jPanel1Layout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -633,21 +635,21 @@ public class NewJFrame extends javax.swing.JFrame {
 	
 	private void performSlidingWindow(){
 		int b = (int) this.b.getValue();
-		String func = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		String func = "hash." + (String) this.hashFunction.getValue();
 		int precision = (int) this.precision.getValue();
 		int windowSize = (int) this.windowSize.getValue();
 		
 		for(File f: selectedFiles)
-			SlidingWindow.displaySlidingWindows(f.getAbsolutePath(), HashFunction.getHashFunction(func), b, windowSize, precision);
+			SlidingWindow.exec(f.getAbsolutePath(), func, b, windowSize, precision);
 	}
 	
 	private void performMice() {
 		int k = ((Integer) this.k.getValue()).intValue();
-		String func = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		String func = "hash." + (String) this.hashFunction.getValue();
 		int nbOcc = (int) this.nbOcc.getValue();
 		
 		for(File f: selectedFiles)
-			Sampling.numberOfMiceForFile(f.getAbsolutePath(), nbOcc, HashFunction.getHashFunction(func), k);
+			Mice.exec(f.getAbsolutePath(), nbOcc, func, k);
 		
 	}
 
@@ -655,21 +657,21 @@ public class NewJFrame extends javax.swing.JFrame {
 		double frequency = (double) this.frequency.getValue();
 
 		for(File f: selectedFiles)
-			Sampling.icebergsForFile(f.getAbsolutePath(), frequency);	
+			Icebergs.exec(f.getAbsolutePath(), frequency);	
 	}
 	
 	private void performFrequentWords(){
 		int k = (int) this.k.getValue();
-		String func = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		String func = "hash." + (String) this.hashFunction.getValue();
 		int nbWords = (int) this.nbWords.getValue();
 		
 		for(File f: selectedFiles)
-			Sampling.significantWordsForFile(f.getAbsolutePath(), nbWords, HashFunction.getHashFunction(func), k);
+			SignificantWords.exec(f.getAbsolutePath(), nbWords, func, k);
 	}
 
 	private void performSimilarities() {
 		int b = (int) this.b.getValue();
-		String func = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		String func = "hash." + (String) this.hashFunction.getValue();
 		String[] urls = new String[selectedFiles.length];
 		for(int i=0; i<selectedFiles.length; i++)
 			urls[i] = selectedFiles[i].getAbsolutePath();
@@ -682,14 +684,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
 	private void performHyperLogLog() {
 		int b = (int) this.b.getValue();
-		String hashFunc = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		String hashFunc = "hash." + (String) this.hashFunction.getValue();
 		
 		for(File f: selectedFiles)
 			HyperLogLog.exec(f.getAbsolutePath(), hashFunc, b);
 	}
 	
 	private void performHashFunctionTests(){
-		String hashFunc = "hash.hashFunctions." + (String) this.hashFunction.getValue();
+		String hashFunc = "hash." + (String) this.hashFunction.getValue();
 		Path[] paths = new Path[selectedFiles.length];
 		for(int i=0; i<selectedFiles.length; i++)
 			paths[i] = Paths.get(selectedFiles[i].getAbsolutePath());
