@@ -11,7 +11,6 @@ import java.util.StringTokenizer;
  */
 public class WordReader extends FileReader {
 	
-	public WordReader() { super(); }
 	public WordReader(Path path) { super(path); }
 	public WordReader(String path) { super(path); }
 	

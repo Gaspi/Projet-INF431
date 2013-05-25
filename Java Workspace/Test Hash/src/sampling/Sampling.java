@@ -172,7 +172,6 @@ public class Sampling {
     	
 		return l;
 	}
-
 	
 	
     public static void main(String[] args) {

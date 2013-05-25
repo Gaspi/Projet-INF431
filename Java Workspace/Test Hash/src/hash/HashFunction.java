@@ -20,7 +20,6 @@ public abstract class HashFunction {
 			e.printStackTrace();
 		    return null;
 		}
-		
 	}
 	
 //	public static HashFunction DJB2 = new DJB2();

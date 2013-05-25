@@ -21,4 +21,10 @@ public abstract class IcebergSample {
 	public abstract void addWord(String word);
 	// Retrieve all icebergs
 	public abstract LinkedList<String> getIcebergs();
+	
+	
+	
+	
+	
+	
 }

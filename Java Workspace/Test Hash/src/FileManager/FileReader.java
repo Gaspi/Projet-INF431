@@ -19,15 +19,8 @@ public abstract class FileReader implements Iterable<String>  {
 	
 	private static final Charset charset = Charset.forName("US-ASCII");
 	
-	
 	protected BufferedReader reader = null;
 	
-	// Useless ??
-	public FileReader() { 
-		this("");  //To call a constructor from another constructor --> use the 'this' keyword
-		// Use "" as argument because null is ambiguous (either Path or String)
-	}
-
 	public FileReader(Path path)   { 
 		if (path == null)
 			path = Paths.get( Draft.ask("the file's path") );
@@ -51,7 +44,6 @@ public abstract class FileReader implements Iterable<String>  {
 	
 	@Override
 	public abstract Iterator<String> iterator();
-	
 	
 	public void close() {
 		try {
