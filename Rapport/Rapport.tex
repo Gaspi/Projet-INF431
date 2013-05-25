@@ -6,6 +6,8 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[space]{grffile}
 
 \usepackage{listings}
 \lstset{language=Java}
@@ -21,6 +23,11 @@
 \maketitle
 
 \section{Hachage}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.75, angle=90]{../Java Workspace/Test Hash/hashPackage.png}
+\end{figure}
 
 Nous avons choisit de définir chacune des fonctions de hachage comme des sous-classes de la classe abstraite \class{HashFunction}.
 Ainsi cette classe impose la définition des méthodes suivantes :
