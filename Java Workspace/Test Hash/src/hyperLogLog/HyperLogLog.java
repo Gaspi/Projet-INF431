@@ -20,16 +20,32 @@ public class HyperLogLog {
     /**
      * alpha[b] is meant to be equal to \alpha_{2^b}. Values computed by Wolfram Mathematica
      */
-    static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, 0.673102, 0.697123,
-	    0.709208, 0.715271, 0.718308, 0.719827, 0.720587, 0.720967, 0.721157, 0.721252,
-	    0.721300, 0.721324, 0.721336 };
+    static double[] alpha = { 0, 0.351194, 0.532435, 0.625609,
+    	0.673102, 0.697123, 0.709208, 0.715271,
+    	0.718308, 0.719827, 0.720587, 0.720967,
+    	0.721157, 0.721252, 0.721300, 0.721324, 0.721336 };
 
-    // Just for the record, the suggested values are : 0,
-    // 0 , 0 , 0 , 0.673000,
-    // 0.697000, 0.709000, 0.715270, 0.718273,
-    // 0.719783, 0.720541, 0.720920, 0.721110,
-    // 0.721205, 0.721253, 0.721276, 0.721288
-
+    // Just for the record, the suggested values are : 0, 0, 0, 0,
+    // 0.673000, 0.697000, 0.709000, 0.715270,
+    // 0.718273, 0.719783, 0.720541, 0.720920,
+    // 0.721110, 0.721205, 0.721253, 0.721276, 0.721288
+    
+    /**
+     * @return The position to the first 1 encountered when reading the 2-base decomposition of the
+     *         positive integer x (it equals the number of trailing 0, and therefore this method is
+     *         equivalent to Integer.numberOfTrailingZeros).
+     */
+    public static int rho(long x) {
+    	int res = 1;
+    	// While the Least Significant Bit is 0 but x is not zero
+    	while ((x & 1) == 0 && x != 0) {
+    		res++;
+    		x >>>= 1; // Offset one bit to the left
+    	}
+    	return res;
+    }
+    
+    
     /**
      * Build the fingerPrint of k-shingles in a file. Used in class Similarities.
      * 
@@ -145,21 +161,6 @@ public class HyperLogLog {
     	return hyperLogLog(Paths.get(path), func, b, k);
     }
     
-    
-    /**
-     * @return The position to the first 1 encountered when reading the 2-base decomposition of the
-     *         positive integer x (it equals the number of trailing 0, and therefore this method is
-     *         equivalent to Integer.numberOfTrailingZeros).
-     */
-    public static int rho(long x) {
-    	int res = 1;
-    	// While the Least Significant Bit is 0 but x is not zero
-    	while ((x & 1) == 0 && x != 0) {
-    		res++;
-    		x >>>= 1; // Offset one bit to the left
-    	}
-    	return res;
-    }
 
     /**
      * @param path
@@ -178,10 +179,8 @@ public class HyperLogLog {
     
     
     /**
-     * 
      * @param path
      *            The path to the file we want to estimate the performance of HyperLogLog on.
-     * 
      * @return Display the percentage error for increasing value of m.
      */
     public static void performanceEstimator(Path path) {
@@ -195,8 +194,8 @@ public class HyperLogLog {
     }
     
     
+    // This answers question 2
     public static void main(String[] args) {
-		// Implement here the command line interface for question 2
     	
     	GetInput gi = new GetInput();
     	
@@ -217,7 +216,8 @@ public class HyperLogLog {
     	System.out.println("With parameters :");
     	System.out.println("	b = " + b);
     	System.out.println("Result is :");
-    	System.out.println("	 " + Math.round(hyperLogLog(path, HashFunction.getHashFunction(hashFunc), b, 1)));
+    	System.out.println("	 " + Math.round(
+    			hyperLogLog(path, HashFunction.getHashFunction(hashFunc), b, 1)));
     	System.out.println("----------------------------------------------------------------");
     	
     }

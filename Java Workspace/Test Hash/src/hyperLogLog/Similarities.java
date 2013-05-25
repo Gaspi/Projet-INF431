@@ -6,6 +6,8 @@ import hash.LookUp3;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import drafts.GetInput;
+
 
 /**
  * 
@@ -180,19 +182,18 @@ public class Similarities {
 	System.out.println(Similarities.resemblance(FileManager.Files.shakespeare,
 			FileManager.Files.bible, new LookUp3(), 15, k));
     }
-
+    
+    // This answers question 3
     public static void main(String[] args) {
-		// Implement here the command line interface for question 3
-
-//	Similarities.testResemblance(4);
-
-	String[] strs = { "files/processed/Shakespeare.txt", "files/processed/Bible.txt",
-		"files/processed/Bible_minus_a_few_words.txt" };
-
-	Similarities sim = new Similarities(strs, 1);
-	sim.similarFiles(0.1);
-
+    	GetInput gi = new GetInput();
+    	String[] files = gi.askSet("Paths to files");
+    	String func = "hash." + gi.ask("Hash function");
+    	int k = Integer.parseInt( gi.ask("Parameter k") );
+    	int b = Integer.parseInt( gi.ask("Parameter b") );
+    	double threshold = Double.parseDouble( gi.ask("Threshold (0 - 0.2)") );
+    	exec(files, k, b, func, threshold);
     }
+    
     
     public static void exec(String[] urls, int k, int b, String func, double threshold){
         System.out.println("Looking for similar files between");

@@ -55,7 +55,7 @@ public abstract class FileReader implements Iterable<String>  {
 		}
 	}
 	
-	// This is to make sure the close() function is called. (useless ?)
+	
 	@Override
 	public void finalize() {  close();  }
 	
