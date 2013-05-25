@@ -9,7 +9,6 @@ import java.util.Iterator;
  */
 public class LineReader extends FileReader {
 	
-	public LineReader() { super(); }
 	public LineReader(Path path) { super(path); }
 	public LineReader(String path) { super(path); }
 	

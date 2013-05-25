@@ -23,7 +23,7 @@ public class Draft {
 				maxLength[j] = Math.max(M[i][j].toString().length(), maxLength[j]);
 			maxLength[j] += 3;
 		}
-
+		
 		// Display
 		String line, word;
 		for (int i = 0; i < M.length; i++) {

@@ -50,16 +50,8 @@ public class HyperLogLog {
 	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
 
 	int m = 1 << b; // m = 2^b
-	int[] M = new int[m];
-
-	// First modification: initialize the registers with 0 (instead of -infinity)
-	// in order to get correct estimate for small cardinalities.
-	for (int i = 0; i < m; i++)
-	    M[i] = 0;
-	// Useles ? An array is filled with 0 when created anyway...
-	// other syntax : Arrays.fill(M, 0);
+	int[] M = new int[m]; // M initialized to 0 by default
 	
-
 	// A little more complicated than the first version because we want to
 	// be able to count the number of k-shingles.
 	int comp = 0;
@@ -183,7 +175,8 @@ public class HyperLogLog {
 		tab.put(s, s);
 	return (double) tab.size();
     }
-
+    
+    
     /**
      * 
      * @param path
