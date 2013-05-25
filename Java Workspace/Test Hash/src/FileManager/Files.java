@@ -15,4 +15,5 @@ public class Files {
 	
 	public static final String[] descriptions = { "Shakespeare", "English words", "UUIDs",
 			"Numbers from 1 to 1,000,000", "Old and new testaments", "Hamlet"};
+	
 }

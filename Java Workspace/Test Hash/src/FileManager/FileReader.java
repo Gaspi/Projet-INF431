@@ -13,7 +13,7 @@ import drafts.Draft;
 
 
 /**
- * A class to read a file one-time only.
+ * A class to read a file one time only.
  */
 public abstract class FileReader implements Iterable<String>  {
 	
@@ -22,6 +22,7 @@ public abstract class FileReader implements Iterable<String>  {
 	
 	protected BufferedReader reader = null;
 	
+	// Useless ??
 	public FileReader() { 
 		this("");  //To call a constructor from another constructor --> use the 'this' keyword
 		// Use "" as argument because null is ambiguous (either Path or String)
@@ -39,7 +40,6 @@ public abstract class FileReader implements Iterable<String>  {
 		openFile( Paths.get(path) );
 	}
 	
-	
 	public void openFile(Path path) {
 		try {
 			reader = Files.newBufferedReader(path, charset);
@@ -47,6 +47,10 @@ public abstract class FileReader implements Iterable<String>  {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	@Override
+	public abstract Iterator<String> iterator();
 	
 	
 	public void close() {
@@ -59,14 +63,8 @@ public abstract class FileReader implements Iterable<String>  {
 		}
 	}
 	
-	
 	// This is to make sure the close() function is called. (useless ?)
 	@Override
-	public void finalize() { close(); }
-	
-	
-	// To be implemented in the daughter classes
-	@Override
-	public Iterator<String> iterator() { return null; }
+	public void finalize() {  close();  }
 	
 }
