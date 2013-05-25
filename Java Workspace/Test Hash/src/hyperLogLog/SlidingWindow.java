@@ -1,7 +1,7 @@
-package drafts;
+package hyperLogLog;
 
 import hash.HashFunction;
-import hash.hashFunctions.LookUp3;
+import hash.LookUp3;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

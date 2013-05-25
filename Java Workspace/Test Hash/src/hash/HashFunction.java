@@ -1,7 +1,5 @@
 package hash;
 
-import hash.hashFunctions.*;
-
 public abstract class HashFunction {
 	
 	/**
@@ -25,15 +23,15 @@ public abstract class HashFunction {
 		
 	}
 	
-	public static HashFunction DJB2 = new DJB2();
-	public static HashFunction HomemadeHash = new HomemadeHash();
-	public static HashFunction JavaHash = new JavaHash();
-	public static HashFunction LookUp3 = new LookUp3();
-	public static HashFunction LoseLose = new LoseLose();
-	public static HashFunction MurmurHash3 = new MurmurHash3();
-	
-	public static HashFunction[] hashFunctions = {
-		DJB2, HomemadeHash, JavaHash, LookUp3, LoseLose, MurmurHash3
-	};
+//	public static HashFunction DJB2 = new DJB2();
+//	public static HashFunction HomemadeHash = new HomemadeHash();
+//	public static HashFunction JavaHash = new JavaHash();
+//	public static HashFunction LookUp3 = new LookUp3();
+//	public static HashFunction LoseLose = new LoseLose();
+//	public static HashFunction MurmurHash3 = new MurmurHash3();
+//	
+//	public static HashFunction[] hashFunctions = {
+//		DJB2, HomemadeHash, JavaHash, LookUp3, LoseLose, MurmurHash3
+//	};
 	
 }

@@ -1,7 +1,5 @@
-package hash.hashFunctions;
+package hash;
 
-import hash.HashFunction;
-import drafts.UnsignedArithmetic;
 
 
 /**
@@ -178,8 +176,4 @@ public class LookUp3 extends HashFunction{
 		return tab[2];
 	}
 	
-	
-	public static void main(String[] args) {
-
-	}
 }

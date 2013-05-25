@@ -1,6 +1,5 @@
-package hash.hashFunctions;
+package hash;
 
-import hash.HashFunction;
 
 /**
  * Found here :

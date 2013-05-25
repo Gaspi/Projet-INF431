@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.2" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="sampling.IcebergSample" project="Test Hash" 
+    file="/Test Hash/src/sampling/IcebergSample.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="144" width="259" x="813" y="37"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="sampling.IcebergTreeSample" project="Test Hash" 
+    file="/Test Hash/src/sampling/IcebergTreeSample.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="144" width="299" x="813" y="354"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="sampling.IcebergTreeSampleImproved" project="Test Hash" 
+    file="/Test Hash/src/sampling/IcebergTreeSampleImproved.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="249" width="344" x="429" y="354"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="sampling.Occurrence" project="Test Hash" 
+    file="/Test Hash/src/sampling/Occurrence.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="143" width="192" x="581" y="37"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="sampling.Sampling" project="Test Hash" 
+    file="/Test Hash/src/sampling/Sampling.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="277" width="500" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="sampling.SignificantWordsArraySample" project="Test Hash" 
+    file="/Test Hash/src/sampling/SignificantWordsArraySample.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="379" x="1578" y="354"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="sampling.SignificantWordsSample" project="Test Hash" 
+    file="/Test Hash/src/sampling/SignificantWordsSample.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="229" width="327" x="1365" y="37"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="sampling.SignificantWordsTreeSample" project="Test Hash" 
+    file="/Test Hash/src/sampling/SignificantWordsTreeSample.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="386" x="1152" y="354"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="10">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

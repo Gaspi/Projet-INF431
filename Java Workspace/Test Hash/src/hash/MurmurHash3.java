@@ -1,6 +1,5 @@
-package hash.hashFunctions;
+package hash;
 
-import hash.HashFunction;
 
 /**
  * Found here :
@@ -71,9 +70,5 @@ public class MurmurHash3 extends HashFunction {
 	    return h1;
 	}
 
-	public static void main(String[] args) {
-		MurmurHash3 m = new MurmurHash3();
-		System.out.println(m.getClass().getSimpleName());
-	}
 
 }

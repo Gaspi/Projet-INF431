@@ -4,6 +4,7 @@ import static org.math.array.DoubleArray.max;
 import static org.math.array.DoubleArray.min;
 import static org.math.array.StatisticSample.histogram;
 
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
@@ -247,15 +248,16 @@ public class HashFunctionTests {
 		
 		//uniformDistribTest(new LookUp3(), true);
 		//speedTests(HashFunction.getHashFunction("hash.hashFunctions.LookUp3"));
-		//collisionTests(new HomemadeHash());
+		//speedCollisionTests( new LookUp3());
 		//System.out.println(FileManager.Files.shakespeare.toString());
 
-		/*
-		hashFunction[] tab = new hashFunction[4];
-		tab[0] = new LoseLose();
-		tab[1] = new DJB2();
-		tab[2] = new MurmurHash3();
-		tab[3] = new LookUp3();
+		//*
+		HashFunction[] tab = new HashFunction[3];
+		//tab[0] = new LoseLose();
+		//tab[1] = new DJB2();
+		tab[0] = new LookUp3();
+		tab[1] = new MurmurHash3();
+		tab[2] = new JavaHash();
 		speedCollisionTests(tab);
 		//*/
 	}

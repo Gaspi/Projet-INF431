@@ -1,7 +1,8 @@
 package results;
 import hash.HashFunction;
-import hash.hashFunctions.*;
-import hash.HashFunctionTests;
+import hyperLogLog.HyperLogLog;
+import hyperLogLog.Similarities;
+import hyperLogLog.SlidingWindow;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -42,9 +43,6 @@ import org.jdesktop.application.Application;
 
 import sampling.Sampling;
 
-import drafts.HyperLogLog;
-import drafts.Similarities;
-import drafts.SlidingWindow;
 
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;

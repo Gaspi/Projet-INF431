@@ -1,7 +1,5 @@
-package hash.hashFunctions;
+package hash;
 
-import hash.HashFunction;
-import drafts.UnsignedArithmetic;
 
 /**
  * A trivial and inefficient hash function.

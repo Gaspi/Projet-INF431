@@ -2,7 +2,7 @@ package sampling;
 
 import hash.HashFunction;
 import hash.HashFunctionTests;
-import hash.hashFunctions.MurmurHash3;
+import hash.MurmurHash3;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
