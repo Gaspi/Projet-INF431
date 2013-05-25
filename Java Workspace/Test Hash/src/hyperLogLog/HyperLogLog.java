@@ -210,7 +210,7 @@ public class HyperLogLog {
     	
     	if(args.length != 3)
     		throw new IllegalArgumentException("Wrong number of arguments");
-    	
+    	Path p = null;
     	exec(args[0], new String("hash." +args[1]), Integer.parseInt(args[2]));
     }
     
