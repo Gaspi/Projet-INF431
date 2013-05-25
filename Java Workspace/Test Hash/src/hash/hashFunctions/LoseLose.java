@@ -28,14 +28,7 @@ public class LoseLose extends HashFunction{
 		for(byte c: array)
 		    hash = UnsignedArithmetic.unsignedAdd(hash, c);
 		
-
 		return hash;
-	    
 	}
 	
-	public static void main(String[] args) {
-		
-
-	}
-
 }

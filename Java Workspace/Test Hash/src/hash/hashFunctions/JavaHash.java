@@ -18,11 +18,4 @@ public class JavaHash extends HashFunction{
 		return this.hashString(s);
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args){
-
-	}
-
 }

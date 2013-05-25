@@ -15,7 +15,6 @@ public abstract class HashFunction {
 	public abstract int hashByteArray(byte[] array);
 	
 	
-	
 	public static HashFunction getHashFunction(String name){
 		try {
 			return (HashFunction) Class.forName(name).newInstance();

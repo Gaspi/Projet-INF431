@@ -27,10 +27,5 @@ public class DJB2 extends HashFunction {
 		
 		return hash;
 	}
-
-
-	public static void main(String[] args) {
-
-	}
-
+	
 }

@@ -30,10 +30,5 @@ public class HomemadeHash extends HashFunction{
 
 		return hash;
 	}
-
-
-	public static void main(String[] args){
-
-	}
-
+	
 }
