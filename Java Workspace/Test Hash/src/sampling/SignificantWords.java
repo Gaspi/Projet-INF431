@@ -3,6 +3,8 @@ package sampling;
 import hash.HashFunction;
 import hash.MurmurHash3;
 
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
@@ -41,17 +43,25 @@ public class SignificantWords {
     }
     
     
-	public static void main(String[] args) {
-    	MurmurHash3 f = new MurmurHash3();
-    	Path path = Paths.get( "files/processed/Whole_Mahabharata.txt" );
-    	
-    	// Testing significant words
-    	for (String s : findSignificantWords(path, 5, f, 100)) {
-    		System.out.println(s);
-    		//System.out.println(Integer.toBinaryString(f.hashString(s)));
-    	}
-    	
+	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
 
+    	if(args.length != 4)
+    		throw new IllegalArgumentException("Wrong number of arguments");
+    	
+    	if(HashFunction.isHashFunction(args[0]))
+    		throw new IllegalArgumentException("Not a valid hash function: " + args[0]);
+    	
+    	if(Integer.parseInt(args[1]) < 0)
+    		throw new IllegalArgumentException("Number of desired words should be nonnegative");
+    	
+    	if(Integer.parseInt(args[2]) < 0)
+    		throw new IllegalArgumentException("Half bag size should be nonnegative");
+    	
+    	if(!Files.exists(Paths.get(args[3])))
+        	throw new NoSuchFileException(args[3]);
+
+		
+    	exec(args[3], Integer.parseInt(args[1]), args[0], Integer.parseInt(args[2]));
 	}
 	
     public static void exec(String path, int nbWords, String func, int k){

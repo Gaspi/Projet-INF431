@@ -2,6 +2,8 @@ package sampling;
 
 import hash.HashFunction;
 
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
@@ -59,7 +61,7 @@ public class Mice {
     }
     
     
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
     	// Testing number of mice
 	   	
 //    	Path path = hashFunctionTests2.shakespeare;
@@ -75,12 +77,31 @@ public class Mice {
 //    	    	
 //    	
 //    	System.out.println(a + " - " + b + " diff = " + Math.abs(a-b)/a*100.);
+		
+    	if(args.length != 4)
+    		throw new IllegalArgumentException("Wrong number of arguments");
+    	
+    	if(HashFunction.isHashFunction(args[0]))
+    		throw new IllegalArgumentException("Not a valid hash function: " + args[0]);
+    	
+    	if(Integer.parseInt(args[1]) < 0)
+    		throw new IllegalArgumentException("Number of occurrences should be nonnegative");
+    	
+    	if(Integer.parseInt(args[2]) < 0)
+    		throw new IllegalArgumentException("Half bag size should be nonnegative");
+    	
+    	if(!Files.exists(Paths.get(args[3])))
+        	throw new NoSuchFileException(args[3]);
+
+		
+    	exec(args[3], Integer.parseInt(args[1]), args[0], Integer.parseInt(args[2]));
 
 	}
 	
     public static void exec(String path, int nbOcc, String func, int k){
     	double d = findMiceNumber(Paths.get(path), nbOcc, HashFunction.getHashFunction(func), k);
     	
+    	System.out.println("----------------------------------------------------------------");
     	System.out.println("Approximating the number of " + nbOcc + "-mice for file:");
     	System.out.println("	" + path + System.lineSeparator());
     	System.out.println("With parameters :");

@@ -3,6 +3,8 @@ package hyperLogLog;
 import hash.HashFunction;
 import hash.LookUp3;
 
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -184,19 +186,44 @@ public class Similarities {
     }
     
     // This answers question 3
-    public static void main(String[] args) {
-    	GetInput gi = new GetInput();
-    	String[] files = gi.askSet("Paths to files");
-    	String func = "hash." + gi.ask("Hash function");
-    	int k = Integer.parseInt( gi.ask("Parameter k") );
-    	int b = Integer.parseInt( gi.ask("Parameter b") );
-    	double threshold = Double.parseDouble( gi.ask("Threshold (0 - 0.2)") );
-    	exec(files, k, b, func, threshold);
+    public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
+//    	GetInput gi = new GetInput();
+//    	String[] files = gi.askSet("Paths to files");
+//    	String func = "hash." + gi.ask("Hash function");
+//    	int k = Integer.parseInt( gi.ask("Parameter k") );
+//    	int b = Integer.parseInt( gi.ask("Parameter b") );
+//    	double threshold = Double.parseDouble( gi.ask("Threshold (0 - 0.2)") );
+    	
+    	if(args.length < 5)
+    		throw new IllegalArgumentException("Wrong number of arguments");
+    	
+    	if(HashFunction.isHashFunction(args[0]))
+    		throw new IllegalArgumentException("Not a valid hash function: " + args[0]);
+    	
+    	if(Integer.parseInt(args[1]) < 4 ||Integer.parseInt(args[1])  > 15)
+    		throw new IllegalArgumentException("b should be in range 4-15");
+    	
+    	if(Integer.parseInt(args[2]) < 1 ||Integer.parseInt(args[2])  > 50)
+    		throw new IllegalArgumentException("k should be in range 1-50");
+    	
+    	if(Double.parseDouble(args[3]) < 0 || Double.parseDouble(args[3])  > 1)
+    		throw new IllegalArgumentException("Threshols should be in range0-1");
+    	
+    	for(int j=4; j<args.length; j++)
+	    	if(!Files.exists(Paths.get(args[j])))
+	        	throw new NoSuchFileException(args[j]);
+    	
+    	String[] files = new String[args.length - 4];
+    	for(int j=4; j<args.length; j++)
+    		files[j-4]=args[j];
+    	
+    	exec(files, Integer.parseInt(args[2]), Integer.parseInt(args[1]), args[0], Double.parseDouble(args[3]));
     }
     
     
     public static void exec(String[] urls, int k, int b, String func, double threshold){
-        System.out.println("Looking for similar files between");
+    	System.out.println("----------------------------------------------------------------");
+        System.out.println(System.lineSeparator() + "Looking for similar files between");
         for(String s: urls)
         	System.out.println("	" + s);
     	System.out.println("With parameters");

@@ -2,6 +2,8 @@ package hash;
 
 public abstract class HashFunction {
 	
+	public final static String[] names = {"LookUp3", "MurmurHash3", "JavaHash", "LoseLose", "HomemadeHash", "DJB2"}; 
+	
 	/**
 	 * @return The hash code corresponding to the string parameter.
 	 */
@@ -12,10 +14,20 @@ public abstract class HashFunction {
 	 */
 	public abstract int hashByteArray(byte[] array);
 	
+	public final static boolean isHashFunction(String name){
+		boolean b = false;
+		
+		for(String s: names)
+			if(name == s)
+				b = true;
+		
+		return b;
+	}
 	
-	public static HashFunction getHashFunction(String name){
+	
+	public final static HashFunction getHashFunction(String name){
 		try {
-			return (HashFunction) Class.forName(name).newInstance();
+			return (HashFunction) Class.forName("hash." + name).newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		    return null;

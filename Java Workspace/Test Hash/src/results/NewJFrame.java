@@ -635,7 +635,7 @@ public class NewJFrame extends javax.swing.JFrame {
 	
 	private void performSlidingWindow(){
 		int b = (int) this.b.getValue();
-		String func = "hash." + (String) this.hashFunction.getValue();
+		String func = (String) this.hashFunction.getValue();
 		int precision = (int) this.precision.getValue();
 		int windowSize = (int) this.windowSize.getValue();
 		
@@ -645,7 +645,7 @@ public class NewJFrame extends javax.swing.JFrame {
 	
 	private void performMice() {
 		int k = ((Integer) this.k.getValue()).intValue();
-		String func = "hash." + (String) this.hashFunction.getValue();
+		String func = (String) this.hashFunction.getValue();
 		int nbOcc = (int) this.nbOcc.getValue();
 		
 		for(File f: selectedFiles)
@@ -662,7 +662,7 @@ public class NewJFrame extends javax.swing.JFrame {
 	
 	private void performFrequentWords(){
 		int k = (int) this.k.getValue();
-		String func = "hash." + (String) this.hashFunction.getValue();
+		String func = (String) this.hashFunction.getValue();
 		int nbWords = (int) this.nbWords.getValue();
 		
 		for(File f: selectedFiles)
@@ -671,7 +671,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
 	private void performSimilarities() {
 		int b = (int) this.b.getValue();
-		String func = "hash." + (String) this.hashFunction.getValue();
+		String func = (String) this.hashFunction.getValue();
 		String[] urls = new String[selectedFiles.length];
 		for(int i=0; i<selectedFiles.length; i++)
 			urls[i] = selectedFiles[i].getAbsolutePath();
@@ -684,14 +684,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
 	private void performHyperLogLog() {
 		int b = (int) this.b.getValue();
-		String hashFunc = "hash." + (String) this.hashFunction.getValue();
+		String hashFunc = (String) this.hashFunction.getValue();
 		
 		for(File f: selectedFiles)
 			HyperLogLog.exec(f.getAbsolutePath(), hashFunc, b);
 	}
 	
 	private void performHashFunctionTests(){
-		String hashFunc = "hash." + (String) this.hashFunction.getValue();
+		String hashFunc = (String) this.hashFunction.getValue();
 		Path[] paths = new Path[selectedFiles.length];
 		for(int i=0; i<selectedFiles.length; i++)
 			paths[i] = Paths.get(selectedFiles[i].getAbsolutePath());

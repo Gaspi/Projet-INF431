@@ -1,5 +1,9 @@
 package sampling;
 
+import hash.HashFunction;
+
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
@@ -54,25 +58,26 @@ public class Icebergs {
 	
 
 
-	public static void main(String[] args) {
-    	// Testing icebergs
+	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
+		
+    	if(args.length != 2)
+    		throw new IllegalArgumentException("Wrong number of arguments");
     	
-//    	double threshold = 0.02;
-//		System.out.println("Estimation");
-//		for(String str: Sampling.findIcebergs(path, threshold))
-//			System.out.println(str);
-//		System.out.println("-----------------------------------");
-//		System.out.println("Real");
-//		for(String str: Sampling.benchmarkIcebergs(path, threshold))
-//			System.out.println(str);
-//		System.out.println("-----------------------------------");
+    	if(Double.parseDouble(args[0]) < 0 || Double.parseDouble(args[0])  > 1)
+    		throw new IllegalArgumentException("Frequency should be in range 0-1");
+    	
+    	if(!Files.exists(Paths.get(args[1])))
+        	throw new NoSuchFileException(args[1]);
+
+		
+    	exec(args[1], Double.parseDouble(args[0]));
 
 	}
 	
     public static void exec(String path, double frequency){
     	LinkedList<String> l = findIcebergs(Paths.get(path), frequency);
     	
-    	System.out.println("Approximating the number of " + frequency + "-icebergs for file:");
+    	System.out.println(System.lineSeparator() + "Approximating the number of " + frequency + "-icebergs for file:");
     	System.out.println("	" + path);
     	System.out.println("Results :");
     	for(String s: l)
