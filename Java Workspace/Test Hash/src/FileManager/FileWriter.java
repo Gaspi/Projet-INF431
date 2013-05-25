@@ -40,13 +40,18 @@ public class FileWriter {
 		}
 	}
 	
+	/**
+	 * Write the line into the current file.
+	 * @param line Caution : the symbol '\n' is added to the line.
+	 */
 	public void write(String line) {
 		try {
-			writer.write(line);
+			writer.write(line + "\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * Function called before the destruction of the object (to make sure the file is closed in the end).

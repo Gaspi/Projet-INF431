@@ -1,7 +1,7 @@
 \documentclass[12pt,a4paper,titlepage]{article}
 \usepackage[utf8]{inputenc}
 
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[left=1.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -22,7 +22,42 @@
 \begin{document}
 \maketitle
 
-\section{Hachage}
+\section*{Introduction}
+
+\section*{Classes annexes}
+
+\subsection*{La lecture des fichiers}
+
+Le traitement du sujet suggère la manipulation fréquente de gros fichiers textes.\\
+Les classes du package \class{FileManager} permettent de faciliter l'utilisation des fichiers. Par exemple, elles permettent de les désigner par leur chemin \class{Path} ou leur adresse \class{String} et gèrent les éventuelles exceptions lors du traitement en interne. En particulier, on y trouve :
+\begin{itemize}
+\item La classe abstraite \class{FileReader} qui permet d'ouvrir en lecture un fichier.\\
+	Cette classe implémente l'interface \class{Iterable<String>} et permet donc de parcourir le fichier à l'aide d'une simple boucle \class{for}.
+	Elle possède deux classes filles :
+	\begin{itemize}
+	\item La classe \class{WordReader} qui permet de lire un fichier mot à mot.
+	\item La classe \class{LineReader} qui permet de lire un fichier ligne à ligne.
+	\end{itemize}
+\item La classe \class{FileWriter} qui permet l'écriture dans un fichier.
+\item La classe \class{Files} qui est simplement un catalogue des fichiers souvent utilisés.
+\item La classe \class{CreatingFiles} qui contient des fonctions qui permettent des générer des fichiers volumineux de test. En particulier, ils génèrent :
+	\begin{itemize}
+	\item Un fichier des nombres de 0 à n.
+	\item Un fichier de n identifiants UUID générés pas Java.
+	\end{itemize}
+\end{itemize}
+
+\subsection*{L'arithmétique en Java}
+La classe \class{UnsignedArithmetic} du package \class{drafts} fournit des fonctions qui permettent la correcte implantation des opérateurs somme et minimum de deux entiers. En effet, Java utilise une implantation interne du type \class{int} qui tend à préserver le bit de signe (bit de poids le plus fort) lors de certaines opérations.
+
+\subsection*{Communiquer}
+La classe \class{Draft} du package \class{drafts} fournit, elle, des fonctions utiles à l'interface avec l'utilisateur. En particulier elle contient des méthodes d'affichage et d'utilisation de la console.
+
+
+
+
+\newpage
+\section{Le hachage}
 
 \begin{figure}
 	\centering
@@ -84,18 +119,65 @@ private static void distributionTestOnFile(Path path, HashFunction func)
 private static void chiSquareTestOnFile(Path path, HashFunction func)
 \end{lstlisting}
 
-
-
-
-
-
-
 \end{itemize}
 
 
 
+\newpage
+\section{L'algorithme HyperLogLog}
+La classe \class{HyperLogLog} contient les fonctions traitant la partie 2 du projet.\\
+Les valeurs de $\alpha$ sont tabulées dans 
+\begin{lstlisting}
+static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, ... };
+\end{lstlisting}
+Remarque : \class{alpha[b]} correspond à $\alpha_m$ avec $m=2^b$.\\
+
+La fonction $\rho$ est déjà implantée en Java dans le package \class{Integer} ou elle porte le nom de \class{numberOfTrailingZeros}.
+Nous fournissons également notre propre implantation :
+\begin{lstlisting}
+public static int rho(long x)
+\end{lstlisting}
 
 
+
+\newpage
+\section{Similarités entre ensembles de données}
+
+
+
+
+
+\newpage
+\section{Fenêtre glissante}
+
+
+
+
+
+\newpage
+\section{Échantillonnage}
+
+
+
+
+
+\newpage
+\section{Souris}
+
+
+
+
+
+
+\newpage
+\section{Icebergs}
+
+
+
+
+
+\newpage
+\section*{Conclusion}
 
 
 

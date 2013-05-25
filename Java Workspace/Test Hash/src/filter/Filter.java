@@ -28,9 +28,9 @@ public abstract class Filter {
 
 		FileWriter fw = new FileWriter(fileForWritting);
 		FileReader lr = new LineReader(fileForReading);
-
+		
 		for (String line : lr)
-			fw.write(filter(line) + "\n");
+			fw.write(filter(line));
 	}
 	
 	

@@ -30,7 +30,8 @@ public class WordReader extends FileReader {
 		
 		
 		/**
-		 * Make sure the FileReader is closed as soon as there is no more word to read ( st.hasMoreTokens() is false ).
+		 * Make sure the FileReader is closed as soon as there is no more word
+		 * to read (i.e.  st.hasMoreTokens() is false ).
 		 */
 		private void update() {
 			try {
@@ -47,9 +48,6 @@ public class WordReader extends FileReader {
 				e.printStackTrace();
 			}
 		}
-		
-		
-
 		
 		
 		@Override
