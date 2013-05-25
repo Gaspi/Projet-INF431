@@ -14,16 +14,24 @@ public final class GetInput {
 	public String[] askSet(String msg) {
 		LinkedList<String> res = new LinkedList<String>();
 		boolean carryOn = true;
-		System.out.println(msg + " (END to finish) :");
+		System.out.println(msg + " (empty line to finish) :");
 		while (carryOn) {
 			System.out.print("\n-> ");
 			String aux = sc.nextLine();
-			if (aux.startsWith("END"))
+			if (aux.equals(""))
 				carryOn = false;
 			else
 				res.add( aux );
 		}
-		return (String[]) res.toArray();
+		
+		String[] strs = new String[res.size()];
+		for(int i=0; i<res.size(); i++)
+			strs[i] = res.remove(0);
+		
+		for(int i=0; i<res.size(); i++)
+			System.out.println(strs[i]);
+		
+		return strs;
 	}
 	
 	

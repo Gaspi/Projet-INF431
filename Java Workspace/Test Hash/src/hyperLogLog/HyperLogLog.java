@@ -197,20 +197,27 @@ public class HyperLogLog {
     // This answers question 2
     public static void main(String[] args) {
     	
-    	GetInput gi = new GetInput();
+//    	GetInput gi = new GetInput();
+//    	
+//    	String path = gi.ask("Path to the file");
+//    	String hashFunc = "hash." + gi.ask("Hash function");
+//    	int b = Integer.parseInt(gi.ask("Parameter b"));
+//    	
+//    	System.out.println();
     	
-    	String path = gi.ask("Path to the file");
-    	String hashFunc = "hash." + gi.ask("Hash function");
-    	int b = Integer.parseInt(gi.ask("Parameter b"));
+    	for(String s: args)
+    		System.out.println(s);
     	
-    	System.out.println();
+    	if(args.length != 3)
+    		throw new IllegalArgumentException("Wrong number of arguments");
     	
-    	exec(path, hashFunc, b);
+    	exec(args[0], new String("hash." +args[1]), Integer.parseInt(args[2]));
     }
     
     
     
     public static void exec(String path, String hashFunc, int b) {
+    	System.out.println("----------------------------------------------------------------");
     	System.out.println("Estimating the number of distincts words in file");
     	System.out.println("	" + path);
     	System.out.println("With parameters :");
