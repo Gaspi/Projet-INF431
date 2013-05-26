@@ -3,7 +3,6 @@ package hyperLogLog;
 import hash.HashFunction;
 import hash.LookUp3;
 
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -210,17 +209,14 @@ public class HyperLogLog {
     	if(args.length != 3)
     		throw new IllegalArgumentException("Wrong number of arguments");
     	
-    	if(HashFunction.isHashFunction(args[0]))
-    		throw new IllegalArgumentException("Not a valid hash function: " + args[0]);
-    	
     	if(Integer.parseInt(args[1]) < 4 ||Integer.parseInt(args[1])  > 15)
     		throw new IllegalArgumentException("b should be in range 4-15 ");
-    		
-    	if(!Files.exists(Paths.get(args[2])))
-        	throw new NoSuchFileException(args[2]);
+    	
+    	GetInput.checkHash( args[0] );
+    	GetInput.checkPath( args[2] );
     	
     	exec(args[2], args[0], Integer.parseInt(args[1]));
-
+    	
     }
     
     

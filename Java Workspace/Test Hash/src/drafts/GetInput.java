@@ -1,17 +1,23 @@
 package drafts;
 
+import hash.HashFunction;
+
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public final class GetInput {
-	private final Scanner sc = new Scanner(System.in);
 	
-	public String ask(String msg){
+	private static final Scanner sc = new Scanner(System.in);
+	
+	public static String ask(String msg) {
 		System.out.print(msg + " :\n-> ");
 		return sc.nextLine();
 	}
 	
-	public String[] askSet(String msg) {
+	public static String[] askSet(String msg) {
 		LinkedList<String> res = new LinkedList<String>();
 		boolean carryOn = true;
 		System.out.println(msg + " (empty line to finish) :");
@@ -35,12 +41,16 @@ public final class GetInput {
 	}
 	
 	
-	
-	
-	
-	
-	
-	public void finalize(){
-		sc.close();
+	public static void checkPath(String path) throws NoSuchFileException {
+    	if( !Files.exists( Paths.get(path) )  )
+        	throw new NoSuchFileException(path);
 	}
+	
+	
+	public static void checkHash(String hash) {
+		if( ! HashFunction.isHashFunction(hash) )
+			throw new IllegalArgumentException( "Not a valid hash function: " + hash );
+	}
+	
+	
 }
