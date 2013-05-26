@@ -1,9 +1,7 @@
 package hyperLogLog;
 
 import hash.HashFunction;
-import hash.LookUp3;
 
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,6 +10,9 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 
 import org.math.plot.Plot2DPanel;
+
+import drafts.Draft;
+import drafts.GetInput;
 
 import FileManager.WordReader;
 
@@ -158,6 +159,7 @@ public class SlidingWindow {
     	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
+    // This answers question 4
 	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
 		
 		/*
@@ -165,24 +167,34 @@ public class SlidingWindow {
 		 *		/Projet-INF431/Java Workspace/Test Hash$ 
 		 * is
 		 * java -cp bin:./jmatharray.jar:./jmathplot.jar hyperLogLog.SlidingWindow LookUp3 11 1000 1000 ./files/processed/Shakespeare_Bible_concat.txt 
+		 * to explain in the notice
 		*/
 		
-    	if(args.length != 5)
-    		throw new IllegalArgumentException("Wrong number of arguments");
+    	if (args.length == 5) {
+    		
+        	Draft.checkHash( args[0] );
+        	Draft.checkRange(args[1], 4, 15);
+        	Draft.checkRange(args[2], 1, 1000000);
+        	Draft.checkRange(args[3], 1, 1000000);
+        	Draft.checkPath( args[4] );
+        	
+        	exec(args[4], args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+        	
+    	} else if (args.length == 0) {
+    		
+        	String path = GetInput.askPath("Path to the file");
+        	String hash = GetInput.askHash("Hash function");
+        	int b = 		 GetInput.askParameterInRange("Parameter b", 4, 15);
+        	int windowSize = GetInput.askParameterInRange("Window's size", 1, 1000000);
+        	int precision =  GetInput.askParameterInRange("Precision", 1, 1000000);
+        	exec(path, hash, b, windowSize, precision);
+        	
+    	} else
+    		throw new IllegalArgumentException("Wrong number of arguments (5 expected)");
     	
-    	if(HashFunction.isHashFunction(args[0]))
-    		throw new IllegalArgumentException("Not a valid hash function: " + args[0]);
-    	
-    	if(Integer.parseInt(args[1]) < 4 ||Integer.parseInt(args[1])  > 15)
-    		throw new IllegalArgumentException("b should be in range 4-15");
-    	
-
-    	if(!Files.exists(Paths.get(args[4])))
-        	throw new NoSuchFileException(args[4]);
-
-		
-    	exec(args[4], args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
 	}
+	
+	
 	
 	public static void exec(String path, String func, int b, int windowSize, int precision){
     	System.out.println("Evolution of the estimate number of different words in the file");
