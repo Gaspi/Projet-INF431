@@ -1,15 +1,17 @@
 package sampling;
 
-import hash.HashFunction;
-import hash.MurmurHash3;
-
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 
+import hash.HashFunction;
+
+import drafts.Draft;
+import drafts.GetInput;
+
 import FileManager.WordReader;
+
 
 public class SignificantWords {
 
@@ -43,25 +45,29 @@ public class SignificantWords {
     }
     
     
+    // This answers question 5
 	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
-
-    	if(args.length != 4)
-    		throw new IllegalArgumentException("Wrong number of arguments");
-    	
-    	if(HashFunction.isHashFunction(args[0]))
-    		throw new IllegalArgumentException("Not a valid hash function: " + args[0]);
-    	
-    	if(Integer.parseInt(args[1]) < 0)
-    		throw new IllegalArgumentException("Number of desired words should be nonnegative");
-    	
-    	if(Integer.parseInt(args[2]) < 0)
-    		throw new IllegalArgumentException("Half bag size should be nonnegative");
-    	
-    	if(!Files.exists(Paths.get(args[3])))
-        	throw new NoSuchFileException(args[3]);
-
 		
-    	exec(args[3], Integer.parseInt(args[1]), args[0], Integer.parseInt(args[2]));
+    	if (args.length == 4) {
+    		
+        	Draft.checkHash(  args[0] );
+        	Draft.checkRange( args[1], 1, 1000 );
+        	Draft.checkRange( args[2], 1, 1000000 );
+        	Draft.checkPath(  args[3] );
+        	exec(args[3], Integer.parseInt(args[1]), args[0], Integer.parseInt(args[2]));
+        	
+    	} else if (args.length == 0) {
+    		
+        	String path = GetInput.askPath("Path to the file");
+        	String hash = GetInput.askHash("Hash function");
+        	int nbWords = GetInput.askParameterInRange("Number of words needed", 1, 1000);
+        	int halfBag = GetInput.askParameterInRange("Half size of the bag", 1, 1000000);
+        	exec(path, nbWords, hash, halfBag);
+        	
+    	} else
+    		throw new IllegalArgumentException("Wrong number of arguments (4 expected)");
+		
+		
 	}
 	
     public static void exec(String path, int nbWords, String func, int k){

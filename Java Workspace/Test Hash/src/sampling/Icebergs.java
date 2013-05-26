@@ -1,13 +1,13 @@
 package sampling;
 
-import hash.HashFunction;
-
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
 import java.util.LinkedList;
+
+import drafts.Draft;
+import drafts.GetInput;
 
 import FileManager.WordReader;
 
@@ -56,23 +56,27 @@ public class Icebergs {
 		return l;
 	}
 	
-
-
+	
+	// This answers question 7
 	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
 		
-    	if(args.length != 2)
-    		throw new IllegalArgumentException("Wrong number of arguments");
+    	if (args.length == 2) {
+    		
+        	Draft.checkRange( args[0], 0., 1. );
+        	Draft.checkPath( args[1] );
+        	exec(args[1], Double.parseDouble(args[0]));
+        	
+    	} else if (args.length == 0) {
+    		
+        	String path = GetInput.askPath("Path to the file");
+        	double frequency = GetInput.askParameterInRange("Frequency", 0., 1.);
+        	exec( path, frequency );
+        	
+    	} else
+    		throw new IllegalArgumentException("Wrong number of arguments (2 expected)");
     	
-    	if(Double.parseDouble(args[0]) < 0 || Double.parseDouble(args[0])  > 1)
-    		throw new IllegalArgumentException("Frequency should be in range 0-1");
-    	
-    	if(!Files.exists(Paths.get(args[1])))
-        	throw new NoSuchFileException(args[1]);
-
-		
-    	exec(args[1], Double.parseDouble(args[0]));
-
 	}
+	
 	
     public static void exec(String path, double frequency){
     	LinkedList<String> l = findIcebergs(Paths.get(path), frequency);

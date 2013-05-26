@@ -242,7 +242,10 @@ public class HashFunctionTests {
 		
     	System.out.println("----------------------------------------------------------------");
 	}
-
+	
+	
+	
+	
 	public static void main(String[] args) {
 		// Implement here the command line interface for question 1
 		
