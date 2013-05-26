@@ -1,20 +1,18 @@
 package hyperLogLog;
 
+import drafts.Draft;
+import drafts.GetInput;
+
 import hash.HashFunction;
 import hash.LookUp3;
 
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import drafts.GetInput;
-
 
 /**
- * 
  * Class meant to answer question 3.
- * 
  */
 public class Similarities {
 
@@ -187,41 +185,40 @@ public class Similarities {
     
     // This answers question 3
     public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
-//    	GetInput gi = new GetInput();
-//    	String[] files = gi.askSet("Paths to files");
-//    	String func = "hash." + gi.ask("Hash function");
-//    	int k = Integer.parseInt( gi.ask("Parameter k") );
-//    	int b = Integer.parseInt( gi.ask("Parameter b") );
-//    	double threshold = Double.parseDouble( gi.ask("Threshold (0 - 0.2)") );
     	
-    	if(args.length < 5)
-    		throw new IllegalArgumentException("Wrong number of arguments");
+    	if (args.length > 0 && args.length < 5) {
+    		
+        	Draft.checkHash( args[0] );
+        	Draft.checkRange(args[1], 4, 15);
+        	Draft.checkRange(args[2], 1, 50);
+        	Draft.checkRange(args[3], 0., 1.);
+        	
+        	for(int j=4; j < args.length; j++)
+        		Draft.checkPath( args[j] );
+        	
+        	String[] files = new String[args.length - 4];
+        	for(int j=4; j<args.length; j++)
+        		files[j-4]=args[j];
+        	
+        	exec(files, Integer.parseInt(args[2]), Integer.parseInt(args[1]), args[0],
+        			Double.parseDouble(args[3]));
+        	
+    	} else if (args.length == 0) {
+    		
+        	String hash = GetInput.askHash("Hash function");
+        	String[] urls = GetInput.askPathSet("Paths to the files");
+        	int b = GetInput.askParameterInRange("Parameter b", 4, 15);
+        	int k = GetInput.askParameterInRange("Parameter k", 1, 50);
+        	double threshold = GetInput.askParameterInRange("Threshold", 0., 1.);
+        	exec(urls, k, b, hash, threshold);
+        	
+    	} else
+    		throw new IllegalArgumentException("Wrong number of arguments (5 or more expected)");
     	
-    	if(HashFunction.isHashFunction(args[0]))
-    		throw new IllegalArgumentException("Not a valid hash function: " + args[0]);
-    	
-    	if(Integer.parseInt(args[1]) < 4 ||Integer.parseInt(args[1])  > 15)
-    		throw new IllegalArgumentException("b should be in range 4-15");
-    	
-    	if(Integer.parseInt(args[2]) < 1 ||Integer.parseInt(args[2])  > 50)
-    		throw new IllegalArgumentException("k should be in range 1-50");
-    	
-    	if(Double.parseDouble(args[3]) < 0 || Double.parseDouble(args[3])  > 1)
-    		throw new IllegalArgumentException("Threshols should be in range0-1");
-    	
-    	for(int j=4; j<args.length; j++)
-	    	if(!Files.exists(Paths.get(args[j])))
-	        	throw new NoSuchFileException(args[j]);
-    	
-    	String[] files = new String[args.length - 4];
-    	for(int j=4; j<args.length; j++)
-    		files[j-4]=args[j];
-    	
-    	exec(files, Integer.parseInt(args[2]), Integer.parseInt(args[1]), args[0], Double.parseDouble(args[3]));
     }
     
     
-    public static void exec(String[] urls, int k, int b, String func, double threshold){
+    public static void exec(String[] urls, int k, int b, String func, double threshold) {
     	System.out.println("----------------------------------------------------------------");
         System.out.println(System.lineSeparator() + "Looking for similar files between");
         for(String s: urls)

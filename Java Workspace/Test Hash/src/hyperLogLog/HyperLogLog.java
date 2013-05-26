@@ -213,7 +213,7 @@ public class HyperLogLog {
         	exec(path, hash, b);
         	
     	} else
-    		throw new IllegalArgumentException("Wrong number of arguments");
+    		throw new IllegalArgumentException("Wrong number of arguments (3 expected)");
     	
     }
     

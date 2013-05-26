@@ -14,20 +14,21 @@ public final class GetInput {
 		return res;
 	}
 	
-	public static String[] askSet(String msg) {
+	public static String[] askPathSet(String msg) {
 		LinkedList<String> res = new LinkedList<String>();
 		boolean carryOn = true;
 		System.out.println(msg + " (empty line to finish) :");
 		while (carryOn) {
-			System.out.print("\n-> ");
+			System.out.print("-> ");
 			String aux = sc.nextLine();
+			System.out.println();
 			if (aux.equals(""))
 				carryOn = false;
-			else
+			else if ( Draft.isPath(aux) )
 				res.add( aux );
+			else
+				System.out.println("!!! No such file !!!");
 		}
-		System.out.println();
-		
 		String[] strs = new String[res.size()];
 		for(int i=0; i<res.size(); i++)
 			strs[i] = res.remove(0);
@@ -66,6 +67,15 @@ public final class GetInput {
 		return Integer.parseInt(res);
 	}
 	
+	public static double askParameterInRange(String msg, double min, double max) {
+		String res = null;
+		while (res == null || !Draft.isInRange(res, min, max) ) {
+			res = ask(msg);
+			if ( !Draft.isInRange(res, min, max) )
+				System.out.println("\n!!! Not in range " + min + " to " + max + " !!!");
+		}
+		return Double.parseDouble(res);
+	}
 	
 	
 }

@@ -69,6 +69,21 @@ public class Draft {
 				"Parameter should be in range " + min + " to " + max + " : " + number);
 	}
 	
+	public static boolean isInRange(String number, double min, double max) {
+		try {
+			double a = Double.parseDouble(number);
+			return min <= a && a <= max;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public static void checkRange(String number, double min, double max) {
+		if ( !isInRange(number, min, max) )
+			throw new IllegalArgumentException(
+				"Parameter should be in range " + min + " to " + max + " : " + number);
+	}
+	
 	public static boolean isPath(String path) {
 		return Files.exists( Paths.get(path) );
 	}
