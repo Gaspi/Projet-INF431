@@ -1,5 +1,10 @@
 package drafts;
 
+import hash.HashFunction;
+
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -47,6 +52,39 @@ public class Draft {
     	System.out.println(res);
     	sc.close();
     	return res;
+	}
+	
+	public static boolean isInRange(String number, int min, int max) {
+		try {
+			int a = Integer.parseInt(number);
+			return min <= a && a <= max;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public static void checkRange(String number, int min, int max) {
+		if ( !isInRange(number, min, max) )
+			throw new IllegalArgumentException(
+				"Parameter should be in range " + min + " to " + max + " : " + number);
+	}
+	
+	public static boolean isPath(String path) {
+		return Files.exists( Paths.get(path) );
+	}
+	
+	public static void checkPath(String path) throws NoSuchFileException {
+    	if( !isPath(path) )
+        	throw new NoSuchFileException(path);
+	}
+	
+	public static boolean isHash(String hash) {
+		return HashFunction.isHashFunction(hash);
+	}
+	
+	public static void checkHash(String hash) {
+		if( ! isHash(hash) )
+			throw new IllegalArgumentException( "Not a valid hash function: " + hash );
 	}
 	
 }

@@ -198,24 +198,22 @@ public class HyperLogLog {
     // This answers question 2
     public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
     	
-//    	GetInput gi = new GetInput();
-//    	
-//    	String path = gi.ask("Path to the file");
-//    	String hashFunc = "hash." + gi.ask("Hash function");
-//    	int b = Integer.parseInt(gi.ask("Parameter b"));
-//    	
-//    	System.out.println();
-    	
-    	if(args.length != 3)
+    	if (args.length == 3) {
+    		
+        	Draft.checkHash( args[0] );
+        	Draft.checkRange(args[1], 4, 15);
+        	Draft.checkPath( args[2] );
+        	exec(args[2], args[0], Integer.parseInt(args[1]));
+        	
+    	} else if (args.length == 0) {
+    		
+        	String path = GetInput.askPath("Path to the file");
+        	String hash = GetInput.askHash("Hash function");
+        	int b = GetInput.askParameterInRange("Parameter b", 4, 15);
+        	exec(path, hash, b);
+        	
+    	} else
     		throw new IllegalArgumentException("Wrong number of arguments");
-    	
-    	if(Integer.parseInt(args[1]) < 4 ||Integer.parseInt(args[1])  > 15)
-    		throw new IllegalArgumentException("b should be in range 4-15 ");
-    	
-    	GetInput.checkHash( args[0] );
-    	GetInput.checkPath( args[2] );
-    	
-    	exec(args[2], args[0], Integer.parseInt(args[1]));
     	
     }
     
