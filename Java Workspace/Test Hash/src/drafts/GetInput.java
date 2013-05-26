@@ -7,11 +7,16 @@ public final class GetInput {
 	
 	private static final Scanner sc = new Scanner(System.in);
 	
-	public static String ask(String msg) {
-		System.out.print(msg + " :\n-> ");
+	public static String ask() {
+		System.out.print("-> ");
 		String res = sc.nextLine();
 		System.out.println();
 		return res;
+	}
+	
+	public static String ask(String msg) {
+		System.out.println(msg);
+		return ask();
 	}
 	
 	public static String[] askPathSet(String msg) {
@@ -19,21 +24,19 @@ public final class GetInput {
 		boolean carryOn = true;
 		System.out.println(msg + " (empty line to finish) :");
 		while (carryOn) {
-			System.out.print("-> ");
-			String aux = sc.nextLine();
-			System.out.println();
+			String aux = ask();
 			if (aux.equals(""))
 				carryOn = false;
-			else if ( Draft.isPath(aux) ){
+			else if ( Draft.isPath(aux) )
 				res.add( aux );
-			}
 			else
 				System.out.println("!!! No such file !!!");
 		}
+		
 		String[] strs = new String[res.size()];
 		int i = 0;
-		while(!res.isEmpty()){
-			strs[i] = res.pop();
+		for (String s : res) {
+			strs[i] = s;
 			i++;
 		}
 		
