@@ -14,14 +14,12 @@ public abstract class HashFunction {
 	 */
 	public abstract int hashByteArray(byte[] array);
 	
+	
 	public final static boolean isHashFunction(String name){
-		boolean b = false;
-		
+		boolean found = false;
 		for(String s: names)
-			if(name.equals(s))
-				b = true;
-		
-		return b;
+			found = found || name.equals(s);
+		return found;
 	}
 	
 	

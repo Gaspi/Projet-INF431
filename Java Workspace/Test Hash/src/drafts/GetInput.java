@@ -3,6 +3,10 @@ package drafts;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+
+/**
+ * This class provides functions to help dealing with the console.
+ */
 public final class GetInput {
 	
 	private static final Scanner sc = new Scanner(System.in);
@@ -33,14 +37,7 @@ public final class GetInput {
 				System.out.println("!!! No such file !!!");
 		}
 		
-		String[] strs = new String[res.size()];
-		int i = 0;
-		for (String s : res) {
-			strs[i] = s;
-			i++;
-		}
-		
-		return strs;
+		return res.toArray(new String[0]);
 	}
 	
 	

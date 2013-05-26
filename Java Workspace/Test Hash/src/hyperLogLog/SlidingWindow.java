@@ -41,17 +41,17 @@ public class SlidingWindow {
     	int m = 1 << b; // m = 2^b
     	int[] M = new int[m];
     	LinkedList<Double> result = new LinkedList<Double>();
-
-    	// Calculation of the result
+    	
+    	
     	double sum = m, eTimesSum = HyperLogLog.alpha[b] * ((double) m) * ((double) m),
     			n = Math.pow(2, 32);
     	
     	
     	// Invariant preserved :
-    	// - Same size
+    	// - timestamps.length == values.length
     	// - increasing values and decreasing timestamps
-    	// When a couple (timestamps, values) as  currentTime - timestamps > windowSize,
-    	// we update to remove it.
+    	// - couple (timestamps, values) such that  currentTime - timestamps > windowSize,
+    	// are removed as soon as possible (update function).
     	LinkedList<Integer>[] timestamps = new LinkedList[m], values = new LinkedList[m];
     	for (int i = 0; i < m; i++) {
     		timestamps[i] = new LinkedList<Integer>();
@@ -93,18 +93,10 @@ public class SlidingWindow {
     	    	    for (int i = 0; i < m; i++)
     	    	    	if (M[i] == 0) v++;
     	    	    
-    	    	    if (v != 0) {
+    	    	    if (v != 0)
     	    	    	e = m * Math.log(m / v);
-    	    	    	//System.out.println("ap");
-    	    	    } else {
-    	    	    	//System.out.println("a");
-    	    	    }
-    	    	} else if (e > n / 30) {
+    	    	} else if (e > n / 30)
     	    	    e = -n * Math.log(1 - e / n);
-    	    	   // System.out.println("b");
-    	    	} else {
-    	    	    //System.out.println("c");
-    	    	}
     	    	
     			// We save the current estimation
     			result.add( e );
@@ -140,6 +132,7 @@ public class SlidingWindow {
     		values.removeLast();
     	}
     }
+    
     
     
     public static void displaySlidingWindows(Path path, HashFunction func, int b, int windowSize, int precision) {

@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * Random functions that may be useful
+ * Draft of useful functions
  */
 public class Draft {
 
