@@ -18,7 +18,7 @@ public abstract class HashFunction {
 		boolean b = false;
 		
 		for(String s: names)
-			if(name == s)
+			if(name.equals(s))
 				b = true;
 		
 		return b;

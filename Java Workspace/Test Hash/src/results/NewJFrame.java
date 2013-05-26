@@ -187,7 +187,7 @@ public class NewJFrame extends javax.swing.JFrame {
 						jLabel3.setName("jLabel3");
 					}
 					{
-						SpinnerNumberModel precisionModel = new SpinnerNumberModel(1000, 100, 10000, 100);
+						SpinnerNumberModel precisionModel = new SpinnerNumberModel(1000, 1, 10000, 1);
 						precision = new JSpinner();
 						precision.setModel(precisionModel);
 						precision.setEnabled(false);

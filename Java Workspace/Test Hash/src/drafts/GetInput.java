@@ -24,14 +24,18 @@ public final class GetInput {
 			System.out.println();
 			if (aux.equals(""))
 				carryOn = false;
-			else if ( Draft.isPath(aux) )
+			else if ( Draft.isPath(aux) ){
 				res.add( aux );
+			}
 			else
 				System.out.println("!!! No such file !!!");
 		}
 		String[] strs = new String[res.size()];
-		for(int i=0; i<res.size(); i++)
-			strs[i] = res.remove(0);
+		int i = 0;
+		while(!res.isEmpty()){
+			strs[i] = res.pop();
+			i++;
+		}
 		
 		return strs;
 	}
@@ -54,7 +58,7 @@ public final class GetInput {
 			if ( !Draft.isHash(res) )
 				System.out.println("\n!!! Not an implemented hash function !!!");
 		}
-		return "hash." + res;
+		return res;
 	}
 	
 	public static int askParameterInRange(String msg, int min ,int max) {
