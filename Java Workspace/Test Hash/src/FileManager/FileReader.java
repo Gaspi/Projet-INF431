@@ -17,8 +17,8 @@ import drafts.Draft;
  */
 public abstract class FileReader implements Iterable<String>  {
 	
-	private static final Charset charset = Charset.forName("US-ASCII");
-	
+	//private static final Charset charset = Charset.forName("US-ASCII");
+	private static final Charset charset = Charset.forName("UTF-8");
 	protected BufferedReader reader = null;
 	
 	public FileReader(Path path)   { 

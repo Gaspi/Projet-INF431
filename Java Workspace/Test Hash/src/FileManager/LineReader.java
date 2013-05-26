@@ -32,9 +32,10 @@ public class LineReader extends FileReader {
 		public String next() {
 			String result = nextLine;
 			try {
-				nextLine = reader.readLine();
+				if(nextLine != null)
+					nextLine = reader.readLine();
 			} catch (IOException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			return result;
 		}
