@@ -11,21 +11,26 @@
 \author{Jonathan Visbecq, Gaspard Férey}
 \title{Projet d'INF 431 \\ - \\ Notice d'utilisation}
 
+\usepackage{listings}
+\lstset{language=Java}
+
+\newcommand{\class}[1]{$\mathtt{#1}$}
+
+
 
 \begin{document}
 \maketitle
 
 \section{Introduction}
 Vous venez de télécharger notre solution au projet du cours d'INF 431 de seconde année à l'école Polytechnique de Paris. Ce projet est proposé par monsieur Bruno Salvy et disponible à \href{http://perso.ens-lyon.fr/bruno.salvy/INF431/Projet/INF431_-_Projet_Informatique.html}{cette adresse}.
-Notre groupe est composé de Gaspard Férey et Jonathan Visbecq.\\
 L'intégralité de la solution que nous proposons est constitué de
 \begin{itemize}
 \item "Notice d'utilisation.pdf" : La présente notice
 \item "Rapport.pdf" : Le rapport du projet. Vous pourrez y trouver une description plus détaillée des algorithmes employés. 
 \item "executable.jar" : La version exécutable aboutie du projet, utilisable immédiatement.
-\item "code source" : Le dossier dans lequel sont situé les fichier ".java" des classes utilisées.
-\item "workspace" : Le dossier à utiliser comme "workspace" pour ouvrir le projet à l'aide d'Eclipse.
-\item "files.rar" : Un dossier compressé dans lequel sont situés des fichiers volumineux pouvant être utilisés pour tester les programmes.
+\item "bin" : Le dossier dans lequel sont situés les fichier ".class" des classes utilisées.
+\item "workspace" : Le dossier à utiliser comme "workspace" pour ouvrir le projet à l'aide d'Eclipse. Il contient le code source de notre projet.
+\item "files.rar" : Un dossier compressé dans lequel sont situés quelques fichiers volumineux pouvant être utilisés pour tester les programmes.
 \end{itemize}
 
 
@@ -35,10 +40,59 @@ L'intégralité de la solution que nous proposons est constitué de
 - Lancez "executable.jar" et suivez les instructions à l'écran.
 
 
+
 \section{Utiliser le code source}
-Nos programmes peuvent également être compilés et utilisés directement à l'aide du code source.
-- Compilez l'ensemble des fichiers du projet.\\
-- Exécutez les fichiers correspondants à la question qui vous intéresse.
+Nos programmes peuvent également être utilisés directement à l'aide du code compilé.
+\begin{itemize}
+\item Placez dans un même dossier le dossier "bin" et un dossier intitulé "files".
+\item Placez dans ce sous-dossier "files" les fichiers que vous souhaitez traiter.
+\item En ligne de commande, placez-vous dans le dossier "bin".
+\item Exécutez les commandes suivantes selon la fonction qui vous intéresse (cf ci-dessous).
+\end{itemize}
+
+Remarques :
+\begin{itemize}
+\item[-] les adresses des fichiers peuvent être
+	\begin{itemize}
+	\item soit leur adresse absolue
+	\item soit l'adresse relative à partir du répertoire actuel, "bin".
+	\end{itemize}
+\item[-] Les mots clef désignant une fonctions de hachage doivent être choisis parmi :
+	\begin{center}
+	LookUp3 \\
+	MurmurHash3 \\
+	JavaHash \\
+	LoseLose \\
+	HomemadeHash \\
+	DJB2
+	\end{center}
+\end{itemize}
+
+
+
+\subsection{Filtrage}
+\begin{lstlisting}
+java filter/Filter origine cible
+\end{lstlisting}
+\class{origine} désigne l'adresse d'un fichier existant à filtrer.\\
+\class{cible} désigne l'adresse du fichier filtré à créer.\\
+
+
+\subsection{Hachage}
+
+\subsection{Comptage approché}
+
+\subsection{Similarités entre ensembles de données}
+
+\subsection{Fenêtre glissante}
+
+\subsection{Échantillonnage}
+
+\subsection{Souris}
+
+\subsection{Icebergs}
+
+\subsection{Récapitulatif}
 \begin{center} \begin{tabular}{ll}
 0. Filtrage 		 & filter/Filter \\
 1. Hachage 			 & hash/HashFunctionTests \\
@@ -47,15 +101,19 @@ Nos programmes peuvent également être compilés et utilisés directement à l'
 4. Fenêtre glissante & drafts/SlidingWindow \\
 5. Échantillonnage 	 & sampling/Sampling \\
 6. Souris 			 & sampling/Mice \\
-7. Icerbergs 		 & sampling/Icebergs
+7. Icebergs 		 & sampling/Icebergs
 \end{tabular} \end{center}
+
+
+
+
 
 \section{Utiliser Eclipse}
 - Ouvrez Eclipse\\
 - Sélectionnez : File -$>$ Switch Worspace -$>$ Other...\\
 - Sélectionnez l'emplacement du dossier "workspace"\\
+- Réglez le niveau de compatibilité à "Java 1.7"\\
 - Parcourez l'intégralité du code source et appelez les différentes fonctions à partir de la classe "Main.java"
-
 
 
 \end{document}
