@@ -36,7 +36,24 @@ public final class GetInput {
 			else
 				System.out.println("!!! No such file !!!");
 		}
-		
+		return res.toArray(new String[0]);
+	}
+	
+	
+	
+	public static String[] askHashSet(String msg) {
+		LinkedList<String> res = new LinkedList<String>();
+		boolean carryOn = true;
+		System.out.println(msg + " (empty line to finish) :");
+		while (carryOn) {
+			String aux = ask();
+			if (aux.equals(""))
+				carryOn = false;
+			else if ( Draft.isHash(aux) )
+				res.add( aux );
+			else
+				System.out.println("!!! Not an implemented hash function !!!");
+		}
 		return res.toArray(new String[0]);
 	}
 	

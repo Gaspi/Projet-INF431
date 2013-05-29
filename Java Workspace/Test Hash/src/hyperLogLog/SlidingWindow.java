@@ -175,8 +175,8 @@ public class SlidingWindow {
         	
     	} else if (args.length == 0) {
     		
-        	String path = GetInput.askPath("Path to the file");
-        	String hash = GetInput.askHash("Hash function");
+        	String path = 	 GetInput.askPath("Path to the file");
+        	String hash = 	 GetInput.askHash("Hash function");
         	int b = 		 GetInput.askParameterInRange("Parameter b", 4, 15);
         	int windowSize = GetInput.askParameterInRange("Window's size", 1, 1000000);
         	int precision =  GetInput.askParameterInRange("Precision", 1, 1000000);

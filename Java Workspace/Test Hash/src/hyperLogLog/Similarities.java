@@ -186,13 +186,12 @@ public class Similarities {
     // This answers question 3
     public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
     	
-    	if (args.length > 0 && args.length < 5) {
+    	if (args.length >= 5) {
     		
         	Draft.checkHash( args[0] );
         	Draft.checkRange(args[1], 4, 15);
         	Draft.checkRange(args[2], 1, 50);
         	Draft.checkRange(args[3], 0., 1.);
-        	
         	for(int j=4; j < args.length; j++)
         		Draft.checkPath( args[j] );
         	
@@ -205,11 +204,11 @@ public class Similarities {
         	
     	} else if (args.length == 0) {
     		
-        	String hash = GetInput.askHash("Hash function");
-        	String[] urls = GetInput.askPathSet("Paths to the files");
-        	int b = GetInput.askParameterInRange("Parameter b", 4, 15);
-        	int k = GetInput.askParameterInRange("Parameter k", 1, 50);
-        	double threshold = GetInput.askParameterInRange("Threshold", 0., 1.);
+        	String hash =		GetInput.askHash("Hash function");
+        	String[] urls = 	GetInput.askPathSet("Paths to the files");
+        	int b = 			GetInput.askParameterInRange("Parameter b", 4, 15);
+        	int k = 			GetInput.askParameterInRange("Parameter k", 1, 50);
+        	double threshold =  GetInput.askParameterInRange("Threshold", 0., 1.);
         	exec(urls, k, b, hash, threshold);
         	
     	} else

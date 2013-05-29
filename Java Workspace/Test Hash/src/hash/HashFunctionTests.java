@@ -5,6 +5,7 @@ import static org.math.array.DoubleArray.min;
 import static org.math.array.StatisticSample.histogram;
 
 
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Hashtable;
@@ -20,6 +21,7 @@ import FileManager.Files;
 import FileManager.WordReader;
 
 import drafts.Draft;
+import drafts.GetInput;
 
 
 public class HashFunctionTests {
@@ -36,14 +38,11 @@ public class HashFunctionTests {
 	 *         Strings in the file, in seconds.
 	 */
 	private static float speedTestOnFile(Path path, HashFunction func) {
-		long start = 0, end = 0;
-		Iterator<String> it = new WordReader(path).iterator();
-		
+		long start, end;
 		start = System.nanoTime();
-		while (it.hasNext())
-			func.hashString(it.next());
+		for (String s : new WordReader(path))
+			func.hashString(s);
 		end = System.nanoTime();
-		
 		return (float) ((end - start) / 1000000000.);
 	}
 
@@ -62,13 +61,12 @@ public class HashFunctionTests {
 		int comp = 0;
 		Hashtable<Integer, String> tab = new Hashtable<Integer, String>();
 		
-		for (String g : new WordReader(path) ) {
-			int hash = func.hashString(g);
+		for (String s : new WordReader(path) ) {
+			int hash = func.hashString(s);
 			if (tab.containsKey(hash))
 				comp++;
 			else
-				tab.put(hash, g);
-			
+				tab.put(hash, s);
 		}
 		
 		return comp;
@@ -157,7 +155,6 @@ public class HashFunctionTests {
 
 	/**
 	 * Display the results of a speed test on the files given in paths
-	 * 
 	 * @param func
 	 *            The hash function to be tested
 	 */
@@ -198,7 +195,7 @@ public class HashFunctionTests {
 	 * @param funcs
 	 *            The functions to be tested
 	 */
-	public static void speedCollisionTests(HashFunction[] funcs) {
+	public static void speedCollisionTests(HashFunction[] funcs, Path[] paths) {
 		System.out.println("\n---------   Speed - Collision tests   ---------");
 
 		String[][] mat = new String[2 * funcs.length + 2][FileManager.Files.paths.length + 1];
@@ -206,23 +203,21 @@ public class HashFunctionTests {
 		mat[1][0] = "--------";
 
 		// Legends
-		for (int i = 0; i < FileManager.Files.paths.length; i++) {
-			mat[0][i + 1] = FileManager.Files.descriptions[i];
+		for (int i = 0; i < paths.length; i++) {
+			mat[0][i + 1] = paths[i].getFileName().toString();
 			mat[1][i + 1] = "---------";
 		}
 		for (int i = 0; i < funcs.length; i++) {
 			mat[2 * i + 2][0] = funcs[i].getClass().getSimpleName();
 			mat[2 * i + 3][0] = "";
 		}
-
 		for (int i = 0; i < funcs.length; i++)
-			for (int j = 0; j < FileManager.Files.paths.length; j++) {
-				mat[2 * i + 2][j + 1] = collisionTestOnFile(FileManager.Files.paths[j], funcs[i]) + " collisions";
-				mat[2 * i + 3][j + 1] = "  " + speedTestOnFile(FileManager.Files.paths[j], funcs[i]) + " s";
+			for (int j = 0; j < paths.length; j++) {
+				mat[2 * i + 2][j + 1] = collisionTestOnFile(paths[j], funcs[i]) + " collisions";
+				mat[2 * i + 3][j + 1] = "  " + speedTestOnFile(paths[j], funcs[i]) + " s";
 			}
-
+		
 		Draft.printMatrix(mat);
-
 	}
 
 	public static void uniformDistribTest(HashFunction func, boolean histogram) {
@@ -245,24 +240,44 @@ public class HashFunctionTests {
 	
 	
 	
-	
-	public static void main(String[] args) {
-		// Implement here the command line interface for question 1
+	// This answers question 1
+	public static void main(String[] args) throws NoSuchFileException {
 		
-		//uniformDistribTest(new LookUp3(), true);
-		//speedTests(HashFunction.getHashFunction("hash.hashFunctions.LookUp3"));
-		//speedCollisionTests( new LookUp3());
-		//System.out.println(FileManager.Files.shakespeare.toString());
-
-		//*
+    	if (args.length > 0) {
+        	for(int j=0; j < args.length; j++)
+        		Draft.checkPath( args[j] );
+        	exec(args);
+        	
+    	} else
+        	exec( GetInput.askPathSet("Paths to the files") );
+    	
+		/*
 		HashFunction[] tab = new HashFunction[3];
 		//tab[0] = new LoseLose();
 		//tab[1] = new DJB2();
 		tab[0] = new LookUp3();
 		tab[1] = new MurmurHash3();
 		tab[2] = new JavaHash();
-		speedCollisionTests(tab);
+		speedCollisionTests(tab, Files.paths);
 		//*/
 	}
-
+	
+	
+    public static void exec(String[] paths) {
+    	
+    	String[] hashFuncs = GetInput.askHashSet("Hash functions to test");
+    	HashFunction[] tab = new HashFunction[hashFuncs.length];
+    	for (int i = 0; i < tab.length; i++)
+    		tab[i] = HashFunction.getHashFunction(hashFuncs[i]);
+    	
+    	Path[] tab2 = new Path[paths.length];
+    	for (int i = 0; i < paths.length; i++)
+    		tab2[i] = Paths.get(paths[i]);
+    	
+    	speedCollisionTests(tab, tab2);
+    }
+	
+	
+	
+	
 }

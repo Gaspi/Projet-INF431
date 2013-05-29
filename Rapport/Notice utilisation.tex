@@ -66,23 +66,45 @@ Remarques :
 	HomemadeHash \\
 	DJB2
 	\end{center}
+\item[-] Tout fonction peut être appelée sans argument. Une interface en ligne de commande vous proposera alors de rentrer les arguments un par un.
 \end{itemize}
 
 
 
 \subsection{Filtrage}
+Cette fonction permet d'appliquer un filtre sur un fichier écrit en anglais.
 \begin{lstlisting}
 java filter/Filter origine cible
 \end{lstlisting}
-\class{origine} désigne l'adresse d'un fichier existant à filtrer.\\
-\class{cible} désigne l'adresse du fichier filtré à créer.\\
+\begin{tabular}{lcl}
+\class{origine} &:& l'adresse d'un fichier existant à filtrer.\\
+\class{cible} &:& l'adresse à laquelle enregistrer le fichier filtré créé.
+\end{tabular}\\
 
 
 \subsection{Hachage}
+Cette fonction affiche les résultats des tests de vitesse et de collisions appliqués aux fonctions de hachage souhaitée.
+\begin{lstlisting}
+java hash/HashFunctionTests file1 file2 ...
+\end{lstlisting}
+\class{file1}, \class{file2}, ... \ : \ les adresses des fichiers filtrés sur lesquels effectuer les tests.\\
+
 
 \subsection{Comptage approché}
+Cette fonction applique l'algorithme \emph{HyperLogLog} à un fichier donné en utilisant une fonction de hachage au choix.
+\begin{lstlisting}
+java hyperLogLog/HyperLogLog hash b file
+\end{lstlisting}
+\begin{tabular}{lcl}
+\class{file} &:& l'adresse du fichier filtré cible.\\
+\class{b} &:& le paramètre b de l'algorithme (4-15).\\
+\class{hash} &:& la fonction de hachage à employer.
+\end{tabular}\\
+
 
 \subsection{Similarités entre ensembles de données}
+
+
 
 \subsection{Fenêtre glissante}
 
