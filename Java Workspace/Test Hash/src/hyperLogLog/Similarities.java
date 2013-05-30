@@ -77,15 +77,12 @@ public class Similarities {
 	    for (int j = i + 1; j < n; j++) {
 			double d = calculateResemblance(this.resemblances[i], this.resemblances[j], this.b);
 			if (d > threshold) {
-			    System.out.println("Resemblance between file" + System.lineSeparator() + "    "
-				    + this.urls[i]);
-			    System.out.println("and file" + System.lineSeparator() + "    " + this.urls[j]);
-			    System.out.println("is beyond threshold " + threshold + "." + System.lineSeparator());
+			    System.out.println( "Resemblance between file\n    " + urls[i] +
+			    				  "\nand file\n    " + urls[j]);
+			    System.out.println("is beyond threshold " + threshold + ".");
 			}
 		}
-	
 	System.out.println("----------------------------------------------------------------");
-
     }
 
     /**
@@ -101,21 +98,21 @@ public class Similarities {
      * @return The resemblance as a double value.
      */
     private static double calculateResemblance(int[] MA, int[] MB, int b) {
-	int m = 1 << b; // m = 2^b
-
-	int[] MAuB = new int[m];
-	for (int i = 0; i < m; i++)
-	    MAuB[i] = Math.max(MA[i], MB[i]);
-
-	// Compute the number of k-shingles
-	double SA = HyperLogLog.hyperLogLog(MA);
-	double SB = HyperLogLog.hyperLogLog(MB);
-
-	// Compute the resemblance
-	double SAuB = HyperLogLog.hyperLogLog(MAuB);
-	double SAnB = SA + SB - SAuB;
-
-	return SAnB / SAuB;
+		int m = 1 << b; // m = 2^b
+		
+		int[] MAuB = new int[m];
+		for (int i = 0; i < m; i++)
+		    MAuB[i] = Math.max(MA[i], MB[i]);
+		
+		// Compute the number of k-shingles
+		double SA = HyperLogLog.hyperLogLog(MA);
+		double SB = HyperLogLog.hyperLogLog(MB);
+		
+		// Compute the resemblance
+		double SAuB = HyperLogLog.hyperLogLog(MAuB);
+		double SAnB = SA + SB - SAuB;
+		
+		return SAnB / SAuB;
     }
 
     /**
@@ -137,15 +134,15 @@ public class Similarities {
      *         clustering of the web. In 6th International World Wide Web Conference (1997).
      */
     public static double resemblance(Path pathA, Path pathB, HashFunction func, int b, int k) {
-
-	if (b <= 0 || b > 16)
-	    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
-
-	// Build fingerPrint arrays
-	int[] MA = HyperLogLog.buildFingerPrint(pathA, func, b, k);
-	int[] MB = HyperLogLog.buildFingerPrint(pathB, func, b, k);
-
-	return calculateResemblance(MA, MB, b);
+    	
+		if (b <= 0 || b > 16)
+		    throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
+		
+		// Build fingerPrint arrays
+		int[] MA = HyperLogLog.buildFingerPrint(pathA, func, b, k);
+		int[] MB = HyperLogLog.buildFingerPrint(pathB, func, b, k);
+		
+		return calculateResemblance(MA, MB, b);
     }
 
     /**
@@ -160,27 +157,27 @@ public class Similarities {
      * To test the resemblance function behavior.
      */
     public static void testResemblance(int k) {
-
-	// For the same file, resemblance should be 1
-	System.out.println("Same files :");
-	System.out.println(Similarities.resemblance(FileManager.Files.bible,
-			FileManager.Files.bible, new LookUp3(), 15, k));
-
-	// For files with high similarities, resemblance should be approximately
-	// 1. Here I have deleted some
-	// words from bible to build bible2.
-	System.out.println("Approximately same files:");
-	System.out
-		.println(Similarities
-			.resemblance(
-				"Bible_english_processed.txt",
-				"Bible_english_processed_minus_a_few_words.txt",
-				new LookUp3(), 15, k));
-
-	// For distinct files, resemblance should be around 0.
-	System.out.println("Completely different files (but same langage):");
-	System.out.println(Similarities.resemblance(FileManager.Files.shakespeare,
-			FileManager.Files.bible, new LookUp3(), 15, k));
+    	
+		// For the same file, resemblance should be 1
+		System.out.println("Same files :");
+		System.out.println(Similarities.resemblance(FileManager.Files.bible,
+				FileManager.Files.bible, new LookUp3(), 15, k));
+		
+		// For files with high similarities, resemblance should be approximately
+		// 1. Here I have deleted some
+		// words from bible to build bible2.
+		System.out.println("Approximately same files:");
+		System.out
+			.println(Similarities
+				.resemblance(
+					"Bible_english_processed.txt",
+					"Bible_english_processed_minus_a_few_words.txt",
+					new LookUp3(), 15, k));
+		
+		// For distinct files, resemblance should be around 0.
+		System.out.println("Completely different files (but same langage):");
+		System.out.println(Similarities.resemblance(FileManager.Files.shakespeare,
+				FileManager.Files.bible, new LookUp3(), 15, k));
     }
     
     // This answers question 3

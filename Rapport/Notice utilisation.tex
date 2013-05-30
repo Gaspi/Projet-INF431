@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[left=2cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -11,12 +11,7 @@
 \author{Jonathan Visbecq, Gaspard Férey}
 \title{Projet d'INF 431 \\ - \\ Notice d'utilisation}
 
-\usepackage{listings}
-\lstset{language=Java}
-
-\newcommand{\class}[1]{$\mathtt{#1}$}
-
-
+\newcommand{\code}[1]{ \texttt{\footnotesize #1} }
 
 \begin{document}
 \maketitle
@@ -72,43 +67,60 @@ Remarques :
 
 
 \subsection{Filtrage}
-Cette fonction permet d'appliquer un filtre sur un fichier écrit en anglais.
-\begin{lstlisting}
-java filter/Filter origine cible
-\end{lstlisting}
+Cette fonction permet d'appliquer un filtre sur un fichier écrit en anglais.\\
+\indent\indent\code{java filter/Filter origine cible}\\
 \begin{tabular}{lcl}
-\class{origine} &:& l'adresse d'un fichier existant à filtrer.\\
-\class{cible} &:& l'adresse à laquelle enregistrer le fichier filtré créé.
+\code{origine} &:& l'adresse d'un fichier existant à filtrer.\\
+\code{cible} &:& l'adresse à laquelle enregistrer le fichier filtré créé.
 \end{tabular}\\
 
 
 \subsection{Hachage}
-Cette fonction affiche les résultats des tests de vitesse et de collisions appliqués aux fonctions de hachage souhaitée.
-\begin{lstlisting}
-java hash/HashFunctionTests file1 file2 ...
-\end{lstlisting}
-\class{file1}, \class{file2}, ... \ : \ les adresses des fichiers filtrés sur lesquels effectuer les tests.\\
+Cette fonction affiche les résultats des tests de vitesse et de collisions appliqués aux fonctions de hachage souhaitée.\\
+\indent\indent\code{java hash/HashFunctionTests file1 file2 ...}\\
+\code{file1}, \code{file2}, ... \ : \ les adresses des fichiers filtrés sur lesquels effectuer les tests.\\
 
 
 \subsection{Comptage approché}
-Cette fonction applique l'algorithme \emph{HyperLogLog} à un fichier donné en utilisant une fonction de hachage au choix.
-\begin{lstlisting}
-java hyperLogLog/HyperLogLog hash b file
-\end{lstlisting}
+Cette fonction applique l'algorithme \emph{HyperLogLog} à un fichier donné en utilisant une fonction de hachage au choix.\\
+\indent\indent\code{java hyperLogLog/HyperLogLog hash b file}\\
 \begin{tabular}{lcl}
-\class{file} &:& l'adresse du fichier filtré cible.\\
-\class{b} &:& le paramètre b de l'algorithme (4-15).\\
-\class{hash} &:& la fonction de hachage à employer.
+\code{file} &:& l'adresse du fichier filtré cible.\\
+\code{b} &:& le paramètre b de l'algorithme (4 - 15).\\
+\code{hash} &:& la fonction de hachage à employer.
 \end{tabular}\\
 
 
 \subsection{Similarités entre ensembles de données}
-
+Cette fonction calcule les similarités entre différents fichiers et affiche les fichiers suffisamment semblables. \\
+\indent\indent\code{java hyperLogLog/Similarities hash b k seuil file1 file2 ...}\\
+\begin{tabular}{lcl}
+\code{hash} &:& la fonction de hachage à employer.\\
+\code{b} &:& le paramètre $b$ de l'algorithme (4 - 15).\\
+\code{k} &:& le paramètre $k$ de l'algorithme (1 - 50).\\
+\code{file1}, \code{file2}, ... &:& les adresses des fichiers filtré à comparer.\\
+\code{seuil} &:& seules les paires de fichiers dont la "similarité" est supérieure\\
+&& à ce seuil sont affichées (0 - 1).
+\end{tabular}\\
 
 
 \subsection{Fenêtre glissante}
+Cette fonction affiche l'évolution, au cours de la lecture d'un fichier, du nombre de mots différents dans une fenêtre glissante de taille donnée. \\
+\code{java -cp bin:./jmatharray.jar:./jmathplot.jar hyperLogLog.SlidingWindow hash b size pas file}\\
+\begin{tabular}{lcl}
+\code{hash} &:& la fonction de hachage à employer.\\
+\code{b} &:& le paramètre $b$ de l'algorithme (4 - 15).\\
+\code{size} &:& la taille de la fenêtre (1 - 1000000).\\
+\code{pas}&:& le pas d'affichage du résultat. Une valeur de 1 peut nuire à la rapidité\\
+&& de l'affichage selon la taille du fichier choisit (1 - 1000000)\\
+\code{file} &:& l'adresse du fichier filtré à utiliser.
+\end{tabular}\\
+
 
 \subsection{Échantillonnage}
+
+
+
 
 \subsection{Souris}
 
@@ -116,14 +128,14 @@ java hyperLogLog/HyperLogLog hash b file
 
 \subsection{Récapitulatif}
 \begin{center} \begin{tabular}{ll}
-0. Filtrage 		 & filter/Filter \\
-1. Hachage 			 & hash/HashFunctionTests \\
-2. Comptage approché & drafts/HyperLogLog \\
-3. Similarités entre ensembles de données & drafts/Similarities \\
-4. Fenêtre glissante & drafts/SlidingWindow \\
-5. Échantillonnage 	 & sampling/Sampling \\
-6. Souris 			 & sampling/Mice \\
-7. Icebergs 		 & sampling/Icebergs
+0. Filtrage 		 & \code{filter/Filter} \\
+1. Hachage 			 & \code{hash/HashFunctionTests} \\
+2. Comptage approché & \code{drafts/HyperLogLog} \\
+3. Similarités entre ensembles de données & \code{drafts/Similarities} \\
+4. Fenêtre glissante & \code{drafts/SlidingWindow} \\
+5. Échantillonnage 	 & \code{sampling/Sampling} \\
+6. Souris 			 & \code{sampling/Mice} \\
+7. Icebergs 		 & \code{sampling/Icebergs}
 \end{tabular} \end{center}
 
 
@@ -134,7 +146,7 @@ java hyperLogLog/HyperLogLog hash b file
 - Ouvrez Eclipse\\
 - Sélectionnez : File -$>$ Switch Worspace -$>$ Other...\\
 - Sélectionnez l'emplacement du dossier "workspace"\\
-- Réglez le niveau de compatibilité à "Java 1.7"\\
+%- Réglez le niveau de compatibilité à "Java 1.7"\\ % Inutile car l'interface graphique n'est pas fournie
 - Parcourez l'intégralité du code source et appelez les différentes fonctions à partir de la classe "Main.java"
 
 
