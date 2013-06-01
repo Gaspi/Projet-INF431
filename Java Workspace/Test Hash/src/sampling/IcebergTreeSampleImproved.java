@@ -17,14 +17,15 @@ public class IcebergTreeSampleImproved extends IcebergSample {
 	public IcebergTreeSampleImproved(double frequency,
 			double lowerBoundFrequency) {
 		super(frequency);
-
+		
 		this.lowerBoundFrequency = lowerBoundFrequency;
-		this.b = (int) Math.ceil(
-					Math.log(
-							Math.pow((frequency * lowerBoundFrequency / 2), -2.)
-							* Math.log(3 / ((1 - lowerBoundFrequency / 2.)*frequency*delta))
-					)  / Math.log(2)
-						        ) + 3;
+		b = (int)
+			Math.ceil(
+				Math.log(
+					Math.pow((frequency * lowerBoundFrequency / 2), -2.)
+				  * Math.log(3 / ((1 - lowerBoundFrequency / 2.)*frequency*delta))
+				)  / Math.log(2)
+			) + 3;
 	}
 
 	@Override
@@ -32,12 +33,10 @@ public class IcebergTreeSampleImproved extends IcebergSample {
 
 		if (Math.random() <= Math.pow(2., -h)) {
 			Integer i = sample.get(word);
-
-			if (i == null)
-				sample.put(word, 1);
-			else
-				sample.put(word, i.intValue() + 1);
-
+			
+			if (i == null) sample.put(word, 1);
+			else 		   sample.put(word, 1 + i.intValue());
+			
 			sumK++;
 		}
 		
@@ -60,15 +59,17 @@ public class IcebergTreeSampleImproved extends IcebergSample {
 		}
 		
 	}
-
+	
+	
 	@Override
 	public LinkedList<String> getIcebergs() {
-
+		
 		LinkedList<String> l = new LinkedList<String>();
+		
 		for (String s : sample.keySet())
 			if ((1 - lowerBoundFrequency / 2.) * frequency * sumK <= sample.get(s))
 				l.add(s);
-
+		
 		return l;
 	}
 

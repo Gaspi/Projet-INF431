@@ -17,14 +17,14 @@
 \maketitle
 
 \section{Introduction}
-Vous venez de télécharger notre solution au projet du cours d'INF 431 de seconde année à l'école Polytechnique de Paris. Ce projet est proposé par monsieur Bruno Salvy et disponible à \href{http://perso.ens-lyon.fr/bruno.salvy/INF431/Projet/INF431_-_Projet_Informatique.html}{cette adresse}.
-L'intégralité de la solution que nous proposons est constitué de
+Vous venez de télécharger notre solution au projet du cours d'informatique INF 431 de seconde année à l'école Polytechnique de Paris. Ce projet est proposé par monsieur Bruno Salvy et disponible à \href{http://perso.ens-lyon.fr/bruno.salvy/INF431/Projet/INF431_-_Projet_Informatique.html}{cette adresse}.\\
+L'intégralité de la solution que nous proposons est constitué des fichiers et dossiers suivants :
 \begin{itemize}
-\item "Notice d'utilisation.pdf" : La présente notice
+\item "Notice d'utilisation.pdf" : La présente notice.
 \item "Rapport.pdf" : Le rapport du projet. Vous pourrez y trouver une description plus détaillée des algorithmes employés. 
 \item "executable.jar" : La version exécutable aboutie du projet, utilisable immédiatement.
-\item "bin" : Le dossier dans lequel sont situés les fichier ".class" des classes utilisées.
-\item "workspace" : Le dossier à utiliser comme "workspace" pour ouvrir le projet à l'aide d'Eclipse. Il contient le code source de notre projet.
+\item "bin" : Le dossier dans lequel sont situés les fichiers java compilés ".class" des classes utilisées.
+\item "workspace" : Le dossier à utiliser comme "Java Workspace" pour ouvrir le projet à l'aide d'Eclipse. Il contient le code source de notre projet.
 \item "files.rar" : Un dossier compressé dans lequel sont situés quelques fichiers volumineux pouvant être utilisés pour tester les programmes.
 \end{itemize}
 
@@ -117,14 +117,37 @@ Cette fonction affiche l'évolution, au cours de la lecture d'un fichier, du nom
 \end{tabular}\\
 
 
+\newpage
 \subsection{Échantillonnage}
-
-
+Cette fonction isole quelques mots significatifs d'un texte. Ces mots peuvent, par exemple, être utilisés pour retrouver des références vers ce texte via une recherche Google. \\
+\code{java  sampling/SignificantWords hash nbWords k file}\\
+\begin{tabular}{lcl}
+\code{hash} &:& la fonction de hachage à employer.\\
+\code{nbWords} &:& le nombre de mots à choisir parmi ceux du texte (1 - 1000).\\
+\code{k} &:& le paramètre $k$ de l'algorithme (1 - 1000000).\\
+\code{file} &:& l'adresse du fichier filtré à utiliser.
+\end{tabular}\\
 
 
 \subsection{Souris}
+Cette fonction affiche l'ensemble de "souris" d'un texte.\\
+\code{java  sampling/Mice hash number k file}\\
+\begin{tabular}{lcl}
+\code{hash} &:& la fonction de hachage à employer.\\
+\code{number} &:& le nombre de "souris" que l'on souhaite obtenir (1 - 1000).\\
+\code{k} &:& le paramètre $k$ de l'algorithme, (1 - 1000000000).\\
+\code{file} &:& l'adresse du fichier filtré à utiliser.
+\end{tabular}\\
+
 
 \subsection{Icebergs}
+Cette fonction affiche l'ensemble de "souris" d'un texte.\\
+\code{java  sampling/Icebergs frequency file}\\
+\begin{tabular}{lcl}
+\code{frequency} &:& la fréquence limite d'apparition pour qu'un mot soit considéré comme un iceberg.\\
+\code{file} &:& l'adresse du fichier filtré à utiliser.
+\end{tabular}\\
+
 
 \subsection{Récapitulatif}
 \begin{center} \begin{tabular}{ll}

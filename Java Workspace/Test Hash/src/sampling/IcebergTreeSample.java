@@ -16,7 +16,8 @@ public class IcebergTreeSample extends IcebergSample {
 	public IcebergTreeSample(double frequency) {
 		super(frequency);
 	}
-
+	
+	
 	@Override
 	public void addWord(String word) {
 		Integer i = sample.get(word);
@@ -47,6 +48,7 @@ public class IcebergTreeSample extends IcebergSample {
 		// (words that occurred at least 2 times within the last 1/frequency
 		// words read).
 		LinkedList<String> l = new LinkedList<String>();
+		
 		for (String s : sample.keySet())
 			if (sample.get(s) > 1)
 				l.add(s);

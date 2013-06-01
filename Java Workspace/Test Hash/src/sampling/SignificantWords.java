@@ -67,7 +67,6 @@ public class SignificantWords {
     	} else
     		throw new IllegalArgumentException("Wrong number of arguments (4 expected)");
 		
-		
 	}
 	
     public static void exec(String path, int nbWords, String func, int k){
