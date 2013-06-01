@@ -62,9 +62,9 @@ public class SlidingWindow {
     	
     	int currentTime = 0;
     	
-    	LinkedList<Integer> indexExpires = new LinkedList<Integer>();
-    	for (int i = 0; i < m; i++)
-    		indexExpires.add(-1);
+//    	LinkedList<Integer> indexExpires = new LinkedList<Integer>();
+//    	for (int i = 0; i < m; i++)
+//    		indexExpires.add(-1);
     	
     	for (String s : new WordReader(path)) {
     	    long x = func.hashString(s);
@@ -75,7 +75,8 @@ public class SlidingWindow {
     	    update( currentTime - windowSize, timestamps[j], values[j] );
     	    insert( currentTime, rho, timestamps[j], values[j] );
     	    
-    		
+    		// We regularly evaluate and save the approximate number of words
+    	    // corresponding to the current table M.
     		if (currentTime % precision == 0 && currentTime > windowSize) {
     			
     			sum = 0;
@@ -111,7 +112,8 @@ public class SlidingWindow {
     
     /**
      * Insert the pair (rho, time) in the queues.
-     * Delete the first elements when their values are less than the inserted rho (they are outdated).
+     * Delete the first elements when their values are less than the inserted rho
+     * (they will never be used as maximum since the inserted value is greater and younger).
      */
     public static void insert( int timestamp, int rho, LinkedList<Integer> timestamps, LinkedList<Integer> values) {
     	while ( !values.isEmpty() && rho >= values.getFirst() ) {
@@ -124,7 +126,7 @@ public class SlidingWindow {
     
     
     /**
-     * Remove the end of the queues when their timeStamp is to old (< limit)
+     * Remove the end of the queues when their timeStamp is too old (< limit)
      */
     public static void update(int limit, LinkedList<Integer> timestamps, LinkedList<Integer> values) {
     	while ( !timestamps.isEmpty() && timestamps.getLast() <= limit ) {

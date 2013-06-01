@@ -26,6 +26,7 @@ public class Similarities {
     private int b;
     // Matrix of resemblance value between all files.
     private int[][] resemblances;
+    private int size;
 
     public Similarities(String[] urls, int k) {
     	this.urls = urls;
@@ -36,7 +37,6 @@ public class Similarities {
     	initialize();
     }
     
-    
     public Similarities(String[] urls, int k, int b, HashFunction func) {
     	this.urls = urls;
     	this.hashFunc = func;
@@ -44,7 +44,6 @@ public class Similarities {
     	
     	if (b <= 0 || b > 16)
     		throw new AssertionError("hyperLogLog :  b <= 0 or b > 16");
-    	
     	this.b = b;
     	
     	initialize();
@@ -52,15 +51,15 @@ public class Similarities {
     
     
     /**
-     * Initialize the resemblance array with fingerPrint arrays of the files whose paths are stored
-     * in 'urls'.
+     * Initialize the resemblance array with fingerPrint arrays of the files whose paths
+     * are stored in 'urls'.
      */
     private void initialize() {
-    	resemblances = new int[this.urls.length][];
+    	size = urls.length;
+    	resemblances = new int[size][];
     	
-    	for (int i = 0; i < urls.length; i++)
-    		this.resemblances[i] = HyperLogLog.buildFingerPrint(Paths.get(urls[i]), this.hashFunc,
-    				this.b, k);
+    	for (int i = 0; i < size; i++)
+    		resemblances[i] = HyperLogLog.buildFingerPrint(Paths.get(urls[i]), hashFunc, b, k);
     }
     
     
@@ -71,18 +70,18 @@ public class Similarities {
      *            The threshold to use.
      */
     public void similarFiles(double threshold) {   
-	int n = this.resemblances.length;
-
-	for (int i = 0; i < n; i++)
-	    for (int j = i + 1; j < n; j++) {
-			double d = calculateResemblance(this.resemblances[i], this.resemblances[j], this.b);
-			if (d > threshold) {
-			    System.out.println( "Resemblance between file\n    " + urls[i] +
-			    				  "\nand file\n    " + urls[j]);
-			    System.out.println("is beyond threshold " + threshold + ".");
+		for (int i = 0; i < size; i++)
+		    for (int j = i + 1; j < size; j++) {
+				double d = calculateResemblance(resemblances[i], resemblances[j], b);
+				if (d > threshold)
+				    System.out.println(
+				    		"Resemblance between file\n" +
+				    		"    " + urls[i] +"\n" +
+				    		"and file\n" +
+				    		"    " + urls[j] + "\n" +
+				    		"is beyond threshold " + threshold + ".");
 			}
-		}
-	System.out.println("----------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------");
     }
 
     /**

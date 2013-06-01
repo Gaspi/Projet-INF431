@@ -21,7 +21,7 @@ public class HyperLogLog {
     /**
      * alpha[b] is meant to be equal to \alpha_{2^b}. Values computed by Wolfram Mathematica
      */
-    static double[] alpha = { 0, 0.351194, 0.532435, 0.625609,
+    static final double[] alpha = { 0, 0.351194, 0.532435, 0.625609,
     	0.673102, 0.697123, 0.709208, 0.715271,
     	0.718308, 0.719827, 0.720587, 0.720967,
     	0.721157, 0.721252, 0.721300, 0.721324, 0.721336 };
@@ -30,6 +30,8 @@ public class HyperLogLog {
     // 0.673000, 0.697000, 0.709000, 0.715270,
     // 0.718273, 0.719783, 0.720541, 0.720920,
     // 0.721110, 0.721205, 0.721253, 0.721276, 0.721288
+    
+	static final double n = Math.pow(2., 32.);
     
     /**
      * @return The position to the first 1 encountered when reading the 2-base decomposition of the
@@ -104,26 +106,24 @@ public class HyperLogLog {
      * @return The approximative number of different patterns.
      */
     public static double hyperLogLog(int[] M) {
-
+    
 	int m = M.length;
 	int b = (int) (Math.log(m) / Math.log(2)); // m = 2^b
-
+	
 	// Calculation of the result
 	double sum = 0;
 	for (int j = 0; j < m; j++)
 	    sum += Math.pow(2, -M[j]);
-
+	
 	double e = alpha[b] * ((double) m) * ((double) m) / sum;
-
-	double n = Math.pow(2., 32.);
-
+	
 	// Second modification (first if statement):
 	// corrections when e is comparatively small
 	// with respect to m
 	// Third modification (second if statement):
 	// corrections to account for collision effects
 	// due to the hash function
-	if (e < (5. / 2.) * m) {
+	if (e < 2.5 * m) {
 	    double v = 0;
 	    for (int i = 0; i < m; i++)
 	    	if (M[i] == 0) v++;
@@ -170,12 +170,13 @@ public class HyperLogLog {
      * @return The exact number of distinct words in the file.
      */
     public static double benchmark(Path path) {
-	Hashtable<String, String> tab = new Hashtable<String, String>();
-
-	for (String s : new WordReader(path))
-	    if (!tab.containsKey(s))
-		tab.put(s, s);
-	return (double) tab.size();
+		Hashtable<String, String> tab = new Hashtable<String, String>();
+	
+		for (String s : new WordReader(path))
+		    if (!tab.containsKey(s))
+		    	tab.put(s, s);
+				
+		return (double) tab.size();
     }
     
     

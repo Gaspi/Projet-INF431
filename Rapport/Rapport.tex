@@ -47,15 +47,15 @@ Les classes du package \class{FileManager} permettent de faciliter l'utilisation
 	\end{itemize}
 \item La classe \class{FileWriter} qui permet l'écriture dans un fichier.
 \item La classe \class{Files} qui est simplement un catalogue des fichiers souvent utilisés.
-\item La classe \class{CreatingFiles} qui contient des fonctions qui permettent des générer des fichiers volumineux de test. En particulier, ils génèrent :
+\item La classe \class{CreatingFiles} qui contient des fonctions qui permettent des générer des fichiers volumineux de test. En particulier, ils permettent de génèrer :
 	\begin{itemize}
-	\item Un fichier des nombres de 0 à n.
-	\item Un fichier de n identifiants UUID générés pas Java.
+	\item Un fichier des nombres de $0$ à $n$.
+	\item Un fichier de $n$ identifiants UID générés pas Java.
 	\end{itemize}
 \end{itemize}
 
 \subsection*{L'arithmétique en Java}
-La classe \class{UnsignedArithmetic} du package \class{drafts} fournit des fonctions qui permettent la correcte implantation des opérateurs somme et soustraction de deux entiers. En effet, Java utilise une implantation interne du type \class{int} qui tend à préserver le bit de signe (bit de poids le plus fort) lors de certaines opérations.
+La classe \class{UnsignedArithmetic} du package \class{drafts} fournit des fonctions qui permettent la correcte implantation des opérateurs addition et soustraction de deux \class{int}. En effet, Java utilise une implantation interne du type \class{int} qui tend à préserver le bit de signe (bit de poids le plus fort) lors de certaines opérations.
 
 \subsection*{Communiquer}
 La classe \class{Draft} du package \class{drafts} fournit, elle, des fonctions utiles à l'interface avec l'utilisateur. En particulier elle contient des méthodes d'affichage et d'utilisation de la console.
@@ -88,12 +88,12 @@ Cette classe implante un hachage tel qu'il est décrit à adresse \href{http://w
 Cette classe implante un hachage tel qu'il est décrit à adresse \href{http://en.wikipedia.org/wiki/MurmurHash}{cette adresse}.
 
 \subsection{Autres hachages}
-Principalement pour les comparer aux deux précédents, nous avons définit d'autres fonctions de hachage moins efficaces :
+Principalement pour les comparer aux deux précédents, nous avons définit d'autres fonctions de hachage :
 \begin{itemize}
 \item \class{DJB2} dont la description peut être trouvée à \href{http://www.cse.yorku.ca/~oz/hash.html}{cette adresse}.
 \item \class{JavaHash}, la fonction de hachage par défaut de Java.
 \item \class{LoseLose}, dont la description peut être trouvée à \href{http://www.cse.yorku.ca/~oz/hash.html}{cette adresse}.
-\item \class{HomemadeHash} 
+\item \class{HomemadeHash} % au fait elle fait quoi cette fonction ?
 \end{itemize}
 
 \subsection{La classe \class{HashFunctionTests}}
@@ -135,6 +135,7 @@ private static void chiSquareTestOnFile(Path path, HashFunction func)
 \newpage
 \section{L'algorithme HyperLogLog}
 La classe \class{HyperLogLog} contient les fonctions traitant la partie 2 du projet.\\
+
 Les valeurs de $\alpha$ sont tabulées dans 
 \begin{lstlisting}
 static double[] alpha = { 0, 0.351194, 0.532435, 0.625609, ... };
@@ -147,27 +148,86 @@ Nous fournissons également notre propre implantation :
 public static int rho(long x)
 \end{lstlisting}
 
+La fonction demandée en question 2 étant un cas particulier de la question 5), on décrira directement l'algorithme de la question 5), étant entendu qu'il est utilisé question 1) en prenant le paramètre $k$ égal à 1.
+
+\subsection{Construction du tableau $M$}
+Cette construction est implantée par la fonction suivante
+\begin{lstlisting}
+public static int[] buildFingerPrint(Path path, HashFunction func,
+		int b, int k)
+\end{lstlisting}
+L'algorithme employé est celui décrit dans l'énoncé auquel sont apportées les modifications recommandées dans l'article de Flajolet \textit{et alii}.
+En particulier les valeurs de $M$ sont initialisées à $0$ :
+\begin{lstlisting}
+int[] M = new int[m]; // M initialized to 0 by default
+\end{lstlisting}
+
+Pour traiter un $n$-uplet de mots, on conserve au cours de la lecture du fichier les $n$ dernier mots lus ainsi que leur taille.
+Les mots sont ajoutés par
+\begin{lstlisting}
+strBuilder.append(s);
+indexes.add(s.length());
+\end{lstlisting}
+et retirés par
+\begin{lstlisting}
+strBuilder.replace(0, indexes.poll(), "");
+\end{lstlisting}
+
+
+
+\subsection{Estimation du nombre de $k$-shingles distincts}
+Le tableau $M$ construit précédemment est ensuite utilisé pour estimer le résultat selon l'algorithme spécifié dans l'énoncé. Cette estimation est stockée dans une variable \class{e}. On effectue ensuite le code suivant qui applique les modifications suggérées par l'article de Flajolet \textit{et alii}.
+\begin{lstlisting}
+if (e < 2.5 * m) {
+    double v = 0;
+    for (int i = 0; i < m; i++)
+    	if (M[i] == 0) v++;
+    if (v != 0)
+    	e = m * Math.log(m / v);
+} else if (e > n / 30)
+    e = -n * Math.log(1 - e / n);
+\end{lstlisting}
+où $n = 2^{32}$.
+
 
 
 \newpage
 \section{Similarités entre ensembles de données}
-
-
-
+Une instance de la classe \class{Similarities} permet de comparer deux à deux les fichiers fournit lors de sa création. L'initialisation consiste à créer les tableaux $M_i$ associés aux différents fichiers. Puis l'algorithme proposé dans l'énoncé est utilisé pour calculer $r(A,B)$ à travers la fonction
+\begin{lstlisting}
+private static double calculateResemblance(int[] MA, int[] MB, int b)
+\end{lstlisting}
+Cette fonction appliquée à toute les paires de fichiers permet de comparer leur ressemblance.
 
 
 \newpage
 \section{Fenêtre glissante}
+On note $W$ la taille de la fenêtre.\\
+L'enjeu de cet algorithme consiste à retenir à chaque instant du parcours du fichier la valeur maximale de \class{M[i]} (pour tout $i$) rencontrée lors des $W$ derniers mots. Pour cela on ne décrit pas $M$ pas un tableau d'entiers mais pas deux tableaux de listes de type \class{LinkedList<Integer>} qui sauvegardent respectivement:\\
+\begin{tabular}{lcl}
+\class{timestamps} &:& une valeur de $\rho$ rencontrée \\
+\class{values} 	   &:& la date de la rencontre
+\end{tabular}
+Ceci nécessite de tenir un compteur de la date de lecture des mots.
 
-
-
-
-
-\newpage
-\section{Échantillonnage}
-
-
-
+\subsection{Insertion d'un élément}
+Lors de l'insertion d'un élément $\rho$ à l'indice $i$ du tableau au temps \class{timestamp}, on consulte les deux listes $\class{values}_i$ et $\class{timestamps}_i$ :
+\begin{lstlisting}
+    while ( !values.isEmpty() && rho >= values.getFirst() ) {
+    	values.remove();
+    	timestamps.remove();
+    }
+    timestamps.addFirst(timestamp);
+	values.addFirst(rho);
+\end{lstlisting}
+Ainsi on supprime tout les $\rho'$ lu précédemment qui sont inférieurs à $\rho$. En effet, ceux-ci n'ont plus aucune chance d'être le maximum de $M$ car un éléments plus grand vient d'arriver (est plus jeune dont sera supprimé après eux).
+Ainsi cette insertion préserve plusieurs invariants :
+\begin{itemize}
+\item \class{values} et \class{timestamps} ont la même taille.
+\item \class{values} est classée par ordre croissant.
+\item \class{timestamps} est classé par ordre décroissant.\\
+Car les \textit{timestamps} sont insérés successivement au cours de l'exécution, donc dans l'ordre croissant.
+\end{itemize}
 
 
 \newpage
