@@ -62,18 +62,15 @@ public class SlidingWindow {
     	
     	int currentTime = 0;
     	
-//    	LinkedList<Integer> indexExpires = new LinkedList<Integer>();
-//    	for (int i = 0; i < m; i++)
-//    		indexExpires.add(-1);
-    	
     	for (String s : new WordReader(path)) {
     	    long x = func.hashString(s);
     	    int j = (int) (x & (m - 1));
     	    int rho = Integer.numberOfTrailingZeros( (int) (x >>> b) ); // rho(w)
     	    
     	    // We insert rho in the queue preserving the invariants.
-    	    update( currentTime - windowSize, timestamps[j], values[j] );
     	    insert( currentTime, rho, timestamps[j], values[j] );
+    	    // Alternative : meilleure complexite en espace, pire en temps
+    	    // update( currentTime - windowSize, timestamps[j], values[j] );
     	    
     		// We regularly evaluate and save the approximate number of words
     	    // corresponding to the current table M.

@@ -70,7 +70,7 @@ La classe \class{Draft} du package \class{drafts} fournit, elle, des fonctions u
 	\label{fig:hashPackage}
 	\centering
 	\includegraphics[scale=0.75, angle=90]{../Java Workspace/Test Hash/hashPackage.png}
-	\caption{Le package hashPackage.}
+	\caption{Le package \class{hash}.}
 \end{figure}
 
 Nous avons choisit de définir chacune des fonctions de hachage comme des sous-classes de la classe abstraite \class{HashFunction}.
@@ -228,6 +228,49 @@ Ainsi cette insertion préserve plusieurs invariants :
 \item \class{timestamps} est classé par ordre décroissant.\\
 Car les \textit{timestamps} sont insérés successivement au cours de l'exécution, donc dans l'ordre croissant.
 \end{itemize}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{pictures/picSlidingWindow2.png}
+	\caption{Insertion d'un élément.}
+\end{figure}
+
+\newpage
+\subsection{Nettoyage des listes}
+A chaque utilisation des listes pour calculer \class{M[i]}, il faut s'assurer que le maximum a bien été suffisamment tôt. On supprime donc tout les couples (\class{timestamp}, \class{value}) qui sont plus vieux que la taille $W$ de la fenêtre. Le maximum est alors l'élément le plus vieux de la liste.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{pictures/picSlidingWindow1.png}
+	\caption{Nettoyage des listes.}
+\end{figure}
+
+\subsection{Complexité en temps}
+On effectue un passage sur tout les $N$ mots du fichier.\\
+On effectue $S$ évaluations du nombre de mots distincts. A chaque évaluation il faut vérifier que les $m$ cases du tableau $M$ sont nettoyées.\\
+L'ensemble des nettoyages va supprimer environ $N$ mots au total.\\
+
+On en conclut que la complexité en temps est de $\mathcal{O}(N + mS)$. La complexité en temps reste donc linéaire à condition de ne pas être trop exigeant sur $S$.\\
+Pour une représentation graphique, $S=1000$ suffit largement.
+
+\subsection{Complexité en espace}
+Le tableau $M$ ne contient plus uniquement $m$ entiers mais $2m$ listes d'entiers.\\
+Cependant, ces listes ne contiennent en tout que $W+2N/S$ entiers maximum.
+Les entiers de \class{timestamps} sont codés sur $\mathcal{O}(\log(N))$ bits au pire (et en moyenne).
+Ceux de \class{values} sont codés sur $\mathcal{O}( \log(\log(N)) )$ bits en moyenne.
+La complexité en espace est donc de $\mathcal{O}(\frac{N\log(N)}{S})$.
+
+\subsection{Alternative}
+Une alternative est d'effectuer un nettoyage supplémentaire de \class{M[i]} à chaque ajout d'une entrée à cet indice. Ainsi, la différence d'âge entre les plus vieux et plus jeunes n'excède jamais $W$ et le tableau ne peut donc pas contenir plus de $2Wm$ entiers.\\
+La complexité en espace passe à $\mathcal{O}(mW\log(N))$.\\
+La complexité en temps passe à  $\mathcal{O}(WN + mS)$.\\
+
+On remarque qu'il n'est plus possible de retenir uniquement $\mathcal{O}(\log \log N)$ bits à cause de la nécessité de retenir les \class{timestamps}.
+Cependant, comme il n'est pas nécessaire de retenir la date exacte, mais seulement la date relativement à la  date actuelle, on pourrait envisager d'effectuer de temps en temps une remise à jour de la date. Par exemple, comme les ages des entrées ne sont pas censées excéder $W$, on pourrait, tout les temps multiples de $W$, diminuer toutes les dates (actuelle et stockées dans $M$) de $W$. Ainsi, la complexité en temps est augmentée de $2Wm\frac{N}{W}$ mais le nombre de bit d'un \class{timestamp} devient $\mathcal{O}(\log S)$..\\
+La complexité en espace passe à $\mathcal{O}(mW (\log \log N + \log W)) =^{(1)} \mathcal{O}(\log \log N)$.\\
+La complexité en temps passe à $\mathcal{O}((W+m)N + mS) =^{(1)} \mathcal{O}(N)$.\\
+$^{(1)}$ : Si $S$, $W$, $m$ et $N$ sont des constantes.
+
 
 
 \newpage
