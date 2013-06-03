@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.TreeMap;
 import org.apache.commons.math3.random.RandomDataGenerator;
 
-public class IcebergTreeSampleImproved extends IcebergSample {
+public class IcebergHashMapSampleImproved extends IcebergSample {
 
 	private final HashMap<String, Integer> sample = new HashMap<String, Integer>();
 	private final double lowerBoundFrequency;
@@ -15,7 +15,7 @@ public class IcebergTreeSampleImproved extends IcebergSample {
 	private int h = 0;
 	private int sumK = 0;
 
-	public IcebergTreeSampleImproved(double frequency,
+	public IcebergHashMapSampleImproved(double frequency,
 			double lowerBoundFrequency) {
 		super(frequency);
 		

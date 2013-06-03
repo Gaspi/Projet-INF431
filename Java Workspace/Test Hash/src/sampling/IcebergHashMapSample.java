@@ -9,11 +9,11 @@ import java.util.TreeMap;
  * providing access and removal in O(log(n)).
  * It results in many false positives (see the Iceberg class)
  */
-public class IcebergTreeSample extends IcebergSample {
+public class IcebergHashMapSample extends IcebergSample {
 
 	private final TreeMap<String, Integer> sample = new TreeMap<String, Integer>();
 
-	public IcebergTreeSample(double frequency) {
+	public IcebergHashMapSample(double frequency) {
 		super(frequency);
 	}
 	

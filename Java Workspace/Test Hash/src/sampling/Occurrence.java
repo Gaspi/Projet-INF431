@@ -1,5 +1,8 @@
 package sampling;
 
+import hash.HashFunction;
+import hash.MurmurHash3;
+
 /**
  * 
  * Store a word and the number of times it appears in the text.
@@ -37,6 +40,12 @@ public class Occurrence {
     	} else if (!word.equals(other.word))
     		return false;
     	return true;
+    }
+    
+    @Override
+    public int hashCode(){
+    	HashFunction func = new MurmurHash3();
+    	return func.hashString(this.word);
     }
     
     

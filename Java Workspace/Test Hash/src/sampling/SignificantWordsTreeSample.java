@@ -4,10 +4,12 @@ import hash.HashFunction;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * Not working
@@ -18,14 +20,14 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
     // Array of list of Occurrence objects of length 32. The list at index i will contain words
     // whose hash value has exactly i trailing zeros (number of 0 before the first 1 encountered
     // from right to left in a binary representation on the integer)
-    ArrayList<TreeMap<String, Integer>> strTab = new ArrayList<TreeMap<String, Integer>>(33);
+    ArrayList<HashMap<String, Integer>> strTab = new ArrayList<HashMap<String, Integer>>(33);
     
     
     public SignificantWordsTreeSample(int k, HashFunction func) {
     	super(k, func);
     	
     	for (int i = 0; i <= 32; i++)
-    		strTab.add(new TreeMap<String, Integer>());
+    		strTab.add(new HashMap<String, Integer>());
     }
     
 
@@ -36,7 +38,7 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
     	
     	// Consider only words whose hash value begins with more than b zeros.
     	if (nbTrailingZeros >= b) {
-    		TreeMap<String, Integer> l = strTab.get(nbTrailingZeros);
+    		HashMap<String, Integer> l = strTab.get(nbTrailingZeros);
     		
     		Integer i = l.get(s);
     		// If we have already seen the word, increase its number of occurrences.
@@ -64,7 +66,7 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
     	// Return only the words appearing with low frequencies. Here words with less than 5 occurrences
     	// in the text.
     	for (int i = b; i <= 32; i++){
-    		TreeMap<String, Integer> t = strTab.get(i);
+    		HashMap<String, Integer> t = strTab.get(i);
     		for (String s : t.keySet()){
     			int occ = t.get(s);
     			if (occ <= 5)
@@ -80,7 +82,7 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
     public double estimateMiceNumber(int nbOcc){
     	double comp = 0;
     	for(int i = b; i <= 32 ; i++){
-    		TreeMap<String, Integer> t = strTab.get(i);
+    		HashMap<String, Integer> t = strTab.get(i);
     		for (String s : t.keySet())
     			if (t.get(s) == nbOcc)
     				comp++;

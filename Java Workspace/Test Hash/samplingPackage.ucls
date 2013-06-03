@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="sampling.IcebergTreeSample" project="Test Hash" 
-    file="/Test Hash/src/sampling/IcebergTreeSample.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="sampling.IcebergHashMapSample" project="Test Hash" 
+    file="/Test Hash/src/sampling/IcebergHashMapSample.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="933" y="377"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="sampling.IcebergTreeSampleImproved" project="Test Hash" 
-    file="/Test Hash/src/sampling/IcebergTreeSampleImproved.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="sampling.IcebergHashMapSampleImproved" project="Test Hash" 
+    file="/Test Hash/src/sampling/IcebergHashMapSampleImproved.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1056" y="142"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

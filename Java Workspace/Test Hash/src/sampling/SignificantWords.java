@@ -32,8 +32,8 @@ public class SignificantWords {
     	if (2 * k < nbWords)
     		throw new AssertionError("Too much significant words asked for the given sample size.");
     	
-    	//SignificantWordsSample ws = new SignificantWordsArraySample(k, func);
-    	SignificantWordsSample ws = new SignificantWordsTreeSample(k, func);
+    	SignificantWordsSample ws = new SignificantWordsArraySample(k, func);
+    	//SignificantWordsSample ws = new SignificantWordsTreeSample(k, func);
     	
     	for(String str: new WordReader(path))
     		ws.addWord(str);
