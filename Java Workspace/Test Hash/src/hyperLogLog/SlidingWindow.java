@@ -21,7 +21,7 @@ import FileManager.WordReader;
  * Question 4 :
  * Implements an algorithm to evaluate the number of different words in a sliding window of a text stream.
  */
-public class SlidingWindow {
+public final class SlidingWindow {
 	
 	
 	 /**

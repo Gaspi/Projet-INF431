@@ -1,6 +1,8 @@
 package sampling;
 
 import hash.HashFunction;
+import hash.HashFunctionTests;
+import hash.LookUp3;
 
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -37,7 +39,7 @@ public class Mice {
 	
 	
 	 /**
-     * Calculate the number of mice.
+     * Calculate the real number of mice.
      * 
      * @param path Path to the file to use.
      * @param k Number of occurrences.
@@ -63,6 +65,28 @@ public class Mice {
     	return comp;
     }
     
+    /**
+     * Display the percentage error when estimating the number of k-mice
+     * @param path Path to the file to use.
+     * @param k Number of occurrences.
+     */
+    public static void performanceEstimator(Path path, int k){   	
+    	SignificantWordsArraySample ws = new SignificantWordsArraySample(1000, new LookUp3());	
+    	for(String str: new WordReader(path)) {
+    		ws.addWord(str);
+    	}
+    	
+    	double a = benchmarkMiceNumber(path, k);
+    	double b = ws.estimateMiceNumber(k);
+    	
+    	System.out.println("----------------------------------------------------------------");
+    	System.out.println("For file " + path.getFileName());
+    	System.out.println("The estimated number of " + k + "-mice is: " + b + ".");
+    	System.out.println("The real number of " + k + "-mice is: " + a + ".");
+    	System.out.println("The percentage error is: " + Math.abs(a-b)/a*100. + ".");
+    	System.out.println("----------------------------------------------------------------");
+    }
+    
     // This answers question 6
 	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
 		
@@ -85,7 +109,6 @@ public class Mice {
         	
     	} else
     		throw new IllegalArgumentException("Wrong number of arguments (4 expected)");
-    	
 	}
 	
 	

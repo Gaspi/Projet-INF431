@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="hyperLogLog.HyperLogLog" project="Test Hash" 
     file="/Test Hash/src/hyperLogLog/HyperLogLog.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="298" width="369" x="530" y="37"/>    
+    <position height="319" width="369" x="530" y="37"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="hyperLogLog.Similarities" project="Test Hash" 
     file="/Test Hash/src/hyperLogLog/Similarities.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="382" width="411" x="939" y="37"/>    
+    <position height="403" width="411" x="939" y="37"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      

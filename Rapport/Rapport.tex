@@ -142,7 +142,7 @@ Cette fonction effectue un test du Chi-2 sur les valeurs renvoyées par la fonct
 
 \newpage
 \section{L'algorithme HyperLogLog}
-La classe \class{HyperLogLog} contient les fonctions traitant la partie 2 du projet.\\
+La classe \class{HyperLogLog} du package \class{hyperLogLog} (cf diagramme \ref{fig:hyperLogLogPackage}) contient les fonctions traitant la partie 2 du projet.\\
 
 Les valeurs de $\alpha$ sont tabulées dans 
 \begin{lstlisting}
@@ -197,19 +197,26 @@ if (e < 2.5 * m) {
 \end{lstlisting}
 où $n = 2^{32}$.
 
+\begin{figure}
+	\label{fig:hyperLogLogPackage}
+	\centering
+	\includegraphics[scale=0.50, angle=90]{../Java Workspace/Test Hash/hyperLogLogPackage.png}
+	\caption{Le package hyperLogLog.}
+\end{figure}
 
 
 \newpage
 \section{Similarités entre ensembles de données}
-Une instance de la classe \class{Similarities} permet de comparer deux à deux les fichiers fournit lors de sa création. L'initialisation consiste à créer les tableaux $M_i$ associés aux différents fichiers. Puis l'algorithme proposé dans l'énoncé est utilisé pour calculer $r(A,B)$ à travers la fonction
+Une instance de la classe \class{Similarities} (cf diagramme \ref{fig:hyperLogLogPackage}) permet de comparer deux à deux les fichiers fournit lors de sa création. L'initialisation consiste à créer les tableaux $M_i$ associés aux différents fichiers. Puis l'algorithme proposé dans l'énoncé est utilisé pour calculer la ressemblance $r(A,B)$ entre les fichiers A et B à travers la fonction
 \begin{lstlisting}
 private static double calculateResemblance(int[] MA, int[] MB, int b)
 \end{lstlisting}
-Cette fonction appliquée à toute les paires de fichiers permet de comparer leur ressemblance.
+Cette fonction appliquée à toute les paires de fichiers permet déterminer lesquels présentent le plus de similarités. Nous l'avons testée, entre autres, sur des fichiers se distinguant uniquement par une centaines de mots (supprimés du fichier d'origine d'une taille de 5 Mo) avec un résultat positif.
 
 
 \newpage
 \section{Fenêtre glissante}
+Le code permettant d'appréhender cette partie est distribué entre les classe \class{HyperLogLog} et \class{SlidingWindow} (cf diagramme \ref{fig:hyperLogLogPackage}).
 On note $W$ la taille de la fenêtre.\\
 L'enjeu de cet algorithme consiste à retenir à chaque instant du parcours du fichier la valeur maximale de \class{M[i]} (pour tout $i$) rencontrée lors des $W$ derniers mots. Pour cela on ne décrit pas $M$ pas un tableau d'entiers mais pas deux tableaux de listes de type \class{LinkedList<Integer>} qui sauvegardent respectivement:\\
 \begin{tabular}{lcl}
@@ -279,25 +286,20 @@ La complexité en espace passe à $\mathcal{O}(mW (\log \log N + \log W)) =^{(1)
 La complexité en temps passe à $\mathcal{O}((W+m)N + mS) =^{(1)} \mathcal{O}(N)$.\\
 $^{(1)}$ : Si $S$, $W$, $m$ et $N$ sont des constantes.
 
+\newpage
+\section{Mots caractéristiques}
 
 
 \newpage
 \section{Souris}
 
 
-
-
-
-
 \newpage
 \section{Icebergs}
 
-
-
-
-
 \newpage
 \section*{Conclusion}
+\addcontentsline{toc}{section}{\protect\numberline{}Conclusion}
 
 
 

@@ -16,7 +16,7 @@ import FileManager.WordReader;
 
 
 
-public class HyperLogLog {
+public final class HyperLogLog {
 
     /**
      * alpha[b] is meant to be equal to \alpha_{2^b}. Values computed by Wolfram Mathematica
