@@ -10,7 +10,7 @@ import java.util.Scanner;
 /**
  * Draft of useful functions
  */
-public class Draft {
+public final class Draft {
 
 	/**
 	 * Print in the standard output the matrix given.

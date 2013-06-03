@@ -22,9 +22,14 @@
 \begin{document}
 \maketitle
 
+\tableofcontents
+\newpage
+
 \section*{Introduction}
+\addcontentsline{toc}{section}{\protect\numberline{}Introduction}
 
 \section*{Classes annexes}
+\addcontentsline{toc}{section}{\protect\numberline{}Classes annexes}
 
 \subsection*{La lecture des fichiers}
 
@@ -36,10 +41,10 @@
 \end{figure}
 
 Le traitement du sujet suggère la manipulation fréquente de gros fichiers textes.\\
-Les classes du package \class{FileManager} permettent de faciliter l'utilisation des fichiers. Par exemple, elles permettent de les désigner par leur chemin \class{Path} ou leur adresse \class{String} et gèrent les éventuelles exceptions lors du traitement en interne. En particulier, on y trouve :
+Les classes du package \class{FileManager} (cf diagramme \ref{fig:fileManagerPackage}) permettent de faciliter l'utilisation des fichiers. Par exemple, elles permettent de les désigner par leur chemin \class{Path} ou leur adresse \class{String} et gèrent les éventuelles exceptions lors du traitement en interne. En particulier, on y trouve :
 \begin{itemize}
 \item La classe abstraite \class{FileReader} qui permet d'ouvrir en lecture un fichier.\\
-	Cette classe implémente l'interface \class{Iterable<String>} et permet donc de parcourir le fichier à l'aide d'une simple boucle \class{for}.
+	Cette classe implémente l'interface \class{Iterable<String>} et permet donc de parcourir le fichier à l'aide d'une simple boucle \class{for}, rendant ainsi le code plus simple à lire.
 	Elle possède deux classes filles :
 	\begin{itemize}
 	\item La classe \class{WordReader} qui permet de lire un fichier mot à mot.
@@ -50,12 +55,12 @@ Les classes du package \class{FileManager} permettent de faciliter l'utilisation
 \item La classe \class{CreatingFiles} qui contient des fonctions qui permettent des générer des fichiers volumineux de test. En particulier, ils permettent de génèrer :
 	\begin{itemize}
 	\item Un fichier des nombres de $0$ à $n$.
-	\item Un fichier de $n$ identifiants UID générés pas Java.
+	\item Un fichier de $n$ identifiants UID générés par Java.
 	\end{itemize}
 \end{itemize}
 
 \subsection*{L'arithmétique en Java}
-La classe \class{UnsignedArithmetic} du package \class{drafts} fournit des fonctions qui permettent la correcte implantation des opérateurs addition et soustraction de deux \class{int}. En effet, Java utilise une implantation interne du type \class{int} qui tend à préserver le bit de signe (bit de poids le plus fort) lors de certaines opérations.
+La classe \class{UnsignedArithmetic} du package \class{drafts} fournit des fonctions qui permettent la correcte implantation des opérateurs addition et soustraction de deux \class{int}. En effet, Java utilise une implantation interne du type \class{int} qui préserver le bit de signe (bit de poids le plus fort) lors de certaines opérations. Les fonctions de hachage utilisées ayant recours à des entiers non signés (\textit{unsigned integers}) il nous a été nécessaire de compenser leur absence parmi les types primitifs de Java. Nous effectuons donc les opérations en se servant de \textit{long} pour contenir des entiers manipulés.
 
 \subsection*{Communiquer}
 La classe \class{Draft} du package \class{drafts} fournit, elle, des fonctions utiles à l'interface avec l'utilisateur. En particulier elle contient des méthodes d'affichage et d'utilisation de la console.
@@ -66,33 +71,26 @@ La classe \class{Draft} du package \class{drafts} fournit, elle, des fonctions u
 \newpage
 \section{Le hachage}
 
-\begin{figure}
-	\label{fig:hashPackage}
-	\centering
-	\includegraphics[scale=0.75, angle=90]{../Java Workspace/Test Hash/hashPackage.png}
-	\caption{Le package \class{hash}.}
-\end{figure}
 
-Nous avons choisit de définir chacune des fonctions de hachage comme des sous-classes de la classe abstraite \class{HashFunction}.
-Ainsi cette classe impose la définition des méthodes suivantes :
+Nous avons testés au début du projet plusieurs fonctions de hachage afin de déterminer le meilleur choix pour la suite. Nous avons choisit de définir chacune des fonctions de hachage comme des sous-classes de la classe abstraite \class{HashFunction} (cf diagramme \ref{fig:hashPackage}): il nous a en effet paru intuitif que que ces différentes fonctions représente un même type d'objet et ne diffèrent que par le détail de leur implémentation. Cette classe impose donc la définition des méthodes suivantes :
 \begin{lstlisting}
 	public int hashByteArray(byte[] array);
 	public int hashString(String s);
 \end{lstlisting}
-dont l'implémentation dépends, bien sur, de la fonction de hachage et qui implémentent le hachage des types de données qui nous intéressent.
+dont l'implémentation dépend, bien sûr, de la fonction de hachage et qui implémentent le hachage des types de données qui nous intéressent. 
 
 \subsection{Le hachage \class{LookUp3}}
-Cette classe implante un hachage tel qu'il est décrit à adresse \href{http://www.burtleburtle.net/bob/c/lookup3.c}{cette adresse}.
+Cette classe implante un hachage tel qu'il est décrit à adresse \href{http://www.burtleburtle.net/bob/c/lookup3.c}{http://www.burtleburtle.net/bob/c/lookup3.c}. Seuls certains détails mineurs sont à régler pour l'implémenter en Java (comme la gestion d'entiers non signés).
 
 \subsection{Le hachage \class{MurmurHash3}}
-Cette classe implante un hachage tel qu'il est décrit à adresse \href{http://en.wikipedia.org/wiki/MurmurHash}{cette adresse}.
+Cette classe implante un hachage tel qu'il est décrit à adresse \href{http://en.wikipedia.org/wiki/MurmurHash}{http://en.wikipedia.org/wiki/MurmurHash}.
 
 \subsection{Autres hachages}
 Principalement pour les comparer aux deux précédents, nous avons définit d'autres fonctions de hachage :
 \begin{itemize}
-\item \class{DJB2} dont la description peut être trouvée à \href{http://www.cse.yorku.ca/~oz/hash.html}{cette adresse}.
+\item \class{DJB2} dont la description peut être trouvée à \href{http://www.cse.yorku.ca/~oz/hash.html}{http://www.cse.yorku.ca/~oz/hash.html}.
 \item \class{JavaHash}, la fonction de hachage par défaut de Java.
-\item \class{LoseLose}, dont la description peut être trouvée à \href{http://www.cse.yorku.ca/~oz/hash.html}{cette adresse}.
+\item \class{LoseLose}, dont la description peut être trouvée à \href{http://www.cse.yorku.ca/~oz/hash.html}{http://www.cse.yorku.ca/~oz/hash.html}.
 \item \class{HomemadeHash} % au fait elle fait quoi cette fonction ?
 \end{itemize}
 
@@ -104,7 +102,7 @@ On y trouve en particulier les méthodes suivantes :
 \item \begin{lstlisting}
 private static float speedTestOnFile(Path path, HashFunction func)
 \end{lstlisting}
-Cette fonction parcours le fichier désigné par \class{path} et applique la fonction de hachage \class{func} sur chacun de ses mots. Elle retourne le temps que ce parcours a nécessité (en secondes).
+Cette fonction parcours le fichier désigné par \class{path} et applique la fonction de hachage \class{func} sur chacun de ses mots. Elle retourne le temps que ce parcours a nécessité (en secondes). Nous désirions une fonctions suffisamment rapide pour satisfaire le cahier des charges de l'énoncé.
 
 \item \begin{lstlisting}
 public static void speedTests(Path[] paths, HashFunction func)
@@ -114,6 +112,7 @@ Cette fonction effectue le même test sur tout les fichiers de \class{paths} et 
 \item \begin{lstlisting}
 private static int collisionTestOnFile(Path path, HashFunction func)
 \end{lstlisting}
+Cette fonction parcours le fichier désigné par \class{path} et applique la fonction de hachage \class{func} sur chacun de ses mots. Elle renvoie le nombre de collisions rencontrées entre les clefs des mots rencontrés. Nous voulions limiter au maximum les collisions, au moins entre les mots du vocabulaire anglais (puisque nos principaux fichiers de tests sont des textes en anglais).
 
 \item \begin{lstlisting}
 public static void collisionTests(Path[] paths, HashFunction func)
@@ -123,14 +122,23 @@ Cette fonction effectue le même test sur tout les fichiers de \class{paths} et 
 \item \begin{lstlisting}
 private static void distributionTestOnFile(Path path, HashFunction func)
 \end{lstlisting}
+\label{lstlisting:distributionTestOnFile}
+
+Cette fonction affiche l'histogramme de la distribution de la fonction de hachage \class{func} sur les mots du fichier d'adresse \class{path}. Il est ainsi possible de constater visuellement si les valeurs renvoyées par la fonction de hachage se répartissent bien uniformément. Notons que pour préserver la cohérence de l'histogramme, il faut utiliser un fichier sans doublon et contenant un échantillon le plus exhaustif possible des mots susceptibles d'être rencontrés au cours des algorithmes. De plus les mots contenus dans le fichier ne doivent pas être déjà distribués de manière aléatoire (car sinon nous obtenons toujours une distribution aléatoire, même pour une fonction de hachage de faible pertinence). Nous utilisons donc un fichier contenant un dictionnaire des mots anglais.
 
 \item \begin{lstlisting}
 private static void chiSquareTestOnFile(Path path, HashFunction func)
 \end{lstlisting}
+Cette fonction effectue un test du Chi-2 sur les valeurs renvoyées par la fonction de hachage sur les fichier d'adresse \class{path}. L'intervalle de confiance utilisé est de niveau 95\%. La fonction  affiche également la \textit{p-value} correspondante.
 
 \end{itemize}
 
-
+\begin{figure}
+	\label{fig:hashPackage}
+	\centering
+	\includegraphics[scale=0.75, angle=90]{../Java Workspace/Test Hash/hashPackage.png}
+	\caption{Le package \class{hash}.}
+\end{figure}
 
 \newpage
 \section{L'algorithme HyperLogLog}
