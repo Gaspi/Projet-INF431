@@ -21,14 +21,15 @@ Vous venez de télécharger notre solution au projet du cours d'informatique INF
 L'intégralité de la solution que nous proposons est constitué des fichiers et dossiers suivants :
 \begin{itemize}
 \item "Notice d'utilisation.pdf" : La présente notice.
+\item "Sujet.pdf" : Le sujet proposé par monsieur Bruno Salvy.
 \item "Rapport.pdf" : Le rapport du projet. Vous pourrez y trouver une description plus détaillée des algorithmes employés. 
-\item "executable.jar" : La version exécutable aboutie du projet, utilisable immédiatement.
+\item "executable.jar" : L'exécutable java qui lance l'interface graphique (GUI) du projet. Permet d'utiliser rapidement les fonctionnalités développées dans ce projet.
 \item "bin" : Le dossier dans lequel sont situés les fichiers java compilés ".class" des classes utilisées.
-\item "workspace" : Le dossier à utiliser comme "Java Workspace" pour ouvrir le projet à l'aide d'Eclipse. Il contient le code source de notre projet.
+\item "workspace" : Le dossier à utiliser comme "Java Workspace" pour ouvrir le projet à l'aide d'Eclipse. Il contient le code source de notre projet (sans la GUI).
 \item "files.rar" : Un dossier compressé dans lequel sont situés quelques fichiers volumineux pouvant être utilisés pour tester les programmes.
 \end{itemize}
 
-
+\newpage
 \section{Pour une utilisation rapide}
 - Placez dans un même dossier l'exécutable "executable.jar" et un dossier intitulé "files".\\
 - Placez dans ce sous-dossier "files" les fichiers que vous souhaitez traiter. \\
@@ -45,12 +46,12 @@ Nos programmes peuvent également être utilisés directement à l'aide du code 
 \item Exécutez les commandes suivantes selon la fonction qui vous intéresse (cf ci-dessous).
 \end{itemize}
 
-Remarques :
+\textbf{Remarques :}
 \begin{itemize}
 \item[-] les adresses des fichiers peuvent être
 	\begin{itemize}
 	\item soit leur adresse absolue
-	\item soit l'adresse relative à partir du répertoire actuel, "bin".
+	\item soit l'adresse relative à partir du répertoire actuel : "bin".
 	\end{itemize}
 \item[-] Les mots clef désignant une fonctions de hachage doivent être choisis parmi :
 	\begin{center}
@@ -61,13 +62,13 @@ Remarques :
 	HomemadeHash \\
 	DJB2
 	\end{center}
-\item[-] Tout fonction peut être appelée sans argument. Une interface en ligne de commande vous proposera alors de rentrer les arguments un par un.
+\item[-] Tout fonction peut être appelée \emph{sans argument}. Une interface en ligne de commande vous proposera alors de rentrer les arguments un par un.
 \end{itemize}
 
 
 
 \subsection{Filtrage}
-Cette fonction permet d'appliquer un filtre sur un fichier écrit en anglais.\\
+Cette fonction permet d'appliquer un filtre sur un fichier écrit en anglais. Les différentes fonctions du projet sont conçues pour fonctionner sur des fichiers filtrés.\\
 \indent\indent\code{java filter/Filter origine cible}\\
 \begin{tabular}{lcl}
 \code{origine} &:& l'adresse d'un fichier existant à filtrer.\\
@@ -117,7 +118,6 @@ Cette fonction affiche l'évolution, au cours de la lecture d'un fichier, du nom
 \end{tabular}\\
 
 
-\newpage
 \subsection{Échantillonnage}
 Cette fonction isole quelques mots significatifs d'un texte. Ces mots peuvent, par exemple, être utilisés pour retrouver des références vers ce texte via une recherche Google. \\
 \code{java  sampling/SignificantWords hash nbWords k file}\\
@@ -129,8 +129,9 @@ Cette fonction isole quelques mots significatifs d'un texte. Ces mots peuvent, p
 \end{tabular}\\
 
 
+\newpage
 \subsection{Souris}
-Cette fonction affiche l'ensemble de "souris" d'un texte.\\
+Cette fonction affiche l'ensemble des "souris" d'un texte.\\
 \code{java  sampling/Mice hash number k file}\\
 \begin{tabular}{lcl}
 \code{hash} &:& la fonction de hachage à employer.\\
@@ -141,7 +142,7 @@ Cette fonction affiche l'ensemble de "souris" d'un texte.\\
 
 
 \subsection{Icebergs}
-Cette fonction affiche l'ensemble de "souris" d'un texte.\\
+Cette fonction affiche l'ensemble des "icebergs" d'un texte.\\
 \code{java  sampling/Icebergs frequency file}\\
 \begin{tabular}{lcl}
 \code{frequency} &:& la fréquence limite d'apparition pour qu'un mot soit considéré comme un iceberg.\\
@@ -164,13 +165,10 @@ Cette fonction affiche l'ensemble de "souris" d'un texte.\\
 
 
 
-
 \section{Utiliser Eclipse}
 - Ouvrez Eclipse\\
 - Sélectionnez : File -$>$ Switch Worspace -$>$ Other...\\
 - Sélectionnez l'emplacement du dossier "workspace"\\
-%- Réglez le niveau de compatibilité à "Java 1.7"\\ % Inutile car l'interface graphique n'est pas fournie
 - Parcourez l'intégralité du code source et appelez les différentes fonctions à partir de la classe "Main.java"
-
 
 \end{document}
