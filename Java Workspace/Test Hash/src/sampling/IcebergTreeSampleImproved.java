@@ -1,5 +1,6 @@
 package sampling;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.TreeMap;
@@ -7,7 +8,7 @@ import org.apache.commons.math3.random.RandomDataGenerator;
 
 public class IcebergTreeSampleImproved extends IcebergSample {
 
-	private final TreeMap<String, Integer> sample = new TreeMap<String, Integer>();
+	private final HashMap<String, Integer> sample = new HashMap<String, Integer>();
 	private final double lowerBoundFrequency;
 	private final double delta = 0.1;
 	private final int b;

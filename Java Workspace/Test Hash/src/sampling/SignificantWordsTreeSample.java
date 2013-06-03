@@ -3,7 +3,10 @@ package sampling;
 import hash.HashFunction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -56,7 +59,7 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
 
     @Override
     public LinkedList<String> words() {
-    	LinkedList<String> l = new LinkedList<String>();
+    	LinkedList<String> ll = new LinkedList<String>();
     	
     	// Return only the words appearing with low frequencies. Here words with less than 5 occurrences
     	// in the text.
@@ -65,11 +68,11 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
     		for (String s : t.keySet()){
     			int occ = t.get(s);
     			if (occ <= 5)
-    				l.add(s);
+    				ll.add(s);
     		}
     	}
     	
-    	return l;
+    	return ll;
     }
     
 
@@ -79,7 +82,7 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
     	for(int i = b; i <= 32 ; i++){
     		TreeMap<String, Integer> t = strTab.get(i);
     		for (String s : t.keySet())
-    			if (t.get(s) == 5)
+    			if (t.get(s) == nbOcc)
     				comp++;
     				
     	}

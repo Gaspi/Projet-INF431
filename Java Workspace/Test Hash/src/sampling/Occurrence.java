@@ -15,6 +15,7 @@ public class Occurrence {
     public Occurrence(String word, int nbOcc) {
     	this.word = word;
     	this.nbOcc = nbOcc;
+    	
     }
 
     /**
@@ -37,5 +38,7 @@ public class Occurrence {
     		return false;
     	return true;
     }
+    
+    
 
 }

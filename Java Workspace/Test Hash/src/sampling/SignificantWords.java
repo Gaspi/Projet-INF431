@@ -3,6 +3,8 @@ package sampling;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import hash.HashFunction;
@@ -30,13 +32,16 @@ public class SignificantWords {
     	if (2 * k < nbWords)
     		throw new AssertionError("Too much significant words asked for the given sample size.");
     	
-    	SignificantWordsSample ws = new SignificantWordsArraySample(k, func);
+    	//SignificantWordsSample ws = new SignificantWordsArraySample(k, func);
+    	SignificantWordsSample ws = new SignificantWordsTreeSample(k, func);
     	
     	for(String str: new WordReader(path))
     		ws.addWord(str);
+
     	
     	// Extract only nbWords
     	LinkedList<String> wordsList = ws.words();
+    	//Collections.shuffle(wordsList);
     	LinkedList<String> l = new LinkedList<String>();
     	for (int i = 0; i < nbWords; i++)
     		l.add(wordsList.removeFirst());

@@ -289,6 +289,56 @@ $^{(1)}$ : Si $S$, $W$, $m$ et $N$ sont des constantes.
 \newpage
 \section{Mots caractéristiques}
 
+Il s'agit, pour cette question et les suivantes, de déterminer, à partir d'un échantillonnage d'un fichier de texte, des mots vérifiant certaines propriétés statistiques. L'ensemble des classes et fonctions utiles sont regroupés au sein du package \class{sampling} (cf diagramme \ref{fig:samplingPackage}).\\
+
+\subsection{La classe \class{Occurrence}}
+
+Cette classe permet essentiellement de stocké un mot ainsi que son nombre d'occurrence jusqu'au point courant de lecture. Nous y redéfinissons la méthode \class{equals} de sorte que deux instances de la classe correspondent au même objet si et seulement si elle stocke le même mot. Cela permet l'utilisation correcte de la méthode \class{indexOf(Object o} de la classe \class{LinkedList<Occurrence>} dans \class{SignificantWordsSample}.
+
+
+\subsection{La classe \class{SignificantWordsSample}}
+
+Pour la recherche de mots caractéristiques, comme le sujet suggère de trouver des structures de données adaptées à l'algorithme, nous avons décidé de créer une classe abstraite \class{SignificantWordsSample} dont devront hériter chacune de nos classes représentant le sac. Cela permet de se fixer un patron que devront respecter ces classes et de séparer plus clairement leur implémentation de leur utilisation. La classe \class{SignificantWordsSample}, outre les paramètres nécessaires aux algorithmes, définit les fonctions suivantes:
+
+\begin{itemize}
+\item \begin{lstlisting}
+public abstract void addWord(String string)
+\end{lstlisting}
+Cette fonction permet de représenter l'ajout d'un mot au sac (il s'agit d'une représentation: le mot n'est pas forcément placé dans le sac selon le fonctionnement de l'algorithme). Il s'agit d'appeler cette fonction avec pour argument chacun des mots du fichier.
+
+\item \begin{lstlisting}
+public abstract LinkedList<String> words()
+\end{lstlisting}
+Cette fonction permet de récupérer une liste des mots qui caractérisent le fichier dont le contenu a été transmis via \class{addWord} (au sens où ces mots sont ceux renvoyés par l'algorithme du sujet).
+
+\item \begin{lstlisting}
+public abstract double estimateMiceNumber(int nbOcc)
+\end{lstlisting}
+Il s'est avéré que l'échantillonnage permettant la détermination des mots caractéristiques d'un texte était identique à celui fournissant le nombre de souris (essentiellement car il s'agit principalement d'un algorithme permettant d'estimer la taille d'un fichier ou d'un flux). Seul le traitement final des données change: au lieu de renvoyer l'ensemble des mots subsistant dans le sac, on n'utilise que ceux dont le nombre d'occurrence est celui fournit en paramètre. C'est pourquoi nous retrouvons cette méthode ici.
+\end{itemize}
+
+\subsection{La classe \class{SignificantWordsSample}}
+
+La structure de donnée utilisée lorsque l'on effectue un appel en ligne de commande (voir notice) est un tableau de 32 listes de \class{String} permettant de stocker les mots en fonction du nombre de zéros débutant l'écriture binaire de leur valeur hachée.\\
+Le fonctionnement de l'algorithme est assez simple. Pour chaque mot reçu par le sac on détermine ce nombre de zéro et on ajoute le mot à la liste correspondante dans le tableau lorsque le nombre de zéros dépasse la profondeur courante $b$. Lorsque le sac est plein on supprime la liste correspondante à $b$ et on incrémente ce paramètre. De cette manière, pour une profondeur donnée b, un mot a une probabilité $2^{b}$ d'être stocké (on suppose ici que la fonction de hachage fournit des valeurs entières réparties de manière uniforme). Au fur et à mesure de l'avancement de l'algorithme b diminue et on s'attend à ce que les mots stockés soient fréquents dans le texte (car ayant un faible probabilité d'être stocké). Un appel à \class{words} (normalement lorsque le fichier a été lu entièrement) renvoie une liste de ces mots, en ne conservant que ceux dont le nombre d'occurrence est inférieur à 5 (arbitraire), ceci afin d'éviter de renvoyer des mots très fréquents non caractéristiques ('the', 'to', et c).
+
+\subsection{Complexité en espace et en temps}
+
+A tout instant le nombre de mots stockés est inférieur à la taille du sac: $2k$. Ces mots ont une taille variable, mais si l'espace nécessaire au stockage d'un mot (et du nombre d'occurrence) est borné par M, la complexité en espace est en $\mathcal{O}(k)$.\\
+
+Il est difficile de déterminer la complexité en temps de l'algorithme puisqu'elle dépend de l'encombrement des listes du tableau qui, elle-même, dépend du nombre de zéros des valeurs hachées. La taille des listes est cependant bornée par la taille du sac ( $2k$ ). On lit chaque mot et on détermine à chaque fois s'il appartient à une liste d'où une complexité dans le pire cas en $\mathcal{O}(kN)$ avec N le nombre de mots lus.\\
+
+Nous sommes bien conscients qu'une implémentation utilisant des listes force un temps linéaire à chaque fois que l'on recherche si le mot appartient à la liste (pour savoir si l'on doit augmenter ou non le nombre d'occurrences). Cependant les liste les plus longues correspondent à une profondeur faible (plus grande probabilité de commencer par peu de zéros) et donc sont inutilisées très tôt au cours de l'algorithme (car la profondeur augmente). En pratique le temps d'exécution sur le Mahâbhârata ($>$ 14 Mo) est inférieur a la seconde. Nous n'avons donc pas cherché à optimiser plus la structure.
+
+
+\begin{figure}
+	\label{fig:samplingPackage}
+	\centering
+	\includegraphics[scale=0.55, angle=90]{../Java Workspace/Test Hash/samplingPackage.png}
+	\caption{Le package sampling.}
+\end{figure}
+
+
 
 \newpage
 \section{Souris}
@@ -303,5 +353,5 @@ $^{(1)}$ : Si $S$, $W$, $m$ et $N$ sont des constantes.
 
 
 
-
+ 
 \end{document}

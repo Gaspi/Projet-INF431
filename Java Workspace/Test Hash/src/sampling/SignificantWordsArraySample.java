@@ -15,7 +15,7 @@ public class SignificantWordsArraySample extends SignificantWordsSample {
     // Array of list of Occurrence objects of length 32. The list at index i will contain words
     // whose hash value has exactly i trailing zeros (number of 0 before the first 1 encountered
     // from right to left in a binary representation on the integer)
-    ArrayList<LinkedList<Occurrence>> strTab = new ArrayList<LinkedList<Occurrence>>(33);
+    final ArrayList<LinkedList<Occurrence>> strTab = new ArrayList<LinkedList<Occurrence>>(33);
     
     
     public SignificantWordsArraySample(int k, HashFunction func) {

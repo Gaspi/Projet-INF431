@@ -1,10 +1,8 @@
 package sampling;
 
 import hash.HashFunction;
-import hash.HashFunctionTests;
 import hash.LookUp3;
 
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +13,7 @@ import drafts.GetInput;
 
 import FileManager.WordReader;
 
-public class Mice {
+public final class Mice {
 
 
 	/**
@@ -42,11 +40,11 @@ public class Mice {
      * Calculate the real number of mice.
      * 
      * @param path Path to the file to use.
-     * @param k Number of occurrences.
+     * @param nbOcc Number of occurrences.
      * 
-     * @return Number of words which appear k times in the file.
+     * @return Number of words which appear nbOcc times in the file.
      */
-    public static double benchmarkMiceNumber(Path path, int k){
+    public static double benchmarkMiceNumber(Path path, int nbOcc){
     	Hashtable<String, Double> tab = new Hashtable<String, Double>();
 
     	for (String s : new WordReader(path))
@@ -59,7 +57,7 @@ public class Mice {
     	
     	double comp = 0;
     	for(String s: tab.keySet())
-    		if(tab.get(s) == k)
+    		if(tab.get(s) == nbOcc)
     			comp++;
     	
     	return comp;
@@ -67,22 +65,26 @@ public class Mice {
     
     /**
      * Display the percentage error when estimating the number of k-mice
+     * 
      * @param path Path to the file to use.
-     * @param k Number of occurrences.
+     * @param nbOcc Number of occurrences.
+     * @param func The hash function used on words.
+     * @param k Parameter from the subject (half the size of the bag used for sampling)
+     * 
      */
-    public static void performanceEstimator(Path path, int k){   	
-    	SignificantWordsArraySample ws = new SignificantWordsArraySample(1000, new LookUp3());	
+    public static void performanceEstimator(Path path, int nbOcc , HashFunction func, int k){   	
+    	SignificantWordsArraySample ws = new SignificantWordsArraySample(k, new LookUp3());	
     	for(String str: new WordReader(path)) {
     		ws.addWord(str);
     	}
     	
-    	double a = benchmarkMiceNumber(path, k);
-    	double b = ws.estimateMiceNumber(k);
+    	double a = benchmarkMiceNumber(path, nbOcc);
+    	double b = ws.estimateMiceNumber(nbOcc);
     	
     	System.out.println("----------------------------------------------------------------");
     	System.out.println("For file " + path.getFileName());
-    	System.out.println("The estimated number of " + k + "-mice is: " + b + ".");
-    	System.out.println("The real number of " + k + "-mice is: " + a + ".");
+    	System.out.println("The estimated number of " + nbOcc + "-mice is: " + b + ".");
+    	System.out.println("The real number of " + nbOcc + "-mice is: " + a + ".");
     	System.out.println("The percentage error is: " + Math.abs(a-b)/a*100. + ".");
     	System.out.println("----------------------------------------------------------------");
     }
@@ -109,6 +111,7 @@ public class Mice {
         	
     	} else
     		throw new IllegalArgumentException("Wrong number of arguments (4 expected)");
+		
 	}
 	
 	
@@ -126,23 +129,3 @@ public class Mice {
     }
 
 }
-
-
-
-
-
-// Old code in Main...
-//
-//Path path = hashFunctionTests2.shakespeare;
-//int k = 2;
-//
-//SignificantWordsArraySample ws = new SignificantWordsArraySample(1000, f);	
-//for(String str: new WordReader(path)) {
-//	ws.addWord(str);
-//}
-//
-//double a = benchmarkMiceNumber(path, k);
-//double b = ws.estimateMiceNumber(k);
-//    	
-//
-//System.out.println(a + " - " + b + " diff = " + Math.abs(a-b)/a*100.);

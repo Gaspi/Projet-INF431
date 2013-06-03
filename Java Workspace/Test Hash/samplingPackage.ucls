@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="sampling.IcebergSample" project="Test Hash" 
     file="/Test Hash/src/sampling/IcebergSample.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="144" width="259" x="698" y="37"/>    
+    <position height="-1" width="-1" x="711" y="91"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="sampling.IcebergTreeSample" project="Test Hash" 
     file="/Test Hash/src/sampling/IcebergTreeSample.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="144" width="299" x="772" y="306"/>    
+    <position height="-1" width="-1" x="933" y="377"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="sampling.IcebergTreeSampleImproved" project="Test Hash" 
     file="/Test Hash/src/sampling/IcebergTreeSampleImproved.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="249" width="344" x="388" y="306"/>    
+    <position height="-1" width="-1" x="1056" y="142"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="sampling.Occurrence" project="Test Hash" 
     file="/Test Hash/src/sampling/Occurrence.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="143" width="192" x="41" y="37"/>    
+    <position height="-1" width="-1" x="517" y="576"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="sampling.SignificantWordsArraySample" project="Test Hash" 
     file="/Test Hash/src/sampling/SignificantWordsArraySample.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="166" width="379" x="1537" y="306"/>    
+    <position height="-1" width="-1" x="136" y="391"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="sampling.SignificantWordsSample" project="Test Hash" 
     file="/Test Hash/src/sampling/SignificantWordsSample.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="229" width="327" x="1537" y="37"/>    
+    <position height="-1" width="-1" x="376" y="132"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="sampling.SignificantWordsTreeSample" project="Test Hash" 
     file="/Test Hash/src/sampling/SignificantWordsTreeSample.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="166" width="386" x="1111" y="306"/>    
+    <position height="-1" width="-1" x="549" y="391"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="sampling.Mice" project="Test Hash" file="/Test Hash/src/sampling/Mice.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="167" width="385" x="273" y="37"/>    
+    <position height="-1" width="-1" x="199" y="600"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="sampling.SignificantWords" project="Test Hash" 
     file="/Test Hash/src/sampling/SignificantWords.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="145" width="500" x="997" y="37"/>    
+    <position height="-1" width="-1" x="878" y="577"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -91,11 +91,11 @@
     <end type="TARGET" refId="6"/>  
   </generalization>  
   <generalization id="12">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="13">    
-    <end type="SOURCE" refId="3"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 

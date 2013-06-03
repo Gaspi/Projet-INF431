@@ -237,4 +237,6 @@ public class NewSingleFrameApplication extends SingleFrameApplication {
 	   return jRadioButton7;
    }
 
+
+
 }

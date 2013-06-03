@@ -20,7 +20,7 @@ public class Icebergs {
 	 * @return Approximately all icebergs whose frequency is over 'frequency'
 	 */
 	public static LinkedList<String> findIcebergs(Path path, double frequency){
-		IcebergSample sample = new IcebergTreeSampleImproved(frequency, 0.9);
+		IcebergSample sample = new IcebergTreeSample(frequency);
 		
 		for(String str: new WordReader(path))
 			sample.addWord(str);

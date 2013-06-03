@@ -9,11 +9,11 @@ import java.util.LinkedList;
  */
 public abstract class SignificantWordsSample {
 	// Half the maximum size of the sample
-    int k;
+    final int k;
+    // Hash function used
+    final HashFunction func;
     // Current number of elements in the sample
     int nbElements;
-    // Hash function used
-    HashFunction func;
     // Current depth of the algorithm
     int b;
     
