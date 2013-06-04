@@ -28,6 +28,25 @@
 \section*{Introduction}
 \addcontentsline{toc}{section}{\protect\numberline{}Introduction}
 
+Le sujet que nous avons traité proposait de s'intéresser au traitement de grande quantités de données à travers des algorithmes de comptage du nombre d'entrées différentes. Il suggérait plusieurs algorithmes que nous avons implanté, étudié et parfois modifié à la lecture des références. Parfois la liberté nous était laissée quant à l'algorithme ("Sliding Window") ou les structures de données ("Icebergs") à employer. Nous nous sommes alors appliqué à déterminer les choix qui minimisaient les coûts en temps d'exécution et en espace.\\
+
+Nous nous sommes toujours appliqué à produire un code simple et lisible dans son implantation mais surtout cohérent dans son organisation. Ainsi les classes construites permettent d'intégrer aisément d'autres fonctions de hachage, ou de permettre le traitement d'autre types de données (texte en une autre langue, bases de données, log de serveurs web, ...) De plus, afin de travailler plus efficacement, nous avons utilisé la plateforme de travail collaboratif "GitHub". Il a donc été rapidement nécessaire de se mettre d'accord sur les bonnes pratiques à utiliser au niveau de l'organisation du code, des commentaires, de la répartition du travail,... Globalement, nous avons ainsi pu mettre à profits les nombreux enseignements tirés du cours d'INF 431 à l'origine de ce projet.\\
+\\
+
+Pour traiter le sujet, nous avons utilisé six différentes fonctions de hachage que nous avons comparé les unes par rapport aux autres. Ainsi, par exemple, nous avons observé que la fonction de hachage par défaut de Java, bien qu'elle génère peu de collisions, n'est pas parmi les plus uniforme. Les algorithmes laissent toujours le choix de la fonction de hachage à utiliser, ce qui nous a permis de contacter le réel impact négatif du choix d'une mauvaise fonction de hachage.\\
+
+Nous avons également appliqué les différents algorithmes proposés sur des échantillons de gros textes anglais. En particulier, nous nous sommes procuré : La \textit{Bible}, \textit{Hamlet}, Un dictionnaire anglais, Le \textit{Mahabharata} complet, Les oeuvres complètes de \textit{Shakespeare}, \textit{Hamlet}, Les titres de tout les articles anglais de Wikipédia... Nous avons également généré certains gros fichiers nous-même pour bénéficier des données pseudo-aléatoires.\\
+
+Tout nos algorithmes fonctionnent et renvoient des résultats qui nous semblent théoriquement cohérents et passent avec succès les tests que nous leur faisons subir. Ainsi :
+\begin{itemize}
+\item L'algorithme "HyperLogLog" renvoie des résultats cohérents, proches du nombre exact et de moins en moins éloignés plus le paramètre $b$ est grand.
+La commande \class{wc} de Linux et le comptage exact via Java du résultat attendu permettent de confirmer cette précision.
+\item Les similarités entre fichiers sont bien cohérentes avec leur contenu (différences de langue,...)
+\item L'algorithme "Sliding Window" appliqué sur la concaténation de la Bible et des œuvres de Shakespeare a permis de détecter clairement le changement de registre lors du passage d'une œuvre à l'autre.
+\item Une recherche Google avec les mots fournis par notre algorithme d'échantillonnage permet bien de retrouver immédiatement les références vers ce texte.
+\end{itemize}
+
+\newpage
 \section*{Classes annexes}
 \addcontentsline{toc}{section}{\protect\numberline{}Classes annexes}
 
