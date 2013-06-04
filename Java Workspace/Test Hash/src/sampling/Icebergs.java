@@ -60,20 +60,20 @@ public class Icebergs {
 	// This answers question 7
 	public static void main(String[] args) throws NoSuchFileException, IllegalArgumentException {
 		
-//    	if (args.length == 2) {
-//    		
-//        	Draft.checkRange( args[0], 0., 1. );
-//        	Draft.checkPath( args[1] );
-//        	exec(args[1], Double.parseDouble(args[0]));
-//        	
-//    	} else if (args.length == 0) {
-//    		
-//        	String path = GetInput.askPath("Path to the file");
-//        	double frequency = GetInput.askParameterInRange("Frequency", 0., 1.);
-//        	exec( path, frequency );
-//        	
-//    	} else
-//    		throw new IllegalArgumentException("Wrong number of arguments (2 expected)");
+    	if (args.length == 2) {
+    		
+        	Draft.checkRange( args[0], 0., 1. );
+        	Draft.checkPath( args[1] );
+        	exec(args[1], Double.parseDouble(args[0]));
+        	
+    	} else if (args.length == 0) {
+    		
+        	String path = GetInput.askPath("Path to the file");
+        	double frequency = GetInput.askParameterInRange("Frequency", 0., 1.);
+        	exec( path, frequency );
+        	
+    	} else
+    		throw new IllegalArgumentException("Wrong number of arguments (2 expected)");
 		
 		
 		

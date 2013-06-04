@@ -11,9 +11,9 @@ public class Files {
 	public static final Path englishWords = Paths.get("files/processed/English_Words.txt");
 	public static final Path bible = Paths.get("files/processed/Bible.txt");
 	public static final Path hamlet = Paths.get("files/processed/Hamlet.txt");
-	public static final Path[] paths = { shakespeare, englishWords, uuids, numbers, bible};
+	public static final Path[] paths = {shakespeare, englishWords, uuids, numbers};
 	
-	public static final String[] descriptions = { "Shakespeare", "English words", "UUIDs",
-			"Numbers from 1 to 1,000,000", "Old and new testaments", "Hamlet"};
+	public static final String[] descriptions = {"Shakespeare", "English words", "UUIDs",
+			"Numbers from 1 to 1,000,000"};
 	
 }

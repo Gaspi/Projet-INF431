@@ -211,6 +211,11 @@ public class HashFunctionTests {
 			mat[2 * i + 2][0] = funcs[i].getClass().getSimpleName();
 			mat[2 * i + 3][0] = "";
 		}
+		
+		// Reading just to prevent disk cache effect to interfere with the result
+		for (int j = 0; j < paths.length; j++)
+			speedTestOnFile(paths[j], new LookUp3());
+		
 		for (int i = 0; i < funcs.length; i++)
 			for (int j = 0; j < paths.length; j++) {
 				mat[2 * i + 2][j + 1] = collisionTestOnFile(paths[j], funcs[i]) + " collisions";
@@ -243,21 +248,22 @@ public class HashFunctionTests {
 	// This answers question 1
 	public static void main(String[] args) throws NoSuchFileException {
 		
-    	if (args.length > 0) {
-        	for(int j=0; j < args.length; j++)
-        		Draft.checkPath( args[j] );
-        	exec(args);
-        	
-    	} else
-        	exec( GetInput.askPathSet("Paths to the files") );
+//    	if (args.length > 0) {
+//        	for(int j=0; j < args.length; j++)
+//        		Draft.checkPath( args[j] );
+//        	exec(args);
+//        	
+//    	} else
+//        	exec( GetInput.askPathSet("Paths to the files") );
     	
-		/*
-		HashFunction[] tab = new HashFunction[3];
-		//tab[0] = new LoseLose();
-		//tab[1] = new DJB2();
-		tab[0] = new LookUp3();
-		tab[1] = new MurmurHash3();
-		tab[2] = new JavaHash();
+		//*
+		HashFunction[] tab = new HashFunction[6];
+		tab[0] = new LoseLose();
+		tab[1] = new DJB2();
+		tab[2] = new LookUp3();
+		tab[3] = new MurmurHash3();
+		tab[4] = new JavaHash();
+		tab[5] = new HomemadeHash();
 		speedCollisionTests(tab, Files.paths);
 		//*/
 	}

@@ -33,7 +33,7 @@ Le sujet que nous avons traité proposait de s'intéresser au traitement de gran
 Nous nous sommes toujours appliqué à produire un code simple et lisible dans son implantation mais surtout cohérent dans son organisation. Ainsi les classes construites permettent d'intégrer aisément d'autres fonctions de hachage, ou de permettre le traitement d'autre types de données (texte en une autre langue, bases de données, log de serveurs web, ...) De plus, afin de travailler plus efficacement, nous avons utilisé la plateforme de travail collaboratif "GitHub". Il a donc été rapidement nécessaire de se mettre d'accord sur les bonnes pratiques à utiliser au niveau de l'organisation du code, des commentaires, de la répartition du travail,... Globalement, nous avons ainsi pu mettre à profits les nombreux enseignements tirés du cours d'INF 431 à l'origine de ce projet.\\
 \\
 
-Pour traiter le sujet, nous avons utilisé six différentes fonctions de hachage que nous avons comparé les unes par rapport aux autres. Ainsi, par exemple, nous avons observé que la fonction de hachage par défaut de Java, bien qu'elle génère peu de collisions, n'est pas parmi les plus uniforme. Les algorithmes laissent toujours le choix de la fonction de hachage à utiliser, ce qui nous a permis de contacter le réel impact négatif du choix d'une mauvaise fonction de hachage.\\
+Pour traiter le sujet, nous avons utilisé six différentes fonctions de hachage que nous avons comparé les unes par rapport aux autres. Ainsi, par exemple, nous avons observé que la fonction de hachage par défaut de Java, bien qu'elle génère peu de collisions, n'est pas parmi les plus uniforme au niveau des entiers renvoyés. Les algorithmes laissent toujours le choix de la fonction de hachage à utiliser, ce qui nous a permis de contacter le réel impact négatif du choix d'une mauvaise fonction de hachage.\\
 
 Nous avons également appliqué les différents algorithmes proposés sur des échantillons de gros textes anglais. En particulier, nous nous sommes procuré : La \textit{Bible}, \textit{Hamlet}, Un dictionnaire anglais, Le \textit{Mahabharata} complet, Les oeuvres complètes de \textit{Shakespeare}, \textit{Hamlet}, Les titres de tout les articles anglais de Wikipédia... Nous avons également généré certains gros fichiers nous-même pour bénéficier des données pseudo-aléatoires.\\
 
@@ -150,6 +150,8 @@ private static void chiSquareTestOnFile(Path path, HashFunction func)
 Cette fonction effectue un test du Chi-2 sur les valeurs renvoyées par la fonction de hachage sur les fichier d'adresse \class{path}. L'intervalle de confiance utilisé est de niveau 95\%. La fonction  affiche également la \textit{p-value} correspondante.
 
 \end{itemize}
+
+La comparaison des fonctions de hachage est effectuée en \ref{exemple:hashFunctions}. Les fonctions \class{LookUp3}, \class{MurmurHash3} et \class{JavaHash} se distinguent. Cependant seules les deux premières valident le teste du Chi2 au niveau 95\% (voir \ref{exemple:hashFunctionsHistogram}). Nous les utilisons donc dans la suite.
 
 \begin{figure}
 	\label{fig:hashPackage}
@@ -338,7 +340,9 @@ Il s'est avéré que l'échantillonnage permettant la détermination des mots ca
 \subsection{La classe \class{SignificantWordsSample}}
 
 La structure de donnée utilisée lorsque l'on effectue un appel en ligne de commande (voir notice) est un tableau de 32 listes de \class{String} permettant de stocker les mots en fonction du nombre de zéros débutant l'écriture binaire de leur valeur hachée.\\
-Le fonctionnement de l'algorithme est assez simple. Pour chaque mot reçu par le sac on détermine ce nombre de zéro et on ajoute le mot à la liste correspondante dans le tableau lorsque le nombre de zéros dépasse la profondeur courante $b$. Lorsque le sac est plein on supprime la liste correspondante à $b$ et on incrémente ce paramètre. De cette manière, pour une profondeur donnée b, un mot a une probabilité $2^{b}$ d'être stocké (on suppose ici que la fonction de hachage fournit des valeurs entières réparties de manière uniforme). Au fur et à mesure de l'avancement de l'algorithme b diminue et on s'attend à ce que les mots stockés soient fréquents dans le texte (car ayant un faible probabilité d'être stocké). Un appel à \class{words} (normalement lorsque le fichier a été lu entièrement) renvoie une liste de ces mots, en ne conservant que ceux dont le nombre d'occurrence est inférieur à 5 (arbitraire), ceci afin d'éviter de renvoyer des mots très fréquents non caractéristiques ('the', 'to', et c).
+Le fonctionnement de l'algorithme est assez simple. Pour chaque mot reçu par le sac on détermine ce nombre de zéro et on ajoute le mot à la liste correspondante dans le tableau lorsque le nombre de zéros dépasse la profondeur courante $b$. Lorsque le sac est plein on supprime la liste correspondante à $b$ et on incrémente ce paramètre. De cette manière, pour une profondeur donnée b, un mot a une probabilité $2^{b}$ d'être stocké (on suppose ici que la fonction de hachage fournit des valeurs entières réparties de manière uniforme). Au fur et à mesure de l'avancement de l'algorithme b diminue et on s'attend à ce que les mots stockés soient fréquents dans le texte (car ayant un faible probabilité d'être stocké). Un appel à \class{words} (normalement lorsque le fichier a été lu entièrement) renvoie une liste de ces mots, en ne conservant que ceux dont le nombre d'occurrence est inférieur à 5 (arbitraire), ceci afin d'éviter de renvoyer des mots très fréquents non caractéristiques ('the', 'to', et c).\\
+
+Un exemple d'utilisation sur le texte de Hamlet figure en \ref{exemple:significantWords}. On y utilise la fonction de hachage \class{MurmurHash3}. Les mots en sortie permette effectivement de retrouver Hamlet par une recherche Google.
 
 \subsection{Complexité en espace et en temps}
 
@@ -419,6 +423,71 @@ Masatora Ogata, Yukiko Yamauchi, Shuji Kijima, Masafumi Yamashita
 \newpage
 \section*{Annexes}
 \addcontentsline{toc}{section}{\protect\numberline{}Annexes}
+
+\subsection*{Résultats de la comparaison des fonctions de hachage}
+\label{exemple:hashFunctions}
+
+\begin{verbatim}
+---------   Speed - Collision tests   ---------
+  Hash         Shakespeare.txt     English_Words.txt   UUID_200000.txt     Numbers_1000000.txt   
+--------       ---------           ---------           ---------           ---------             
+LoseLose       878236 collisions   215510 collisions   199070 collisions   999811 collisions     
+                 0.32720682 s        0.12830862 s        0.19780427 s        0.39017802 s        
+DJB2           853822 collisions   9 collisions        9 collisions        0 collisions          
+                 0.33199048 s        0.1109968 s         0.1844562 s         0.26849014 s        
+LookUp3        853822 collisions   11 collisions       3 collisions        112 collisions        
+                 0.26288077 s        0.09970115 s        0.14868888 s        0.39803672 s        
+MurmurHash3    853822 collisions   5 collisions        5 collisions        129 collisions        
+                 0.39128217 s        0.113119066 s       0.19454275 s        0.3401911 s         
+JavaHash       853822 collisions   7 collisions        4 collisions        0 collisions          
+                 0.28174952 s        0.07376972 s        0.12679335 s        0.26274577 s        
+HomemadeHash   865839 collisions   152451 collisions   143 collisions      998976 collisions     
+                 0.24256304 s        0.08820919 s        0.1503777 s         0.30265328 s       
+\end{verbatim}
+
+\newpage
+\subsection*{Histogramme des valeurs renvoyées par les fonctions de hachage sur le smots d'un dictionnaire anglais}
+\label{exemple:hashFunctionsHistogram}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{pictures/histogramLookUp3.png}
+	\caption{Pour la fonction LookUp3.}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{pictures/histogramMurmurHash3.png}
+	\caption{Pour la fonction MurmurHash3.}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{pictures/histogramJavaHash.png}
+	\caption{Pour la fonction JavaHash.}
+\end{figure}
+
+
+\subsection*{Exemple de résultats de la recherche de mots caractéristiques}
+\label{exemple:significantWords}
+
+\begin{verbatim}
+----------------------------------------------------------------
+Finding frequent words for file:
+        /home/jonathan/Documents/Projet-INF431/...
+        ...Java Workspace/Test Hash/files/processed/Hamlet.txt
+
+With parameters :
+    Sampling bag of size = 200 words
+
+Results :
+    shark
+    uphoarded
+    bird
+    planets
+    hearts
+----------------------------------------------------------------
+\end{verbatim}
  
 \subsection*{Exemple de résultats de la recherche d'icebergs}
 \label{exemple:icebergs}
