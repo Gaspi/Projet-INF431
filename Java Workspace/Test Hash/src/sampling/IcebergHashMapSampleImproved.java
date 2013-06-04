@@ -81,7 +81,7 @@ public class IcebergHashMapSampleImproved extends IcebergSample {
 	}
 	
 	
-	private class MyString{
+	private static class MyString{
 		
 		String str;
 		

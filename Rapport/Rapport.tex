@@ -375,7 +375,23 @@ Permet de récupérez les icebergs.
 
 Ce sac utilise l'algorithme dû à Karp et alii et présenté dans le sujet. Étant suffisamment simple, nous ne revenons pas dessus. Il nous fallait en revanche choisir une structure de donnée efficace. Les opérations à effectuer sur cette structure sont uniquement des ajouts, des suppressions et des tests d'appartenance. Nous ne désirons préserver aucun invariant sur les données (pas d'ordre par exemple). Pour ces raisons, une implémentation par table de hachage (type Java \class{HashMap}) nous a semblé approprié. En effet les trois opérations précédentes s'y effectuent en temps constant (temps constant amorti en vérité puisqu'il faut tenir compte des éventuels changements de capacité de la table).\\
 
-Un exemple de résultat est fourni en annexe \ref{exemple:icebergs}. On y utilise le texte d'Hamlet.
+Un exemple de résultat est fourni en annexe \ref{exemple:icebergs}. On y utilise le texte d'Hamlet. On remarque que, par rapport au vrai résultat fourni en \ref{exemple:icebergsBenchmark}, de nombreux faux positifs sont générés par l'algorithme. Ceci est dû au fait que certains mots qui ne sont pas des icebergs sont ajoutés au sac vers la fin de la lecture du fichier et ne sont pas supprimés puisque l'algorithme termine. Pour limiter ce phénomène nous ne renvoyons que les mots dont le nombre d'occurrences final est $>1$ (il est donc apparu au moins deux fois parmi les $\lceil\frac{1}{\theta}\rceil$ derniers mots ($\theta$ est la fréquence des icebergs).
+
+\subsection{La classe \class{IcebergHashMapSampleImproved}}
+
+Nous procédons à deux modifications pour améliorer les résultats de cet algorithme. Premièrement, l'utilisation d'une table de hachage n'est efficace que si la fonction de hachage utilisée renvoie bien des valeurs distribuées uniformément. Or, nous avons constaté que la fonction utilisé par défaut par Java pour les \class{String} (la fonction \class{JavaHash}) ne valide pas le test du Chi2 au niveau 95\%. Nous définissons donc une nouvelle classe \class{MyString}('static nested class') pour pouvoir surcharger la méthode \class{hashCode} utilisé par \class{HashMap}.\\
+
+Deuxièmement, nous utilisons une variante de l'algorithme, proposée dans\\
+
+\textit{A Randomized Algorithm for Finding Frequent Elements in Streams Using O(loglogN) Space.}
+Masatora Ogata, Yukiko Yamauchi, Shuji Kijima, Masafumi Yamashita
+01/2011; pp.514-523 In proceeding of: Algorithms and Computation - 22nd International Symposium, ISAAC 2011, Yokohama, Japan, December 5-8, 201
+
+\noindent disponible à l'adresse
+\href{http://www.google.fr/search?tbo=p&tbm=bks&q=isbn:3642255906}.
+
+
+\noindent Il s'agit de l'algorithme 1, décrit en détails dans l'article. Il permet, sans perte au niveau de la complexité en espace, de limiter le nombre de faux positif avec une grande probabilité, ce pourquoi nous l'avons trouvé pertinent. Un exemple d'utilisation est fourni en \ref{exemple:icebergsImproved} (on remarque l'amélioration par rapport à \ref{exemple:icebergs}).
 
 \newpage
 \section*{Conclusion}
@@ -393,37 +409,65 @@ Un exemple de résultat est fourni en annexe \ref{exemple:icebergs}. On y utilis
 ----------------------------------------------------------------
 
 Approximating the number of 0.03-icebergs for file:
-	/home/jonathan/Documents/Projet-INF431/...
-	...Java Workspace/Test Hash/files/processed/Hamlet.txt
+        /home/jonathan/Documents/Projet-INF431/...
+        ...Java Workspace/Test Hash/files/processed/Hamlet.txt
 Results :
-	a
-	and
-	dead
-	for
-	hamlet
-	i
-	in
-	is
-	it
-	me
-	my
-	of
-	off
-	on
-	that
-	the
-	this
-	to
-	you
+    a
+    and
+    dead
+    for
+    hamlet
+    i
+    in
+    is
+    it
+    me
+    my
+    of
+    off
+    on
+    that
+    the
+    this
+    to
+    you
 ----------------------------------------------------------------
 \end{verbatim}
 
-\subsection*{Vrai nombre d'icebergs d'icebergs}
+\subsection*{Vrai nombre d'icebergs}
 \label{exemple:icebergsBenchmark}
 
+\begin{verbatim}
+----------------------------------------------------------------
+Real number of 0.03-icebergs for file:
+        /home/jonathan/Documents/Projet-INF431/...
+        ...Java Workspace/Test Hash/files/processed/Hamlet.txt	
+Results :
+    and
+    the
+----------------------------------------------------------------
+\end{verbatim}
+
+\newpage
 \subsection*{Exemple de résultats de la recherche d'icebergs avec l'algorithme amélioré}
 \label{exemple:icebergsImproved}
  
+ \begin{verbatim}
+ ----------------------------------------------------------------
+
+Approximating the number of 0.03-icebergs for file:
+        /home/jonathan/Documents/Projet-INF431/...
+        ...Java Workspace/Test Hash/files/processed/Hamlet.txt
+Results :
+    my
+    you
+    to
+    and
+    of
+    the
+    i
+----------------------------------------------------------------
+ \end{verbatim}
  
  
 \end{document}

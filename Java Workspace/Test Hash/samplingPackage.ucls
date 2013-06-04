@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="sampling.SignificantWordsTreeSample" project="Test Hash" 
-    file="/Test Hash/src/sampling/SignificantWordsTreeSample.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="sampling.SignificantWordsHashSample" project="Test Hash" 
+    file="/Test Hash/src/sampling/SignificantWordsHashSample.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="549" y="391"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

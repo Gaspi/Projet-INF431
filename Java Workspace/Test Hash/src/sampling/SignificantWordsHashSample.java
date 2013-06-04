@@ -15,7 +15,7 @@ import java.util.TreeSet;
  * Not working
  *
  */
-public class SignificantWordsTreeSample extends SignificantWordsSample {
+public class SignificantWordsHashSample extends SignificantWordsSample {
 
     // Array of list of Occurrence objects of length 32. The list at index i will contain words
     // whose hash value has exactly i trailing zeros (number of 0 before the first 1 encountered
@@ -23,7 +23,7 @@ public class SignificantWordsTreeSample extends SignificantWordsSample {
     ArrayList<HashMap<String, Integer>> strTab = new ArrayList<HashMap<String, Integer>>(33);
     
     
-    public SignificantWordsTreeSample(int k, HashFunction func) {
+    public SignificantWordsHashSample(int k, HashFunction func) {
     	super(k, func);
     	
     	for (int i = 0; i <= 32; i++)

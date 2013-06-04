@@ -20,7 +20,7 @@ public class Icebergs {
 	 * @return Approximately all icebergs whose frequency is over 'frequency'
 	 */
 	public static LinkedList<String> findIcebergs(Path path, double frequency){
-		IcebergSample sample = new IcebergHashMapSample(frequency);
+		IcebergSample sample = new IcebergHashMapSampleImproved(frequency, 0.9);
 		
 		for(String str: new WordReader(path))
 			sample.addWord(str);
@@ -76,13 +76,12 @@ public class Icebergs {
 //    		throw new IllegalArgumentException("Wrong number of arguments (2 expected)");
 		
 		
-    	
+		
 	}
 	
 	
     public static void exec(String path, double frequency){
     	LinkedList<String> l = findIcebergs(Paths.get(path), frequency);
-    	
     	System.out.println("----------------------------------------------------------------");
     	System.out.println(System.lineSeparator() + "Approximating the number of " + frequency + "-icebergs for file:");
     	System.out.println("	" + path);
