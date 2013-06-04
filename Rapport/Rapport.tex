@@ -330,6 +330,11 @@ Il est difficile de déterminer la complexité en temps de l'algorithme puisqu'e
 
 Nous sommes bien conscients qu'une implémentation utilisant des listes force un temps linéaire à chaque fois que l'on recherche si le mot appartient à la liste (pour savoir si l'on doit augmenter ou non le nombre d'occurrences). Cependant les liste les plus longues correspondent à une profondeur faible (plus grande probabilité de commencer par peu de zéros) et donc sont inutilisées très tôt au cours de l'algorithme (car la profondeur augmente). En pratique le temps d'exécution sur le Mahâbhârata ($>$ 14 Mo) est inférieur a la seconde. Nous n'avons donc pas cherché à optimiser plus la structure.
 
+\subsection{Autre utilisation}
+
+Puisque les mots sont stockés à la fin de la lecture de l'algorithme dans le sac avec une probabilité $2^{b}$. Le même algorithme permet d'estimer la taille T d'un fichier ou d'un flux par
+$$ T = m \times 2^{b} $$
+où m est le nombre de mots du sac.
 
 \begin{figure}
 	\label{fig:samplingPackage}
@@ -343,15 +348,82 @@ Nous sommes bien conscients qu'une implémentation utilisant des listes force un
 \newpage
 \section{Souris}
 
+L'algorithme est identique au précédent. Lors de l'appel à \class{estimateMiceNumber} les mots retenus sont ceux dont le nombre d'occurrence nbOcc est celui fourni en paramètre. On suppose que la proportion de nbOcc-souris (en nombre $m_{nbOcc-souris}$) parmi les mots du sac en fin d'algorithme est identique à la proportion de nbOcc-souris dans le texte. On arrive donc à l'estimation du nombre de nbOcc-souris suivante:
+$$ T_{nbOcc-souris} = m_{nbOcc-souris} \times 2^{b} $$
+avec b la profondeur en fin d'algorithme.
 
 \newpage
 \section{Icebergs}
+
+\subsection{La classe \class{IcebergSample}}
+
+Comme pour la détermination de mots caractéristiques, puisque le sujet demande un choix approprié de structure de données et d'implémentation, nous avons crée une classe abstraite 'patron' du sac permettant l'échantillonnage (qui contient à la fois la structure de données et l'algorithme): la classe \class{IcebergSample}. Elle dispose de deux méthodes abstraites:
+
+\begin{itemize}
+\item \begin{lstlisting}
+public abstract void addWord(String string)
+\end{lstlisting}
+Permet de faire prendre en compte un mot au sac.
+
+\item \begin{lstlisting}
+public abstract LinkedList<String> getIcebergs()
+\end{lstlisting}
+Permet de récupérez les icebergs.
+\end{itemize}
+
+\subsection{La classe \class{IcebergHashMapSample}}
+
+Ce sac utilise l'algorithme dû à Karp et alii et présenté dans le sujet. Étant suffisamment simple, nous ne revenons pas dessus. Il nous fallait en revanche choisir une structure de donnée efficace. Les opérations à effectuer sur cette structure sont uniquement des ajouts, des suppressions et des tests d'appartenance. Nous ne désirons préserver aucun invariant sur les données (pas d'ordre par exemple). Pour ces raisons, une implémentation par table de hachage (type Java \class{HashMap}) nous a semblé approprié. En effet les trois opérations précédentes s'y effectuent en temps constant (temps constant amorti en vérité puisqu'il faut tenir compte des éventuels changements de capacité de la table).\\
+
+Un exemple de résultat est fourni en annexe \ref{exemple:icebergs}. On y utilise le texte d'Hamlet.
 
 \newpage
 \section*{Conclusion}
 \addcontentsline{toc}{section}{\protect\numberline{}Conclusion}
 
 
+\newpage
+\section*{Annexes}
+\addcontentsline{toc}{section}{\protect\numberline{}Annexes}
+ 
+\subsection*{Exemple de résultats de la recherche d'icebergs}
+\label{exemple:icebergs}
 
+\begin{verbatim}
+----------------------------------------------------------------
+
+Approximating the number of 0.03-icebergs for file:
+	/home/jonathan/Documents/Projet-INF431/...
+	...Java Workspace/Test Hash/files/processed/Hamlet.txt
+Results :
+	a
+	and
+	dead
+	for
+	hamlet
+	i
+	in
+	is
+	it
+	me
+	my
+	of
+	off
+	on
+	that
+	the
+	this
+	to
+	you
+----------------------------------------------------------------
+\end{verbatim}
+
+\subsection*{Vrai nombre d'icebergs d'icebergs}
+\label{exemple:icebergsBenchmark}
+
+\subsection*{Exemple de résultats de la recherche d'icebergs avec l'algorithme amélioré}
+\label{exemple:icebergsImproved}
+ 
+ 
  
 \end{document}

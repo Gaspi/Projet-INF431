@@ -1,5 +1,10 @@
 package sampling;
 
+import hash.HashFunction;
+import hash.LookUp3;
+import hash.LoseLose;
+import hash.MurmurHash3;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -8,7 +13,7 @@ import org.apache.commons.math3.random.RandomDataGenerator;
 
 public class IcebergHashMapSampleImproved extends IcebergSample {
 
-	private final HashMap<String, Integer> sample = new HashMap<String, Integer>();
+	private final HashMap<MyString, Integer> sample = new HashMap<MyString, Integer>();
 	private final double lowerBoundFrequency;
 	private final double delta = 0.1;
 	private final int b;
@@ -33,10 +38,11 @@ public class IcebergHashMapSampleImproved extends IcebergSample {
 	public void addWord(String word) {
 
 		if (Math.random() <= Math.pow(2., -h)) {
-			Integer i = sample.get(word);
+			MyString str = new MyString(word);
+			Integer i = sample.get(str);
 			
-			if (i == null) sample.put(word, 1);
-			else 		   sample.put(word, 1 + i.intValue());
+			if (i == null) sample.put(str, 1);
+			else 		   sample.put(str, 1 + i.intValue());
 			
 			sumK++;
 		}
@@ -44,9 +50,9 @@ public class IcebergHashMapSampleImproved extends IcebergSample {
 		if(sumK == Math.pow(2., b)){
 			h++;
 			RandomDataGenerator rand = new RandomDataGenerator();
-			Iterator<String> it = sample.keySet().iterator();
+			Iterator<MyString> it = sample.keySet().iterator();
 			while(it.hasNext()){
-				String s = it.next();
+				MyString s = it.next();
 				int ks = sample.get(s);
 				sumK -= ks;
 				int k = rand.nextBinomial(ks, 0.5);
@@ -67,11 +73,44 @@ public class IcebergHashMapSampleImproved extends IcebergSample {
 		
 		LinkedList<String> l = new LinkedList<String>();
 		
-		for (String s : sample.keySet())
+		for (MyString s : sample.keySet())
 			if ((1 - lowerBoundFrequency / 2.) * frequency * sumK <= sample.get(s))
-				l.add(s);
+				l.add(s.str);
 		
 		return l;
+	}
+	
+	
+	private class MyString{
+		
+		String str;
+		
+		public MyString(String str){
+			this.str = str;
+		}
+		
+		@Override
+		public int hashCode(){
+			HashFunction func = new LookUp3();
+			return func.hashString(this.str);
+		}
+		
+		@Override
+		public boolean equals(Object obj){
+			if (this == obj)
+	    		return true;
+	    	if (obj == null)
+	    		return false;
+	    	if (getClass() != obj.getClass())
+	    		return false;
+	    	MyString other = (MyString) obj;
+	    	if (str == null) {
+	    		if (other.str != null)
+	    			return false;
+	    	} else if (!str.equals(other.str))
+	    		return false;
+	    	return true;
+		}
 	}
 
 }
