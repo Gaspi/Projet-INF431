@@ -37,7 +37,6 @@
 
 \logo{\includegraphics[height=50pt]{pictures/logoX.png}}
 
-
 \begin{frame}
 \titlepage
 \end{frame}
@@ -92,15 +91,55 @@ Insérer le tableau ici
 
 \section{The HyperLogLog Algorithm}
 
-\subsection{First implementation}
+\subsection{The algorithm}
 \begin{frame}
-Empty frame
+\includegraphics[scale=0.3]{pictures/algoFlajolet.png}
 \end{frame}
 
-\subsection{$k$-shingles}
-\begin{frame}
-Empty frame
+\begin{frame}[fragile]
+
+\begin{block}{The $\alpha$ tab}
+\begin{verbatim}
+static double[] alpha = {0 , 0.351194 , 0.532435
+        , 0.625609 , ... };
+\end{verbatim}
+$\texttt{alpha[b]} = \alpha_m$ where $m = 2^b$.\\
+Value computed with Wolfram Mathematica
+\end{block}
+
+\begin{block}{The $\rho$ function}
+\begin{verbatim}
+  public static int rho ( long x )
+\end{verbatim}
+
+\end{block}
 \end{frame}
+
+
+\begin{frame}[fragile]
+\begin{block}{Building the $M$ collection}
+\begin{verbatim}
+public static int[] buildFingerPrint (Path path,
+          HashFunction func , int b , int k )
+\end{verbatim}
+
+\end{block}
+
+\begin{block}{Handling the $k$-shingles}
+To read a new word
+\begin{verbatim}
+strBuilder.append( s );
+indexes.add( s.length() );
+\end{verbatim}
+To remove the last word
+\begin{verbatim}
+strBuilder.replace( 0, indexes.poll(), "");
+\end{verbatim}
+\end{block}
+
+\end{frame}
+
+
 
 \subsection{Similarities}
 \begin{frame}
@@ -113,7 +152,10 @@ Empty frame
 
 \subsection{The algorithm}
 \begin{frame}
-Empty frame
+\textbf{assume} $m = 2^b$ with $b\in[4...16]$.\\
+\textbf{initialize} a collection of $m$ lists M[1], ..., M[m] to empty\\
+
+
 \end{frame}
 
 \subsection{Complexity}
